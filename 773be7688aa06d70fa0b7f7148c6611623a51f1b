@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f24cc6b4_1cbc35bf",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001240
+      },
+      "writtenOn": "2014-01-24T21:07:51Z",
+      "side": 1,
+      "message": "no matching BUCK file? :-)",
+      "revId": "773be7688aa06d70fa0b7f7148c6611623a51f1b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f2a76688_c4fb1e94",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Namespace.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001240
+      },
+      "writtenOn": "2014-01-24T21:07:51Z",
+      "side": 1,
+      "message": "Why not a ^ regex version like we allow for ref matching?",
+      "revId": "773be7688aa06d70fa0b7f7148c6611623a51f1b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f24cc6b4_7cc1f93e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Namespace.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1001240
+      },
+      "writtenOn": "2014-01-24T21:07:51Z",
+      "side": 1,
+      "message": "I don\u0027t understand how /?/* is different from /*. /* just tests for prefix. The regex here also seems to be doing the same.",
+      "range": {
+        "startLine": 29,
+        "startChar": 9,
+        "endLine": 29,
+        "endChar": 12
+      },
+      "revId": "773be7688aa06d70fa0b7f7148c6611623a51f1b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f2a76688_240792e5",
+        "filename": "src/main/resources/Documentation/about.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001240
+      },
+      "writtenOn": "2014-01-24T21:07:51Z",
+      "side": 1,
+      "message": "elsewhere we call these things projects. do we want do say maxProjects instead?",
+      "range": {
+        "startLine": 19,
+        "startChar": 4,
+        "endLine": 19,
+        "endChar": 12
+      },
+      "revId": "773be7688aa06d70fa0b7f7148c6611623a51f1b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
