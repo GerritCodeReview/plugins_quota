@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "522592ed_27dbfa96",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1003935
+      },
+      "writtenOn": "2014-01-25T05:45:46Z",
+      "side": 1,
+      "message": "It\u0027s because the Maven archetype for generating plugin skeletons isn\u0027t creating a Buck file... Will fix it :)",
+      "parentUuid": "f24cc6b4_1cbc35bf",
+      "revId": "773be7688aa06d70fa0b7f7148c6611623a51f1b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f2a76688_c4fb1e94",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Namespace.java",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2014-01-24T21:07:51Z",
       "side": 1,
       "message": "Why not a ^ regex version like we allow for ref matching?",
+      "revId": "773be7688aa06d70fa0b7f7148c6611623a51f1b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "12179a8c_25dbee96",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Namespace.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1003935
+      },
+      "writtenOn": "2014-01-25T05:45:46Z",
+      "side": 1,
+      "message": "I will add it. That it\u0027s not here is because in the beginning of the discussion we were not sure which quota to take when a project namespace matches several quota rules. We were thinking of \u0027most restrictive quota wins\u0027 or \u0027most specific namespace wins\u0027 before we came up with \u0027first matching rule wins\u0027. For \u0027most specific namespace wins\u0027 it would have been difficult to say for two regular expressions which one is more specific which is why we didn\u0027t want to support regular expressions for that case.\n\nIn the end we decided to implement the \u0027first matching rule wins\u0027 approach, because it gives the best flexibility and at the same time it is easy to understand.",
+      "parentUuid": "f2a76688_c4fb1e94",
       "revId": "773be7688aa06d70fa0b7f7148c6611623a51f1b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
@@ -59,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "12179a8c_05e07237",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Namespace.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1003935
+      },
+      "writtenOn": "2014-01-25T05:45:46Z",
+      "side": 1,
+      "message": "Ah, I had difficulties to name and explain this concept so I\u0027m not surprised that you have difficulties to understand it :-(\n\n\u0027?\u0027 is a placeholder for any name. \u0027?/*\u0027 with \u0027maxRepos \u003d 3\u0027 means for every folder we allow 3 repositories. \u0027?/*\u0027 is a shortcut for having \n\n  \u0027\u003cname1\u003e/*\u0027 with \u0027maxRepos \u003d 3\u0027\n  \u0027\u003cname2\u003e/*\u0027 with \u0027maxRepos \u003d 3\u0027\n  ...\n\nBy \u0027*\u0027 with \u0027maxRepos \u003d 3\u0027 we define a single quota for this namespace. Means if \u0027x/myProject\u0027, \u0027x/myOtherProject\u0027 and \u0027y/testProject\u0027 exist then the quota is exceeded and a project \u0027a/pluginProject\u0027 cannot be created anymore.\n\nIn the \u0027?/*\u0027 case after matching a project we reset \u0027namespace\u0027 in line 33. This means if the quota rule was found for project \u0027a/myProject\u0027 the \u0027namespace\u0027 is changed to \u0027a/*\u0027. With this new \u0027a/*\u0027 namespace we can now find all other projects which have to be taken into account when checking if the quota is exceeded.\n\nFYI, internally we are implementing a tenant concept in Gerrit so that we can store the projects of different customers on the same Gerrit server without letting the customers see each other. We do this by mapping a customer to one namespace. E.g the projects of customerX are all under \u0027customerX/\u0027 and customerX can only see what is in the \u0027customerX/*\u0027 namespace. We now want to limit the number of projects that a customer can create in its namespace, but we do not want to write a quota rule for each customer, but rather define that each customer can create N projects. Still we would like to be able to make an exception for certain customer and allow him to create M projects.\n\n  [quota \"customerX/*\"]\n    maxRepos \u003d M\n  [quota \"?/*]\n    maxRepos \u003d N\n\nDoes this make sense now? Do you see a better way to achieve this?",
+      "parentUuid": "f24cc6b4_7cc1f93e",
+      "range": {
+        "startLine": 29,
+        "startChar": 9,
+        "endLine": 29,
+        "endChar": 12
+      },
+      "revId": "773be7688aa06d70fa0b7f7148c6611623a51f1b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f2a76688_240792e5",
         "filename": "src/main/resources/Documentation/about.md",
         "patchSetId": 1
@@ -70,6 +130,30 @@
       "writtenOn": "2014-01-24T21:07:51Z",
       "side": 1,
       "message": "elsewhere we call these things projects. do we want do say maxProjects instead?",
+      "range": {
+        "startLine": 19,
+        "startChar": 4,
+        "endLine": 19,
+        "endChar": 12
+      },
+      "revId": "773be7688aa06d70fa0b7f7148c6611623a51f1b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "12179a8c_65e5e647",
+        "filename": "src/main/resources/Documentation/about.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1003935
+      },
+      "writtenOn": "2014-01-25T05:45:46Z",
+      "side": 1,
+      "message": "Yes, probably \u0027maxProjects\u0027 is a better name here.\n\nThe next quota we would like to add is \u0027maxRepoSize\u0027 to define the maximum number of bytes that a repository is allowed to consume in the filesystem. For this quota \u0027repo\u0027 sounds more suitable than \u0027project\u0027 and for name consistency this quota here turned out to be \u0027maxRepos\u0027.",
+      "parentUuid": "f2a76688_240792e5",
       "range": {
         "startLine": 19,
         "startChar": 4,
