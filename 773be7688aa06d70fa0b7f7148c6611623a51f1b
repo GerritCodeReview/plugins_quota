@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "32f1fea2_8e40fb51",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2014-01-25T14:43:58Z",
+      "side": 1,
+      "message": "Can you add this in the documentation in config.md?",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 12
+      },
+      "revId": "773be7688aa06d70fa0b7f7148c6611623a51f1b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f24cc6b4_1cbc35bf",
         "filename": "pom.xml",
         "patchSetId": 1
