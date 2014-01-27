@@ -60,6 +60,23 @@
     },
     {
       "key": {
+        "uuid": "522592ed_67985267",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositoriesQuotaValidator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-01-27T13:10:41Z",
+      "side": 1,
+      "message": "Instead of computing the \"applies\" in the constructor of the Namespace I would propose checking it here and the instantiate only one Namespace instance.. the first one that applies.",
+      "revId": "773be7688aa06d70fa0b7f7148c6611623a51f1b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f2a76688_c4fb1e94",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Namespace.java",
         "patchSetId": 1
