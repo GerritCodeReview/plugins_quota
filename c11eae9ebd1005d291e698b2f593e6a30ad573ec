@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "12179a8c_459d4a55",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QuotaFinder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-01-27T17:02:57Z",
+      "side": 1,
+      "message": "Move this out of the loop?",
+      "revId": "c11eae9ebd1005d291e698b2f593e6a30ad573ec",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "522592ed_c77f7e35",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QuotaFinder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-01-27T17:02:57Z",
+      "side": 1,
+      "message": "optional: for me, this way of expressing this logic would be more readable:\n\n    for (String n : namespaces) {\n      if (\"?/*\".equals(n) || n.endsWith(\"/?/*\")) {\n        String prefix \u003d n.substring(0, n.length() - 3);\n        Matcher m \u003d Pattern.compile(\"^\" + prefix + \"([^/]+)/.*$\").matcher(p);\n        if (m.matches()) {\n          return new QuotaSection(cfg, n, prefix + m.group(1) + \"/*\");\n        }\n      } else if (n.endsWith(\"/*\") \u0026\u0026 p.startsWith(n.substring(0, n.length() - 1))) {\n        return new QuotaSection(cfg, n, n);\n      } else if (n.startsWith(\"^\") \u0026\u0026 p.matches(n.substring(1))) {\n        return new QuotaSection(cfg, n, n);\n      } else if (p.equals(n)) {\n        return new QuotaSection(cfg, n, n);\n      }\n    }\n    return null;",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 16
+      },
+      "revId": "c11eae9ebd1005d291e698b2f593e6a30ad573ec",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "522592ed_276c9a8e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QuotaSection.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-01-27T17:02:57Z",
+      "side": 1,
+      "message": "Would it make sense to, instead of this kind of API, expose a more concrete API like:\n\n  public long getMaxProjects() {\n    ...\n  }\n\n\nIt could return -1 if the \"maxProjects\" key is not defined in this section.\nOr:\n\n  public long getMaxProjects(long defaultValue) {\n    ...\n  }\n\n?",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 3
+      },
+      "revId": "c11eae9ebd1005d291e698b2f593e6a30ad573ec",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
