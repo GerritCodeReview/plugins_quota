@@ -16,6 +16,24 @@
       "revId": "52d811dfc6990f5280acdb858d0756a2a28b1700",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f2c12653_b419c091",
+        "filename": "src/main/resources/Documentation/build.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1003935
+      },
+      "writtenOn": "2014-01-28T09:36:38Z",
+      "side": 1,
+      "message": "Don\u0027t know, just copy and pasted this ;-)\n\nDone",
+      "parentUuid": "f2c12653_941cc482",
+      "revId": "52d811dfc6990f5280acdb858d0756a2a28b1700",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
