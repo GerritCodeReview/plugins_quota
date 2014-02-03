@@ -21,6 +21,7 @@ import org.eclipse.jgit.lib.Config;
 public class QuotaSection {
   public static final String QUOTA = "quota";
   public static final String KEY_MAX_PROJECTS = "maxProjects";
+  public static final String KEY_MAX_REPO_SIZE = "maxRepoSize";
 
   private final Config cfg;
   private final String namespace;
@@ -49,5 +50,12 @@ public class QuotaSection {
       return null;
     }
     return cfg.getInt(QUOTA, namespace, KEY_MAX_PROJECTS, Integer.MAX_VALUE);
+  }
+
+  public Long getMaxRepoSize() {
+    if (!cfg.getNames(QUOTA, namespace).contains(KEY_MAX_REPO_SIZE)) {
+      return null;
+    }
+    return cfg.getLong(QUOTA, namespace, KEY_MAX_REPO_SIZE, Long.MAX_VALUE);
   }
 }
