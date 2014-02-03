@@ -6,7 +6,7 @@ The @PLUGIN@ plugin supports the following quotas:
 * Maximum number of projects in a namespace
 
 The defined quotas are stored in a `quota.config` file in the
-`refs/meta/config` branch of the `All-Project` root project.
+`refs/meta/config` branch of the `All-Projects` root project.
 Administrators can add and edit quotas by fetching this branch, editing
 the `quota.config` file locally and pushing back the changes. The
 `quota.config` file is a Git config file:
