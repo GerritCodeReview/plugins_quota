@@ -1,10 +1,6 @@
 Configuration
 =============
 
-The @PLUGIN@ plugin supports the following quotas:
-
-* Maximum number of projects in a namespace
-
 The defined quotas are stored in a `quota.config` file in the
 `refs/meta/config` branch of the `All-Projects` root project.
 Administrators can add and edit quotas by fetching this branch, editing
@@ -14,13 +10,23 @@ the `quota.config` file locally and pushing back the changes. The
 ```
   [quota "sandbox/*"]
     maxProjects = 50
+    maxRepoSize = 2 m
   [quota "public/*"]
     maxProjects = 100
+    maxRepoSize = 10 m
 ```
 
 <a id="maxProjects">
 `quota.<namespace>.maxProjects`
 : The maximum number of projects that can be created in this namespace.
+
+<a id="maxRepoSize">
+`quota.<namespace>.maxRepoSize`
+: The maximum total file size of a repository in this namespace. This is
+the sum of sizes of all files in a Git repository where the size is
+taken using the File.length() method. This means that, for example, a
+reference file is counted as 41 bytes although it typically occupies a
+block of 4K in the file system.
 
 A namespace can be specified as
 
