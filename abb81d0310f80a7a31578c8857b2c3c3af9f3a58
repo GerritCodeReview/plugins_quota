@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "325e5ed0_06a21abd",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1003935
+      },
+      "writtenOn": "2014-02-04T12:18:20Z",
+      "side": 1,
+      "message": "Maybe include the project name into the warning?",
+      "range": {
+        "startLine": 59,
+        "startChar": 6,
+        "endLine": 59,
+        "endChar": 50
+      },
+      "revId": "abb81d0310f80a7a31578c8857b2c3c3af9f3a58",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "92862a64_91e4fc4c",
         "filename": "src/main/resources/Documentation/about.md",
         "patchSetId": 1
