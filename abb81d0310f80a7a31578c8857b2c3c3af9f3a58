@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "92862a64_91e4fc4c",
+        "filename": "src/main/resources/Documentation/about.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2014-02-04T06:15:01Z",
+      "side": 1,
+      "message": "Mention that this total is per namespace?",
+      "revId": "abb81d0310f80a7a31578c8857b2c3c3af9f3a58",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
