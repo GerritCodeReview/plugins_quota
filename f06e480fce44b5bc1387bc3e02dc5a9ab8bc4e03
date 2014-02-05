@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "328f3eaf_9eda9d90",
+        "filename": "src/main/resources/Documentation/about.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2014-02-05T23:55:40Z",
+      "side": 1,
+      "message": "It would be better to make this consistent with how it is described in config.md where it says \"The maximum total file size of a repository in this namespace\".\n\nChange \"this namespace\" to \"a namespace\" in this context though.",
+      "range": {
+        "startLine": 10,
+        "startChar": 2,
+        "endLine": 10,
+        "endChar": 50
+      },
+      "revId": "f06e480fce44b5bc1387bc3e02dc5a9ab8bc4e03",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
