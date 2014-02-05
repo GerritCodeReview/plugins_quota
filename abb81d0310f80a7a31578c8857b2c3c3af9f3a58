@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "72b7f64c_d0e97c25",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-02-05T16:01:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "325e5ed0_06a21abd",
+      "range": {
+        "startLine": 59,
+        "startChar": 6,
+        "endLine": 59,
+        "endChar": 50
+      },
+      "revId": "abb81d0310f80a7a31578c8857b2c3c3af9f3a58",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "92862a64_91e4fc4c",
         "filename": "src/main/resources/Documentation/about.md",
         "patchSetId": 1
@@ -36,6 +60,24 @@
       "writtenOn": "2014-02-04T06:15:01Z",
       "side": 1,
       "message": "Mention that this total is per namespace?",
+      "revId": "abb81d0310f80a7a31578c8857b2c3c3af9f3a58",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "72b7f64c_f0e4804d",
+        "filename": "src/main/resources/Documentation/about.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-02-05T16:01:56Z",
+      "side": 1,
+      "message": "hmm.. it is actually maximum size of one repository (unrelated to the size of other repositories).\n\nHow could I express it better?",
+      "parentUuid": "92862a64_91e4fc4c",
       "revId": "abb81d0310f80a7a31578c8857b2c3c3af9f3a58",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
