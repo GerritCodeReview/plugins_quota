@@ -18,6 +18,7 @@ import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.config.ReceivePackInitializer;
 import com.google.gerrit.server.git.GitRepositoryManager;
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 
 import java.io.File;
 import java.io.IOException;
@@ -34,6 +35,7 @@ import org.eclipse.jgit.transport.ReceivePack;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@Singleton
 class MaxRepositorySizeQuota implements ReceivePackInitializer {
   private static final Logger log = LoggerFactory
       .getLogger(MaxRepositorySizeQuota.class);
@@ -47,6 +49,7 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer {
     this.gitManager = gitManager;
   }
 
+  @Override
   public void init(Project.NameKey project, ReceivePack rp) {
     QuotaSection quotaSection = quotaFinder.firstMatching(project);
     if (quotaSection == null) {
