@@ -45,6 +45,54 @@
       "revId": "0480ae747b7b10db525407e498887455b1d030ef",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2f435582_1ea42d9d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-02-12T15:45:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f435582_bec9b967",
+      "range": {
+        "startLine": 86,
+        "startChar": 32,
+        "endLine": 86,
+        "endChar": 34
+      },
+      "revId": "0480ae747b7b10db525407e498887455b1d030ef",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ef4cddb4_3cb651e2",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-02-12T15:45:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f435582_5ec5154b",
+      "range": {
+        "startLine": 86,
+        "startChar": 8,
+        "endLine": 86,
+        "endChar": 11
+      },
+      "revId": "0480ae747b7b10db525407e498887455b1d030ef",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
