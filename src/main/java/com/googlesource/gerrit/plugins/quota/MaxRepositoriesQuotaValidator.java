@@ -20,7 +20,9 @@ import com.google.gerrit.server.project.ProjectCache;
 import com.google.gerrit.server.validators.ProjectCreationValidationListener;
 import com.google.gerrit.server.validators.ValidationException;
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 
+@Singleton
 public class MaxRepositoriesQuotaValidator implements
     ProjectCreationValidationListener {
   private final QuotaFinder quotaFinder;
