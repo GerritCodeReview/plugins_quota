@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "ef4cddb4_3c9f7152",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2014-02-12T16:31:52Z",
+      "side": 1,
+      "message": "Yupp, we should, but… 5 min. ago got an answer on my request from Robin Rosenberg:\n\n \"That would tie us to Java 7. Today\u0027s solution uses Java 7 only if available.\"\n\nSo i don\u0027t care about Java 4, 5 and 6. I only care about making Gerrit code cleaner and don\u0027t want to wait another 10 years for that to happen. Any chance we could get AutoClosable in JGit?",
+      "parentUuid": "ef4cddb4_fcd34915",
+      "range": {
+        "startLine": 73,
+        "startChar": 6,
+        "endLine": 74,
+        "endChar": 34
+      },
+      "revId": "3d2a197f151a49286cfd23ed5c936b69ee75e3ec",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2f435582_5e9eb552",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
         "patchSetId": 5
