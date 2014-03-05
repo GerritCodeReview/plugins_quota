@@ -1,6 +1,6 @@
 include_defs('//lib/maven.defs')
 
-API_VERSION = '2.9-SNAPSHOT'
+API_VERSION = '2.10-SNAPSHOT'
 REPO = MAVEN_LOCAL
 
 gerrit_plugin(

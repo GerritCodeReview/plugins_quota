@@ -19,6 +19,8 @@ import com.google.gerrit.server.git.ReceivePackInitializer;
 import com.google.gerrit.server.validators.ProjectCreationValidationListener;
 import com.google.inject.AbstractModule;
 
+import org.eclipse.jgit.transport.PostReceiveHook;
+
 class Module extends AbstractModule {
   @Override
   protected void configure() {
@@ -26,5 +28,8 @@ class Module extends AbstractModule {
         .to(MaxRepositoriesQuotaValidator.class);
     DynamicSet.bind(binder(), ReceivePackInitializer.class)
         .to(MaxRepositorySizeQuota.class);
+    DynamicSet.bind(binder(), PostReceiveHook.class)
+        .to(MaxRepositorySizeQuota.class);
+    install(MaxRepositorySizeQuota.module());
   }
 }
