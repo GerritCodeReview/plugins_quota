@@ -16,12 +16,14 @@ package com.googlesource.gerrit.plugins.quota;
 
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
+import com.google.common.collect.Ordering;
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.cache.CacheModule;
 import com.google.gerrit.server.config.GerritServerConfig;
 import com.google.gerrit.server.config.SitePaths;
 import com.google.gerrit.server.git.ReceivePackInitializer;
 import com.google.gerrit.server.git.GitRepositoryManager;
+import com.google.gerrit.server.project.ProjectCache;
 import com.google.inject.Inject;
 import com.google.inject.Module;
 import com.google.inject.Singleton;
@@ -68,15 +70,18 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook 
 
   private final QuotaFinder quotaFinder;
   private final LoadingCache<Project.NameKey, AtomicLong> cache;
+  private final ProjectCache projectCache;
   private final SitePaths site;
   private final Path basePath;
 
   @Inject
   MaxRepositorySizeQuota(QuotaFinder quotaFinder,
       @Named(CACHE_NAME) LoadingCache<Project.NameKey, AtomicLong> cache,
+      ProjectCache projectCache,
       SitePaths site, @GerritServerConfig final Config cfg) {
     this.quotaFinder = quotaFinder;
     this.cache = cache;
+    this.projectCache = projectCache;
     this.site = site;
     basePath = site.resolve(cfg.getString("gerrit", null, "basePath")).toPath();
   }
@@ -89,12 +94,30 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook 
     }
 
     Long maxRepoSize = quotaSection.getMaxRepoSize();
-    if (maxRepoSize == null) {
+    Long maxTotalSize = quotaSection.getMaxTotalSize();
+    if (maxRepoSize == null && maxTotalSize == null) {
       return;
     }
 
     try {
-      long maxPackSize = Math.max(0, maxRepoSize - cache.get(project).get());
+      Long maxPackSize1 = null;
+      if (maxRepoSize != null) {
+        maxPackSize1 = Math.max(0, maxRepoSize - cache.get(project).get());
+      }
+
+      Long maxPackSize2 = null;
+      if (maxTotalSize != null) {
+        long totalSize = 0;
+        for (Project.NameKey p : projectCache.all()) {
+          if (quotaSection.matches(p)) {
+            totalSize += cache.get(p).get();
+          }
+        }
+        maxPackSize2 = Math.max(0, maxTotalSize - totalSize);
+      }
+
+      long maxPackSize = Ordering.<Long> natural().nullsLast().min(
+          maxPackSize1, maxPackSize2);
       rp.setMaxPackSizeLimit(maxPackSize);
     } catch (ExecutionException e) {
       log.warn("Couldn't setMaxPackSizeLimit on receive-pack for "

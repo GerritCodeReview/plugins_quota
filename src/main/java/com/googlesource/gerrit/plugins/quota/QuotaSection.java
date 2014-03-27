@@ -22,6 +22,7 @@ public class QuotaSection {
   public static final String QUOTA = "quota";
   public static final String KEY_MAX_PROJECTS = "maxProjects";
   public static final String KEY_MAX_REPO_SIZE = "maxRepoSize";
+  public static final String KEY_MAX_TOTAL_SIZE = "maxTotalSize";
 
   private final Config cfg;
   private final String namespace;
@@ -57,5 +58,12 @@ public class QuotaSection {
       return null;
     }
     return cfg.getLong(QUOTA, namespace, KEY_MAX_REPO_SIZE, Long.MAX_VALUE);
+  }
+
+  public Long getMaxTotalSize() {
+    if (!cfg.getNames(QUOTA, namespace).contains(KEY_MAX_TOTAL_SIZE)) {
+      return null;
+    }
+    return cfg.getLong(QUOTA, namespace, KEY_MAX_TOTAL_SIZE, Long.MAX_VALUE);
   }
 }
