@@ -14,14 +14,19 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
+import static com.google.gerrit.server.project.ProjectResource.PROJECT_KIND;
+
 import com.google.gerrit.extensions.registration.DynamicSet;
+import com.google.gerrit.extensions.restapi.RestApiModule;
 import com.google.gerrit.server.git.ReceivePackInitializer;
 import com.google.gerrit.server.validators.ProjectCreationValidationListener;
 import com.google.inject.AbstractModule;
 
 import org.eclipse.jgit.transport.PostReceiveHook;
 
+
 class Module extends AbstractModule {
+
   @Override
   protected void configure() {
     DynamicSet.bind(binder(), ProjectCreationValidationListener.class)
@@ -31,5 +36,11 @@ class Module extends AbstractModule {
     DynamicSet.bind(binder(), PostReceiveHook.class)
         .to(MaxRepositorySizeQuota.class);
     install(MaxRepositorySizeQuota.module());
+    install(new RestApiModule() {
+      @Override
+      protected void configure() {
+        get(PROJECT_KIND, "quota").to(GetQuota.class);
+      }
+    });
   }
 }
