@@ -56,12 +56,12 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook 
   private static final Logger log = LoggerFactory
       .getLogger(MaxRepositorySizeQuota.class);
 
-  private static final String CACHE_NAME = "repo_size";
+  static final String REPO_SIZE_CACHE = "repo_size";
 
   static Module module() {
     return new CacheModule() {
       protected void configure() {
-        persist(CACHE_NAME, Project.NameKey.class, AtomicLong.class)
+        persist(REPO_SIZE_CACHE, Project.NameKey.class, AtomicLong.class)
             .loader(Loader.class)
             .expireAfterWrite(1, TimeUnit.DAYS);
       }
@@ -76,7 +76,7 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook 
 
   @Inject
   MaxRepositorySizeQuota(QuotaFinder quotaFinder,
-      @Named(CACHE_NAME) LoadingCache<Project.NameKey, AtomicLong> cache,
+      @Named(REPO_SIZE_CACHE) LoadingCache<Project.NameKey, AtomicLong> cache,
       ProjectCache projectCache,
       SitePaths site, @GerritServerConfig final Config cfg) {
     this.quotaFinder = quotaFinder;
