@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "999c9385_e1dc868a",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/GetQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1003935
+      },
+      "writtenOn": "2014-04-07T12:37:24Z",
+      "side": 1,
+      "message": "Unnecessary if check. Why not just:\n\n  qi.maxRepoSize \u003d qs.getMaxRepoSize();\n\n?",
+      "range": {
+        "startLine": 56,
+        "startChar": 4,
+        "endLine": 59,
+        "endChar": 5
+      },
+      "revId": "0a527b156715257d18d53733358e66cc9830a8b1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b997975d_a2e67e54",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/GetQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1003935
+      },
+      "writtenOn": "2014-04-07T12:37:24Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 63,
+        "startChar": 4,
+        "endLine": 66,
+        "endChar": 5
+      },
+      "revId": "0a527b156715257d18d53733358e66cc9830a8b1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "999c9385_c1e18240",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/GetQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1003935
+      },
+      "writtenOn": "2014-04-07T12:37:24Z",
+      "side": 1,
+      "message": "Looking at this now, this is maybe not the best name. Maybe rather call it \u0027repoSize\u0027 to match \u0027maxRepoSize\u0027?",
+      "range": {
+        "startLine": 76,
+        "startChar": 16,
+        "endLine": 76,
+        "endChar": 20
+      },
+      "revId": "0a527b156715257d18d53733358e66cc9830a8b1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
