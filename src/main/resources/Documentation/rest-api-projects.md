@@ -37,6 +37,7 @@ that describes the projects quota.
     "max_repo_size": 1048576,
     "namespace": {
       "name": "customerX/*",
+      "total_size": 1874,
       "max_total_size": 10485760
     }
   }
@@ -62,5 +63,6 @@ This means that the sum of sizes of all repositories under that namespace is not
 allowed to exceed the namespace quota. It has the following fields:
 
 * _name_: the namepspace name
+* _total\_size_: the total size of all repositories under this namespace
 * _max\_total\_size_: the maximum allowed total size of all repositories under this
   namespace

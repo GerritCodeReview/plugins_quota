@@ -56,12 +56,20 @@ public class GetQuota implements RestReadView<ProjectResource> {
     qi.maxRepoSize = qs.getMaxRepoSize();
     qi.namespace = new NamespaceInfo();
     qi.namespace.name = qs.getNamespace();
+    long totalSize = 0;
+    for (Project.NameKey p : projectCache.all()) {
+      if (qs.matches(p)) {
+        totalSize += repoSizeCache.get(p).get();
+      }
+    }
+    qi.namespace.totalSize = totalSize;
     qi.namespace.maxTotalSize = qs.getMaxTotalSize();
     return qi;
   }
 
   public static class NamespaceInfo {
     public String name;
+    public long totalSize;
     public Long maxTotalSize;
   }
 
