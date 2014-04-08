@@ -36,7 +36,7 @@ that describes the projects quota.
     "repo_size": 386,
     "max_repo_size": 1048576,
     "namespace": {
-      "name": "bosch/*",
+      "name": "customerX/*",
       "max_total_size": 10485760
     }
   }
