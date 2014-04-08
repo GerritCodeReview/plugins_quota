@@ -18,7 +18,7 @@ Get quota for a project.
 #### Request
 
 ```
-  GET /projects/calculator/@PLUGIN@~quota/ HTTP/1.0
+  GET /projects/customerX%2Fcalculator/@PLUGIN@~quota/ HTTP/1.0
 ```
 
 As response a [QuotaInfo](#quota-info) entity is returned
