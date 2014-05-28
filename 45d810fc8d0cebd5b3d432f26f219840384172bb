@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1fda4833_5f27aba6",
+        "filename": "BUCK",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2014-05-28T17:49:21Z",
+      "side": 1,
+      "message": "You can also add:\n\n  labels \u003d [\u0027quota-plugin\u0027],\n\nif you would like to execute it from gerrit directory and restrict only to these tests:\n\n  buck test --all --include quota-plugin",
+      "revId": "45d810fc8d0cebd5b3d432f26f219840384172bb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1fda4833_3f22e797",
+        "filename": "BUCK",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2014-05-28T17:49:21Z",
+      "side": 1,
+      "message": "I think this should be just:\n\n \u0027quota__plugin\u0027",
+      "range": {
+        "startLine": 27,
+        "startChar": 6,
+        "endLine": 27,
+        "endChar": 28
+      },
+      "revId": "45d810fc8d0cebd5b3d432f26f219840384172bb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff19f4bf_06223a97",
+        "filename": "BUCK",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2014-05-28T17:49:21Z",
+      "side": 1,
+      "message": "You can also add:\n\n  source_under_test \u003d [\u0027:quota__plugin\u0027],\n\nThis .class files for the rules specified by source_under_test will be be instrumented by the code coverage tool, EMMA, if buck test is executed with the --code-coverage option.",
+      "revId": "45d810fc8d0cebd5b3d432f26f219840384172bb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
