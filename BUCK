@@ -19,3 +19,17 @@ maven_jar(
   repository = REPO,
   license = 'Apache2.0',
 )
+
+java_test(
+  name = 'quota_tests',
+  srcs = glob(['src/test/java/**/*.java']),
+  labels = ['quota-plugin'],
+  deps = [
+    ':quota__plugin',
+    '//lib:junit',
+    '//gerrit-reviewdb:client',
+    '//lib:gwtorm',
+  ],
+  source_under_test = [':quota__plugin'],
+)
+
