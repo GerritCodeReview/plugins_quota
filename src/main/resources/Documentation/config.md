@@ -1,6 +1,9 @@
 Configuration
 =============
 
+Quota
+-----
+
 The defined quotas are stored in a `quota.config` file in the
 `refs/meta/config` branch of the `All-Projects` root project.
 Administrators can add and edit quotas by fetching this branch, editing
@@ -112,3 +115,22 @@ sure that each individual repository cannot exceed 3m
     maxRepoSize = 3 m
     maxTotalSize = 20 m
 ```
+
+Publication Schedule
+--------------------
+
+Publication of repository sizes to registered UsageDataPublishedListeners
+is configured in the `plugin.quota` subsection of the `gerrit.config` file.
+The publication interval can be configured using the same format as for the
+[garbage collection schedule](../../../Documentation/config-gerrit.html#gc),
+with the parameter names 'publicationStartTime' and 'publicationInterval'.
+
+Example:
+
+```
+  [plugin "quota"]
+    publicationStartTime = Fri 10:30
+    publicationInterval  = 1 day
+```
+
+If no publicationInterval is configured, no data is published.
