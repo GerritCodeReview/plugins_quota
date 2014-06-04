@@ -42,7 +42,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.apache.commons.lang.mutable.MutableLong;
-import org.eclipse.jgit.errors.RepositoryNotFoundException;
 import org.eclipse.jgit.lib.Config;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.transport.PostReceiveHook;
@@ -71,7 +70,6 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook 
   private final QuotaFinder quotaFinder;
   private final LoadingCache<Project.NameKey, AtomicLong> cache;
   private final ProjectCache projectCache;
-  private final SitePaths site;
   private final Path basePath;
 
   @Inject
@@ -82,8 +80,7 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook 
     this.quotaFinder = quotaFinder;
     this.cache = cache;
     this.projectCache = projectCache;
-    this.site = site;
-    basePath = site.resolve(cfg.getString("gerrit", null, "basePath")).toPath();
+    this.basePath = site.resolve(cfg.getString("gerrit", null, "basePath")).toPath();
   }
 
   @Override
