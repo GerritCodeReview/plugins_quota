@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f8b8c71_10f3240e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2014-06-09T04:23:07Z",
+      "side": 1,
+      "message": "Missing license and copyright header.",
+      "revId": "e5ae667a034584a4c86be0e2e3308fe6ae27596d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff2f341f_163c7cdb",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2014-06-09T04:23:07Z",
+      "side": 1,
+      "message": "Does this need to be explicitly specified?",
+      "range": {
+        "startLine": 3,
+        "startChar": 14,
+        "endLine": 3,
+        "endChar": 52
+      },
+      "revId": "e5ae667a034584a4c86be0e2e3308fe6ae27596d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff2f341f_363978ec",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PublisherScheduler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2014-06-09T04:23:07Z",
+      "side": 1,
+      "message": "Missing license and copyright header.",
+      "revId": "e5ae667a034584a4c86be0e2e3308fe6ae27596d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
