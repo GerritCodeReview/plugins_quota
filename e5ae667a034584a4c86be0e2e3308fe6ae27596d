@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "bfaa1cea_ac70e3b6",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-10T09:18:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f8b8c71_10f3240e",
+      "revId": "e5ae667a034584a4c86be0e2e3308fe6ae27596d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff2f341f_163c7cdb",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
         "patchSetId": 1
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "bfaa1cea_4c397feb",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-10T09:18:56Z",
+      "side": 1,
+      "message": "It seems that the static import only works with a fully qualified name.\n\nBut because the constant is only used once I can also specify the class in Publisher\u0027s constructor.",
+      "parentUuid": "ff2f341f_163c7cdb",
+      "range": {
+        "startLine": 3,
+        "startChar": 14,
+        "endLine": 3,
+        "endChar": 52
+      },
+      "revId": "e5ae667a034584a4c86be0e2e3308fe6ae27596d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff2f341f_363978ec",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PublisherScheduler.java",
         "patchSetId": 1
@@ -53,6 +95,24 @@
       "writtenOn": "2014-06-09T04:23:07Z",
       "side": 1,
       "message": "Missing license and copyright header.",
+      "revId": "e5ae667a034584a4c86be0e2e3308fe6ae27596d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df9d10d5_2d850d48",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PublisherScheduler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-10T09:18:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff2f341f_363978ec",
       "revId": "e5ae667a034584a4c86be0e2e3308fe6ae27596d",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
