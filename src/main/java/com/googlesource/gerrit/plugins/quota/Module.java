@@ -20,6 +20,7 @@ import com.google.gerrit.extensions.events.LifecycleListener;
 import com.google.gerrit.extensions.registration.DynamicSet;
 import com.google.gerrit.extensions.restapi.RestApiModule;
 import com.google.gerrit.server.git.ReceivePackInitializer;
+import com.google.gerrit.server.git.validators.UploadValidationListener;
 import com.google.gerrit.server.validators.ProjectCreationValidationListener;
 import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
@@ -37,6 +38,8 @@ class Module extends AbstractModule {
     DynamicSet.bind(binder(), ReceivePackInitializer.class)
         .to(MaxRepositorySizeQuota.class);
     DynamicSet.bind(binder(), PostReceiveHook.class)
+        .to(MaxRepositorySizeQuota.class);
+    DynamicSet.bind(binder(), UploadValidationListener.class)
         .to(MaxRepositorySizeQuota.class);
     install(MaxRepositorySizeQuota.module());
     install(new RestApiModule() {
