@@ -19,15 +19,21 @@ import com.google.common.cache.LoadingCache;
 import com.google.common.collect.Ordering;
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.cache.CacheModule;
-import com.google.gerrit.server.config.GerritServerConfig;
-import com.google.gerrit.server.config.SitePaths;
-import com.google.gerrit.server.git.ReceivePackInitializer;
 import com.google.gerrit.server.git.GitRepositoryManager;
+import com.google.gerrit.server.git.ReceivePackInitializer;
 import com.google.gerrit.server.project.ProjectCache;
 import com.google.inject.Inject;
 import com.google.inject.Module;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
+
+import org.apache.commons.lang.mutable.MutableLong;
+import org.eclipse.jgit.lib.Repository;
+import org.eclipse.jgit.transport.PostReceiveHook;
+import org.eclipse.jgit.transport.ReceiveCommand;
+import org.eclipse.jgit.transport.ReceivePack;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,15 +46,6 @@ import java.util.Collection;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
-
-import org.apache.commons.lang.mutable.MutableLong;
-import org.eclipse.jgit.lib.Config;
-import org.eclipse.jgit.lib.Repository;
-import org.eclipse.jgit.transport.PostReceiveHook;
-import org.eclipse.jgit.transport.ReceiveCommand;
-import org.eclipse.jgit.transport.ReceivePack;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Singleton
 class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook {
@@ -70,17 +67,16 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook 
   private final QuotaFinder quotaFinder;
   private final LoadingCache<Project.NameKey, AtomicLong> cache;
   private final ProjectCache projectCache;
-  private final Path basePath;
+  private final ProjectNameResolver projectNameResolver;
 
   @Inject
   MaxRepositorySizeQuota(QuotaFinder quotaFinder,
       @Named(REPO_SIZE_CACHE) LoadingCache<Project.NameKey, AtomicLong> cache,
-      ProjectCache projectCache,
-      SitePaths site, @GerritServerConfig final Config cfg) {
+      ProjectCache projectCache, ProjectNameResolver projectNameResolver) {
     this.quotaFinder = quotaFinder;
     this.cache = cache;
     this.projectCache = projectCache;
-    this.basePath = site.resolve(cfg.getString("gerrit", null, "basePath")).toPath();
+    this.projectNameResolver = projectNameResolver;
   }
 
   @Override
@@ -124,23 +120,11 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook 
 
   @Override
   public void onPostReceive(ReceivePack rp, Collection<ReceiveCommand> commands) {
-    Project.NameKey project = projectName(rp);
+    Project.NameKey project = projectNameResolver.projectName(rp.getRepository());
     try {
       cache.get(project).getAndAdd(rp.getPackSize());
     } catch (ExecutionException e) {
       log.warn("Couldn't process onPostReceive for " + project.get(), e);
-    }
-  }
-
-  private Project.NameKey projectName(ReceivePack rp) {
-    Path gitDir = rp.getRepository().getDirectory().toPath();
-    if (gitDir.startsWith(basePath)) {
-      String p = basePath.relativize(gitDir).toString();
-      String n = p.substring(0, p.length() - ".git".length());
-      return new Project.NameKey(n);
-    } else {
-      log.warn("Couldn't determine the project name from " + gitDir);
-      return null;
     }
   }
 
