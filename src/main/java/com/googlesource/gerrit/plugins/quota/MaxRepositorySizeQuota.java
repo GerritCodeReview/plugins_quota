@@ -21,13 +21,22 @@ import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.cache.CacheModule;
 import com.google.gerrit.server.config.GerritServerConfig;
 import com.google.gerrit.server.config.SitePaths;
-import com.google.gerrit.server.git.ReceivePackInitializer;
 import com.google.gerrit.server.git.GitRepositoryManager;
+import com.google.gerrit.server.git.ReceivePackInitializer;
 import com.google.gerrit.server.project.ProjectCache;
 import com.google.inject.Inject;
 import com.google.inject.Module;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
+
+import org.apache.commons.lang.mutable.MutableLong;
+import org.eclipse.jgit.lib.Config;
+import org.eclipse.jgit.lib.Repository;
+import org.eclipse.jgit.transport.PostReceiveHook;
+import org.eclipse.jgit.transport.ReceiveCommand;
+import org.eclipse.jgit.transport.ReceivePack;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,15 +49,6 @@ import java.util.Collection;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
-
-import org.apache.commons.lang.mutable.MutableLong;
-import org.eclipse.jgit.lib.Config;
-import org.eclipse.jgit.lib.Repository;
-import org.eclipse.jgit.transport.PostReceiveHook;
-import org.eclipse.jgit.transport.ReceiveCommand;
-import org.eclipse.jgit.transport.ReceivePack;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Singleton
 class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook {
@@ -71,6 +71,7 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook 
   private final LoadingCache<Project.NameKey, AtomicLong> cache;
   private final ProjectCache projectCache;
   private final Path basePath;
+
 
   @Inject
   MaxRepositorySizeQuota(QuotaFinder quotaFinder,
@@ -124,7 +125,7 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook 
 
   @Override
   public void onPostReceive(ReceivePack rp, Collection<ReceiveCommand> commands) {
-    Project.NameKey project = projectName(rp);
+    Project.NameKey project = projectName(rp.getRepository(), basePath);
     try {
       cache.get(project).getAndAdd(rp.getPackSize());
     } catch (ExecutionException e) {
@@ -132,10 +133,10 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook 
     }
   }
 
-  private Project.NameKey projectName(ReceivePack rp) {
-    Path gitDir = rp.getRepository().getDirectory().toPath();
-    if (gitDir.startsWith(basePath)) {
-      String p = basePath.relativize(gitDir).toString();
+  static Project.NameKey projectName(Repository repo, Path repoBasePath) {
+    Path gitDir = repo.getDirectory().toPath();
+    if (gitDir.startsWith(repoBasePath)) {
+      String p = repoBasePath.relativize(gitDir).toString();
       String n = p.substring(0, p.length() - ".git".length());
       return new Project.NameKey(n);
     } else {
@@ -179,4 +180,5 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook 
       return size.longValue();
     }
   }
+
 }
