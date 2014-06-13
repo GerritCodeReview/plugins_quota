@@ -26,6 +26,7 @@ import com.google.inject.Scopes;
 import com.google.inject.internal.UniqueAnnotations;
 
 import org.eclipse.jgit.transport.PostReceiveHook;
+import org.eclipse.jgit.transport.PreUploadHook;
 
 
 class Module extends AbstractModule {
@@ -37,6 +38,8 @@ class Module extends AbstractModule {
     DynamicSet.bind(binder(), ReceivePackInitializer.class)
         .to(MaxRepositorySizeQuota.class);
     DynamicSet.bind(binder(), PostReceiveHook.class)
+        .to(MaxRepositorySizeQuota.class);
+    DynamicSet.bind(binder(), PreUploadHook.class)
         .to(MaxRepositorySizeQuota.class);
     install(MaxRepositorySizeQuota.module());
     install(new RestApiModule() {
