@@ -41,6 +41,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
+
 import org.apache.commons.lang.mutable.MutableLong;
 import org.eclipse.jgit.lib.Config;
 import org.eclipse.jgit.lib.Repository;
@@ -124,7 +125,7 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook 
 
   @Override
   public void onPostReceive(ReceivePack rp, Collection<ReceiveCommand> commands) {
-    Project.NameKey project = projectName(rp);
+    Project.NameKey project = projectName(rp.getRepository(), basePath);
     try {
       cache.get(project).getAndAdd(rp.getPackSize());
     } catch (ExecutionException e) {
@@ -132,10 +133,10 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook 
     }
   }
 
-  private Project.NameKey projectName(ReceivePack rp) {
-    Path gitDir = rp.getRepository().getDirectory().toPath();
-    if (gitDir.startsWith(basePath)) {
-      String p = basePath.relativize(gitDir).toString();
+  static Project.NameKey projectName(Repository repo, Path repoBasePath) {
+    Path gitDir = repo.getDirectory().toPath();
+    if (gitDir.startsWith(repoBasePath)) {
+      String p = repoBasePath.relativize(gitDir).toString();
       String n = p.substring(0, p.length() - ".git".length());
       return new Project.NameKey(n);
     } else {
