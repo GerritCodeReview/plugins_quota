@@ -14,6 +14,7 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
+import com.google.common.cache.Cache;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.google.common.collect.Ordering;
@@ -21,13 +22,26 @@ import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.cache.CacheModule;
 import com.google.gerrit.server.config.GerritServerConfig;
 import com.google.gerrit.server.config.SitePaths;
-import com.google.gerrit.server.git.ReceivePackInitializer;
 import com.google.gerrit.server.git.GitRepositoryManager;
+import com.google.gerrit.server.git.ReceivePackInitializer;
 import com.google.gerrit.server.project.ProjectCache;
 import com.google.inject.Inject;
 import com.google.inject.Module;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
+
+import org.apache.commons.lang.mutable.MutableLong;
+import org.eclipse.jgit.lib.Config;
+import org.eclipse.jgit.lib.ObjectId;
+import org.eclipse.jgit.lib.Repository;
+import org.eclipse.jgit.transport.PostReceiveHook;
+import org.eclipse.jgit.transport.PreUploadHook;
+import org.eclipse.jgit.transport.ReceiveCommand;
+import org.eclipse.jgit.transport.ReceivePack;
+import org.eclipse.jgit.transport.ServiceMayNotContinueException;
+import org.eclipse.jgit.transport.UploadPack;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -41,21 +55,14 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
-import org.apache.commons.lang.mutable.MutableLong;
-import org.eclipse.jgit.lib.Config;
-import org.eclipse.jgit.lib.Repository;
-import org.eclipse.jgit.transport.PostReceiveHook;
-import org.eclipse.jgit.transport.ReceiveCommand;
-import org.eclipse.jgit.transport.ReceivePack;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 @Singleton
-class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook {
+class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook, PreUploadHook {
   private static final Logger log = LoggerFactory
       .getLogger(MaxRepositorySizeQuota.class);
 
   static final String REPO_SIZE_CACHE = "repo_size";
+  static final String PUSH_COUNT_CACHE = "push_count";
+  static final String FETCH_COUNT_CACHE = "fetch_count";
 
   static Module module() {
     return new CacheModule() {
@@ -63,22 +70,31 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook 
         persist(REPO_SIZE_CACHE, Project.NameKey.class, AtomicLong.class)
             .loader(Loader.class)
             .expireAfterWrite(1, TimeUnit.DAYS);
+        persist(PUSH_COUNT_CACHE, Project.NameKey.class, AtomicLong.class);
+        persist(FETCH_COUNT_CACHE, Project.NameKey.class, AtomicLong.class);
       }
     };
   }
 
   private final QuotaFinder quotaFinder;
   private final LoadingCache<Project.NameKey, AtomicLong> cache;
+  private final Cache<Project.NameKey, AtomicLong> pushCountCache;
+  private final Cache<Project.NameKey, AtomicLong> fetchCountCache;
   private final ProjectCache projectCache;
   private final Path basePath;
+
 
   @Inject
   MaxRepositorySizeQuota(QuotaFinder quotaFinder,
       @Named(REPO_SIZE_CACHE) LoadingCache<Project.NameKey, AtomicLong> cache,
+      @Named(PUSH_COUNT_CACHE) Cache<Project.NameKey, AtomicLong> pushCountCache,
+      @Named(FETCH_COUNT_CACHE) Cache<Project.NameKey, AtomicLong> fetchCountCache,
       ProjectCache projectCache,
       SitePaths site, @GerritServerConfig final Config cfg) {
     this.quotaFinder = quotaFinder;
     this.cache = cache;
+    this.pushCountCache = pushCountCache;
+    this.fetchCountCache = fetchCountCache;
     this.projectCache = projectCache;
     this.basePath = site.resolve(cfg.getString("gerrit", null, "basePath")).toPath();
   }
@@ -124,16 +140,25 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook 
 
   @Override
   public void onPostReceive(ReceivePack rp, Collection<ReceiveCommand> commands) {
-    Project.NameKey project = projectName(rp);
+    Project.NameKey project = projectName(rp.getRepository());
     try {
       cache.get(project).getAndAdd(rp.getPackSize());
+      incrementNumber(pushCountCache, project);
     } catch (ExecutionException e) {
       log.warn("Couldn't process onPostReceive for " + project.get(), e);
     }
   }
 
-  private Project.NameKey projectName(ReceivePack rp) {
-    Path gitDir = rp.getRepository().getDirectory().toPath();
+  private void incrementNumber(Cache<Project.NameKey, AtomicLong> cache, Project.NameKey project) {
+    AtomicLong ifPresent = cache.getIfPresent(project);
+    if (ifPresent != null)
+      ifPresent.incrementAndGet();
+    else
+      cache.put(project, new AtomicLong(1));
+  }
+
+  private Project.NameKey projectName(Repository repo) {
+    Path gitDir = repo.getDirectory().toPath();
     if (gitDir.startsWith(basePath)) {
       String p = basePath.relativize(gitDir).toString();
       String n = p.substring(0, p.length() - ".git".length());
@@ -178,5 +203,28 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook 
       });
       return size.longValue();
     }
+  }
+
+
+  @Override
+  public void onBeginNegotiateRound(UploadPack up,
+      Collection<? extends ObjectId> wants, int cntOffered)
+      throws ServiceMayNotContinueException {
+    // do nothing
+  }
+
+  @Override
+  public void onEndNegotiateRound(UploadPack up,
+      Collection<? extends ObjectId> wants, int cntCommon, int cntNotFound,
+      boolean ready) throws ServiceMayNotContinueException {
+    // do nothing
+  }
+
+  @Override
+  public void onSendPack(UploadPack up, Collection<? extends ObjectId> wants,
+      Collection<? extends ObjectId> haves)
+      throws ServiceMayNotContinueException {
+    Project.NameKey project = projectName(up.getRepository());
+    incrementNumber(fetchCountCache, project);
   }
 }
