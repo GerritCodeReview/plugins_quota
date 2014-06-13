@@ -14,6 +14,7 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
+import com.google.common.cache.Cache;
 import com.google.common.cache.LoadingCache;
 import com.google.gerrit.extensions.events.UsageDataPublishedListener;
 import com.google.gerrit.extensions.events.UsageDataPublishedListener.Data;
@@ -40,39 +41,35 @@ import java.util.concurrent.atomic.AtomicLong;
 public class Publisher implements Runnable {
 
   private static final Logger log = LoggerFactory.getLogger(Publisher.class);
-  private static final MetaData REPO_SIZE = new MetaData() {
+  private static final MetaData REPO_SIZE = new MetaDataImpl("repoSize",
+      "total file size of the repository", "byte", "B");
 
-    @Override
-    public String getName() {
-      return "repoSize";
-    }
+  private static final MetaData PUSH_COUNT = new MetaDataImpl("pushCount",
+      "number of pushes to the repository since the last event", "", "");
 
-    @Override
-    public String getDescription() {
-      return "total file size of the repository";
-    }
-
-    @Override
-    public String getUnitName() {
-      return "byte";
-    }
-
-    @Override
-    public String getUnitSymbol() {
-      return "B";
-    }
-  };
+  private static final MetaData FETCH_COUNT = new MetaDataImpl("fetchCount",
+      "number of fetches from the repository since the last event", "", "");
 
   private Iterable<UsageDataPublishedListener> listeners;
   private ProjectCache projectCache;
   private LoadingCache<NameKey, AtomicLong> repoSizeCache;
+  private Cache<NameKey, AtomicLong> numberOfPushesCache;
+  private Cache<NameKey, AtomicLong> numberOfFetchesCache;
 
   @Inject
-  public Publisher(DynamicSet<UsageDataPublishedListener> listeners, ProjectCache projectCache,
-      @Named(MaxRepositorySizeQuota.REPO_SIZE_CACHE) LoadingCache<Project.NameKey, AtomicLong> repoSizeCache) {
+  public Publisher(DynamicSet<UsageDataPublishedListener> listeners,
+      ProjectCache projectCache,
+      @Named(MaxRepositorySizeQuota.REPO_SIZE_CACHE)
+        LoadingCache<Project.NameKey, AtomicLong> repoSizeCache,
+      @Named(FetchAndPushCounter.PUSH_COUNT_CACHE)
+        Cache<Project.NameKey, AtomicLong> pushCountCache,
+      @Named(FetchAndPushCounter.FETCH_COUNT_CACHE)
+        Cache<Project.NameKey, AtomicLong> fetchCountCache) {
     this.listeners = listeners;
     this.projectCache = projectCache;
     this.repoSizeCache = repoSizeCache;
+    this.numberOfPushesCache = pushCountCache;
+    this.numberOfFetchesCache = fetchCountCache;
   }
 
   @Override
@@ -82,10 +79,14 @@ public class Publisher implements Runnable {
     }
 
     try {
-      RepoSizeEvent event = createEvent();
+      RepoEvent repoSizeEvent = createRepoSizeEvent();
+      RepoEvent pushCountEvent = createEvent(PUSH_COUNT, numberOfPushesCache);
+      RepoEvent fetchCountEvent = createEvent(FETCH_COUNT, numberOfFetchesCache);
       for (UsageDataPublishedListener l : listeners) {
           try {
-            l.onUsageDataPublished(event);
+            l.onUsageDataPublished(repoSizeEvent);
+            l.onUsageDataPublished(pushCountEvent);
+            l.onUsageDataPublished(fetchCountEvent);
           } catch (RuntimeException e) {
             log.warn("Failure in UsageDataPublishedListener", e);
           }
@@ -95,8 +96,8 @@ public class Publisher implements Runnable {
     }
   }
 
-  private RepoSizeEvent createEvent() throws ExecutionException {
-    RepoSizeEvent event = new RepoSizeEvent();
+  private RepoEvent createRepoSizeEvent() throws ExecutionException {
+    RepoEvent event = new RepoEvent(REPO_SIZE);
     for (Project.NameKey p : projectCache.all()) {
         long size = repoSizeCache.get(p).get();
         event.addData(size, p.get());
@@ -104,12 +105,28 @@ public class Publisher implements Runnable {
     return event;
   }
 
-  private static class RepoSizeEvent implements Event {
+  private RepoEvent createEvent(MetaData metaData, Cache<NameKey, AtomicLong> cache) {
+    RepoEvent event = new RepoEvent(metaData);
+    for (Project.NameKey p : projectCache.all()) {
+      AtomicLong count = cache.getIfPresent(p);
+      if (count != null) {
+        long currentCount = count.getAndSet(0);
+        if (currentCount != 0) {
+          event.addData(currentCount, p.get());
+        }
+      }
+    }
+    return event;
+  }
+
+  private static class RepoEvent implements Event {
 
     private final Timestamp timestamp;
+    private final MetaData metaData;
     private final List<Data> data;
 
-    private RepoSizeEvent() {
+    public RepoEvent(MetaData metaData) {
+      this.metaData = metaData;
       timestamp = new Timestamp(System.currentTimeMillis());
       data = new ArrayList<Data>();
     }
@@ -133,7 +150,7 @@ public class Publisher implements Runnable {
 
     @Override
     public MetaData getMetaData() {
-      return REPO_SIZE;
+      return metaData;
     }
 
     @Override
