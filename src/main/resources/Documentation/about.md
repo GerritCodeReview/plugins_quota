@@ -9,5 +9,5 @@ The @PLUGIN@ plugin supports the following quotas:
 * Maximum number of projects in a namespace
 * The maximum total file size of a repository in a namespace
 
-The measured repository sizes can be published periodically to registered
-UsageDataPublishedListeners.
+The measured repository sizes and the number of fetches and pushes
+can be published periodically to registered UsageDataPublishedListeners.
