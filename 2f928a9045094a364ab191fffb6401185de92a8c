@@ -22,6 +22,30 @@
       "revId": "2f928a9045094a364ab191fffb6401185de92a8c",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "64d01910_a1589e0e",
+        "filename": "BUCK",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2014-06-23T12:17:21Z",
+      "side": 1,
+      "message": "It is clear why: You are using standalone mode - But it is outdated in Quota plugin. I suggest to discontinue duplicated standalone build mode (as recently done in reviewers plugin, check the history to see what i did), and switch to standalone build backed by back lets [1], [2].\n\nTo fix it with current copy/pasted standalone mode, you have to adjust standalone build in this plugin [3]. Copy over the current gerrit_plugin() definition from the Gerrit tree.\n\n* [1] https://gerrit-review.googlesource.com/57633\n* [2] https://gerrit-review.googlesource.com/57632\n* [3]  https://gerrit.googlesource.com/plugins/quota/+/master/lib/build.defs",
+      "parentUuid": "84cb4d65_c22cc289",
+      "range": {
+        "startLine": 14,
+        "startChar": 2,
+        "endLine": 14,
+        "endChar": 15
+      },
+      "revId": "2f928a9045094a364ab191fffb6401185de92a8c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
