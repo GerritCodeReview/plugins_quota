@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "84cb4d65_c22cc289",
+        "filename": "BUCK",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1003935
+      },
+      "writtenOn": "2014-06-23T11:50:50Z",
+      "side": 1,
+      "message": "Somehow this doesn\u0027t work for me, even if I add a \u0027.buckversion\u0027 file to ensure that the right Buck version is used.\n\n  TypeError: gerrit_plugin() got an unexpected keyword argument \u0027provided_deps\u0027\n\nAny ideas what is wrong?",
+      "range": {
+        "startLine": 14,
+        "startChar": 2,
+        "endLine": 14,
+        "endChar": 15
+      },
+      "revId": "2f928a9045094a364ab191fffb6401185de92a8c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
