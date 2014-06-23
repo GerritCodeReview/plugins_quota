@@ -46,6 +46,30 @@
       "revId": "2f928a9045094a364ab191fffb6401185de92a8c",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "64d01910_e152a6ec",
+        "filename": "BUCK",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2014-06-23T12:19:38Z",
+      "side": 1,
+      "message": "Opps, i wanted to write (but auto correct mode thought it knows better ;-)\n\n  \"and switch to standalone build backed by bucklets\"",
+      "parentUuid": "64d01910_a1589e0e",
+      "range": {
+        "startLine": 14,
+        "startChar": 2,
+        "endLine": 14,
+        "endChar": 15
+      },
+      "revId": "2f928a9045094a364ab191fffb6401185de92a8c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
