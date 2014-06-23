@@ -1,0 +1,227 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "64d01910_01022ad6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-06-23T16:15:57Z",
+      "side": 1,
+      "message": "Please describe that the counts are reset after the push. Actually, one could argue whether this is desirable. One could as well accumulate forever. Alternatively, one could publish the rate of pushes/fetches (e.g. count per day).",
+      "revId": "230888e6b3e354a38cde82d1601074d7bf45c265",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "84cb4d65_22ee4edd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-06-23T16:15:57Z",
+      "side": 1,
+      "message": "empty character at the end of this line",
+      "revId": "230888e6b3e354a38cde82d1601074d7bf45c265",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "84cb4d65_62f8569c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-06-23T16:15:57Z",
+      "side": 1,
+      "message": "I don\u0027t think the new functionality is related to quota. I\u0027d rather register a different listener for this. Ideally in a dedicated plugin.",
+      "revId": "230888e6b3e354a38cde82d1601074d7bf45c265",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "84cb4d65_42f352c2",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-06-23T16:15:57Z",
+      "side": 1,
+      "message": "I\u0027d just name the method increment or incrementCount. Also it could be static.",
+      "revId": "230888e6b3e354a38cde82d1601074d7bf45c265",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "64d01910_c10762e7",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-06-23T16:15:57Z",
+      "side": 1,
+      "message": "Please add some sparator: push-count or push.count or pushCount",
+      "range": {
+        "startLine": 70,
+        "startChar": 16,
+        "endLine": 70,
+        "endChar": 25
+      },
+      "revId": "230888e6b3e354a38cde82d1601074d7bf45c265",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "84cb4d65_c2de8221",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-06-23T16:15:57Z",
+      "side": 1,
+      "message": "see above",
+      "range": {
+        "startLine": 92,
+        "startChar": 18,
+        "endLine": 92,
+        "endChar": 28
+      },
+      "revId": "230888e6b3e354a38cde82d1601074d7bf45c265",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "64d01910_e10466e5",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-06-23T16:15:57Z",
+      "side": 1,
+      "message": "Why not remove from cache?",
+      "range": {
+        "startLine": 166,
+        "startChar": 10,
+        "endLine": 166,
+        "endChar": 55
+      },
+      "revId": "230888e6b3e354a38cde82d1601074d7bf45c265",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "84cb4d65_82fd5a8d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-06-23T16:15:57Z",
+      "side": 1,
+      "message": "By and large the same code as 161-169. Please extract commonalities.",
+      "range": {
+        "startLine": 173,
+        "startChar": 4,
+        "endLine": 181,
+        "endChar": 17
+      },
+      "revId": "230888e6b3e354a38cde82d1601074d7bf45c265",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "84cb4d65_a2e17eea",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-06-23T16:15:57Z",
+      "side": 1,
+      "message": "final",
+      "range": {
+        "startLine": 187,
+        "startChar": 11,
+        "endLine": 187,
+        "endChar": 12
+      },
+      "revId": "230888e6b3e354a38cde82d1601074d7bf45c265",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "64d01910_a10a5eee",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-06-23T16:15:57Z",
+      "side": 1,
+      "message": "final",
+      "range": {
+        "startLine": 188,
+        "startChar": 11,
+        "endLine": 188,
+        "endChar": 12
+      },
+      "revId": "230888e6b3e354a38cde82d1601074d7bf45c265",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "84cb4d65_02506ae2",
+        "filename": "src/main/resources/Documentation/about.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-06-23T16:15:57Z",
+      "side": 1,
+      "message": "or clones",
+      "revId": "230888e6b3e354a38cde82d1601074d7bf45c265",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
