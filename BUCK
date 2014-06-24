@@ -1,7 +1,4 @@
-include_defs('//lib/maven.defs')
-
-API_VERSION = '2.10-SNAPSHOT'
-REPO = MAVEN_LOCAL
+include_defs('//bucklets/gerrit_plugin.bucklet')
 
 gerrit_plugin(
   name = 'quota',
@@ -13,23 +10,10 @@ gerrit_plugin(
   ]
 )
 
-maven_jar(
-  name = 'plugin-lib',
-  id = 'com.google.gerrit:gerrit-plugin-api:' + API_VERSION,
-  repository = REPO,
-  license = 'Apache2.0',
-)
-
-java_test(
-  name = 'quota_tests',
-  srcs = glob(['src/test/java/**/*.java']),
-  labels = ['quota-plugin'],
-  deps = [
-    ':quota__plugin',
-    '//lib:junit',
-    '//gerrit-reviewdb:client',
-    '//lib:gwtorm',
-  ],
-  source_under_test = [':quota__plugin'],
+# this is required for bucklets/tools/eclipse/project.py to work
+# not sure, if this does something useful in standalone context
+java_library(
+  name = 'classpath',
+  deps = [':quota__plugin'],
 )
 

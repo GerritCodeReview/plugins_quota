@@ -1,0 +1,21 @@
+include_defs('//bucklets/maven_jar.bucklet')
+
+VER = '2.10-SNAPSHOT'
+REPO = MAVEN_LOCAL
+
+maven_jar(
+  name = 'plugin-api',
+  id = 'com.google.gerrit:gerrit-plugin-api:' + VER,
+  sha1 = '3124d4e3811bf70872263586f68542fa62a35d4a',
+  attach_source = False,
+  repository = REPO,
+)
+
+maven_jar(
+  name = 'gwtui-api',
+  id = 'com.google.gerrit:gerrit-plugin-gwtui:' + VER,
+  sha1 = 'bdf33e3952e0468ee66ae1955c94cf260d4b60c9',
+  attach_source = False,
+  repository = REPO,
+)
+
