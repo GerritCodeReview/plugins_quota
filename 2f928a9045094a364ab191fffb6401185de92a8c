@@ -94,6 +94,30 @@
       "revId": "2f928a9045094a364ab191fffb6401185de92a8c",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04767d12_06c25a6d",
+        "filename": "BUCK",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1003935
+      },
+      "writtenOn": "2014-06-24T12:57:12Z",
+      "side": 1,
+      "message": "Done in\n  https://gerrit-review.googlesource.com/58051",
+      "parentUuid": "84cb4d65_a2589e0e",
+      "range": {
+        "startLine": 14,
+        "startChar": 2,
+        "endLine": 14,
+        "endChar": 15
+      },
+      "revId": "2f928a9045094a364ab191fffb6401185de92a8c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
