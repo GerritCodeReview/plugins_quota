@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "04767d12_467a9295",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/FetchAndPushCounter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T13:55:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2481c117_2754ba0d",
+      "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2481c117_674eb27f",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/FetchAndPushCounter.java",
         "patchSetId": 7
@@ -47,6 +65,24 @@
       "writtenOn": "2014-06-24T11:25:38Z",
       "side": 1,
       "message": "nit: line too long",
+      "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04767d12_667f8e84",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/FetchAndPushCounter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T13:55:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2481c117_674eb27f",
       "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
@@ -70,6 +106,24 @@
     },
     {
       "key": {
+        "uuid": "2481c117_47536e15",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/FetchAndPushCounter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T13:55:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04767d12_2654b60d",
+      "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2481c117_c73cbede",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/FetchAndPushCounter.java",
         "patchSetId": 7
@@ -87,6 +141,24 @@
     },
     {
       "key": {
+        "uuid": "2481c117_6758722f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/FetchAndPushCounter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T13:55:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2481c117_c73cbede",
+      "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2481c117_e739c2eb",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/FetchAndPushCounter.java",
         "patchSetId": 7
@@ -98,6 +170,24 @@
       "writtenOn": "2014-06-24T11:25:38Z",
       "side": 1,
       "message": "nit: curly braces even for single statment blocks",
+      "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2481c117_876c86d9",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/FetchAndPushCounter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T13:55:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2481c117_e739c2eb",
       "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
@@ -127,6 +217,30 @@
     },
     {
       "key": {
+        "uuid": "04767d12_462612ad",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/FetchAndPushCounter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T13:55:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2481c117_a73fcad0",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 44
+      },
+      "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "04767d12_a63fc6d0",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
         "patchSetId": 7
@@ -138,6 +252,24 @@
       "writtenOn": "2014-06-24T11:25:38Z",
       "side": 1,
       "message": "nit: unnecessary empty line, remove",
+      "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04767d12_8683aa44",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T13:55:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04767d12_a63fc6d0",
       "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
@@ -161,6 +293,24 @@
     },
     {
       "key": {
+        "uuid": "2481c117_a7698ac8",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T13:55:43Z",
+      "side": 1,
+      "message": "This *is* on MaxRepositorySizeQuota. I left it there because I did not know where to put it else and I don\u0027t like static helper classes.",
+      "parentUuid": "04767d12_e639beeb",
+      "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2481c117_8783a644",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
         "patchSetId": 7
@@ -172,6 +322,30 @@
       "writtenOn": "2014-06-24T11:43:01Z",
       "side": 1,
       "message": "nit: this formatting is incorrect. A line this continues the previous line should be indented by two levels.",
+      "range": {
+        "startLine": 122,
+        "startChar": 0,
+        "endLine": 127,
+        "endChar": 33
+      },
+      "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2481c117_c7667ef7",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T13:55:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2481c117_8783a644",
       "range": {
         "startLine": 122,
         "startChar": 0,
@@ -230,6 +404,54 @@
     },
     {
       "key": {
+        "uuid": "2481c117_27211a94",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T13:55:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04767d12_a69b4690",
+      "range": {
+        "startLine": 168,
+        "startChar": 41,
+        "endLine": 168,
+        "endChar": 50
+      },
+      "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04767d12_26211694",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T13:55:43Z",
+      "side": 1,
+      "message": "No, it depends on projectCache which is an instance variable",
+      "parentUuid": "04767d12_c6984296",
+      "range": {
+        "startLine": 168,
+        "startChar": 2,
+        "endLine": 168,
+        "endChar": 9
+      },
+      "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2481c117_e78aa254",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
         "patchSetId": 7
@@ -241,6 +463,24 @@
       "writtenOn": "2014-06-24T11:43:01Z",
       "side": 1,
       "message": "s/ifPresent/count\n\nor\n\ns/ifPresent/cachedCounter",
+      "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04767d12_c68da26f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T13:55:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2481c117_e78aa254",
       "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
@@ -264,6 +504,24 @@
     },
     {
       "key": {
+        "uuid": "04767d12_265e761e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T13:55:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2481c117_07597635",
+      "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "04767d12_267596a6",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
         "patchSetId": 7
@@ -275,6 +533,24 @@
       "writtenOn": "2014-06-24T11:43:01Z",
       "side": 1,
       "message": "nit: space before {",
+      "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04767d12_a680a638",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T13:55:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04767d12_267596a6",
       "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
