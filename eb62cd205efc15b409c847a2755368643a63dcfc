@@ -1,0 +1,163 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2481c117_074fb67d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-06-24T11:25:38Z",
+      "side": 1,
+      "message": "nit: empty line above",
+      "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2481c117_2754ba0d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/FetchAndPushCounter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-06-24T11:25:38Z",
+      "side": 1,
+      "message": "@Singleton",
+      "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2481c117_674eb27f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/FetchAndPushCounter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-06-24T11:25:38Z",
+      "side": 1,
+      "message": "nit: line too long",
+      "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04767d12_2654b60d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/FetchAndPushCounter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-06-24T11:25:38Z",
+      "side": 1,
+      "message": "nit: line too long",
+      "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2481c117_c73cbede",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/FetchAndPushCounter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-06-24T11:25:38Z",
+      "side": 1,
+      "message": "nit: curly braces even for single statment blocks",
+      "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2481c117_e739c2eb",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/FetchAndPushCounter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-06-24T11:25:38Z",
+      "side": 1,
+      "message": "nit: curly braces even for single statment blocks",
+      "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2481c117_a73fcad0",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/FetchAndPushCounter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-06-24T11:25:38Z",
+      "side": 1,
+      "message": "This is not thread safe. For example, when the value for a project is not present then two concurrent threads (who want to increase the counter for the same project) may both end up in the else block and we will have the value 1 instead of 2.",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 44
+      },
+      "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04767d12_a63fc6d0",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-06-24T11:25:38Z",
+      "side": 1,
+      "message": "nit: unnecessary empty line, remove",
+      "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04767d12_e639beeb",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-06-24T11:25:38Z",
+      "side": 1,
+      "message": "This seems to be copied from the MaxRepositorySizeQuota. Could we refactor it and have it in one place only?",
+      "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
