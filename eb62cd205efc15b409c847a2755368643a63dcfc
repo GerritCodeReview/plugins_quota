@@ -184,6 +184,52 @@
     },
     {
       "key": {
+        "uuid": "04767d12_a69b4690",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-06-24T13:38:31Z",
+      "side": 1,
+      "message": "this is not specific for push any longer -\u003e \"count\" or \"metaData\"",
+      "range": {
+        "startLine": 168,
+        "startChar": 41,
+        "endLine": 168,
+        "endChar": 50
+      },
+      "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04767d12_c6984296",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-06-24T13:38:31Z",
+      "side": 1,
+      "message": "could be static, I think",
+      "range": {
+        "startLine": 168,
+        "startChar": 2,
+        "endLine": 168,
+        "endChar": 9
+      },
+      "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2481c117_e78aa254",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
         "patchSetId": 7
