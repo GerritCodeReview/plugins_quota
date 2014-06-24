@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "04767d12_06fdfad5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T10:43:23Z",
+      "side": 1,
+      "message": "Done\n\nShould I argue in the commit message?",
+      "parentUuid": "64d01910_01022ad6",
+      "revId": "230888e6b3e354a38cde82d1601074d7bf45c265",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "84cb4d65_22ee4edd",
         "filename": "/COMMIT_MSG",
         "patchSetId": 5
@@ -30,6 +48,24 @@
       "writtenOn": "2014-06-23T16:15:57Z",
       "side": 1,
       "message": "empty character at the end of this line",
+      "revId": "230888e6b3e354a38cde82d1601074d7bf45c265",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2481c117_272bdaa4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T10:43:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "84cb4d65_22ee4edd",
       "revId": "230888e6b3e354a38cde82d1601074d7bf45c265",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "04767d12_a6e42649",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T10:43:23Z",
+      "side": 1,
+      "message": "Done. For the time being I do it in the same Plugin.",
+      "parentUuid": "84cb4d65_62f8569c",
+      "revId": "230888e6b3e354a38cde82d1601074d7bf45c265",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "84cb4d65_42f352c2",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
         "patchSetId": 5
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "2481c117_67fcf2d7",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T10:43:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "84cb4d65_42f352c2",
+      "revId": "230888e6b3e354a38cde82d1601074d7bf45c265",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "64d01910_c10762e7",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
         "patchSetId": 5
@@ -81,6 +153,30 @@
       "writtenOn": "2014-06-23T16:15:57Z",
       "side": 1,
       "message": "Please add some sparator: push-count or push.count or pushCount",
+      "range": {
+        "startLine": 70,
+        "startChar": 16,
+        "endLine": 70,
+        "endChar": 25
+      },
+      "revId": "230888e6b3e354a38cde82d1601074d7bf45c265",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2481c117_87100670",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T10:43:23Z",
+      "side": 1,
+      "message": "Done\n\nShould we also change reposize to repoSize?",
+      "parentUuid": "64d01910_c10762e7",
       "range": {
         "startLine": 70,
         "startChar": 16,
@@ -116,6 +212,30 @@
     },
     {
       "key": {
+        "uuid": "04767d12_c6f12206",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T10:43:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "84cb4d65_c2de8221",
+      "range": {
+        "startLine": 92,
+        "startChar": 18,
+        "endLine": 92,
+        "endChar": 28
+      },
+      "revId": "230888e6b3e354a38cde82d1601074d7bf45c265",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "64d01910_e10466e5",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
         "patchSetId": 5
@@ -127,6 +247,30 @@
       "writtenOn": "2014-06-23T16:15:57Z",
       "side": 1,
       "message": "Why not remove from cache?",
+      "range": {
+        "startLine": 166,
+        "startChar": 10,
+        "endLine": 166,
+        "endChar": 55
+      },
+      "revId": "230888e6b3e354a38cde82d1601074d7bf45c265",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2481c117_a70d0a59",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T10:43:23Z",
+      "side": 1,
+      "message": "I don\u0027t know why not.",
+      "parentUuid": "64d01910_e10466e5",
       "range": {
         "startLine": 166,
         "startChar": 10,
@@ -162,6 +306,30 @@
     },
     {
       "key": {
+        "uuid": "04767d12_e6ee1e25",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T10:43:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "84cb4d65_82fd5a8d",
+      "range": {
+        "startLine": 173,
+        "startChar": 4,
+        "endLine": 181,
+        "endChar": 17
+      },
+      "revId": "230888e6b3e354a38cde82d1601074d7bf45c265",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "84cb4d65_a2e17eea",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
         "patchSetId": 5
@@ -173,6 +341,30 @@
       "writtenOn": "2014-06-23T16:15:57Z",
       "side": 1,
       "message": "final",
+      "range": {
+        "startLine": 187,
+        "startChar": 11,
+        "endLine": 187,
+        "endChar": 12
+      },
+      "revId": "230888e6b3e354a38cde82d1601074d7bf45c265",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2481c117_c70afe3d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T10:43:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "84cb4d65_a2e17eea",
       "range": {
         "startLine": 187,
         "startChar": 11,
@@ -208,6 +400,30 @@
     },
     {
       "key": {
+        "uuid": "2481c117_e7070235",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T10:43:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64d01910_a10a5eee",
+      "range": {
+        "startLine": 188,
+        "startChar": 11,
+        "endLine": 188,
+        "endChar": 12
+      },
+      "revId": "230888e6b3e354a38cde82d1601074d7bf45c265",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "84cb4d65_02506ae2",
         "filename": "src/main/resources/Documentation/about.md",
         "patchSetId": 5
@@ -219,6 +435,24 @@
       "writtenOn": "2014-06-23T16:15:57Z",
       "side": 1,
       "message": "or clones",
+      "revId": "230888e6b3e354a38cde82d1601074d7bf45c265",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2481c117_0726d6dd",
+        "filename": "src/main/resources/Documentation/about.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T10:43:23Z",
+      "side": 1,
+      "message": "A clone does a fetch inside. I also left out pull because a pull just also does a fetch.",
+      "parentUuid": "84cb4d65_02506ae2",
       "revId": "230888e6b3e354a38cde82d1601074d7bf45c265",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
