@@ -1,0 +1,242 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "04767d12_86100a70",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-06-24T11:07:55Z",
+      "side": 1,
+      "message": "nit: the second } should to into a new row",
+      "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04767d12_e607fe34",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-06-24T11:07:55Z",
+      "side": 1,
+      "message": "optional: move this empty line down between the lines 81-82",
+      "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04767d12_a60d0659",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-06-24T11:07:55Z",
+      "side": 1,
+      "message": "Are we sure that an access to the repoSizeCache could be the only cause of this exception?",
+      "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2481c117_6735d2fb",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-06-24T11:07:55Z",
+      "side": 1,
+      "message": "nit: space before {",
+      "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04767d12_0626dadd",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-06-24T11:07:55Z",
+      "side": 1,
+      "message": "nit: instance members should be declared before any constructor, move it above 108\n\nnit: should also be private final\n\nnit: one instance member initialized inline and the other one in the constructor. The same style could be used for both.",
+      "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2481c117_4730ce0c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-06-24T11:07:55Z",
+      "side": 1,
+      "message": "this doesn\u0027t need to be public as the class is private and this method is not from the implemented interface",
+      "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04767d12_66fceed7",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-06-24T11:07:55Z",
+      "side": 1,
+      "message": "nit: the second } should go into a new line",
+      "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04767d12_2602f62c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-06-24T11:07:55Z",
+      "side": 1,
+      "message": "nit: wrong indentation level",
+      "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04767d12_46f7f2f5",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-06-24T11:07:55Z",
+      "side": 1,
+      "message": "empty line before",
+      "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2481c117_8719e693",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-06-24T11:07:55Z",
+      "side": 1,
+      "message": "nit: the second } should go into a new line",
+      "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2481c117_e720e2bb",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PublisherScheduler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-06-24T11:07:55Z",
+      "side": 1,
+      "message": "Why is the default value -1?\nThe scheduleWithFixedDelay will throw an IllegalArgumentException if the 3rd parameter is \u003c\u003d0",
+      "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2481c117_a716ea60",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PublisherScheduler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-06-24T11:07:55Z",
+      "side": 1,
+      "message": "nit: space after \"if\"",
+      "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2481c117_c723dec5",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PublisherScheduler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-06-24T11:07:55Z",
+      "side": 1,
+      "message": "nit: curly braces even around a single statement block",
+      "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04767d12_4630d20c",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-06-24T11:07:55Z",
+      "side": 1,
+      "message": "we should use values with time units like, for example:\n[transfer]\n        timeout \u003d 120 s",
+      "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
