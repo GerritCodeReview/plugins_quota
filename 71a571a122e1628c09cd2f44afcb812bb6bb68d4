@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "04767d12_e620debb",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T13:58:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04767d12_86100a70",
+      "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "04767d12_e607fe34",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2014-06-24T11:07:55Z",
       "side": 1,
       "message": "optional: move this empty line down between the lines 81-82",
+      "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04767d12_064fba7d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T13:58:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04767d12_e607fe34",
       "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "2481c117_4749ae74",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T13:58:18Z",
+      "side": 1,
+      "message": "repoSizeCache.get(p) is the only method which declares to throw such an exception",
+      "parentUuid": "04767d12_a60d0659",
+      "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2481c117_6735d2fb",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
         "patchSetId": 2
@@ -64,6 +118,24 @@
       "writtenOn": "2014-06-24T11:07:55Z",
       "side": 1,
       "message": "nit: space before {",
+      "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2481c117_477a8e95",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T13:58:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2481c117_6735d2fb",
       "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "04767d12_4649b274",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T13:58:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04767d12_0626dadd",
+      "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2481c117_4730ce0c",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
         "patchSetId": 2
@@ -98,6 +188,24 @@
       "writtenOn": "2014-06-24T11:07:55Z",
       "side": 1,
       "message": "this doesn\u0027t need to be public as the class is private and this method is not from the implemented interface",
+      "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2481c117_8742c64f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T13:58:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2481c117_4730ce0c",
       "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "04767d12_664eae7f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T13:58:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04767d12_66fceed7",
+      "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "04767d12_2602f62c",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
         "patchSetId": 2
@@ -132,6 +258,24 @@
       "writtenOn": "2014-06-24T11:07:55Z",
       "side": 1,
       "message": "nit: wrong indentation level",
+      "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2481c117_077096b5",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T13:58:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04767d12_2602f62c",
       "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
@@ -155,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "04767d12_8642ca4f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T13:58:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04767d12_46f7f2f5",
+      "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2481c117_8719e693",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
         "patchSetId": 2
@@ -166,6 +328,24 @@
       "writtenOn": "2014-06-24T11:07:55Z",
       "side": 1,
       "message": "nit: the second } should go into a new line",
+      "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2481c117_27759aa6",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T13:58:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2481c117_8719e693",
       "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
@@ -189,6 +369,24 @@
     },
     {
       "key": {
+        "uuid": "2481c117_a780aa38",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PublisherScheduler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T13:58:18Z",
+      "side": 1,
+      "message": "Any value \u003c 1 would lead to not scheduling the Publisher, so why not using -1?",
+      "parentUuid": "2481c117_e720e2bb",
+      "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2481c117_a716ea60",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PublisherScheduler.java",
         "patchSetId": 2
@@ -200,6 +398,24 @@
       "writtenOn": "2014-06-24T11:07:55Z",
       "side": 1,
       "message": "nit: space after \"if\"",
+      "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04767d12_c63cc2de",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PublisherScheduler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T13:58:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2481c117_a716ea60",
       "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
@@ -223,6 +439,24 @@
     },
     {
       "key": {
+        "uuid": "2481c117_677f9284",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PublisherScheduler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T13:58:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2481c117_c723dec5",
+      "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "04767d12_4630d20c",
         "filename": "src/main/resources/Documentation/config.md",
         "patchSetId": 2
@@ -234,6 +468,24 @@
       "writtenOn": "2014-06-24T11:07:55Z",
       "side": 1,
       "message": "we should use values with time units like, for example:\n[transfer]\n        timeout \u003d 120 s",
+      "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2481c117_c78d9e6f",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-24T13:58:18Z",
+      "side": 1,
+      "message": "Ok, lets change the configuration of the schedule to the class ScheduleConfig introduced by Matthias in the gerrit project in 0fb2c999c348652686167c910d4408a1c79682ae",
+      "parentUuid": "04767d12_4630d20c",
       "revId": "71a571a122e1628c09cd2f44afcb812bb6bb68d4",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
