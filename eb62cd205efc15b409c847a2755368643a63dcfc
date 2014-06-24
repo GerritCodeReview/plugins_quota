@@ -158,6 +158,80 @@
       "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2481c117_8783a644",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-06-24T11:43:01Z",
+      "side": 1,
+      "message": "nit: this formatting is incorrect. A line this continues the previous line should be indented by two levels.",
+      "range": {
+        "startLine": 122,
+        "startChar": 0,
+        "endLine": 127,
+        "endChar": 33
+      },
+      "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2481c117_e78aa254",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-06-24T11:43:01Z",
+      "side": 1,
+      "message": "s/ifPresent/count\n\nor\n\ns/ifPresent/cachedCounter",
+      "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2481c117_07597635",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-06-24T11:43:01Z",
+      "side": 1,
+      "message": "concurrency issue: an increment to the AtomicLong, done from another thread between the 173-174, for the same project p can be lost by the invalidate(p).\n\nInstead of invalidating the cache entry a thread safe way could be to use p.getAndSet(0) in the line 173. In that case you would also like to change the if condition and also exclude the case when the counter is zero.",
+      "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04767d12_267596a6",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-06-24T11:43:01Z",
+      "side": 1,
+      "message": "nit: space before {",
+      "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
