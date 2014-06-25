@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2481c117_27a91a6b",
+        "filename": "src/main/resources/Documentation/build.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1003935
+      },
+      "writtenOn": "2014-06-25T07:46:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24a621d4_ffd3ff6d",
+      "range": {
+        "startLine": 31,
+        "startChar": 42,
+        "endLine": 31,
+        "endChar": 52
+      },
+      "revId": "2f2c2f9b93180ba52d9347c6c79c8a0db16e370d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "24a621d4_dfd83b8b",
         "filename": "src/main/resources/Documentation/build.md",
         "patchSetId": 2
@@ -60,6 +84,30 @@
       "side": 1,
       "message": "I wouldn\u0027t intorduce submodule in this context. (Well gitiles is exception here).\n\nFor two reasons:\n\n* plugin can be themself submodules: all core plugins. In this case (example: cookbook-plugin) if plugin implements standalone build, then submodules have another submodules.\n* Buck team is working on so-called cross repo target support. I expect this feature to be available in the end of 2014. With it in place we wouldn\u0027t need submodule to reference rule from bucklet (another repo).",
       "parentUuid": "24a621d4_dfd83b8b",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 3
+      },
+      "revId": "2f2c2f9b93180ba52d9347c6c79c8a0db16e370d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04767d12_66b30ed9",
+        "filename": "src/main/resources/Documentation/build.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1003935
+      },
+      "writtenOn": "2014-06-25T07:46:09Z",
+      "side": 1,
+      "message": "Ok, leaving it for now without submodule then.",
+      "parentUuid": "2481c117_876646a8",
       "range": {
         "startLine": 16,
         "startChar": 0,
