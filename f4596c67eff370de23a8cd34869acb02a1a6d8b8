@@ -107,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "04767d12_e65a9eaa",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/FetchAndPushCounter.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-06-25T13:02:57Z",
+      "side": 1,
+      "message": "The value is an AtomicLong and the AtomicLong provides thread safe increment.\n\nThis is the reason why AtomicLong is used (and not Long).\n\nLoadingCache helps protecting from 2 threads concurrently creating an initial value. AtomicLong provides thread safe update of the value.\n\nA solution with LoadingCache is simpler as we don\u0027t need to maintain yet another Map (LOCKS).\n\nI would like to see the solution with LoadingCache and why it is not thread safe.",
+      "parentUuid": "2481c117_e709c2b9",
+      "revId": "f4596c67eff370de23a8cd34869acb02a1a6d8b8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2481c117_07eed6dc",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/FetchAndPushCounter.java",
         "patchSetId": 9
