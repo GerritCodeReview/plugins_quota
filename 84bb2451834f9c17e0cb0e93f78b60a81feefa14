@@ -16,6 +16,24 @@
       "revId": "84bb2451834f9c17e0cb0e93f78b60a81feefa14",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04767d12_a66b462e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/FetchAndPushCounter.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-25T15:09:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2481c117_a7826aae",
+      "revId": "84bb2451834f9c17e0cb0e93f78b60a81feefa14",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
