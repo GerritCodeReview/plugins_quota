@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2481c117_672b1272",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-25T11:47:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2481c117_074fb67d",
+      "revId": "eb62cd205efc15b409c847a2755368643a63dcfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2481c117_2754ba0d",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/FetchAndPushCounter.java",
         "patchSetId": 7
