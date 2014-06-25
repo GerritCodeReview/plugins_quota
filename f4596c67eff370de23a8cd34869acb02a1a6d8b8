@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "2481c117_07a41694",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/FetchAndPushCounter.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-06-25T07:45:54Z",
+      "side": 1,
+      "message": "There is no default expiration time set here. If I followed the guava cache API well then this would end up in maximumSize(0) which means: no caching. One could still set a cache.push_count.maxAge in gerrit.config but it is not nice if it is mandatory to set this parameter in order to enable caching.",
+      "revId": "f4596c67eff370de23a8cd34869acb02a1a6d8b8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2481c117_47f8ce9b",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/FetchAndPushCounter.java",
         "patchSetId": 9
