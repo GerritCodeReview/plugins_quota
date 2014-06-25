@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2481c117_c70cbecc",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/FetchAndPushCounter.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-25T11:47:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2481c117_07a41694",
+      "revId": "f4596c67eff370de23a8cd34869acb02a1a6d8b8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2481c117_47f8ce9b",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/FetchAndPushCounter.java",
         "patchSetId": 9
@@ -30,6 +48,24 @@
       "writtenOn": "2014-06-24T15:15:15Z",
       "side": 1,
       "message": "nit: line too long",
+      "revId": "f4596c67eff370de23a8cd34869acb02a1a6d8b8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04767d12_e609beb9",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/FetchAndPushCounter.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-25T11:47:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2481c117_47f8ce9b",
       "revId": "f4596c67eff370de23a8cd34869acb02a1a6d8b8",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "2481c117_e709c2b9",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/FetchAndPushCounter.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-25T11:47:43Z",
+      "side": 1,
+      "message": "I didn\u0027t manage to solve the issue to increment the value in a thread safe way by using a LoadingCache. Therefore I do not use it.\n\nWe anyhow do not use a Cache here in its original meaning, namely to cache a value that is expensive to compute and which would be reloaded after cache invalidation. We use a cache beacuse it behaves like a Map with an automated persistence.",
+      "parentUuid": "2481c117_27f3dac3",
+      "revId": "f4596c67eff370de23a8cd34869acb02a1a6d8b8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2481c117_07eed6dc",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/FetchAndPushCounter.java",
         "patchSetId": 9
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "04767d12_c60cc2cc",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/FetchAndPushCounter.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-25T11:47:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2481c117_07eed6dc",
+      "revId": "f4596c67eff370de23a8cd34869acb02a1a6d8b8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "04767d12_86580a0f",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/FetchAndPushCounter.java",
         "patchSetId": 9
@@ -81,6 +153,24 @@
       "writtenOn": "2014-06-24T15:15:15Z",
       "side": 1,
       "message": "why remove?",
+      "revId": "f4596c67eff370de23a8cd34869acb02a1a6d8b8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2481c117_074096c3",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/FetchAndPushCounter.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-25T11:47:43Z",
+      "side": 1,
+      "message": "Done\n\nYou\u0027re right, that\u0027s not necessary.",
+      "parentUuid": "04767d12_86580a0f",
       "revId": "f4596c67eff370de23a8cd34869acb02a1a6d8b8",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
