@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6413b9dc_c9d8718b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 16
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-06-26T06:50:22Z",
+      "side": 1,
+      "message": "The drawback, however is that if some listener fails to process an event it won\u0027t be able to reconstruct the missing data.",
+      "range": {
+        "startLine": 17,
+        "startChar": 7,
+        "endLine": 19,
+        "endChar": 11
+      },
+      "revId": "01ff96980ef2ad7419e46959b99288f242541f42",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6413b9dc_e9d3356e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/FetchAndPushCounter.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-06-26T06:50:22Z",
+      "side": 1,
+      "message": "private ?",
+      "range": {
+        "startLine": 119,
+        "startChar": 2,
+        "endLine": 119,
+        "endChar": 14
+      },
+      "revId": "01ff96980ef2ad7419e46959b99288f242541f42",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6413b9dc_a9dd3d79",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-06-26T06:50:22Z",
+      "side": 1,
+      "message": "For separation of concerns, I\u0027d like to suggest to introduce a helper class for this:\n\n\n @Singleton\n class ProjectNameResolver {\n\n private final Path basePath;\n\n @Inject\n  ProjectNameResolver(SitePaths site) {\n this.basePath \u003d site.resolve(cfg.getString(\"gerrit\", null,  \"basePath\")).toPath();\n }\n\n Project.NameKey projectName(Repository repo) {\n    Path gitDir \u003d repo.getDirectory().toPath();\n    if (gitDir.startsWith(basePath)) {\n      String p \u003d basePath.relativize(gitDir).toString();\n      String n \u003d p.substring(0, p.length() - \".git\".length());\n      return new Project.NameKey(n);\n    } else {\n      log.warn(\"Couldn\u0027t determine the project name from \" + gitDir);\n      return null;\n    }\n  }\n}\n\nThe you could have this injected in this class and the Fetch-Push-Counter instead of SitePaths.",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 145,
+        "endChar": 3
+      },
+      "revId": "01ff96980ef2ad7419e46959b99288f242541f42",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
