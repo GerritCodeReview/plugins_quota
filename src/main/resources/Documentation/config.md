@@ -89,6 +89,7 @@ projects in each other folder
 
 Example: Allow the creation of 10 projects in folder 'test/*' and set
 the quota of 2m for each of them
+
 ```
   [quota "test/*"]
     maxProjects = 10
@@ -97,6 +98,7 @@ the quota of 2m for each of them
 
 Example: Allow the creation of 10 projects in folder 'test/*' and set
 a quota of 20m for the total size of all repositories
+
 ```
   [quota "test/*"]
     maxProjects = 10
@@ -106,6 +108,7 @@ a quota of 20m for the total size of all repositories
 Example: Allow the creation of 10 projects in folder 'test/*' and set
 a quota of 20m for the total size of all repositories. In addition make
 sure that each individual repository cannot exceed 3m
+
 ```
   [quota "test/*"]
     maxProjects = 10
