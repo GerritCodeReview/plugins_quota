@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a44db111_5b11c371",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MetaDataImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-27T11:40:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6413b9dc_89a959b3",
+      "revId": "3fa02c8a97e9cebe9f2eb6cf0ea76b3f3ddbfe13",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6413b9dc_a9a41ddb",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ProjectNameResolver.java",
         "patchSetId": 17
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "04303d7d_160b1c44",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ProjectNameResolver.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-27T11:40:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6413b9dc_a9a41ddb",
+      "revId": "3fa02c8a97e9cebe9f2eb6cf0ea76b3f3ddbfe13",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6413b9dc_c9af51b6",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
         "patchSetId": 17
@@ -47,6 +83,24 @@
       "writtenOn": "2014-06-26T15:12:30Z",
       "side": 1,
       "message": "optional: UsageDataEvent would be a more precise name for its purpose?",
+      "revId": "3fa02c8a97e9cebe9f2eb6cf0ea76b3f3ddbfe13",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a44db111_7b0eff54",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Publisher.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-06-27T11:40:54Z",
+      "side": 1,
+      "message": "I agree. Done",
+      "parentUuid": "6413b9dc_c9af51b6",
       "revId": "3fa02c8a97e9cebe9f2eb6cf0ea76b3f3ddbfe13",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
