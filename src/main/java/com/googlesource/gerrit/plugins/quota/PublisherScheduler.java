@@ -52,7 +52,7 @@ public class PublisherScheduler implements LifecycleListener {
     } else if (delay < 0 || interval <= 0) {
       log.warn("Ignoring invalid schedule configuration");
     } else {
-      workQueue.getDefaultQueue().scheduleWithFixedDelay(publisher, delay,
+      workQueue.getDefaultQueue().scheduleAtFixedRate(publisher, delay,
           interval, TimeUnit.MILLISECONDS);
     }
   }
