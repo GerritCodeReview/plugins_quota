@@ -30,20 +30,13 @@ import org.eclipse.jgit.transport.ReceiveCommand;
 import org.eclipse.jgit.transport.ReceivePack;
 import org.eclipse.jgit.transport.ServiceMayNotContinueException;
 import org.eclipse.jgit.transport.UploadPack;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.util.Collection;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Singleton
 class FetchAndPushCounter implements PostReceiveHook, PreUploadHook {
-  private static final Logger log = LoggerFactory
-      .getLogger(FetchAndPushCounter.class);
-
   static final String PUSH_COUNT_CACHE = "push_count";
   static final String FETCH_COUNT_CACHE = "fetch_count";
 
@@ -104,18 +97,14 @@ class FetchAndPushCounter implements PostReceiveHook, PreUploadHook {
 
   private static void incrementCount(LoadingCache<Project.NameKey, AtomicLong> cache,
       Project.NameKey project) {
-    try {
-      cache.get(project).incrementAndGet();
-    } catch (ExecutionException e) {
-      log.warn("Couldn't increment usage counter for project " + project.get(), e);
-    }
+      cache.getUnchecked(project).incrementAndGet();
   }
 
   @Singleton
   private static class Loader extends CacheLoader<Project.NameKey, AtomicLong> {
 
     @Override
-    public AtomicLong load(Project.NameKey project) throws IOException {
+    public AtomicLong load(Project.NameKey project) {
       return new AtomicLong(0);
     }
   }
