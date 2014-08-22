@@ -164,6 +164,18 @@ class PersistentCounter {
     }
   }
 
+  public void remove(Project.NameKey p) {
+    try (Handle c = new Handle()) {
+      c.delete(p);
+    } catch (SQLException e) {
+      String msg = "error deleting count of project " + p.get();
+      log.error(msg, e);
+      throw new CounterException(msg, e);
+    }
+  }
+
+
+
   public String getKind() {
     return kind;
   }
@@ -222,6 +234,14 @@ class PersistentCounter {
       }
     }
 
+    public void delete(NameKey p) throws SQLException {
+      String delete = "DELETE FROM " + kind + " WHERE project = ?";
+      try (PreparedStatement stmt = conn.prepareStatement(delete)) {
+        stmt.setString(1, p.get());
+        stmt.executeUpdate();
+      }
+    }
+
     @Override
     public void close() throws SQLException {
       conn.close();
@@ -241,4 +261,5 @@ class PersistentCounter {
     }
 
   }
+
 }

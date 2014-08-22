@@ -184,4 +184,9 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook,
       return 0;
     }
   }
+
+  @Override
+  public void remove(Project.NameKey p) {
+    cache.invalidate(p);
+  }
 }
