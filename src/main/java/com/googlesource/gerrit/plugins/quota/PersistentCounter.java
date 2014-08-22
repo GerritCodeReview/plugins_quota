@@ -67,4 +67,8 @@ class PersistentCounter {
     }
   }
 
+  public void remove(Project.NameKey p) {
+    counts.invalidate(p);
+  }
+
 }
