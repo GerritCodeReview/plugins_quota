@@ -10,6 +10,7 @@ gerrit_plugin(
   ],
   provided_deps = [
     '//lib/commons:lang',
+    '//lib:gson',
   ]
 )
 

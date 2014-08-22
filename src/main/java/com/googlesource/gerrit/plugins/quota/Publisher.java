@@ -13,8 +13,10 @@
 // limitations under the License.
 
 package com.googlesource.gerrit.plugins.quota;
+import static com.googlesource.gerrit.plugins.quota.FetchAndPushCounter.FETCH_COUNTS;
+import static com.googlesource.gerrit.plugins.quota.FetchAndPushCounter.PUSH_COUNTS;
+import static com.googlesource.gerrit.plugins.quota.MaxRepositorySizeQuota.REPO_SIZE_CACHE;
 
-import com.google.common.cache.Cache;
 import com.google.common.cache.LoadingCache;
 import com.google.gerrit.extensions.events.UsageDataPublishedListener;
 import com.google.gerrit.extensions.events.UsageDataPublishedListener.Data;
@@ -34,6 +36,7 @@ import org.slf4j.LoggerFactory;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -53,23 +56,21 @@ public class Publisher implements Runnable {
   private Iterable<UsageDataPublishedListener> listeners;
   private ProjectCache projectCache;
   private LoadingCache<NameKey, AtomicLong> repoSizeCache;
-  private Cache<NameKey, AtomicLong> numberOfPushesCache;
-  private Cache<NameKey, AtomicLong> numberOfFetchesCache;
+  private ConcurrentMap<NameKey, AtomicLong> pushCounts;
+  private ConcurrentMap<NameKey, AtomicLong> fetchCounts;
 
   @Inject
-  public Publisher(DynamicSet<UsageDataPublishedListener> listeners,
+  public Publisher(
+      DynamicSet<UsageDataPublishedListener> listeners,
       ProjectCache projectCache,
-      @Named(MaxRepositorySizeQuota.REPO_SIZE_CACHE)
-        LoadingCache<Project.NameKey, AtomicLong> repoSizeCache,
-      @Named(FetchAndPushCounter.PUSH_COUNT_CACHE)
-        Cache<Project.NameKey, AtomicLong> pushCountCache,
-      @Named(FetchAndPushCounter.FETCH_COUNT_CACHE)
-        Cache<Project.NameKey, AtomicLong> fetchCountCache) {
+      @Named(REPO_SIZE_CACHE) LoadingCache<Project.NameKey, AtomicLong> repoSizeCache,
+      @Named(PUSH_COUNTS) ConcurrentMap<Project.NameKey, AtomicLong> pushCounts,
+      @Named(FETCH_COUNTS) ConcurrentMap<Project.NameKey, AtomicLong> fetchCounts) {
     this.listeners = listeners;
     this.projectCache = projectCache;
     this.repoSizeCache = repoSizeCache;
-    this.numberOfPushesCache = pushCountCache;
-    this.numberOfFetchesCache = fetchCountCache;
+    this.pushCounts = pushCounts;
+    this.fetchCounts = fetchCounts;
   }
 
   @Override
@@ -80,8 +81,8 @@ public class Publisher implements Runnable {
 
     try {
       UsageDataEvent repoSizeEvent = createRepoSizeEvent();
-      UsageDataEvent pushCountEvent = createEvent(PUSH_COUNT, numberOfPushesCache);
-      UsageDataEvent fetchCountEvent = createEvent(FETCH_COUNT, numberOfFetchesCache);
+      UsageDataEvent pushCountEvent = createEvent(PUSH_COUNT, pushCounts);
+      UsageDataEvent fetchCountEvent = createEvent(FETCH_COUNT, fetchCounts);
       for (UsageDataPublishedListener l : listeners) {
           try {
             l.onUsageDataPublished(repoSizeEvent);
@@ -105,10 +106,10 @@ public class Publisher implements Runnable {
     return event;
   }
 
-  private UsageDataEvent createEvent(MetaData metaData, Cache<NameKey, AtomicLong> cache) {
+  private UsageDataEvent createEvent(MetaData metaData, ConcurrentMap<NameKey, AtomicLong> counts) {
     UsageDataEvent event = new UsageDataEvent(metaData);
     for (Project.NameKey p : projectCache.all()) {
-      AtomicLong count = cache.getIfPresent(p);
+      AtomicLong count = counts.get(p);
       if (count != null) {
         long currentCount = count.getAndSet(0);
         if (currentCount != 0) {
