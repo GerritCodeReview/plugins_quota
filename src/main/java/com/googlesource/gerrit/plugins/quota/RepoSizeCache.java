@@ -20,5 +20,7 @@ public interface RepoSizeCache {
 
   long get(Project.NameKey p);
 
+  void set(Project.NameKey p, long size);
+
   void evict(Project.NameKey p);
 }

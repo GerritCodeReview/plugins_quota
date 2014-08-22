@@ -56,6 +56,7 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook,
 
   static Module module() {
     return new CacheModule() {
+      @Override
       protected void configure() {
         persist(REPO_SIZE_CACHE, Project.NameKey.class, AtomicLong.class)
             .loader(Loader.class)
@@ -188,5 +189,14 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook,
   @Override
   public void evict(Project.NameKey p) {
     cache.invalidate(p);
+  }
+
+  @Override
+  public void set(Project.NameKey p, long size) {
+    try {
+      cache.get(p).set(size);
+    } catch (ExecutionException e) {
+      log.warn("Error setting the size of project " + p.get(), e);
+    }
   }
 }
