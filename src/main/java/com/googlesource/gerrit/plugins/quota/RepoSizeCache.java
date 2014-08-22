@@ -20,4 +20,6 @@ public interface RepoSizeCache {
 
   long get(NameKey p);
 
+  void remove(NameKey p);
+
 }
