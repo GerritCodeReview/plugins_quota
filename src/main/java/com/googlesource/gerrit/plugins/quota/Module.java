@@ -41,6 +41,8 @@ class Module extends AbstractModule {
         .to(MaxRepositorySizeQuota.class);
     DynamicSet.bind(binder(), PostReceiveHook.class)
         .to(MaxRepositorySizeQuota.class);
+    DynamicSet.bind(binder(), GarbageCollectorListener.class).to(
+        GCListener.class);
     DynamicSet.bind(binder(), ProjectDeletedListener.class).to(
         DeletionListener.class);
     DynamicSet.bind(binder(), PostReceiveHook.class)
