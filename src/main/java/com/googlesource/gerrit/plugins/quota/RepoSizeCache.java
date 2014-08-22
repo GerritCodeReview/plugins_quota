@@ -19,4 +19,8 @@ import com.google.gerrit.reviewdb.client.Project;
 public interface RepoSizeCache {
 
   long get(Project.NameKey p);
+
+  void set(Project.NameKey p, long size);
+
+  void remove(Project.NameKey key);
 }
