@@ -14,12 +14,25 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
+import com.google.gerrit.extensions.events.GarbageCollectorListener;
+import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.reviewdb.client.Project.NameKey;
+import com.google.gerrit.server.project.ProjectCache;
+import com.google.inject.Singleton;
 
-public interface RepoSizeCache {
+@Singleton
+public class GCListener implements GarbageCollectorListener {
 
-  long get(NameKey p);
+  private final RepoSizeCache repoSizeCache;
 
-  void remove(NameKey key);
+  public GCListener(ProjectCache projectCache,
+      RepoSizeCache repoSizeCache) {
+        this.repoSizeCache = repoSizeCache;
+  }
 
+  @Override
+  public void onGarbageCollected(GarbageCollectorListener.Event event) {
+    Project.NameKey key = new NameKey(event.getProjectName());
+    repoSizeCache.remove(key);
+  }
 }
