@@ -121,11 +121,21 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook 
   @Override
   public void onPostReceive(ReceivePack rp, Collection<ReceiveCommand> commands) {
     Project.NameKey project = projectNameResolver.projectName(rp.getRepository());
-    try {
-      cache.get(project).getAndAdd(rp.getPackSize());
-    } catch (ExecutionException e) {
-      log.warn("Couldn't process onPostReceive for " + project.get(), e);
+    if (needPack(commands)) {
+      try {
+        cache.get(project).getAndAdd(rp.getPackSize());
+      } catch (ExecutionException e) {
+        log.warn("Couldn't process onPostReceive for " + project.get(), e);
+      }
     }
+  }
+
+  private boolean needPack(Collection<ReceiveCommand> commands) {
+    for (ReceiveCommand cmd : commands) {
+      if (cmd.getType() != ReceiveCommand.Type.DELETE)
+        return true;
+    }
+    return false;
   }
 
   @Singleton
