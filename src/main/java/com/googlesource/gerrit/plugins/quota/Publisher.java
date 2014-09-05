@@ -111,6 +111,7 @@ public class Publisher implements Runnable {
       AtomicLong count = cache.getIfPresent(p);
       if (count != null) {
         long currentCount = count.getAndSet(0);
+        cache.put(p, count);
         if (currentCount != 0) {
           event.addData(currentCount, p.get());
         }

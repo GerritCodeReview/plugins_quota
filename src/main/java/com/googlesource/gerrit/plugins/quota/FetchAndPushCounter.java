@@ -97,7 +97,9 @@ class FetchAndPushCounter implements PostReceiveHook, PreUploadHook {
 
   private static void incrementCount(LoadingCache<Project.NameKey, AtomicLong> cache,
       Project.NameKey project) {
-      cache.getUnchecked(project).incrementAndGet();
+      AtomicLong counter = cache.getUnchecked(project);
+      counter.incrementAndGet();
+      cache.put(project, counter);
   }
 
   @Singleton
