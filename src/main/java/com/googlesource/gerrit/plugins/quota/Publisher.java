@@ -14,7 +14,6 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
-import com.google.common.cache.Cache;
 import com.google.common.cache.LoadingCache;
 import com.google.gerrit.extensions.events.UsageDataPublishedListener;
 import com.google.gerrit.extensions.events.UsageDataPublishedListener.Data;
@@ -50,26 +49,24 @@ public class Publisher implements Runnable {
   private static final MetaData FETCH_COUNT = new MetaDataImpl("fetchCount",
       "number of fetches from the repository since the last event", "", "");
 
-  private Iterable<UsageDataPublishedListener> listeners;
-  private ProjectCache projectCache;
-  private LoadingCache<NameKey, AtomicLong> repoSizeCache;
-  private Cache<NameKey, AtomicLong> numberOfPushesCache;
-  private Cache<NameKey, AtomicLong> numberOfFetchesCache;
+  private final Iterable<UsageDataPublishedListener> listeners;
+  private final ProjectCache projectCache;
+  private final LoadingCache<NameKey, AtomicLong> repoSizeCache;
+  private final PersistentCounter fetchCounts;
+  private final PersistentCounter pushCounts;
 
   @Inject
-  public Publisher(DynamicSet<UsageDataPublishedListener> listeners,
+  public Publisher(
+      DynamicSet<UsageDataPublishedListener> listeners,
       ProjectCache projectCache,
-      @Named(MaxRepositorySizeQuota.REPO_SIZE_CACHE)
-        LoadingCache<Project.NameKey, AtomicLong> repoSizeCache,
-      @Named(FetchAndPushCounter.PUSH_COUNT_CACHE)
-        Cache<Project.NameKey, AtomicLong> pushCountCache,
-      @Named(FetchAndPushCounter.FETCH_COUNT_CACHE)
-        Cache<Project.NameKey, AtomicLong> fetchCountCache) {
+      @Named(MaxRepositorySizeQuota.REPO_SIZE_CACHE) LoadingCache<Project.NameKey, AtomicLong> repoSizeCache,
+      @Named(PersistentCounter.FETCH) PersistentCounter fetchCounts,
+      @Named(PersistentCounter.PUSH) PersistentCounter pushCounts) {
     this.listeners = listeners;
     this.projectCache = projectCache;
     this.repoSizeCache = repoSizeCache;
-    this.numberOfPushesCache = pushCountCache;
-    this.numberOfFetchesCache = fetchCountCache;
+    this.fetchCounts = fetchCounts;
+    this.pushCounts = pushCounts;
   }
 
   @Override
@@ -80,8 +77,8 @@ public class Publisher implements Runnable {
 
     try {
       UsageDataEvent repoSizeEvent = createRepoSizeEvent();
-      UsageDataEvent pushCountEvent = createEvent(PUSH_COUNT, numberOfPushesCache);
-      UsageDataEvent fetchCountEvent = createEvent(FETCH_COUNT, numberOfFetchesCache);
+      UsageDataEvent fetchCountEvent = createEvent(FETCH_COUNT, fetchCounts);
+      UsageDataEvent pushCountEvent = createEvent(PUSH_COUNT, pushCounts);
       for (UsageDataPublishedListener l : listeners) {
           try {
             l.onUsageDataPublished(repoSizeEvent);
@@ -105,15 +102,12 @@ public class Publisher implements Runnable {
     return event;
   }
 
-  private UsageDataEvent createEvent(MetaData metaData, Cache<NameKey, AtomicLong> cache) {
+  private UsageDataEvent createEvent(MetaData metaData, PersistentCounter counts) {
     UsageDataEvent event = new UsageDataEvent(metaData);
     for (Project.NameKey p : projectCache.all()) {
-      AtomicLong count = cache.getIfPresent(p);
-      if (count != null) {
-        long currentCount = count.getAndSet(0);
-        if (currentCount != 0) {
-          event.addData(currentCount, p.get());
-        }
+      long currentCount = counts.getAndReset(p);
+      if (currentCount != 0) {
+        event.addData(currentCount, p.get());
       }
     }
     return event;
