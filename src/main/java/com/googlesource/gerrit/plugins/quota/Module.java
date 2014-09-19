@@ -40,11 +40,11 @@ class Module extends AbstractModule {
     DynamicSet.bind(binder(), PostReceiveHook.class)
         .to(MaxRepositorySizeQuota.class);
     DynamicSet.bind(binder(), PostReceiveHook.class)
-        .to(FetchAndPushCounter.class);
+        .to(FetchAndPushListener.class);
     DynamicSet.bind(binder(), PreUploadHook.class)
-        .to(FetchAndPushCounter.class);
+        .to(FetchAndPushListener.class);
     install(MaxRepositorySizeQuota.module());
-    install(FetchAndPushCounter.module());
+    install(PersistentCounter.module());
     install(new RestApiModule() {
       @Override
       protected void configure() {
