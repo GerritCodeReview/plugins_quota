@@ -48,7 +48,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Singleton
-class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook {
+class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook, RepoSizeCache {
   private static final Logger log = LoggerFactory
       .getLogger(MaxRepositorySizeQuota.class);
 
@@ -60,6 +60,7 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook 
         persist(REPO_SIZE_CACHE, Project.NameKey.class, AtomicLong.class)
             .loader(Loader.class)
             .expireAfterWrite(1, TimeUnit.DAYS);
+        bind(RepoSizeCache.class).to(MaxRepositorySizeQuota.class);
       }
     };
   }
@@ -171,6 +172,16 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook 
         }
       });
       return size.longValue();
+    }
+  }
+
+  @Override
+  public long get(Project.NameKey p) {
+    try {
+      return cache.get(p).get();
+    } catch (ExecutionException e) {
+      log.warn("Error creating RepoSizeEvent", e);
+      return 0;
     }
   }
 }
