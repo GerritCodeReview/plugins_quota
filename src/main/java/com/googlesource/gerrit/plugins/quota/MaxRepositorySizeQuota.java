@@ -18,6 +18,7 @@ import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.google.common.collect.Ordering;
 import com.google.gerrit.reviewdb.client.Project;
+import com.google.gerrit.reviewdb.client.Project.NameKey;
 import com.google.gerrit.server.cache.CacheModule;
 import com.google.gerrit.server.git.GitRepositoryManager;
 import com.google.gerrit.server.git.ReceivePackInitializer;
@@ -48,7 +49,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Singleton
-class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook {
+class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook, RepoSizeCache {
   private static final Logger log = LoggerFactory
       .getLogger(MaxRepositorySizeQuota.class);
 
@@ -60,6 +61,7 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook 
         persist(REPO_SIZE_CACHE, Project.NameKey.class, AtomicLong.class)
             .loader(Loader.class)
             .expireAfterWrite(1, TimeUnit.DAYS);
+        bind(RepoSizeCache.class).to(MaxRepositorySizeQuota.class);
       }
     };
   }
@@ -171,6 +173,16 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook 
         }
       });
       return size.longValue();
+    }
+  }
+
+  @Override
+  public long get(NameKey p) {
+    try {
+      return cache.get(p).get();
+    } catch (ExecutionException e) {
+      log.warn("Error creating RepoSizeEvent", e);
+      return 0;
     }
   }
 }
