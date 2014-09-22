@@ -14,14 +14,12 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
-import com.google.common.cache.LoadingCache;
 import com.google.gerrit.extensions.events.UsageDataPublishedListener;
 import com.google.gerrit.extensions.events.UsageDataPublishedListener.Data;
 import com.google.gerrit.extensions.events.UsageDataPublishedListener.Event;
 import com.google.gerrit.extensions.events.UsageDataPublishedListener.MetaData;
 import com.google.gerrit.extensions.registration.DynamicSet;
 import com.google.gerrit.reviewdb.client.Project;
-import com.google.gerrit.reviewdb.client.Project.NameKey;
 import com.google.gerrit.server.project.ProjectCache;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -33,8 +31,6 @@ import org.slf4j.LoggerFactory;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.atomic.AtomicLong;
 
 @Singleton
 public class Publisher implements Runnable {
@@ -51,7 +47,7 @@ public class Publisher implements Runnable {
 
   private final Iterable<UsageDataPublishedListener> listeners;
   private final ProjectCache projectCache;
-  private final LoadingCache<NameKey, AtomicLong> repoSizeCache;
+  private final RepoSizeCache repoSizeCache;
   private final PersistentCounter fetchCounts;
   private final PersistentCounter pushCounts;
 
@@ -59,7 +55,7 @@ public class Publisher implements Runnable {
   public Publisher(
       DynamicSet<UsageDataPublishedListener> listeners,
       ProjectCache projectCache,
-      @Named(MaxRepositorySizeQuota.REPO_SIZE_CACHE) LoadingCache<Project.NameKey, AtomicLong> repoSizeCache,
+      RepoSizeCache repoSizeCache,
       @Named(PersistentCounter.FETCH) PersistentCounter fetchCounts,
       @Named(PersistentCounter.PUSH) PersistentCounter pushCounts) {
     this.listeners = listeners;
@@ -75,29 +71,27 @@ public class Publisher implements Runnable {
       return;
     }
 
-    try {
-      UsageDataEvent repoSizeEvent = createRepoSizeEvent();
-      UsageDataEvent fetchCountEvent = createEvent(FETCH_COUNT, fetchCounts);
-      UsageDataEvent pushCountEvent = createEvent(PUSH_COUNT, pushCounts);
-      for (UsageDataPublishedListener l : listeners) {
-          try {
-            l.onUsageDataPublished(repoSizeEvent);
-            l.onUsageDataPublished(pushCountEvent);
-            l.onUsageDataPublished(fetchCountEvent);
-          } catch (RuntimeException e) {
-            log.warn("Failure in UsageDataPublishedListener", e);
-          }
+    UsageDataEvent repoSizeEvent = createRepoSizeEvent();
+    UsageDataEvent fetchCountEvent = createEvent(FETCH_COUNT, fetchCounts);
+    UsageDataEvent pushCountEvent = createEvent(PUSH_COUNT, pushCounts);
+    for (UsageDataPublishedListener l : listeners) {
+      try {
+        l.onUsageDataPublished(repoSizeEvent);
+        l.onUsageDataPublished(pushCountEvent);
+        l.onUsageDataPublished(fetchCountEvent);
+      } catch (RuntimeException e) {
+        log.warn("Failure in UsageDataPublishedListener", e);
       }
-    } catch (ExecutionException e) {
-      log.warn("Error creating RepoSizeEvent", e);
     }
   }
 
-  private UsageDataEvent createRepoSizeEvent() throws ExecutionException {
+  private UsageDataEvent createRepoSizeEvent() {
     UsageDataEvent event = new UsageDataEvent(REPO_SIZE);
     for (Project.NameKey p : projectCache.all()) {
-        long size = repoSizeCache.get(p).get();
+      long size = repoSizeCache.get(p);
+      if (size > 0) {
         event.addData(size, p.get());
+      }
     }
     return event;
   }
