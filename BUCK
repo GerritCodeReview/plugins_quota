@@ -20,3 +20,21 @@ java_library(
   deps = [':quota__plugin'],
 )
 
+java_test(
+  name = 'quota_tests',
+  srcs = glob(['src/test/java/**/*.java']),
+  labels = ['quota-plugin'],
+  deps = [
+    ':quota__plugin',
+    '//lib:junit',
+    '//gerrit-reviewdb:server',
+    '//lib/jgit:jgit',
+    '//lib/easymock:easymock',
+    '//gerrit-extension-api:api',
+    '//gerrit-server:server',
+    '//lib/guice:guice',
+    '//lib:gwtorm',
+    '//lib:h2',
+  ],
+  source_under_test = [':quota__plugin'],
+)
