@@ -12,16 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package com.googlesource.gerrit.plugins.quota;
+package com.googlesource.gerrit.plugins.quota.count;
 
 import static org.easymock.EasyMock.createNiceMock;
 import static org.easymock.EasyMock.replay;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import com.google.gerrit.extensions.annotations.PluginData;
-import com.google.gerrit.reviewdb.client.Project;
+import com.google.gerrit.server.config.GerritServerConfig;
+import com.google.gerrit.server.config.SitePath;
 import com.google.gerrit.server.project.ProjectCache;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
@@ -31,14 +31,18 @@ import com.google.inject.Module;
 import com.google.inject.TypeLiteral;
 import com.google.inject.name.Names;
 
-import org.junit.After;
+import com.googlesource.gerrit.plugins.quota.usage.UsageDataEventCreator;
+
+import org.eclipse.jgit.errors.ConfigInvalidException;
+import org.eclipse.jgit.lib.BlobBasedConfig;
+import org.eclipse.jgit.lib.Config;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
 
-public class PersistentCounterTest {
+public class CountModuleTest {
 
   private File tmp;
   private PersistentCounter pushCounts;
@@ -47,7 +51,7 @@ public class PersistentCounterTest {
   private UsageDataEventCreator fetchCreator;
 
   @Before
-  public void setup() throws IOException {
+  public void setup() throws IOException, ConfigInvalidException {
     tmp = File.createTempFile("quota-test", "dir");
     tmp.delete();
     tmp.mkdir();
@@ -57,36 +61,24 @@ public class PersistentCounterTest {
     final ProjectCache projectCache = createNiceMock(ProjectCache.class);
     replay(projectCache);
 
-    final RepoSizeCache repoSizeCache = createNiceMock(RepoSizeCache.class);
-    replay(repoSizeCache);
+    final Config config = new BlobBasedConfig(null, new byte[0]);
 
     Module testModule = new AbstractModule() {
       @Override
       protected void configure() {
-        bind(RepoSizeCache.class).toInstance(repoSizeCache );
+        bind(Config.class).annotatedWith(GerritServerConfig.class).toInstance(config);
+        bind(File.class).annotatedWith(SitePath.class).toInstance(dir);
         bind(File.class).annotatedWith(PluginData.class).toInstance(dir);
         bind(ProjectCache.class).toInstance(projectCache);
       }
     };
-    Injector injector = Guice.createInjector(testModule, PersistentCounter.module());
+    Injector injector = Guice.createInjector(testModule, new CountModule());
 
-    pushCounts = getCounter(injector, PersistentCounter.PUSH);
-    fetchCounts = getCounter(injector, PersistentCounter.FETCH);
+    pushCounts = getCounter(injector, CountModule.PUSH);
+    fetchCounts = getCounter(injector, CountModule.FETCH);
 
-    pushCreator = getCreator(injector, PersistentCounter.PUSH);
-    fetchCreator = getCreator(injector, PersistentCounter.FETCH);
-  }
-
-  private UsageDataEventCreator getCreator(Injector injector, String kind) {
-    Key<UsageDataEventCreator> key =
-        Key.get(new TypeLiteral<UsageDataEventCreator>() {}, Names.named(kind));
-    return injector.getInstance(key);
-  }
-
-  private PersistentCounter getCounter(Injector injector, String kind) {
-    Key<PersistentCounter> key =
-        Key.get(new TypeLiteral<PersistentCounter>() {}, Names.named(kind));
-    return injector.getInstance(key);
+    pushCreator = getCreator(injector, CountModule.PUSH);
+    fetchCreator = getCreator(injector, CountModule.FETCH);
   }
 
   @Test
@@ -103,39 +95,18 @@ public class PersistentCounterTest {
     assertTrue(pushCreator != fetchCreator);
   }
 
-  @Test
-  public void testEmptyCounter() {
-    checkCounting(pushCounts, 0l);
-    checkCounting(fetchCounts, 0l);
+  private UsageDataEventCreator getCreator(Injector injector, String kind) {
+    Key<UsageDataEventCreator> key =
+        Key.get(new TypeLiteral<UsageDataEventCreator>() {}, Names.named(kind));
+    return injector.getInstance(key);
   }
 
-  @Test
-  public void testFirstValue() {
-    checkCounting(pushCounts, 1l);
-    checkCounting(fetchCounts, 1l);
+  private PersistentCounter getCounter(Injector injector, String kind) {
+    Key<PersistentCounter> key =
+        Key.get(new TypeLiteral<PersistentCounter>() {}, Names.named(kind));
+    return injector.getInstance(key);
   }
 
-  @Test
-  public void testNextValue() {
-    checkCounting(pushCounts, 2l);
-    checkCounting(fetchCounts, 2l);
-  }
 
-  private void checkCounting(PersistentCounter counter, long count) {
-    Project.NameKey p = new Project.NameKey("p");
-    assertEquals(0l, counter.getAndReset(p));
-    for (long i = 0l; i < count; i++) {
-      counter.increment(p);
-    }
-    assertEquals(count, counter.getAndReset(p));
-  }
-
-  @After
-  public void teardown() {
-    for (File file : tmp.listFiles()) {
-      file.delete();
-    }
-    tmp.delete();
-  }
 
 }

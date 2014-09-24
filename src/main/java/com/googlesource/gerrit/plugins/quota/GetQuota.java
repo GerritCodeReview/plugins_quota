@@ -24,8 +24,8 @@ import com.google.gerrit.server.project.ProjectResource;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
-import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class GetQuota implements RestReadView<ProjectResource> {
 

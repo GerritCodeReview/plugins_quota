@@ -1,8 +1,10 @@
-package com.googlesource.gerrit.plugins.quota;
+package com.googlesource.gerrit.plugins.quota.count;
 
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
+
+import com.googlesource.gerrit.plugins.quota.ProjectNameResolver;
 
 import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.transport.PostReceiveHook;
@@ -21,8 +23,8 @@ public class FetchAndPushListener implements PostReceiveHook, PreUploadHook {
   private final PersistentCounter pushCounts;
 
   @Inject
-  public FetchAndPushListener(@Named(PersistentCounter.FETCH) PersistentCounter fetchCounts,
-      @Named(PersistentCounter.PUSH) PersistentCounter pushCounts,
+  public FetchAndPushListener(@Named(CountModule.FETCH) PersistentCounter fetchCounts,
+      @Named(CountModule.PUSH) PersistentCounter pushCounts,
       ProjectNameResolver projectNameResolver) {
     this.fetchCounts = fetchCounts;
     this.pushCounts = pushCounts;

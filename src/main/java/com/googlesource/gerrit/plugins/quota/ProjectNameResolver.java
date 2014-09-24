@@ -28,7 +28,7 @@ import org.slf4j.LoggerFactory;
 import java.nio.file.Path;
 
 @Singleton
-class ProjectNameResolver {
+public class ProjectNameResolver {
 
   private static final Logger log = LoggerFactory
       .getLogger(ProjectNameResolver.class);
@@ -40,7 +40,7 @@ class ProjectNameResolver {
         site.resolve(cfg.getString("gerrit", null, "basePath")).toPath();
   }
 
-  Project.NameKey projectName(Repository repo) {
+  public Project.NameKey projectName(Repository repo) {
     Path gitDir = repo.getDirectory().toPath();
     if (gitDir.startsWith(basePath)) {
       String p = basePath.relativize(gitDir).toString();

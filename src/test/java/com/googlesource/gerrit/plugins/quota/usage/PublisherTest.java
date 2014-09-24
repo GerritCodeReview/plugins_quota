@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package com.googlesource.gerrit.plugins.quota;
+package com.googlesource.gerrit.plugins.quota.usage;
 
 import static org.easymock.EasyMock.createMock;
 import static org.easymock.EasyMock.expect;
@@ -23,6 +23,8 @@ import static org.easymock.EasyMock.verify;
 import com.google.gerrit.extensions.events.UsageDataPublishedListener;
 import com.google.gerrit.extensions.events.UsageDataPublishedListener.Event;
 import com.google.gerrit.extensions.registration.DynamicSet;
+
+import com.googlesource.gerrit.plugins.quota.count.FetchAndPushEventCreator;
 
 import org.junit.Test;
 

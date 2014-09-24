@@ -16,14 +16,17 @@ package com.googlesource.gerrit.plugins.quota;
 
 import static com.google.gerrit.server.project.ProjectResource.PROJECT_KIND;
 
-import com.google.gerrit.extensions.events.LifecycleListener;
 import com.google.gerrit.extensions.registration.DynamicSet;
 import com.google.gerrit.extensions.restapi.RestApiModule;
 import com.google.gerrit.server.git.ReceivePackInitializer;
 import com.google.gerrit.server.validators.ProjectCreationValidationListener;
 import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
-import com.google.inject.internal.UniqueAnnotations;
+
+import com.googlesource.gerrit.plugins.quota.count.CountModule;
+import com.googlesource.gerrit.plugins.quota.count.FetchAndPushListener;
+import com.googlesource.gerrit.plugins.quota.usage.UsageDataEventCreator;
+import com.googlesource.gerrit.plugins.quota.usage.UsageModule;
 
 import org.eclipse.jgit.transport.PostReceiveHook;
 import org.eclipse.jgit.transport.PreUploadHook;
@@ -44,18 +47,14 @@ class Module extends AbstractModule {
         .to(FetchAndPushListener.class);
     DynamicSet.setOf(binder(), UsageDataEventCreator.class);
     install(MaxRepositorySizeQuota.module());
-    install(PersistentCounter.module());
+    install(new CountModule());
+    install(new UsageModule());
     install(new RestApiModule() {
       @Override
       protected void configure() {
         get(PROJECT_KIND, "quota").to(GetQuota.class);
       }
     });
-    bind(Publisher.class).in(Scopes.SINGLETON);
-    bind(PublisherScheduler.class).in(Scopes.SINGLETON);
     bind(ProjectNameResolver.class).in(Scopes.SINGLETON);
-    bind(LifecycleListener.class)
-      .annotatedWith(UniqueAnnotations.create())
-      .to(PublisherScheduler.class);
   }
 }

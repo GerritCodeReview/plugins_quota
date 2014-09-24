@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package com.googlesource.gerrit.plugins.quota;
+package com.googlesource.gerrit.plugins.quota.usage;
 
 import com.google.gerrit.extensions.events.UsageDataPublishedListener;
 

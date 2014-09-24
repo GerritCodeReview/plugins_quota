@@ -21,6 +21,10 @@ import com.google.gerrit.server.project.ProjectCache;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
+import com.googlesource.gerrit.plugins.quota.usage.MetaDataImpl;
+import com.googlesource.gerrit.plugins.quota.usage.UsageDataEvent;
+import com.googlesource.gerrit.plugins.quota.usage.UsageDataEventCreator;
+
 @Singleton
 public class RepoSizeEventCreator implements UsageDataEventCreator {
 

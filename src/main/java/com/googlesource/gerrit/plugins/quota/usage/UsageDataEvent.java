@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package com.googlesource.gerrit.plugins.quota;
+package com.googlesource.gerrit.plugins.quota.usage;
 
 import com.google.gerrit.extensions.events.UsageDataPublishedListener.Data;
 import com.google.gerrit.extensions.events.UsageDataPublishedListener.Event;
@@ -22,7 +22,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-class UsageDataEvent implements Event {
+public class UsageDataEvent implements Event {
 
   private final Timestamp timestamp;
   private final MetaData metaData;
@@ -34,7 +34,7 @@ class UsageDataEvent implements Event {
     data = new ArrayList<Data>();
   }
 
-  void addData(final long value, final String projectName) {
+  public void addData(final long value, final String projectName) {
     Data dataRow = new Data() {
 
       @Override

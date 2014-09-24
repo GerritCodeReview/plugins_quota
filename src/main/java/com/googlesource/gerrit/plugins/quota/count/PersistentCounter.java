@@ -12,15 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package com.googlesource.gerrit.plugins.quota;
+package com.googlesource.gerrit.plugins.quota.count;
 
-import com.google.gerrit.extensions.registration.DynamicSet;
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.reviewdb.client.Project.NameKey;
-import com.google.inject.AbstractModule;
-import com.google.inject.Module;
-
-import com.googlesource.gerrit.plugins.quota.usage.UsageDataEventCreator;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.slf4j.Logger;
@@ -33,21 +28,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-class PersistentCounter {
+public class PersistentCounter {
   private static final Logger log = LoggerFactory
       .getLogger(PersistentCounter.class);
-  public static final String FETCH = "FETCH_COUNTS";
-  public static final String PUSH = "PUSH_COUNTS";
-
-  static Module module() {
-    return new AbstractModule() {
-
-      @Override
-      protected void configure() {
-        DynamicSet.bind(binder(), UsageDataEventCreator.class).to(RepoSizeEventCreator.class);
-      }
-    };
-  }
 
   private final BasicDataSource dataSource;
 
@@ -60,7 +43,7 @@ class PersistentCounter {
 
     dataSource = new BasicDataSource();
     dataSource.setDriverClassName("org.h2.Driver");
-//    dataSource.setMaxActive(10);
+    dataSource.setMaxActive(10);
     dataSource.setUrl(url);
     try (Connection conn = dataSource.getConnection()) {
       try (Statement stmt = conn.createStatement()) {

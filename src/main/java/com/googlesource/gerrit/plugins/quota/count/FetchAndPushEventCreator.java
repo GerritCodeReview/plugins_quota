@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package com.googlesource.gerrit.plugins.quota;
+package com.googlesource.gerrit.plugins.quota.count;
 
 import com.google.gerrit.extensions.events.UsageDataPublishedListener.Event;
 import com.google.gerrit.extensions.events.UsageDataPublishedListener.MetaData;
@@ -20,13 +20,17 @@ import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.project.ProjectCache;
 import com.google.inject.Singleton;
 
+import com.googlesource.gerrit.plugins.quota.usage.MetaDataImpl;
+import com.googlesource.gerrit.plugins.quota.usage.UsageDataEvent;
+import com.googlesource.gerrit.plugins.quota.usage.UsageDataEventCreator;
+
 @Singleton
 public class FetchAndPushEventCreator implements UsageDataEventCreator {
 
-  static final MetaData PUSH_COUNT = new MetaDataImpl("pushCount", "", "",
+  public static final MetaData PUSH_COUNT = new MetaDataImpl("pushCount", "", "",
       "number of pushes to the repository since the last event");
 
-  static final MetaData FETCH_COUNT = new MetaDataImpl("fetchCount", "", "",
+  public static final MetaData FETCH_COUNT = new MetaDataImpl("fetchCount", "", "",
       "number of fetches from the repository since the last event");
 
   private final ProjectCache projectCache;
