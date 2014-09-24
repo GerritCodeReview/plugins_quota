@@ -31,6 +31,11 @@ Add link to the .buckversion file:
   cd quota && ln -s bucklets/buckversion .buckversion
 ```
 
+Add link to the .watchmanconfig file:
+```
+  cd server-config && ln -s bucklets/watchmanconfig .watchmanconfig
+```
+
 To build the plugin, issue the following command:
 
 
@@ -42,6 +47,12 @@ The output is created in
 
 ```
   buck-out/gen/quota.jar
+```
+
+Test are executed with
+
+```
+  buck test
 ```
 
 ### Build in Gerrit tree
@@ -63,6 +74,12 @@ This project can be imported into the Eclipse IDE:
 
 ```
   ./tools/eclipse/project.py
+```
+
+Test are executed with
+
+```
+  buck test --include quota-plugin
 ```
 
 Maven
