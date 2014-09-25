@@ -8,3 +8,24 @@ maven_jar(
   license = 'Apache2.0',
 )
 
+maven_jar(
+  name = 'dbcp',
+  id = 'commons-dbcp:commons-dbcp:1.4',
+  sha1 = '30be73c965cc990b153a100aaaaafcf239f82d39',
+  license = 'Apache2.0',
+  deps = [':pool'],
+  exclude = [
+    'META-INF/LICENSE.txt',
+    'META-INF/NOTICE.txt',
+    'testpool.jocl'
+  ],
+)
+
+maven_jar(
+  name = 'pool',
+  id = 'commons-pool:commons-pool:1.5.5',
+  sha1 = '7d8ffbdc47aa0c5a8afe5dc2aaf512f369f1d19b',
+  license = 'Apache2.0',
+  attach_source = False,
+  exclude = ['META-INF/LICENSE.txt', 'META-INF/NOTICE.txt'],
+)
