@@ -20,8 +20,15 @@ import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.project.ProjectCache;
 import com.google.inject.Singleton;
 
+import com.googlesource.gerrit.plugins.quota.PersistentCounter.CounterException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Singleton
 public class FetchAndPushEventCreator implements UsageDataEventCreator {
+  private static final Logger log = LoggerFactory
+      .getLogger(FetchAndPushEventCreator.class);
 
   static final MetaData PUSH_COUNT = new MetaDataImpl("pushCount", "", "",
       "number of pushes to the repository since the last event");
@@ -44,9 +51,13 @@ public class FetchAndPushEventCreator implements UsageDataEventCreator {
   public Event create() {
     UsageDataEvent event = new UsageDataEvent(metaData);
     for (Project.NameKey p : projectCache.all()) {
-      long currentCount = counts.getAndReset(p);
-      if (currentCount != 0) {
-        event.addData(currentCount, p.get());
+      try {
+        long currentCount = counts.getAndReset(p);
+        if (currentCount != 0) {
+          event.addData(currentCount, p.get());
+        }
+      } catch (CounterException e) {
+        log.error(e.getMessage());
       }
     }
     return event;
