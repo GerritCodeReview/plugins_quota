@@ -1,36 +1,69 @@
+// Copyright (C) 2014 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
 package com.googlesource.gerrit.plugins.quota;
 
-import com.google.common.cache.CacheLoader;
-import com.google.common.cache.LoadingCache;
+import static com.google.inject.Scopes.SINGLETON;
+
+import com.google.gerrit.extensions.events.LifecycleListener;
 import com.google.gerrit.extensions.registration.DynamicSet;
 import com.google.gerrit.reviewdb.client.Project;
-import com.google.gerrit.server.cache.CacheModule;
-import com.google.gerrit.server.project.ProjectCache;
+import com.google.inject.AbstractModule;
 import com.google.inject.Key;
 import com.google.inject.Module;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import com.google.inject.TypeLiteral;
+import com.google.inject.internal.UniqueAnnotations;
 import com.google.inject.name.Named;
 import com.google.inject.name.Names;
 
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicLong;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.sql.DataSource;
 
 class PersistentCounter {
+  private static final Logger log = LoggerFactory
+      .getLogger(PersistentCounter.class);
   public static final String FETCH = "FETCH_COUNTS";
   public static final String PUSH = "PUSH_COUNTS";
+  private static final String COUNTER_DATABASE = "COUNTER_DATA_BASE";
 
   static Module module() {
-    return new CacheModule() {
+    return new AbstractModule() {
+
+      @Override
       protected void configure() {
-        persist(FETCH, Project.NameKey.class, AtomicLong.class).loader(
-            Loader.class).expireAfterWrite(Integer.MAX_VALUE, TimeUnit.DAYS);
-        persist(PUSH, Project.NameKey.class, AtomicLong.class).loader(
-            Loader.class).expireAfterWrite(Integer.MAX_VALUE, TimeUnit.DAYS);
-        DynamicSet.bind(binder(), UsageDataEventCreator.class).to(creatorKey(FETCH));
-        DynamicSet.bind(binder(), UsageDataEventCreator.class).to(creatorKey(PUSH));
-        DynamicSet.bind(binder(), UsageDataEventCreator.class).to(RepoSizeEventCreator.class);
+        DynamicSet.bind(binder(), UsageDataEventCreator.class).to(
+            creatorKey(FETCH));
+        DynamicSet.bind(binder(), UsageDataEventCreator.class).to(
+            creatorKey(PUSH));
+        DynamicSet.bind(binder(), UsageDataEventCreator.class).to(
+            RepoSizeEventCreator.class);
+        bind(LifecycleListener.class).annotatedWith(UniqueAnnotations.create())
+            .to(DataSourceProvider.class);
+        bind(Key.get(DataSource.class, Names.named(COUNTER_DATABASE)))
+            .toProvider(DataSourceProvider.class).in(SINGLETON);
       }
 
       private Key<UsageDataEventCreator> creatorKey(String kind) {
@@ -40,58 +73,193 @@ class PersistentCounter {
         return pushCreatorKey;
       }
 
-      @Provides @Singleton @Named(FETCH)
+      @Provides
+      @Singleton
+      @Named(FETCH)
       PersistentCounter provideFetchCounter(
-          @Named(FETCH) LoadingCache<Project.NameKey, AtomicLong> counts) {
-        return new PersistentCounter(counts);
+          @Named(COUNTER_DATABASE) DataSource dataSource) throws SQLException {
+        return new PersistentCounter(dataSource, "fetch");
       }
 
-      @Provides @Singleton @Named(PUSH)
+      @Provides
+      @Singleton
+      @Named(PUSH)
       PersistentCounter providePushCounter(
-          @Named(PUSH) LoadingCache<Project.NameKey, AtomicLong> counts) {
-        return new PersistentCounter(counts);
+          @Named(COUNTER_DATABASE) DataSource dataSource) throws SQLException {
+        return new PersistentCounter(dataSource, "push");
       }
 
-      @Provides @Singleton @Named(FETCH)
-      UsageDataEventCreator provideFetchEventCreator(ProjectCache projectCache,
+      @Provides
+      @Singleton
+      @Named(FETCH)
+      UsageDataEventCreator provideFetchEventCreator(
           @Named(FETCH) PersistentCounter counts) {
-        return new FetchAndPushEventCreator(projectCache, counts, FetchAndPushEventCreator.FETCH_COUNT);
+        return new FetchAndPushEventCreator(counts,
+            FetchAndPushEventCreator.FETCH_COUNT);
       }
 
-      @Provides @Singleton @Named(PUSH)
-      UsageDataEventCreator providePushEventCreator(ProjectCache projectCache,
+      @Provides
+      @Singleton
+      @Named(PUSH)
+      UsageDataEventCreator providePushEventCreator(
           @Named(PUSH) PersistentCounter counts) {
-        return new FetchAndPushEventCreator(projectCache, counts, FetchAndPushEventCreator.PUSH_COUNT);
+        return new FetchAndPushEventCreator(counts,
+            FetchAndPushEventCreator.PUSH_COUNT);
       }
     };
   }
 
-  private final LoadingCache<Project.NameKey, AtomicLong> counts;
+  private final DataSource dataSource;
+  private final String kind;
+  private volatile Runnable betweenGetAndClear;
 
-  PersistentCounter(LoadingCache<Project.NameKey, AtomicLong> counts) {
-    this.counts = counts;
-  }
-
-  long getAndReset(Project.NameKey p) {
-    AtomicLong count = counts.getIfPresent(p);
-    if (count != null) {
-      return count.getAndSet(0);
-    } else {
-      return 0;
+  PersistentCounter(DataSource dataSource, String kind) throws SQLException {
+    this.kind = kind;
+    this.dataSource = dataSource;
+    try (Connection conn = dataSource.getConnection()) {
+      createTableIfNotExisting(conn);
     }
   }
 
-  void increment(Project.NameKey p) {
-    counts.getUnchecked(p).incrementAndGet();
+  private void createTableIfNotExisting(Connection conn) throws SQLException {
+    try (Statement stmt = conn.createStatement()) {
+      stmt.execute("CREATE TABLE IF NOT EXISTS " + kind
+          + " (project VARCHAR(255) NOT NULL PRIMARY KEY HASH, "
+          + "count BIGINT NOT NULL )");
+    } catch (SQLException e) {
+      throw new SQLException("error creating table '" + kind + "'", e);
+    }
   }
 
-  @Singleton
-  private static class Loader extends CacheLoader<Project.NameKey, AtomicLong> {
+  Map<String, Long> getAllAndClear() throws CounterException {
+    try (Handle c = new Handle()) {
+      Map<String, Long> result = c.getAllAndClear();
+      return result;
+    } catch (SQLException e) {
+      String msg = "error getting counts of projects";
+      log.error(msg, e);
+      throw new CounterException(msg, e);
+    }
+  }
+
+  private void interceptForTesting() {
+    if (betweenGetAndClear != null) {
+      betweenGetAndClear.run();
+    }
+  }
+
+  void increment(Project.NameKey p) throws CounterException {
+    try (Handle c = new Handle()) {
+      if (!c.increment(p)) {
+        // does not yet exist
+        if (!c.insertOne(p)) {
+          // concurrently inserted
+          if (!c.increment(p)) {
+            // should never happen
+            String msg = "error incrementing count of project " + p.get();
+            log.error(msg);
+            throw new CounterException(msg);
+          }
+        }
+      }
+    } catch (SQLException e) {
+      String msg = "error incrementing count of project " + p.get();
+      log.error(msg, e);
+      throw new CounterException(msg, e);
+    }
+  }
+
+  String getKind() {
+    return kind;
+  }
+
+  /**
+   * Set a callback method for testing
+   */
+  void setBetweenGetAndClear(Runnable betweenGetAndClear) {
+    this.betweenGetAndClear = betweenGetAndClear;
+  }
+
+  class Handle implements AutoCloseable {
+
+    private final Connection conn;
+
+    Handle() throws SQLException {
+      this.conn = dataSource.getConnection();
+    }
+
+    private Map<String, Long> getAllAndClear() throws SQLException {
+      conn.setAutoCommit(false);
+      Map<String, Long> result = getAll();
+      interceptForTesting();
+      setAllToZero();
+      conn.commit();
+      return result;
+    }
+
+    private void setAllToZero() throws SQLException {
+      String update = "UPDATE " + kind + " SET count = 0";
+      try (PreparedStatement stmt = conn.prepareStatement(update)) {
+        stmt.executeUpdate();
+      }
+    }
+
+    private Map<String, Long> getAll() throws SQLException {
+      Map<String, Long> result = new HashMap<>();
+      String query = "SELECT project, count FROM " + kind + " FOR UPDATE";
+      try (PreparedStatement stmt = conn.prepareStatement(query)) {
+        try (ResultSet rs = stmt.executeQuery()) {
+          while (rs.next()) {
+            result.put(rs.getString(1), rs.getLong(2));
+          }
+        }
+      }
+      return result;
+    }
+
+    private boolean insertOne(Project.NameKey p) throws SQLException {
+      String insert = "INSERT INTO " + kind + " (project, count) VALUES (?, 1)";
+      try (PreparedStatement stmt = conn.prepareStatement(insert)) {
+        stmt.setString(1, p.get());
+        stmt.executeUpdate();
+        return true;
+      } catch (SQLException ex) {
+        if (Integer.parseInt(ex.getSQLState()) == 23001) {
+          // duprec -> ignore
+          return false;
+        } else {
+          throw ex;
+        }
+      }
+    }
+
+    private boolean increment(Project.NameKey p) throws SQLException {
+      String update =
+          "UPDATE " + kind
+              + " SET count = count + 1 WHERE project = ?";
+      try (PreparedStatement stmt = conn.prepareStatement(update)) {
+        stmt.setString(1, p.get());
+        return stmt.executeUpdate() == 1;
+      }
+    }
 
     @Override
-    public AtomicLong load(Project.NameKey project) {
-      return new AtomicLong(0);
+    public void close() throws SQLException {
+      conn.close();
     }
+
   }
 
+  public static class CounterException extends RuntimeException {
+    private static final long serialVersionUID = 1L;
+
+    public CounterException(String msg, SQLException e) {
+      super(msg, e);
+    }
+
+    public CounterException(String msg) {
+      super(msg);
+    }
+
+  }
 }
