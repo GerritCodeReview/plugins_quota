@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b095f3be_bb920745",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2014-09-25T18:43:45Z",
+      "side": 1,
+      "message": "Mention here (and in documentation, which is availale in this plugin) that tests can be executed with:\n\n  $ buck test --include quota-plugin",
+      "revId": "6d06ae53b19c30125f11635f7d39afeda0d69990",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b095f3be_9b8d4b2a",
+        "filename": "BUCK",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2014-09-25T18:43:45Z",
+      "side": 1,
+      "message": "Now you broke standalone build mode, which is supported by quota plugin:\n\n  $ buck test --include quota-plugin\n  Using buckd.\n  [-] PROCESSING BUCK FILES...FINISHED 0,2s\n  [+] BUILDING...0,0s\n  BUILD FAILED: Unable to locate dependency \"//gerrit-reviewdb:server\" for target \"//:quota_tests\"\n\nSee my comments on sever-config plugin change how to make it work for both worlds.",
+      "range": {
+        "startLine": 30,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 30
+      },
+      "revId": "6d06ae53b19c30125f11635f7d39afeda0d69990",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
