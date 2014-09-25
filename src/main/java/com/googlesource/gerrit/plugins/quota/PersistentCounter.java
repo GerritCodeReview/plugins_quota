@@ -2,12 +2,17 @@ package com.googlesource.gerrit.plugins.quota;
 
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
+import com.google.gerrit.extensions.registration.DynamicSet;
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.cache.CacheModule;
+import com.google.gerrit.server.project.ProjectCache;
+import com.google.inject.Key;
 import com.google.inject.Module;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
+import com.google.inject.TypeLiteral;
 import com.google.inject.name.Named;
+import com.google.inject.name.Names;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
@@ -23,6 +28,16 @@ class PersistentCounter {
             Loader.class).expireAfterWrite(Integer.MAX_VALUE, TimeUnit.DAYS);
         persist(PUSH, Project.NameKey.class, AtomicLong.class).loader(
             Loader.class).expireAfterWrite(Integer.MAX_VALUE, TimeUnit.DAYS);
+        DynamicSet.bind(binder(), UsageDataEventCreator.class).to(creatorKey(FETCH));
+        DynamicSet.bind(binder(), UsageDataEventCreator.class).to(creatorKey(PUSH));
+        DynamicSet.bind(binder(), UsageDataEventCreator.class).to(RepoSizeEventCreator.class);
+      }
+
+      private Key<UsageDataEventCreator> creatorKey(String kind) {
+        Key<UsageDataEventCreator> pushCreatorKey =
+            Key.get(new TypeLiteral<UsageDataEventCreator>() {},
+                Names.named(kind));
+        return pushCreatorKey;
       }
 
       @Provides @Singleton @Named(FETCH)
@@ -35,6 +50,18 @@ class PersistentCounter {
       PersistentCounter providePushCounter(
           @Named(PUSH) LoadingCache<Project.NameKey, AtomicLong> counts) {
         return new PersistentCounter(counts);
+      }
+
+      @Provides @Singleton @Named(FETCH)
+      UsageDataEventCreator provideFetchEventCreator(ProjectCache projectCache,
+          @Named(FETCH) PersistentCounter counts) {
+        return new FetchAndPushEventCreator(projectCache, counts, FetchAndPushEventCreator.FETCH_COUNT);
+      }
+
+      @Provides @Singleton @Named(PUSH)
+      UsageDataEventCreator providePushEventCreator(ProjectCache projectCache,
+          @Named(PUSH) PersistentCounter counts) {
+        return new FetchAndPushEventCreator(projectCache, counts, FetchAndPushEventCreator.PUSH_COUNT);
       }
     };
   }
