@@ -27,6 +27,9 @@ java_test(
   deps = GERRIT_PLUGIN_API + [
     ':quota__plugin',
     '//lib:junit',
+    '//lib/easymock:easymock',
+    '//lib/log:log4j',
+    '//lib/log:impl_log4j',
   ],
   source_under_test = [':quota__plugin'],
 )
