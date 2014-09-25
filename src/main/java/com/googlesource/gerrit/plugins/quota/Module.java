@@ -28,7 +28,6 @@ import com.google.inject.internal.UniqueAnnotations;
 import org.eclipse.jgit.transport.PostReceiveHook;
 import org.eclipse.jgit.transport.PreUploadHook;
 
-
 class Module extends AbstractModule {
 
   @Override
@@ -43,6 +42,7 @@ class Module extends AbstractModule {
         .to(FetchAndPushListener.class);
     DynamicSet.bind(binder(), PreUploadHook.class)
         .to(FetchAndPushListener.class);
+    DynamicSet.setOf(binder(), UsageDataEventCreator.class);
     install(MaxRepositorySizeQuota.module());
     install(PersistentCounter.module());
     install(new RestApiModule() {
