@@ -10,6 +10,8 @@ gerrit_plugin(
   ],
   provided_deps = [
     '//lib/commons:lang',
+    '//lib/commons:dbcp',
+    '//lib/commons:pool',
   ]
 )
 
