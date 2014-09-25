@@ -36,7 +36,7 @@ public class PublisherScheduler implements LifecycleListener {
   private final ScheduleConfig scheduleConfig;
 
   @Inject
-  PublisherScheduler(WorkQueue workQueue, Publisher publisher,  @GerritServerConfig Config cfg) {
+  PublisherScheduler(WorkQueue workQueue, Publisher publisher, @GerritServerConfig Config cfg) {
     this.workQueue = workQueue;
     this.publisher = publisher;
     scheduleConfig = new ScheduleConfig(cfg, "plugin", "quota", "publicationInterval",
