@@ -1,0 +1,112 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1077a0c2_73bea0de",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2014-10-01T14:18:41Z",
+      "side": 1,
+      "message": "s/aspected/aspects/",
+      "range": {
+        "startLine": 11,
+        "startChar": 17,
+        "endLine": 11,
+        "endChar": 25
+      },
+      "revId": "c7fb9b4253d6cc2c905f68b9ee3b217bf37199fe",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1077a0c2_13c3ac65",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/GetQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2014-10-01T14:18:41Z",
+      "side": 1,
+      "message": "this change seems unrelated",
+      "revId": "c7fb9b4253d6cc2c905f68b9ee3b217bf37199fe",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1077a0c2_93b6dcfd",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2014-10-01T14:18:41Z",
+      "side": 1,
+      "message": "looks like moving this class failed and you now have 2 copies in different packages",
+      "revId": "c7fb9b4253d6cc2c905f68b9ee3b217bf37199fe",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "307ae4aa_d4651c03",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RepoSizeEventCreator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2014-10-01T14:18:41Z",
+      "side": 1,
+      "message": "?",
+      "revId": "c7fb9b4253d6cc2c905f68b9ee3b217bf37199fe",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1077a0c2_f3a9509e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/count/FetchAndPushEventCreator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2014-10-01T14:18:41Z",
+      "side": 1,
+      "message": "CMD SHIFT O missing ?",
+      "revId": "c7fb9b4253d6cc2c905f68b9ee3b217bf37199fe",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "307ae4aa_f46298f8",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/count/FetchAndPushListener.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2014-10-01T14:18:41Z",
+      "side": 1,
+      "message": "?",
+      "revId": "c7fb9b4253d6cc2c905f68b9ee3b217bf37199fe",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
