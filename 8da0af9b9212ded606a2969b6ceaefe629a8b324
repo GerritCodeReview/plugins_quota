@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "307ae4aa_948d643f",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-10-01T16:31:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1077a0c2_53a044ad",
+      "revId": "8da0af9b9212ded606a2969b6ceaefe629a8b324",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1077a0c2_139acc7b",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/FetchAndPushEventCreator.java",
         "patchSetId": 1
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "1077a0c2_13116c45",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/FetchAndPushEventCreator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-10-01T16:31:46Z",
+      "side": 1,
+      "message": "I\u0027d rather rename this consistently with FetchAndPushCounter in a separate change.",
+      "parentUuid": "1077a0c2_139acc7b",
+      "range": {
+        "startLine": 24,
+        "startChar": 13,
+        "endLine": 24,
+        "endChar": 37
+      },
+      "revId": "8da0af9b9212ded606a2969b6ceaefe629a8b324",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1077a0c2_73a540bc",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PublisherScheduler.java",
         "patchSetId": 1
@@ -53,6 +95,24 @@
       "writtenOn": "2014-10-01T14:28:59Z",
       "side": 1,
       "message": "how is this related ?",
+      "revId": "8da0af9b9212ded606a2969b6ceaefe629a8b324",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "307ae4aa_b48ae022",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PublisherScheduler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-10-01T16:31:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1077a0c2_73a540bc",
       "revId": "8da0af9b9212ded606a2969b6ceaefe629a8b324",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
