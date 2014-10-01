@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "90646fc9_3a9d21e1",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-10-01T16:22:42Z",
+      "side": 1,
+      "message": "As both tables don\u0027t necessarily have the same rows this is intended.",
+      "parentUuid": "b095f3be_9b10ebb8",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 54
+      },
+      "revId": "4cdea01ff4ad17351c391815565d8eaff6d29034",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "90646fc9_7aceb9ee",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
         "patchSetId": 3
@@ -36,6 +60,24 @@
       "writtenOn": "2014-09-29T09:27:32Z",
       "side": 1,
       "message": "Is the BasicDataSource needed for connection pooling? If yes, do we really need one connection pool per counter? Why not all persistent classes share the same connection pool?",
+      "revId": "4cdea01ff4ad17351c391815565d8eaff6d29034",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1077a0c2_f334f000",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-10-01T16:22:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90646fc9_7aceb9ee",
       "revId": "4cdea01ff4ad17351c391815565d8eaff6d29034",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "1077a0c2_133e4ce4",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-10-01T16:22:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b095f3be_bb15a7a7",
+      "revId": "4cdea01ff4ad17351c391815565d8eaff6d29034",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b095f3be_db0a7386",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
         "patchSetId": 3
@@ -76,6 +136,24 @@
     },
     {
       "key": {
+        "uuid": "307ae4aa_b4174065",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-10-01T16:22:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b095f3be_db0a7386",
+      "revId": "4cdea01ff4ad17351c391815565d8eaff6d29034",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b095f3be_fb0f2f93",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
         "patchSetId": 3
@@ -87,6 +165,30 @@
       "writtenOn": "2014-09-29T09:27:32Z",
       "side": 1,
       "message": "nit: space after comma",
+      "range": {
+        "startLine": 106,
+        "startChar": 15,
+        "endLine": 106,
+        "endChar": 17
+      },
+      "revId": "4cdea01ff4ad17351c391815565d8eaff6d29034",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "307ae4aa_5444ac75",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-10-01T16:22:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b095f3be_fb0f2f93",
       "range": {
         "startLine": 106,
         "startChar": 15,
@@ -122,6 +224,30 @@
     },
     {
       "key": {
+        "uuid": "307ae4aa_54a02cad",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-10-01T16:22:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90646fc9_9a8b8da4",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 5
+      },
+      "revId": "4cdea01ff4ad17351c391815565d8eaff6d29034",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b095f3be_1b25bb10",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
         "patchSetId": 3
@@ -133,6 +259,30 @@
       "writtenOn": "2014-09-29T09:27:32Z",
       "side": 1,
       "message": "The caller will not know if the returned zero was the real current counter value or if there was an error.",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 16
+      },
+      "revId": "4cdea01ff4ad17351c391815565d8eaff6d29034",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1077a0c2_5307e40a",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-10-01T16:22:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b095f3be_1b25bb10",
       "range": {
         "startLine": 119,
         "startChar": 0,
@@ -168,6 +318,30 @@
     },
     {
       "key": {
+        "uuid": "1077a0c2_f3907058",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-10-01T16:22:42Z",
+      "side": 1,
+      "message": "I don\u0027t think we can. We\u0027d need to express something like \n\nMERGE INTO table (PROJECT, COUNT) VALUES (?, COUNT \u003d COUNT + 1)\n\nBut to what should the count \u003d count +1 evaluate to in the INSERT case?",
+      "parentUuid": "b095f3be_3b227709",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 151,
+        "endChar": 27
+      },
+      "revId": "4cdea01ff4ad17351c391815565d8eaff6d29034",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "90646fc9_fa9ac9ea",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
         "patchSetId": 3
@@ -185,6 +359,24 @@
     },
     {
       "key": {
+        "uuid": "307ae4aa_74a528bc",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-10-01T16:22:42Z",
+      "side": 1,
+      "message": "Good idea. Actually we wouldn\u0027t need a version column. The counter would do the trick.",
+      "parentUuid": "90646fc9_fa9ac9ea",
+      "revId": "4cdea01ff4ad17351c391815565d8eaff6d29034",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "90646fc9_da9505be",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
         "patchSetId": 3
@@ -196,6 +388,30 @@
       "writtenOn": "2014-09-29T09:27:32Z",
       "side": 1,
       "message": "This is locking at least the row, maybe also the whole table... we should check how exactly H2 handles row locks. If this is really the intention then the method name should probably be \"lockExisting\" to indicate that this is not simply a check but also a lock.",
+      "range": {
+        "startLine": 163,
+        "startChar": 34,
+        "endLine": 163,
+        "endChar": 44
+      },
+      "revId": "4cdea01ff4ad17351c391815565d8eaff6d29034",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "307ae4aa_f4905858",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-10-01T16:22:42Z",
+      "side": 1,
+      "message": "Rewrote the coding for optimistic locking.",
+      "parentUuid": "90646fc9_da9505be",
       "range": {
         "startLine": 163,
         "startChar": 34,
