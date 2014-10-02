@@ -2,6 +2,75 @@
   "comments": [
     {
       "key": {
+        "uuid": "307ae4aa_b4bd00ac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-10-02T14:55:12Z",
+      "side": 1,
+      "message": "s/counter/counters/",
+      "range": {
+        "startLine": 12,
+        "startChar": 8,
+        "endLine": 12,
+        "endChar": 15
+      },
+      "revId": "5be1ae38c178287ac3f458db2a4a352b00aa8ad0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1077a0c2_137bac64",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-10-02T14:55:12Z",
+      "side": 1,
+      "message": "What do you mean by this? Is there a file per project? \ns/project/plugin/",
+      "range": {
+        "startLine": 12,
+        "startChar": 43,
+        "endLine": 13,
+        "endChar": 9
+      },
+      "revId": "5be1ae38c178287ac3f458db2a4a352b00aa8ad0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1077a0c2_338028ce",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/DataSourceProvider.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-10-02T14:55:12Z",
+      "side": 1,
+      "message": "s/\u003d\u003d/!\u003d/",
+      "range": {
+        "startLine": 69,
+        "startChar": 11,
+        "endLine": 69,
+        "endChar": 13
+      },
+      "revId": "5be1ae38c178287ac3f458db2a4a352b00aa8ad0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1077a0c2_538a84fc",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
         "patchSetId": 4
@@ -36,6 +105,29 @@
       "writtenOn": "2014-10-02T09:37:57Z",
       "side": 1,
       "message": "inject DataSource instead of Provider\u003cDataSource\u003e",
+      "revId": "5be1ae38c178287ac3f458db2a4a352b00aa8ad0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1077a0c2_7376a07d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1006276
+      },
+      "writtenOn": "2014-10-02T14:55:12Z",
+      "side": 1,
+      "message": "Is this annotation necessary here at all? You call the constructor directly.",
+      "range": {
+        "startLine": 119,
+        "startChar": 6,
+        "endLine": 119,
+        "endChar": 30
+      },
       "revId": "5be1ae38c178287ac3f458db2a4a352b00aa8ad0",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
