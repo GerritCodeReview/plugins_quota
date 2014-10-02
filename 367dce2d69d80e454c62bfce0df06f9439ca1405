@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1077a0c2_b394381a",
+        "filename": "pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2014-10-02T13:38:02Z",
+      "side": 1,
+      "message": "Seems like this could be added here for SNAPSHOT artifacts to work.\n\n \u003crepositories\u003e\n    \u003crepository\u003e\n      \u003cid\u003esnapshot-repository\u003c/id\u003e\n      \u003curl\u003ehttps://oss.sonatype.org/content/repositories/snapshots/\u003c/url\u003e\n    \u003c/repository\u003e\n  \u003c/repositories\u003e",
+      "revId": "367dce2d69d80e454c62bfce0df06f9439ca1405",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
