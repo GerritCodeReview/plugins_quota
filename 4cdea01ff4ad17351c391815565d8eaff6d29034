@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "1077a0c2_b3bd18ac",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-10-02T09:03:32Z",
+      "side": 1,
+      "message": "How many projects will have only push or only fetch requests?\nAnd what is so bad if a fetch/push counter is zero?",
+      "parentUuid": "90646fc9_3a9d21e1",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 54
+      },
+      "revId": "4cdea01ff4ad17351c391815565d8eaff6d29034",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "90646fc9_7aceb9ee",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
         "patchSetId": 3
