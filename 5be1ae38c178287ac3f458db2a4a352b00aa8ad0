@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1077a0c2_538a84fc",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-10-02T09:37:57Z",
+      "side": 1,
+      "message": "false is default for instance members",
+      "range": {
+        "startLine": 116,
+        "startChar": 41,
+        "endLine": 116,
+        "endChar": 46
+      },
+      "revId": "5be1ae38c178287ac3f458db2a4a352b00aa8ad0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "307ae4aa_54a34c92",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-10-02T09:37:57Z",
+      "side": 1,
+      "message": "inject DataSource instead of Provider\u003cDataSource\u003e",
+      "revId": "5be1ae38c178287ac3f458db2a4a352b00aa8ad0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "307ae4aa_74a8c86d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-10-02T09:37:57Z",
+      "side": 1,
+      "message": "we don\u0027t need to select the actual value",
+      "revId": "5be1ae38c178287ac3f458db2a4a352b00aa8ad0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "307ae4aa_b4e660ea",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-10-02T09:37:57Z",
+      "side": 1,
+      "message": "A more natural order would be:\n1. UPDATE ... count \u003d count + 1\n2. if updated-rows \u003d\u003d 0: INSERT\n3. if insert fails with duplicate primary key: UPDATE",
+      "range": {
+        "startLine": 156,
+        "startChar": 0,
+        "endLine": 175,
+        "endChar": 5
+      },
+      "revId": "5be1ae38c178287ac3f458db2a4a352b00aa8ad0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
