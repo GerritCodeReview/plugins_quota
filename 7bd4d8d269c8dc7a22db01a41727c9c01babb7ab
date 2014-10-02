@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "307ae4aa_b494201a",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-10-02T16:18:00Z",
+      "side": 1,
+      "message": "I think it\u0027s better readable than \n\nprivate volatile boolean initialized; // intentionally not initialized as it defaults to false",
+      "parentUuid": "1077a0c2_735d40eb",
+      "range": {
+        "startLine": 107,
+        "startChar": 38,
+        "endLine": 107,
+        "endChar": 46
+      },
+      "revId": "7bd4d8d269c8dc7a22db01a41727c9c01babb7ab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "307ae4aa_3489f003",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/PersistentCounterExceptionTest.java",
         "patchSetId": 5
@@ -82,6 +106,30 @@
       "writtenOn": "2014-10-02T15:37:05Z",
       "side": 1,
       "message": "How many thousands of such tests would be necessary for for the Gerrit core code? Would they really pull their own weight?",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 3
+      },
+      "revId": "7bd4d8d269c8dc7a22db01a41727c9c01babb7ab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "307ae4aa_54710c82",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/PersistentCounterExceptionTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-10-02T16:18:00Z",
+      "side": 1,
+      "message": "Not sure I understand the question. I think you are asking: \"will such tests help to spot issues?\" These test here basically assert that the causing SQL Exception is not lost. You can spot such an issue by code inspection. It is quite nasty if you don\u0027t. Also, it\u0027s pretty hard to test this manually. Moreover such tests are easy to write and quite light-weight.\n\nAlso I\u0027m not sure if I understand the first part of your question. I don\u0027t think anybody is seriously considering to retrofit Gerrit with a full set of tests for exceptional cases. But I\u0027d agree that there\u0027s likely a quite large number of exceptional cases that are not covered by test cases.",
+      "parentUuid": "307ae4aa_d49d1c42",
       "range": {
         "startLine": 51,
         "startChar": 0,
