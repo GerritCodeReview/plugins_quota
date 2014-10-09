@@ -342,6 +342,30 @@
       "revId": "7bd4d8d269c8dc7a22db01a41727c9c01babb7ab",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1077a0c2_9631ea0f",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/PersistentCounterExceptionTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-10-09T07:46:27Z",
+      "side": 1,
+      "message": "https://gerrit-review.googlesource.com/Documentation/dev-contributing.html#_tests",
+      "parentUuid": "307ae4aa_57f6eef5",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 3
+      },
+      "revId": "7bd4d8d269c8dc7a22db01a41727c9c01babb7ab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
