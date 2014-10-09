@@ -318,6 +318,30 @@
       "revId": "7bd4d8d269c8dc7a22db01a41727c9c01babb7ab",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "307ae4aa_57f6eef5",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/PersistentCounterExceptionTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-10-09T07:43:09Z",
+      "side": 1,
+      "message": "Yes, for me these tests are very tightly coupled to the code under test. If, one day, you want to have 2 or more catch blocks in the tested code then it is likely that this kind of tests will have to change... and they change because of the method implementation change and not because of the change in the method contract.\n\nWhere should one stop with this kind of tests? Shall we also write tests which verify that a method makes use of each of its input parameters?\nShall we verify that a method X really makes use of method Y, because we see that in the implementation of the method X?",
+      "parentUuid": "307ae4aa_14e63471",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 3
+      },
+      "revId": "7bd4d8d269c8dc7a22db01a41727c9c01babb7ab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
