@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "307ae4aa_94c244bb",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/DataSourceProvider.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-10-09T07:00:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1077a0c2_d34bf421",
+      "revId": "7bd4d8d269c8dc7a22db01a41727c9c01babb7ab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "307ae4aa_f49a9847",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/FetchAndPushEventCreator.java",
         "patchSetId": 5
@@ -30,6 +48,30 @@
       "writtenOn": "2014-10-02T15:37:05Z",
       "side": 1,
       "message": "In case of this exception the return value will be an empty event object. The caller is not aware that there was an error and will publish this event.",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 32
+      },
+      "revId": "7bd4d8d269c8dc7a22db01a41727c9c01babb7ab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "307ae4aa_94d9e4ac",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/FetchAndPushEventCreator.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-10-09T07:00:31Z",
+      "side": 1,
+      "message": "Turned it into a RTE and handling it at the caller.",
+      "parentUuid": "307ae4aa_f49a9847",
       "range": {
         "startLine": 59,
         "startChar": 0,
@@ -113,6 +155,30 @@
     },
     {
       "key": {
+        "uuid": "307ae4aa_b4d66078",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-10-09T07:00:31Z",
+      "side": 1,
+      "message": "There is a stackoverflow discussion on this topic: http://stackoverflow.com/questions/21509150/default-boolean-value-in-java\n\nBy and large this seems to be a question of style. Some consider the explicit initialization \"clutter\" whereas others consider it to improve the readability.\n\nAnother strong argument is robustness: \n\nboolean v \u003d false; -\u003e false\nBoolean v \u003d false; -\u003e Boolean.FALSE (autoboxed)\n\nwhereas \n\nboolean v; -\u003e false\nBoolean v; -\u003e null\n\n(But let\u0027s rather not open this can of worms!).\n\nFor me the readability is most important.",
+      "parentUuid": "307ae4aa_7476887d",
+      "range": {
+        "startLine": 107,
+        "startChar": 38,
+        "endLine": 107,
+        "endChar": 46
+      },
+      "revId": "7bd4d8d269c8dc7a22db01a41727c9c01babb7ab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "307ae4aa_3489f003",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/PersistentCounterExceptionTest.java",
         "patchSetId": 5
@@ -124,6 +190,30 @@
       "writtenOn": "2014-10-02T15:37:05Z",
       "side": 1,
       "message": "setup",
+      "range": {
+        "startLine": 42,
+        "startChar": 14,
+        "endLine": 42,
+        "endChar": 19
+      },
+      "revId": "7bd4d8d269c8dc7a22db01a41727c9c01babb7ab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1077a0c2_9387bc6c",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/PersistentCounterExceptionTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-10-09T07:00:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "307ae4aa_3489f003",
       "range": {
         "startLine": 42,
         "startChar": 14,
@@ -195,6 +285,30 @@
       "side": 1,
       "message": "Imagine we have such a test for every method which does exception wrapping. How many such test would there be in Gerrit core?\nHow many of them would get red whenever we change something?\nAnd what we would do in such cases? Most likely, fix the test.",
       "parentUuid": "307ae4aa_54710c82",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 3
+      },
+      "revId": "7bd4d8d269c8dc7a22db01a41727c9c01babb7ab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "307ae4aa_14e63471",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/PersistentCounterExceptionTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-10-09T07:00:31Z",
+      "side": 1,
+      "message": "If tests are coupled very tightly to the code under test they are more prone to have to be adapted if the code under test is changed. This is expected.\n\nBut if a test turns red unexpectedly it can alert you of an unintended change.\n\nMore simply put: Without test for the exception handling the exception handling is not tested.",
+      "parentUuid": "1077a0c2_93457c0e",
       "range": {
         "startLine": 51,
         "startChar": 0,
