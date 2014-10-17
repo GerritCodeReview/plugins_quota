@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "50c758d5_85fa22d7",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RepoSizeCache.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2014-10-17T12:17:53Z",
+      "side": 1,
+      "message": "Nit: extra blank line.",
+      "revId": "7e2a0d2d80d92a64be586edf8e2eefaff43e338d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
