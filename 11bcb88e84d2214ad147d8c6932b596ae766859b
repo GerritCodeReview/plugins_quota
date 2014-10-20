@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "503af8a9_2db40dc6",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2014-10-20T16:20:19Z",
+      "side": 1,
+      "message": "Nit: can we think about short name? May be  just \"c\" for connection?",
+      "range": {
+        "startLine": 147,
+        "startChar": 16,
+        "endLine": 147,
+        "endChar": 22
+      },
+      "revId": "11bcb88e84d2214ad147d8c6932b596ae766859b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "50c758d5_05d0f2d5",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2014-10-20T16:20:19Z",
+      "side": 1,
+      "message": "Please remove these unneeded vars: incremented and inserted and use it inline. I find it much easier to digest  without intermediate vars (as i suggested in my previous comment).",
+      "range": {
+        "startLine": 148,
+        "startChar": 6,
+        "endLine": 160,
+        "endChar": 7
+      },
+      "revId": "11bcb88e84d2214ad147d8c6932b596ae766859b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
