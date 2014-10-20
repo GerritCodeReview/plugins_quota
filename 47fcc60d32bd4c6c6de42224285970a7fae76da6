@@ -118,6 +118,30 @@
     },
     {
       "key": {
+        "uuid": "50c758d5_a5575ecb",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2014-10-20T14:24:06Z",
+      "side": 1,
+      "message": "So, the idiom, to implement counter +\u003d 1 is:\n\n  if (handle.increment(p)) { // row for this project missing\n    if (!handle.insertOne(p)) { // row was created in another thread\n      if (!handle.increment(p)) { // some unknown reasons\n        log.error(\"Row wasn\u0027t updated: who knows why\");\n        throw new IllegalStateException(\"Should never happen\");\n      }\n    }\n  }",
+      "parentUuid": "503af8a9_0d42f136",
+      "range": {
+        "startLine": 147,
+        "startChar": 6,
+        "endLine": 154,
+        "endChar": 7
+      },
+      "revId": "47fcc60d32bd4c6c6de42224285970a7fae76da6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "50c758d5_259ece3d",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
         "patchSetId": 11
