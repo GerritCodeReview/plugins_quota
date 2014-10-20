@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "503af8a9_cd2709a3",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2014-10-20T13:43:58Z",
+      "side": 1,
+      "message": "It was done in previous change, but we usually don\u0027t list annotations on the same line, this should be:\n\n  @Provides\n  @Singleton\n  [...]\n  PersistentCounter provideFetchCounter(...",
+      "range": {
+        "startLine": 77,
+        "startChar": 6,
+        "endLine": 77,
+        "endChar": 40
+      },
+      "revId": "47fcc60d32bd4c6c6de42224285970a7fae76da6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "50c758d5_6598c64f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2014-10-20T13:43:58Z",
+      "side": 1,
+      "message": "Can\u0027t this be:\n\n  PersistentCounter(DataSource dataSource, String kind) throws SQLException {\n    this.kind \u003d kind;\n    this.dataSource \u003d dataSource;\n    try (Connection c \u003d dataSource.getConnection()) {\n      createTableIfNotExisting(c);\n    }\n  }",
+      "range": {
+        "startLine": 109,
+        "startChar": 2,
+        "endLine": 112,
+        "endChar": 3
+      },
+      "revId": "47fcc60d32bd4c6c6de42224285970a7fae76da6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "503af8a9_2d188d67",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2014-10-20T13:43:58Z",
+      "side": 1,
+      "message": "Can\u0027t you move this logic into Constructor? If your class needs SQL table to be created, do it in ctor. So you can get rid of initialized variable.",
+      "range": {
+        "startLine": 116,
+        "startChar": 4,
+        "endLine": 119,
+        "endChar": 5
+      },
+      "revId": "47fcc60d32bd4c6c6de42224285970a7fae76da6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "50c758d5_059bd24d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2014-10-20T13:43:58Z",
+      "side": 1,
+      "message": "So i try to understand your logic:\n\n* 1. First time increment fails for a project, because there the row is missing in the counter specific table for the project\n* 2. You call insertOne to insert counter with ini value 1 for this project.\n* 3. insertOne fails, because the row in the table already exists for this project\n* 4. You increment the counter\n\nWhy would 3. fail? Consider adding a comment for this logic.",
+      "range": {
+        "startLine": 147,
+        "startChar": 6,
+        "endLine": 154,
+        "endChar": 7
+      },
+      "revId": "47fcc60d32bd4c6c6de42224285970a7fae76da6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "50c758d5_259ece3d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2014-10-20T13:43:58Z",
+      "side": 1,
+      "message": "Nit: missing blank.",
+      "range": {
+        "startLine": 186,
+        "startChar": 15,
+        "endLine": 186,
+        "endChar": 16
+      },
+      "revId": "47fcc60d32bd4c6c6de42224285970a7fae76da6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
