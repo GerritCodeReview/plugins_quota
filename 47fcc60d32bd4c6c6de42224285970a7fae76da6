@@ -94,6 +94,30 @@
     },
     {
       "key": {
+        "uuid": "503af8a9_0d42f136",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-10-20T14:09:11Z",
+      "side": 1,
+      "message": "\u003e Why would 3. fail?\n\nbecause another thread may insert exactly that row in the meantime.",
+      "parentUuid": "50c758d5_059bd24d",
+      "range": {
+        "startLine": 147,
+        "startChar": 6,
+        "endLine": 154,
+        "endChar": 7
+      },
+      "revId": "47fcc60d32bd4c6c6de42224285970a7fae76da6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "50c758d5_259ece3d",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
         "patchSetId": 11
