@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "50c758d5_650ba6c2",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-10-21T08:52:47Z",
+      "side": 1,
+      "message": "Typically, I\u0027d go for very short variable names only if they are very commonly used like i for index or e for an exception. I\u0027d be more concerned with the class name Handle as it\u0027s not really self-explaining.\n\nAnyhow, if you like \"c\" we can go for \"c\".",
+      "parentUuid": "503af8a9_2db40dc6",
+      "range": {
+        "startLine": 147,
+        "startChar": 16,
+        "endLine": 147,
+        "endChar": 22
+      },
+      "revId": "11bcb88e84d2214ad147d8c6932b596ae766859b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "50c758d5_05d0f2d5",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
         "patchSetId": 12
@@ -36,6 +60,30 @@
       "writtenOn": "2014-10-20T16:20:19Z",
       "side": 1,
       "message": "Please remove these unneeded vars: incremented and inserted and use it inline. I find it much easier to digest  without intermediate vars (as i suggested in my previous comment).",
+      "range": {
+        "startLine": 148,
+        "startChar": 6,
+        "endLine": 160,
+        "endChar": 7
+      },
+      "revId": "11bcb88e84d2214ad147d8c6932b596ae766859b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "50c758d5_e52dd635",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-10-21T08:52:47Z",
+      "side": 1,
+      "message": "Well I actually consider \n\n if(!incremented\")\n\nquite readable. With the variables inlined the coding is more condensed. Alternatively one could rename the methods so that their name indicates that they return a boolean. But I honestly can\u0027t think of a proper name. On the other hand e.g. java.util.Set#add has the same pattern. It performs an action and returns a boolean. So I\u0027d say it\u0027s not completely uncommon.\n\nAs I added the variables to  improve readability and you as a reader come to the conclusion that they are not helpful I\u0027ll inline them.",
+      "parentUuid": "50c758d5_05d0f2d5",
       "range": {
         "startLine": 148,
         "startChar": 6,
