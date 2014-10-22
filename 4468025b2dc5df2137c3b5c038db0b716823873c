@@ -84,6 +84,30 @@
     },
     {
       "key": {
+        "uuid": "b53fa6b4_b0875835",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-10-22T09:15:04Z",
+      "side": 1,
+      "message": "If we agree on the issue of lost updates then the number of statements has to increase anyway, as we cannot update all counters to zero in one statement anymore.\n\nAt least the number of update statements has to increase.\n\nI think it is acceptable to still select all counters in one select. So we will have n+ 1 statments:\n\nSELECT all, UPDATE C1, ...UPDATE Cn",
+      "parentUuid": "b53fa6b4_d07adcaa",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 23
+      },
+      "revId": "4468025b2dc5df2137c3b5c038db0b716823873c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b53fa6b4_107984b8",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
         "patchSetId": 14
