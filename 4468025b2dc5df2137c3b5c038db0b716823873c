@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "95446258_2f3f89e0",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-10-22T08:38:05Z",
+      "side": 1,
+      "message": "Don\u0027t import NameKey as there are many of them. Use Project.NameKey.",
+      "revId": "4468025b2dc5df2137c3b5c038db0b716823873c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "95446258_0f44c572",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-10-22T08:38:05Z",
+      "side": 1,
+      "message": "Any counter update which happens between selecting its current value, in the getAll(), and setting its value to zero, in the setAllToZero(), will be lost.\n\nFor example, counter C1 has current value 5 for project P at the moment when it is selected in getAll(). It then gets incremented twice (so it is at 7) before it is reset to zero. These two updates will be lost.\n\nI don\u0027t know if H2 supports any kind of atomic select-and-update statement which would work like the AtomicLong.getAndSet method. If this is not possible then, what could possibly help to avoid losing the updates, would be to decrement the counter by the selected value instead of resetting it to zero.\n\nComing back to the example: instead of setting the C1 to zero, decrement its value by 5, so it then becomes 2.\n\nTo further reduce the time between a value is fetched and decremented I would propose to do these two operations as close as possible for each counter.\nInstead of:\n\n  SELECT C1, SELECT C2,  ... SELECT Cn, UPDATE C1, UPDATE C2, ... UPDATE Cn\n\nhave:\n  SELECT C1, UPDATE C1, SELECT C2, UPDATE C2, ... SELECT Cn, UPDATE Cn",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 23
+      },
+      "revId": "4468025b2dc5df2137c3b5c038db0b716823873c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "95446258_ef0f414d",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/PersistentCounterExceptionTest.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-10-22T08:38:05Z",
+      "side": 1,
+      "message": "I still think that making sure an exception is not swallowed belongs more to a code-style check and less to a unit test... but will accept this test if you consider it so important.",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 3
+      },
+      "revId": "4468025b2dc5df2137c3b5c038db0b716823873c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
