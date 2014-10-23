@@ -203,6 +203,30 @@
     },
     {
       "key": {
+        "uuid": "95446258_6fe7d1c0",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PersistentCounter.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2014-10-23T16:10:25Z",
+      "side": 1,
+      "message": "Yes, it would be unfair to do it this way.\n\nHowever, before doing that I checked Gerrit\u0027s source code and found out that, indeed, we do open multiple AutoCloseables in the same try block. So, I actually documented current state only.",
+      "parentUuid": "95446258_afdb79f9",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 190,
+        "endChar": 50
+      },
+      "revId": "4468025b2dc5df2137c3b5c038db0b716823873c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "95446258_ef0f414d",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/PersistentCounterExceptionTest.java",
         "patchSetId": 14
