@@ -295,6 +295,30 @@
       "revId": "4468025b2dc5df2137c3b5c038db0b716823873c",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "55c2ea1e_2d444d73",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/PersistentCounterExceptionTest.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2014-10-27T12:19:13Z",
+      "side": 1,
+      "message": "Great. Moreover we don\u0027t have any static code-checks in place.",
+      "parentUuid": "95446258_ef0f414d",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 3
+      },
+      "revId": "4468025b2dc5df2137c3b5c038db0b716823873c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
