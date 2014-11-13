@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a148387_241f7285",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/PublisherExceptionTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1003935
+      },
+      "writtenOn": "2014-11-13T07:51:12Z",
+      "side": 1,
+      "message": "This test is failing for me and it is also failing on the Jenkins server that was setup by Luca for building the Gerrit plugins [1]. Can you have a look?\n\n[1] http://ci.gerritforge.com/view/Plugins-master/job/Plugin_quota_master/23/console",
+      "revId": "085c4cb45c82710c95b25b54e728c054376dfb2a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafd8b73_f201a82a",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/PublisherExceptionTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1003935
+      },
+      "writtenOn": "2014-11-13T07:51:12Z",
+      "side": 1,
+      "message": "This test is failing for me and it is also failing on the Jenkins server that was setup by Luca for building the Gerrit plugins [1]. Can you have a look?\n\n[1] http://ci.gerritforge.com/view/Plugins-master/job/Plugin_quota_master/23/console",
+      "revId": "085c4cb45c82710c95b25b54e728c054376dfb2a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
