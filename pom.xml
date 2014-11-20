@@ -26,7 +26,7 @@ limitations under the License.
 
   <properties>
     <Gerrit-ApiType>plugin</Gerrit-ApiType>
-    <Gerrit-ApiVersion>2.10-SNAPSHOT</Gerrit-ApiVersion>
+    <Gerrit-ApiVersion>2.11-SNAPSHOT</Gerrit-ApiVersion>
   </properties>
 
   <build>
@@ -84,6 +84,18 @@ limitations under the License.
       <groupId>org.easymock</groupId>
       <artifactId>easymock</artifactId>
       <version>3.2</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.17</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>1.7.7</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
