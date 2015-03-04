@@ -30,11 +30,11 @@ public class PublisherTest {
 
   @Test
   public void testAllEventsPropagatedToListener() throws Exception {
-    Event e1 = new UsageDataEvent(FetchAndPushEventCreator.FETCH_COUNT);
+    Event e1 = new UsageDataEvent(null);
     UsageDataEventCreator c1 = createMock(UsageDataEventCreator.class);
     expect(c1.create()).andStubReturn(e1);
 
-    Event e2 = new UsageDataEvent(FetchAndPushEventCreator.PUSH_COUNT);
+    Event e2 = new UsageDataEvent(null);
     UsageDataEventCreator c2 = createMock(UsageDataEventCreator.class);
     expect(c2.create()).andStubReturn(e2);
 
@@ -61,7 +61,7 @@ public class PublisherTest {
 
   @Test
   public void testEventPropagatedToAllListeners() throws Exception {
-    Event event = new UsageDataEvent(FetchAndPushEventCreator.FETCH_COUNT);
+    Event event = new UsageDataEvent(null);
     UsageDataEventCreator creator = createMock(UsageDataEventCreator.class);
     expect(creator.create()).andStubReturn(event);
     DynamicSet<UsageDataEventCreator> creators = DynamicSet.emptySet();
