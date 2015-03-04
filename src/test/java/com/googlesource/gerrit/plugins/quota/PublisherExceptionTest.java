@@ -86,7 +86,7 @@ public class PublisherExceptionTest {
     expect(creator.create()).andStubThrow(ex);
 
     UsageDataEventCreator good = createMock(UsageDataEventCreator.class);
-    Event data = new UsageDataEvent(FetchAndPushEventCreator.FETCH_COUNT);
+    Event data = new UsageDataEvent(null);
     expect(good.create()).andStubReturn(data);
     creators.add(good);
 
@@ -103,7 +103,7 @@ public class PublisherExceptionTest {
   @Test
   public void testExceptionInListenerIsLogged() {
     RuntimeException ex = new RuntimeException();
-    Event data = new UsageDataEvent(FetchAndPushEventCreator.FETCH_COUNT);
+    Event data = new UsageDataEvent(null);
     expect(creator.create()).andStubReturn(data);
 
     listener.onUsageDataPublished(data);
@@ -123,7 +123,7 @@ public class PublisherExceptionTest {
   @Test
   public void testIsPropagatedToGoodListener() {
     RuntimeException ex = new RuntimeException();
-    Event data = new UsageDataEvent(FetchAndPushEventCreator.FETCH_COUNT);
+    Event data = new UsageDataEvent(null);
     expect(creator.create()).andStubReturn(data);
 
     listener.onUsageDataPublished(data);
