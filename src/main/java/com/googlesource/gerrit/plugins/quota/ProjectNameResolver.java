@@ -37,7 +37,7 @@ class ProjectNameResolver {
   @Inject
   ProjectNameResolver(SitePaths site, @GerritServerConfig final Config cfg) {
     this.basePath =
-        site.resolve(cfg.getString("gerrit", null, "basePath")).toPath();
+        site.resolve(cfg.getString("gerrit", null, "basePath"));
   }
 
   Project.NameKey projectName(Repository repo) {
