@@ -17,6 +17,7 @@ package com.googlesource.gerrit.plugins.quota;
 import static com.google.gerrit.server.project.ProjectResource.PROJECT_KIND;
 
 import com.google.gerrit.extensions.events.LifecycleListener;
+import com.google.gerrit.extensions.events.ProjectDeletedListener;
 import com.google.gerrit.extensions.registration.DynamicSet;
 import com.google.gerrit.extensions.restapi.RestApiModule;
 import com.google.gerrit.server.git.ReceivePackInitializer;
@@ -37,6 +38,8 @@ class Module extends AbstractModule {
         .to(MaxRepositorySizeQuota.class);
     DynamicSet.bind(binder(), PostReceiveHook.class)
         .to(MaxRepositorySizeQuota.class);
+    DynamicSet.bind(binder(), ProjectDeletedListener.class).to(
+        DeletionListener.class);
     DynamicSet.setOf(binder(), UsageDataEventCreator.class);
     install(MaxRepositorySizeQuota.module());
     install(new RestApiModule() {
