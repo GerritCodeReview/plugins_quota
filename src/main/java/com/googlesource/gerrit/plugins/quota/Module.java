@@ -39,7 +39,6 @@ class Module extends AbstractModule {
         .to(MaxRepositorySizeQuota.class);
     DynamicSet.setOf(binder(), UsageDataEventCreator.class);
     install(MaxRepositorySizeQuota.module());
-    install(PersistentCounter.module());
     install(new RestApiModule() {
       @Override
       protected void configure() {
