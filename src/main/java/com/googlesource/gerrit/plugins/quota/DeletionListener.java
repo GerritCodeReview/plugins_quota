@@ -14,11 +14,25 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
+
+import com.google.gerrit.extensions.events.ProjectDeletedListener;
 import com.google.gerrit.reviewdb.client.Project;
+import com.google.gerrit.reviewdb.client.Project.NameKey;
+import com.google.inject.Inject;
 
-public interface RepoSizeCache {
 
-  long get(Project.NameKey p);
+public class DeletionListener implements ProjectDeletedListener {
 
-  void evict(Project.NameKey p);
+  private final RepoSizeCache repoSizeCache;
+
+  @Inject
+  public DeletionListener(RepoSizeCache repoSizeCache) {
+        this.repoSizeCache = repoSizeCache;
+  }
+
+  @Override
+  public void onProjectDeleted(Event event) {
+    Project.NameKey p = new NameKey(event.getProjectName());
+    repoSizeCache.evict(p);
+  }
 }
