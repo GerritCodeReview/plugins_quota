@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4d119541_dadb2514",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/DeletionListener.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2015-05-07T14:43:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d0019f0_1beabba1",
+      "revId": "1c51e01f7afb986438419c94db14f92e49b459de",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6d0019f0_fbdeef05",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/DeletionListener.java",
         "patchSetId": 5
@@ -30,6 +48,30 @@
       "writtenOn": "2015-05-07T14:21:55Z",
       "side": 1,
       "message": "optional: could be inlined in the next line",
+      "range": {
+        "startLine": 35,
+        "startChar": 20,
+        "endLine": 35,
+        "endChar": 21
+      },
+      "revId": "1c51e01f7afb986438419c94db14f92e49b459de",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4d119541_bad87118",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/DeletionListener.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2015-05-07T14:43:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d0019f0_fbdeef05",
       "range": {
         "startLine": 35,
         "startChar": 20,
