@@ -21,7 +21,7 @@ limitations under the License.
   <groupId>com.googlesource.gerrit.plugins.quota</groupId>
   <artifactId>quota</artifactId>
   <packaging>jar</packaging>
-  <version>2.11-SNAPSHOT</version>
+  <version>2.11</version>
   <name>quota</name>
 
   <properties>
