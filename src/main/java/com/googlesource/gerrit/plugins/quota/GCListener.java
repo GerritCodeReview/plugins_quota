@@ -18,6 +18,7 @@ import com.google.gerrit.extensions.events.GarbageCollectorListener;
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.reviewdb.client.Project.NameKey;
 import com.google.inject.Singleton;
+import com.google.inject.Inject;
 
 import java.util.Properties;
 
@@ -26,6 +27,7 @@ public class GCListener implements GarbageCollectorListener {
 
   private final RepoSizeCache repoSizeCache;
 
+  @Inject
   public GCListener(RepoSizeCache repoSizeCache) {
     this.repoSizeCache = repoSizeCache;
   }
