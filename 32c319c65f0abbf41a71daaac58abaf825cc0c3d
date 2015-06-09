@@ -46,6 +46,30 @@
       "revId": "32c319c65f0abbf41a71daaac58abaf825cc0c3d",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "59e6bc29_b2aa408c",
+        "filename": "BUCK",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2015-06-09T06:07:48Z",
+      "side": 1,
+      "message": "Fine with me.",
+      "parentUuid": "3962e8ee_09396901",
+      "range": {
+        "startLine": 26,
+        "startChar": 12,
+        "endLine": 26,
+        "endChar": 19
+      },
+      "revId": "32c319c65f0abbf41a71daaac58abaf825cc0c3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
