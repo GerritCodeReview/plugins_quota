@@ -23,7 +23,7 @@ java_library(
 java_test(
   name = 'quota_tests',
   srcs = glob(['src/test/java/**/*.java']),
-  labels = ['quota-plugin'],
+  labels = ['quota'],
   deps = GERRIT_PLUGIN_API + [
     ':quota__plugin',
     '//lib:junit',
