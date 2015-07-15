@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "784c5e14_fbe1af14",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/GetQuotas.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2015-07-15T15:31:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b84256dc_3dcf0f9f",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 48
+      },
+      "revId": "262a8b843df5cba5fb8361914f2480c6573f71ca",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b84256dc_dddceb57",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ListQuotas.java",
         "patchSetId": 1
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "784c5e14_9bd66b34",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ListQuotas.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2015-07-15T15:31:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b84256dc_dddceb57",
+      "revId": "262a8b843df5cba5fb8361914f2480c6573f71ca",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "784c5e14_3bcf179f",
         "filename": "src/main/resources/Documentation/rest-api-projects.md",
         "patchSetId": 1
@@ -53,6 +95,24 @@
       "writtenOn": "2015-07-15T15:25:26Z",
       "side": 1,
       "message": "nit: trailing space",
+      "revId": "262a8b843df5cba5fb8361914f2480c6573f71ca",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "784c5e14_bbdb275b",
+        "filename": "src/main/resources/Documentation/rest-api-projects.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2015-07-15T15:31:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "784c5e14_3bcf179f",
       "revId": "262a8b843df5cba5fb8361914f2480c6573f71ca",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
