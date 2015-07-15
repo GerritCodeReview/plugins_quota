@@ -14,11 +14,14 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
+import static com.google.gerrit.server.config.ConfigResource.CONFIG_KIND;
 import static com.google.gerrit.server.project.ProjectResource.PROJECT_KIND;
+import static com.googlesource.gerrit.plugins.quota.QuotaResource.QUOTA_KIND;
 
 import com.google.gerrit.extensions.events.GarbageCollectorListener;
 import com.google.gerrit.extensions.events.LifecycleListener;
 import com.google.gerrit.extensions.events.ProjectDeletedListener;
+import com.google.gerrit.extensions.registration.DynamicMap;
 import com.google.gerrit.extensions.registration.DynamicSet;
 import com.google.gerrit.extensions.restapi.RestApiModule;
 import com.google.gerrit.server.git.ReceivePackInitializer;
@@ -48,7 +51,9 @@ class Module extends AbstractModule {
     install(new RestApiModule() {
       @Override
       protected void configure() {
+        DynamicMap.mapOf(binder(), QUOTA_KIND);
         get(PROJECT_KIND, "quota").to(GetQuota.class);
+        child(CONFIG_KIND, "quota").to(GetQuotas.class);
       }
     });
     bind(Publisher.class).in(Scopes.SINGLETON);

@@ -43,6 +43,81 @@ that describes the projects quota.
   }
 ```
 
+### <a id="get-quotas"> Get Quotas for Multiple Projects
+_GET /config/server/@PLUGIN@~quota/_
+
+Get quota for the projects accessible by the caller.
+
+#### Request
+
+```
+  GET /config/server/@PLUGIN@~quota/ HTTP/1.0
+```
+
+As result a map is returned that maps the project names to
+[QuotaInfo](#quota-info) entries. The entries in the map are sorted
+by project name.
+
+#### Response
+
+```
+  HTTP/1.1 200 OK
+  Content-Disposition: attachment
+  Content-Type: application/json;charset=UTF-8
+
+  )]}'
+  {
+    "external/bison": {
+      "repo_size": 386,
+      "max_repo_size": 1048576,
+      "namespace": {
+        "name": "external/*",
+        "total_size": 1874,
+        "max_total_size": 10485760
+      }
+    },
+    "internal/gcc": {
+      "repo_size": 386
+    }
+  }
+```
+
+#### Prefix(p) Option
+
+Limit the results to those projects that start with the specified
+prefix.
+
+##### Request
+
+```
+  GET /config/server/@PLUGIN@~quota/?p=external%2F HTTP/1.0
+```
+
+As result a map is returned that maps the project names to
+[QuotaInfo](#quota-info) entries. The entries in the map are sorted
+by project name.
+
+##### Response
+
+```
+  HTTP/1.1 200 OK
+  Content-Disposition: attachment
+  Content-Type: application/json;charset=UTF-8
+
+  )]}'
+  {
+    "external/bison": {
+      "repo_size": 386,
+      "max_repo_size": 1048576,
+      "namespace": {
+        "name": "external/*",
+        "total_size": 1874,
+        "max_total_size": 10485760
+      }
+    }
+  }
+```
+
 <a id="json-entities">JSON Entities
 -----------------------------------
 

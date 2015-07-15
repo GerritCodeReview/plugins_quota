@@ -43,9 +43,11 @@ public class GetQuota implements RestReadView<ProjectResource> {
 
   @Override
   public QuotaInfo apply(ProjectResource rsrc) throws ExecutionException {
-    QuotaInfo qi = new QuotaInfo();
+    return getInfo(rsrc.getNameKey());
+  }
 
-    Project.NameKey n = rsrc.getNameKey();
+  QuotaInfo getInfo(Project.NameKey n) throws ExecutionException {
+    QuotaInfo qi = new QuotaInfo();
     qi.repoSize = repoSizeCache.get(n).get();
 
     QuotaSection qs = quotaFinder.firstMatching(n);
