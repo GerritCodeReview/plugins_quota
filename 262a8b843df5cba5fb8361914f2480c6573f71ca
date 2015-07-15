@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b84256dc_3dcf0f9f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/GetQuotas.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2015-07-15T15:25:26Z",
+      "side": 1,
+      "message": "nit: this code formatting doesn\u0027t look good. if a line has to be wrapped then any continuation line has to be indented for 2 indentation levels",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 48
+      },
+      "revId": "262a8b843df5cba5fb8361914f2480c6573f71ca",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b84256dc_dddceb57",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ListQuotas.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2015-07-15T15:25:26Z",
+      "side": 1,
+      "message": "nit: line too long",
+      "revId": "262a8b843df5cba5fb8361914f2480c6573f71ca",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "784c5e14_3bcf179f",
+        "filename": "src/main/resources/Documentation/rest-api-projects.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2015-07-15T15:25:26Z",
+      "side": 1,
+      "message": "nit: trailing space",
+      "revId": "262a8b843df5cba5fb8361914f2480c6573f71ca",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
