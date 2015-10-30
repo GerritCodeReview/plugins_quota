@@ -48,7 +48,7 @@ public class Publisher implements Runnable {
       return;
     }
 
-    List<UsageDataPublishedListener.Event> events = new ArrayList<UsageDataPublishedListener.Event>(3);
+    List<UsageDataPublishedListener.Event> events = new ArrayList<>(3);
     for (UsageDataEventCreator creator : creators) {
       try {
         events.add(creator.create());

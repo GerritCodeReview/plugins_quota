@@ -152,11 +152,8 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook,
 
     @Override
     public AtomicLong load(Project.NameKey project) throws IOException {
-      Repository git = gitManager.openRepository(project);
-      try {
+      try (Repository git = gitManager.openRepository(project)){
         return new AtomicLong(getDiskUsage(git.getDirectory()));
-      } finally {
-        git.close();
       }
     }
 
