@@ -51,7 +51,7 @@ public class RepoSizeEventCreator implements UsageDataEventCreator {
   @Override
   public String getName() {
     return REPO_SIZE.getName();
-  };
+  }
 
   @Override
   public Event create() {

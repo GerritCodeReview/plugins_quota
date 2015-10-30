@@ -31,7 +31,7 @@ class UsageDataEvent implements Event {
   public UsageDataEvent(MetaData metaData) {
     this.metaData = metaData;
     timestamp = new Timestamp(System.currentTimeMillis());
-    data = new ArrayList<Data>();
+    data = new ArrayList<>();
   }
 
   void addData(final long value, final String projectName) {
