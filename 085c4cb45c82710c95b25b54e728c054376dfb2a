@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7c09d2ae_a89d3b81",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2016-03-21T10:43:36Z",
+      "side": 1,
+      "message": "So what would you use instead? Will you propose an improvement?",
+      "parentUuid": "9c1206d7_89a279c5",
+      "revId": "085c4cb45c82710c95b25b54e728c054376dfb2a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a148387_241f7285",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/PublisherExceptionTest.java",
         "patchSetId": 7
