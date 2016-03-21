@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "7c09d2ae_88f4b7a8",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2016-03-21T16:29:30Z",
+      "side": 1,
+      "message": "\u003e Do we foresee any further implementations of that interface?\nWell, as you know in our fork there are multiple implementations.\n\nHere, in OS, there is only one implementation, currently. \n\n... actually we can just use a Guice Multibinder.",
+      "parentUuid": "7c09d2ae_a8ef7bd5",
+      "revId": "085c4cb45c82710c95b25b54e728c054376dfb2a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a148387_241f7285",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/PublisherExceptionTest.java",
         "patchSetId": 7
