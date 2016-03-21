@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "9c1206d7_e9bc55e3",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2016-03-21T13:29:57Z",
+      "side": 1,
+      "message": "Yes, if/when I understand the current design.",
+      "parentUuid": "7c09d2ae_a89d3b81",
+      "revId": "085c4cb45c82710c95b25b54e728c054376dfb2a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a148387_241f7285",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/PublisherExceptionTest.java",
         "patchSetId": 7
