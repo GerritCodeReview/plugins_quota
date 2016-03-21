@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "9c1206d7_89a279c5",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2016-03-21T10:37:43Z",
+      "side": 1,
+      "message": "DynamicSet is intended to be used for run-time loading/unloading of bindings as gerrit plugins get loaded/unloaded.\n\nHowever, from this plugin we don\u0027t need to handle dynamic loading/unloading of the UsageDataEventCreator implementations. This plugin has a fixed set of the UsageDataEventCreator instances and doesn\u0027t need any dynamic (un)loading.",
+      "revId": "085c4cb45c82710c95b25b54e728c054376dfb2a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a148387_241f7285",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/PublisherExceptionTest.java",
         "patchSetId": 7
