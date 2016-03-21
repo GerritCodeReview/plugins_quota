@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "7c09d2ae_a8ef7bd5",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2016-03-21T16:25:17Z",
+      "side": 1,
+      "message": "Currently there is only one implementation of the UsageDataEventCreator (the RepoSizeEventCreator) and the simplest\nthing to do would be to remove the UsageDataEventCreator interface and inject the RepoSizeEventCreator instead.\n\nDo we foresee any further implementations of that interface?\n\nAnother possibility to avoid the DynamicSet\u003cUsageDataEventCreator\u003e but keep the interface would be\nto create a class like UsageDataEventCreatorSet and inject all implementations of the UsageDataEventCreator.\nThen we can replace the DynamicSet with the UsageDataEventCreatorSet.",
+      "parentUuid": "9c1206d7_e9bc55e3",
+      "revId": "085c4cb45c82710c95b25b54e728c054376dfb2a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a148387_241f7285",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/PublisherExceptionTest.java",
         "patchSetId": 7
