@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9c1206d7_89903939",
+        "filename": "lib/gerrit/BUCK",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2016-03-22T10:57:36Z",
+      "side": 0,
+      "message": "Hm. We missed to add sha1 in the change where the artifact was changed to 2.12.2. This should be fixed.",
+      "revId": "e215fbbab1f576753842d975e3246829ba263881",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
