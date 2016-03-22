@@ -2,8 +2,8 @@ include_defs('//bucklets/maven_jar.bucklet')
 
 maven_jar(
   name = 'easymock',
-  id = 'org.easymock:easymock:3.2',
-  sha1 = '00c82f7fa3ef377d8954b1db25123944b5af2ba4',
+  id = 'org.easymock:easymock:3.4',
+  sha1 = '9fdeea183a399f25c2469497612cad131e920fa3',
   license = 'DO_NOT_DISTRIBUTE',
   attach_source = False,
   deps = [
