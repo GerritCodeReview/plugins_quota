@@ -19,6 +19,7 @@ import static org.easymock.EasyMock.expectLastCall;
 import static org.easymock.EasyMock.replay;
 import static org.easymock.EasyMock.verify;
 
+import com.google.gerrit.extensions.api.changes.NotifyHandling;
 import com.google.gerrit.extensions.events.GarbageCollectorListener;
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.gwtorm.client.KeyUtil;
@@ -94,6 +95,11 @@ public class GCListenerTest {
           @Override
           public Properties getStatistics() {
             return statistics;
+          }
+
+          @Override
+          public NotifyHandling getNotify() {
+            return NotifyHandling.ALL;
           }
         };
     return event;

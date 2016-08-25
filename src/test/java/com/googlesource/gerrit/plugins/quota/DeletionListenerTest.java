@@ -18,6 +18,7 @@ import static org.easymock.EasyMock.createMock;
 import static org.easymock.EasyMock.replay;
 import static org.easymock.EasyMock.verify;
 
+import com.google.gerrit.extensions.api.changes.NotifyHandling;
 import com.google.gerrit.extensions.events.ProjectDeletedListener;
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.gwtorm.client.KeyUtil;
@@ -45,6 +46,11 @@ public class DeletionListenerTest {
       @Override
       public String getProjectName() {
         return MY_PROJECT;
+      }
+
+      @Override
+      public NotifyHandling getNotify() {
+        return NotifyHandling.ALL;
       }
     };
     classUnderTest.onProjectDeleted(event);
