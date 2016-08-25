@@ -46,9 +46,8 @@ class ProjectNameResolver {
       String p = basePath.relativize(gitDir).toString();
       String n = p.substring(0, p.length() - ".git".length());
       return new Project.NameKey(n);
-    } else {
-      log.warn("Couldn't determine the project name from " + gitDir);
-      return null;
     }
+    log.warn("Couldn't determine the project name from " + gitDir);
+    return null;
   }
 }
