@@ -28,7 +28,7 @@ class UsageDataEvent implements Event {
   private final MetaData metaData;
   private final List<Data> data;
 
-  public UsageDataEvent(MetaData metaData) {
+  UsageDataEvent(MetaData metaData) {
     this.metaData = metaData;
     timestamp = new Timestamp(System.currentTimeMillis());
     data = new ArrayList<>();

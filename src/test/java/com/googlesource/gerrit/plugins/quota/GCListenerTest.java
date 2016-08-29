@@ -39,15 +39,15 @@ public class GCListenerTest {
   @Test
   public void testEventWithStatistics() {
     RepoSizeCache repoSizeCache = createMock(RepoSizeCache.class);
-    repoSizeCache.set(new Project.NameKey(PROJECT_NAME), 9999l);
+    repoSizeCache.set(new Project.NameKey(PROJECT_NAME), 9999L);
     expectLastCall();
     replay(repoSizeCache);
 
     GCListener listener = new GCListener(repoSizeCache);
 
     final Properties statistics = new Properties();
-    statistics.put("sizeOfLooseObjects", 1234l);
-    statistics.put("sizeOfPackedObjects", 8765l);
+    statistics.put("sizeOfLooseObjects", 1234L);
+    statistics.put("sizeOfPackedObjects", 8765L);
 
     listener.onGarbageCollected(createEvent(PROJECT_NAME, statistics));
 

@@ -23,7 +23,7 @@ class MetaDataImpl implements MetaData {
   private String unitSymbol;
   private String description;
 
-  public MetaDataImpl(String name, String unitName, String unitSymbol, String description) {
+  MetaDataImpl(String name, String unitName, String unitSymbol, String description) {
     this.name = name;
     this.unitName = unitName;
     this.unitSymbol = unitSymbol;

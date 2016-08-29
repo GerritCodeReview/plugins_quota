@@ -18,8 +18,8 @@ import com.google.gerrit.extensions.events.UsageDataPublishedListener;
 
 public interface UsageDataEventCreator {
 
-  public String getName();
+  String getName();
 
-  public UsageDataPublishedListener.Event create();
+  UsageDataPublishedListener.Event create();
 
 }

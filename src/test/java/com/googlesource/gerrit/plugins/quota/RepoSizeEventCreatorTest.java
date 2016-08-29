@@ -75,7 +75,7 @@ public class RepoSizeEventCreatorTest {
 
   @Test
   public void testOneDataPoint() {
-    expect(repoSizeCache.get(p1)).andStubReturn(100l);
+    expect(repoSizeCache.get(p1)).andStubReturn(100L);
     replay(repoSizeCache);
 
     Event event = classUnderTest.create();
@@ -84,7 +84,7 @@ public class RepoSizeEventCreatorTest {
     assertEquals(1, event.getData().size());
     Data dataPoint = event.getData().get(0);
     assertEquals("p1", dataPoint.getProjectName());
-    assertEquals(100l, dataPoint.getValue());
+    assertEquals(100L, dataPoint.getValue());
   }
 
 }

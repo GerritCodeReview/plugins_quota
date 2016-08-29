@@ -134,8 +134,9 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook,
 
   private boolean needPack(Collection<ReceiveCommand> commands) {
     for (ReceiveCommand cmd : commands) {
-      if (cmd.getType() != ReceiveCommand.Type.DELETE)
+      if (cmd.getType() != ReceiveCommand.Type.DELETE) {
         return true;
+      }
     }
     return false;
   }
