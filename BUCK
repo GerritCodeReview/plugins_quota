@@ -31,5 +31,4 @@ java_test(
     '//lib/log:log4j',
     '//lib/log:impl_log4j',
   ],
-  source_under_test = [':quota__plugin'],
 )
