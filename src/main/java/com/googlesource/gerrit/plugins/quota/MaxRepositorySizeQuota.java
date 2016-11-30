@@ -14,11 +14,15 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
+import com.google.common.base.Splitter;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.google.common.collect.Ordering;
+import com.google.common.io.CharStreams;
+import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.cache.CacheModule;
+import com.google.gerrit.server.config.PluginConfigFactory;
 import com.google.gerrit.server.git.GitRepositoryManager;
 import com.google.gerrit.server.git.ReceivePackInitializer;
 import com.google.gerrit.server.project.ProjectCache;
@@ -37,12 +41,14 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Collection;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
@@ -142,33 +148,72 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook,
 
   @Singleton
   static class Loader extends CacheLoader<Project.NameKey, AtomicLong> {
-
+    private static final long K = 1024;
     private final GitRepositoryManager gitManager;
+    private String[] gitObjectCountCommand;
 
     @Inject
-    Loader(GitRepositoryManager gitManager) {
+    Loader(GitRepositoryManager gitManager,
+        PluginConfigFactory cfg,
+        @PluginName String pluginName) {
       this.gitManager = gitManager;
+      if (cfg.getFromGerritConfig(pluginName).getBoolean("enableGitObjectCount",
+          false)) {
+        String gitPath =
+            cfg.getFromGerritConfig(pluginName).getString("gitPath", "git");
+        this.gitObjectCountCommand =
+            new String[] {gitPath, "count-objects", "-v"};
+      }
     }
 
     @Override
-    public AtomicLong load(Project.NameKey project) throws IOException {
-      try (Repository git = gitManager.openRepository(project)){
+    public AtomicLong load(Project.NameKey project)
+        throws IOException, InterruptedException {
+      try (Repository git = gitManager.openRepository(project)) {
         return new AtomicLong(getDiskUsage(git.getDirectory()));
       }
     }
 
-    private static long getDiskUsage(File dir) throws IOException {
+    private long getDiskUsage(File dir) throws IOException, InterruptedException {
       final MutableLong size = new MutableLong();
-      Files.walkFileTree(dir.toPath(), new SimpleFileVisitor<Path>() {
-        @Override
-        public FileVisitResult visitFile(Path path, BasicFileAttributes attrs)
-            throws IOException {
-          if (attrs.isRegularFile()) {
-            size.add(attrs.size());
+      if (gitObjectCountCommand == null) {
+        log.debug("enableGitObjectCount is false");
+        Files.walkFileTree(dir.toPath(), new SimpleFileVisitor<Path>() {
+          @Override
+          public FileVisitResult visitFile(Path path, BasicFileAttributes attrs)
+              throws IOException {
+            if (attrs.isRegularFile()) {
+              size.add(attrs.size());
+            }
+            return FileVisitResult.CONTINUE;
           }
-          return FileVisitResult.CONTINUE;
+        });
+      } else {
+        log.debug("enableGitObjectCount is true");
+        ProcessBuilder builder = new ProcessBuilder(gitObjectCountCommand);
+        builder.directory(dir);
+        builder.redirectErrorStream(true);
+        Process process = builder.start();
+        process.waitFor();
+        try (InputStreamReader isr =
+            new InputStreamReader(process.getInputStream())) {
+          String gitCountObjectsRawOutput = CharStreams.toString(isr).trim();
+          Map<String, String> gitCountObjectsOutput =
+              Splitter.on(System.getProperty("line.separator")).trimResults()
+                  .withKeyValueSeparator(':').split(gitCountObjectsRawOutput);
+          String sizeOfLooseObjects = gitCountObjectsOutput.get("size").trim();
+          String sizeOfPackedObjects =
+              gitCountObjectsOutput.get("size-pack").trim();
+          if (sizeOfLooseObjects == null || sizeOfPackedObjects == null) {
+            log.error(
+                "No required size found for repo: " + dir.getAbsolutePath());
+          } else {
+            size.add(Long.parseLong(sizeOfLooseObjects) * K);
+            size.add(Long.parseLong(sizeOfPackedObjects) * K);
+          }
         }
-      });
+      }
+
       return size.longValue();
     }
   }
