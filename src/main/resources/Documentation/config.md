@@ -119,6 +119,27 @@ sure that each individual repository cannot exceed 3m
     maxTotalSize = 20 m
 ```
 
+If one prefers computing a repo size by
+[git count-objects](https://git-scm.com/docs/git-count-objects) command, then
+add the following section into the `gerrit.config` file:
+
+```
+  [plugin "quota"]
+        useGitObjectCount = true
+        gitPath=/usr/bin/git
+```
+
+<a id="useGitObjectCount">
+`plugin.quota.useGitObjectCount`
+: Use git object count. If true, *repoSize = looseObjectsSize +
+packedObjectsSize*, where *looseObjectsSize* and *packedObjectsSize* are given
+by *git count-objects -v* command. By default, false.
+
+<a id="gitPath">
+`plugin.quota.gitPath`
+: Git binary path. By default, git. This means that the native Git command must
+be available on the Gerrit server if *useGitObjectCount* is true.
+
 Publication Schedule
 --------------------
 
