@@ -1,0 +1,215 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "77b83af6_1833650a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-01-09T16:23:41Z",
+      "side": 1,
+      "message": "computed?",
+      "range": {
+        "startLine": 9,
+        "startChar": 34,
+        "endLine": 9,
+        "endChar": 41
+      },
+      "revId": "2e0b47f33f61152e8f1eb68d4da0dc15a2c80cab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "17d8de6b_0dd7b151",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-01-09T16:23:41Z",
+      "side": 1,
+      "message": "Nice :-)",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 50
+      },
+      "revId": "2e0b47f33f61152e8f1eb68d4da0dc15a2c80cab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "17d8de6b_8da3a1e6",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-01-09T16:23:41Z",
+      "side": 1,
+      "message": "empty line between static and non-static?",
+      "revId": "2e0b47f33f61152e8f1eb68d4da0dc15a2c80cab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "17d8de6b_6db99511",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-01-09T16:23:41Z",
+      "side": 1,
+      "message": "final?",
+      "revId": "2e0b47f33f61152e8f1eb68d4da0dc15a2c80cab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "17d8de6b_cda9a9c8",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-01-09T16:23:41Z",
+      "side": 1,
+      "message": "1. I would prefer to have these two size computation methods split into two methods.\n\n2. optional: instead of the null check use a more explicit boolean flag:\n\n  if (useGitObjectCount) {\n    ...\n  } else {\n    ...\n  }",
+      "revId": "2e0b47f33f61152e8f1eb68d4da0dc15a2c80cab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "17d8de6b_4db6d923",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-01-09T16:23:41Z",
+      "side": 1,
+      "message": "when this is moved into own method then we don\u0027t need that MutableLong any more, instead we can use the plain long. IIRC, the only reason for the MutableLong usage was that the size variable needed to be final because it is used inside an inner class.",
+      "revId": "2e0b47f33f61152e8f1eb68d4da0dc15a2c80cab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "17d8de6b_ad9e5d9e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-01-09T16:23:41Z",
+      "side": 1,
+      "message": "What happens here if \"git\" executable is not in the $PATH?",
+      "revId": "2e0b47f33f61152e8f1eb68d4da0dc15a2c80cab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "77b83af6_f840b15a",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-01-09T16:23:41Z",
+      "side": 1,
+      "message": "What does \"test site\" mean here?",
+      "range": {
+        "startLine": 124,
+        "startChar": 58,
+        "endLine": 124,
+        "endChar": 68
+      },
+      "revId": "2e0b47f33f61152e8f1eb68d4da0dc15a2c80cab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "77b83af6_b83a39d7",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-01-09T16:23:41Z",
+      "side": 1,
+      "message": "optional: use",
+      "range": {
+        "startLine": 132,
+        "startChar": 7,
+        "endLine": 132,
+        "endChar": 13
+      },
+      "revId": "2e0b47f33f61152e8f1eb68d4da0dc15a2c80cab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "17d8de6b_eda465f2",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-01-09T16:23:41Z",
+      "side": 1,
+      "message": "Does it consider only reachable objects?\n\nIf an object is present in more than one pack file, is its size computed only once?\n\nIf an object is present in a pack file and also as a loose object, is its size computed only once?",
+      "revId": "2e0b47f33f61152e8f1eb68d4da0dc15a2c80cab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "77b83af6_d845ed68",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-01-09T16:23:41Z",
+      "side": 1,
+      "message": "This means that the native Git must be installed and also present in the $PATH of the user running Gerrit. This needs to be documented.",
+      "revId": "2e0b47f33f61152e8f1eb68d4da0dc15a2c80cab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
