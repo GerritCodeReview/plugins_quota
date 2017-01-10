@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "178e1eb3_3dd42fd5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1029057
+      },
+      "writtenOn": "2017-01-10T15:39:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77b83af6_1833650a",
+      "range": {
+        "startLine": 9,
+        "startChar": 34,
+        "endLine": 9,
+        "endChar": 41
+      },
+      "revId": "2e0b47f33f61152e8f1eb68d4da0dc15a2c80cab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "17d8de6b_0dd7b151",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -65,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "178e1eb3_5dd1fbe3",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1029057
+      },
+      "writtenOn": "2017-01-10T15:39:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "17d8de6b_8da3a1e6",
+      "revId": "2e0b47f33f61152e8f1eb68d4da0dc15a2c80cab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "17d8de6b_6db99511",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
         "patchSetId": 1
@@ -76,6 +118,24 @@
       "writtenOn": "2017-01-09T16:23:41Z",
       "side": 1,
       "message": "final?",
+      "revId": "2e0b47f33f61152e8f1eb68d4da0dc15a2c80cab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5756d6ee_0fa58588",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1029057
+      },
+      "writtenOn": "2017-01-10T15:39:00Z",
+      "side": 1,
+      "message": "In the constructor, only in one case it is initialized.\nI would like to leave it non-final.",
+      "parentUuid": "17d8de6b_6db99511",
       "revId": "2e0b47f33f61152e8f1eb68d4da0dc15a2c80cab",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
@@ -99,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "178e1eb3_bd103fc7",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1029057
+      },
+      "writtenOn": "2017-01-10T15:39:00Z",
+      "side": 1,
+      "message": "1. DONE.\n2. Not done for saving one field.",
+      "parentUuid": "17d8de6b_cda9a9c8",
+      "revId": "2e0b47f33f61152e8f1eb68d4da0dc15a2c80cab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "17d8de6b_4db6d923",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
         "patchSetId": 1
@@ -110,6 +188,24 @@
       "writtenOn": "2017-01-09T16:23:41Z",
       "side": 1,
       "message": "when this is moved into own method then we don\u0027t need that MutableLong any more, instead we can use the plain long. IIRC, the only reason for the MutableLong usage was that the size variable needed to be final because it is used inside an inner class.",
+      "revId": "2e0b47f33f61152e8f1eb68d4da0dc15a2c80cab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "178e1eb3_1d205310",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1029057
+      },
+      "writtenOn": "2017-01-10T15:39:00Z",
+      "side": 1,
+      "message": "\"Cannot refer to the non-final local variable size defined in an enclosing scope\"\nI think that the final error is up to anonymous class and we still use it even in its own methods.",
+      "parentUuid": "17d8de6b_4db6d923",
       "revId": "2e0b47f33f61152e8f1eb68d4da0dc15a2c80cab",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
@@ -133,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "178e1eb3_dd150bb6",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1029057
+      },
+      "writtenOn": "2017-01-10T15:39:00Z",
+      "side": 1,
+      "message": "Updated the document as you suggested.",
+      "parentUuid": "17d8de6b_ad9e5d9e",
+      "revId": "2e0b47f33f61152e8f1eb68d4da0dc15a2c80cab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "77b83af6_f840b15a",
         "filename": "src/main/resources/Documentation/config.md",
         "patchSetId": 1
@@ -144,6 +258,30 @@
       "writtenOn": "2017-01-09T16:23:41Z",
       "side": 1,
       "message": "What does \"test site\" mean here?",
+      "range": {
+        "startLine": 124,
+        "startChar": 58,
+        "endLine": 124,
+        "endChar": 68
+      },
+      "revId": "2e0b47f33f61152e8f1eb68d4da0dc15a2c80cab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5756d6ee_8fb975b0",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1029057
+      },
+      "writtenOn": "2017-01-10T15:39:00Z",
+      "side": 1,
+      "message": "Reworded a bit.\nChecked on another plugin.\nhttps://gerrit.googlesource.com/plugins/delete-project/+/refs/heads/stable-2.12/src/main/resources/Documentation/config.md",
+      "parentUuid": "77b83af6_f840b15a",
       "range": {
         "startLine": 124,
         "startChar": 58,
@@ -179,6 +317,30 @@
     },
     {
       "key": {
+        "uuid": "178e1eb3_5d2adbef",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1029057
+      },
+      "writtenOn": "2017-01-10T15:39:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77b83af6_b83a39d7",
+      "range": {
+        "startLine": 132,
+        "startChar": 7,
+        "endLine": 132,
+        "endChar": 13
+      },
+      "revId": "2e0b47f33f61152e8f1eb68d4da0dc15a2c80cab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "17d8de6b_eda465f2",
         "filename": "src/main/resources/Documentation/config.md",
         "patchSetId": 1
@@ -190,6 +352,24 @@
       "writtenOn": "2017-01-09T16:23:41Z",
       "side": 1,
       "message": "Does it consider only reachable objects?\n\nIf an object is present in more than one pack file, is its size computed only once?\n\nIf an object is present in a pack file and also as a loose object, is its size computed only once?",
+      "revId": "2e0b47f33f61152e8f1eb68d4da0dc15a2c80cab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "178e1eb3_bdf91f5f",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1029057
+      },
+      "writtenOn": "2017-01-10T15:39:00Z",
+      "side": 1,
+      "message": "My git knowledge is not enough for this question.\nTried to find answer in the git doc ... no information there either.\nhttps://git-scm.com/docs/git-count-objects",
+      "parentUuid": "17d8de6b_eda465f2",
       "revId": "2e0b47f33f61152e8f1eb68d4da0dc15a2c80cab",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
