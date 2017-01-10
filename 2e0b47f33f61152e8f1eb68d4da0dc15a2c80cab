@@ -247,6 +247,24 @@
     },
     {
       "key": {
+        "uuid": "4323799e_15761442",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-01-10T16:25:40Z",
+      "side": 1,
+      "message": "I see that you updated the docs but I wonder if you handle this case properly in your code? What will this code produce when git is not in the path?\n\nShould the plugin reject to start when useGitObjectCount\u003dtrue and git is not available? If no, what is the behavior?",
+      "parentUuid": "178e1eb3_dd150bb6",
+      "revId": "2e0b47f33f61152e8f1eb68d4da0dc15a2c80cab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "77b83af6_f840b15a",
         "filename": "src/main/resources/Documentation/config.md",
         "patchSetId": 1
@@ -370,6 +388,24 @@
       "side": 1,
       "message": "My git knowledge is not enough for this question.\nTried to find answer in the git doc ... no information there either.\nhttps://git-scm.com/docs/git-count-objects",
       "parentUuid": "17d8de6b_eda465f2",
+      "revId": "2e0b47f33f61152e8f1eb68d4da0dc15a2c80cab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4323799e_f57a7824",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-01-10T16:25:40Z",
+      "side": 1,
+      "message": "Well, lacking Git knowledge cannot justify approving and submitting this change ;-)\n\nCould you do some experiments locally and figure out the answers?",
+      "parentUuid": "178e1eb3_bdf91f5f",
       "revId": "2e0b47f33f61152e8f1eb68d4da0dc15a2c80cab",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
