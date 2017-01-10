@@ -265,6 +265,24 @@
     },
     {
       "key": {
+        "uuid": "632b1d7f_ee7a9f24",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1029057
+      },
+      "writtenOn": "2017-01-10T20:15:40Z",
+      "side": 1,
+      "message": "Done\nRefuse to load the plugin now if git command is not on the server.",
+      "parentUuid": "4323799e_15761442",
+      "revId": "2e0b47f33f61152e8f1eb68d4da0dc15a2c80cab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "77b83af6_f840b15a",
         "filename": "src/main/resources/Documentation/config.md",
         "patchSetId": 1
