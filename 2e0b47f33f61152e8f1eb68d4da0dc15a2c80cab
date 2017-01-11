@@ -444,6 +444,23 @@
       "revId": "2e0b47f33f61152e8f1eb68d4da0dc15a2c80cab",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c336890f_810d7ab3",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1029057
+      },
+      "writtenOn": "2017-01-11T20:17:41Z",
+      "side": 1,
+      "message": "Addressed in the commit msg (PS5).",
+      "revId": "2e0b47f33f61152e8f1eb68d4da0dc15a2c80cab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
