@@ -57,7 +57,7 @@ public class PublisherExceptionTest {
 
   @Before
   public void setupLogging() {
-    captor = EasyMock.newCapture();
+    captor = new Capture();
     appender = createMock(Appender.class);
     appender.doAppend(capture(captor));
     expectLastCall().anyTimes();
