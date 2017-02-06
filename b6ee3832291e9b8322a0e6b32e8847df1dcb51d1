@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "dd43f6f6_19eafd9b",
+        "filename": "src/main/resources/Documentation/build.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1029953
+      },
+      "writtenOn": "Feb 6, 2017 7:56:50 AM",
+      "side": 1,
+      "message": "Thanks, done.",
+      "parentUuid": "fa5b0f6d_f7116f65",
+      "range": {
+        "startLine": 24,
+        "startChar": 60,
+        "endLine": 24,
+        "endChar": 67
+      },
+      "revId": "b6ee3832291e9b8322a0e6b32e8847df1dcb51d1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d9423a6a_1b12439d",
         "filename": "src/main/resources/Documentation/build.md",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "Feb 6, 2017 7:48:07 AM",
       "side": 1,
       "message": "see my previous comment, you need to add :all or :quota_tests",
+      "range": {
+        "startLine": 34,
+        "startChar": 21,
+        "endLine": 34,
+        "endChar": 26
+      },
+      "revId": "b6ee3832291e9b8322a0e6b32e8847df1dcb51d1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6493ee38_0d96f809",
+        "filename": "src/main/resources/Documentation/build.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1029953
+      },
+      "writtenOn": "Feb 6, 2017 7:56:50 AM",
+      "side": 1,
+      "message": "Thanks, done.",
+      "parentUuid": "d9423a6a_1b12439d",
       "range": {
         "startLine": 34,
         "startChar": 21,
