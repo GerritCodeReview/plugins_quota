@@ -1,7 +1,7 @@
 Build
 =====
 
-This plugin can be built with Bazel or Maven.
+This plugin is built with Bazel.
 
 Bazel
 ----
@@ -32,17 +32,4 @@ To execute the tests run:
 
 ```
   bazel test plugins/quota:quota_tests
-```
-
-Maven
------
-
-Note that the Maven build is provided for compatibility reasons, but
-it is considered to be deprecated and will be removed in a future
-version of this plugin.
-
-To build with Maven, run
-
-```
-  mvn clean package
 ```
