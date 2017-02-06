@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1c44df58_9d5b5e48",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/PublisherExceptionTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1026112
+      },
+      "writtenOn": "Feb 6, 2017 5:01:24 AM",
+      "side": 1,
+      "message": "Can you place this with along with the other org.easymock imports so that they appear in alphabetical order?",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 28
+      },
+      "revId": "bf41fd01ae25c536d276b377563bcd1735fd6602",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
