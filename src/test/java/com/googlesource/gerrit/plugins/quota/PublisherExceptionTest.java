@@ -17,6 +17,8 @@ package com.googlesource.gerrit.plugins.quota;
 import static org.easymock.EasyMock.*;
 import static org.junit.Assert.*;
 
+import org.easymock.Capture;
+
 import com.google.gerrit.extensions.events.UsageDataPublishedListener;
 import com.google.gerrit.extensions.events.UsageDataPublishedListener.Event;
 import com.google.gerrit.extensions.registration.DynamicSet;
@@ -57,7 +59,7 @@ public class PublisherExceptionTest {
 
   @Before
   public void setupLogging() {
-    captor = EasyMock.newCapture();
+    captor = new Capture();
     appender = createMock(Appender.class);
     appender.doAppend(capture(captor));
     expectLastCall().anyTimes();
