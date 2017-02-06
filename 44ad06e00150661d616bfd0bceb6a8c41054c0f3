@@ -1,0 +1,222 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "caf3504e_3305093b",
+        "filename": "BUILD",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1026112
+      },
+      "writtenOn": "Feb 6, 2017 5:37:26 AM",
+      "side": 1,
+      "message": "remove one underscore",
+      "range": {
+        "startLine": 24,
+        "startChar": 16,
+        "endLine": 24,
+        "endChar": 17
+      },
+      "revId": "44ad06e00150661d616bfd0bceb6a8c41054c0f3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e7bbb7d8_d28c5466",
+        "filename": "src/main/resources/Documentation/build.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1026112
+      },
+      "writtenOn": "Feb 6, 2017 5:37:26 AM",
+      "side": 1,
+      "message": "Build the plugin from Gerrit\u0027s root directory:",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 10
+      },
+      "revId": "44ad06e00150661d616bfd0bceb6a8c41054c0f3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5cca7312_60a252ff",
+        "filename": "src/main/resources/Documentation/build.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1026112
+      },
+      "writtenOn": "Feb 6, 2017 5:37:26 AM",
+      "side": 1,
+      "message": "Please replace this with quota. Then users can directly copy your commands. (it was also like that in the original file)",
+      "range": {
+        "startLine": 14,
+        "startChar": 22,
+        "endLine": 14,
+        "endChar": 30
+      },
+      "revId": "44ad06e00150661d616bfd0bceb6a8c41054c0f3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "82def617_49eead01",
+        "filename": "src/main/resources/Documentation/build.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1026112
+      },
+      "writtenOn": "Feb 6, 2017 5:37:26 AM",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 44
+      },
+      "revId": "44ad06e00150661d616bfd0bceb6a8c41054c0f3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1b0d9576_48bedbd7",
+        "filename": "src/main/resources/Documentation/build.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1026112
+      },
+      "writtenOn": "Feb 6, 2017 5:37:26 AM",
+      "side": 1,
+      "message": "Try to use the available space (l.26) here and fill up the lines until you reach 80 chars, break only where necessary (or when you want to have an intentional LB like in l.25).",
+      "revId": "44ad06e00150661d616bfd0bceb6a8c41054c0f3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1dbd0865_5f1e7c88",
+        "filename": "src/main/resources/Documentation/build.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1026112
+      },
+      "writtenOn": "Feb 6, 2017 5:37:26 AM",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 26,
+        "startChar": 23,
+        "endLine": 26,
+        "endChar": 26
+      },
+      "revId": "44ad06e00150661d616bfd0bceb6a8c41054c0f3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04b7316e_48bc494a",
+        "filename": "src/main/resources/Documentation/build.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1026112
+      },
+      "writtenOn": "Feb 6, 2017 5:37:26 AM",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 27,
+        "startChar": 38,
+        "endLine": 27,
+        "endChar": 39
+      },
+      "revId": "44ad06e00150661d616bfd0bceb6a8c41054c0f3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ca11493f_828a8f2b",
+        "filename": "src/main/resources/Documentation/build.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1026112
+      },
+      "writtenOn": "Feb 6, 2017 5:37:26 AM",
+      "side": 1,
+      "message": "Gerrit\u0027s",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 14
+      },
+      "revId": "44ad06e00150661d616bfd0bceb6a8c41054c0f3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "500ef622_d2045c22",
+        "filename": "src/main/resources/Documentation/build.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1026112
+      },
+      "writtenOn": "Feb 6, 2017 5:37:26 AM",
+      "side": 1,
+      "message": ",",
+      "revId": "44ad06e00150661d616bfd0bceb6a8c41054c0f3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aa4fb0b0_b871681f",
+        "filename": "src/main/resources/Documentation/build.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1026112
+      },
+      "writtenOn": "Feb 6, 2017 5:37:26 AM",
+      "side": 1,
+      "message": "bazel test plugins/quota:all\nor\nbazel test plugins/quota:quota_tests",
+      "range": {
+        "startLine": 36,
+        "startChar": 2,
+        "endLine": 36,
+        "endChar": 28
+      },
+      "revId": "44ad06e00150661d616bfd0bceb6a8c41054c0f3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
