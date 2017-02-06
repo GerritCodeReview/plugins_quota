@@ -22,6 +22,30 @@
       "revId": "bf41fd01ae25c536d276b377563bcd1735fd6602",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "68c1dddc_d08f0bbc",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/PublisherExceptionTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1029953
+      },
+      "writtenOn": "Feb 6, 2017 5:09:39 AM",
+      "side": 1,
+      "message": "It seems this already exists on line 29.",
+      "parentUuid": "1c44df58_9d5b5e48",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 28
+      },
+      "revId": "bf41fd01ae25c536d276b377563bcd1735fd6602",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
