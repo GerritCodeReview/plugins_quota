@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b4d16d08_996d5208",
+        "filename": "src/main/resources/Documentation/build.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "Feb 5, 2017 11:00:55 PM",
+      "side": 1,
+      "message": "bazel test plugins/@PLUGIN@:@PLUGIN@_tests\n\nand it\u0027s failing here:\n\n  ERROR: /home/davido/projects/gerrit/plugins/quota/BUILD:19:1: Java compilation in rule \u0027//plugins/quota:quota_tests\u0027 failed: Worker process sent response with exit code: 1.\nplugins/quota/src/test/java/com/googlesource/gerrit/plugins/quota/PublisherExceptionTest.java:60: error: cannot find symbol\n    captor \u003d EasyMock.newCapture();\n                     ^\n  symbol:   method newCapture()\n  location: class EasyMock\n1 error",
+      "range": {
+        "startLine": 36,
+        "startChar": 13,
+        "endLine": 36,
+        "endChar": 29
+      },
+      "revId": "53f21320d68a824a2415831c96270d7a180ff90b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
