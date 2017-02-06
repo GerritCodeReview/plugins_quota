@@ -22,6 +22,30 @@
       "revId": "53f21320d68a824a2415831c96270d7a180ff90b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f95552b_a6f12f8d",
+        "filename": "src/main/resources/Documentation/build.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "Feb 5, 2017 11:10:35 PM",
+      "side": 1,
+      "message": "Was there some compliance issues with bumping easymock version in gerrit core to match the one used internally by Google? I\u0027m asking because this plugin is using newer version 3.4 as exposed by plugin API in gerrit-acceptance-framework.\n\nTo be concrete, this diff: [1] in gerrit core fixed test execution problem i posted in my previous comment:\n\n  $ bazel test plugins/quota:quota_tests \n  INFO: Found 1 test target...\n  Target //plugins/quota:quota_tests up-to-date:\n    bazel-bin/plugins/quota/quota_tests.jar\n    bazel-bin/plugins/quota/quota_tests\n  INFO: Elapsed time: 1.197s, Critical Path: 0.56s\n  //plugins/quota:quota_tests      PASSED in 0.5s\n\n* [1] http://paste.openstack.org/show/597778/",
+      "parentUuid": "b4d16d08_996d5208",
+      "range": {
+        "startLine": 36,
+        "startChar": 13,
+        "endLine": 36,
+        "endChar": 29
+      },
+      "revId": "53f21320d68a824a2415831c96270d7a180ff90b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
