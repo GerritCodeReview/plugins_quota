@@ -55,6 +55,12 @@ Test are executed with
   buck test
 ```
 
+This project can be imported into the Eclipse IDE:
+
+```
+  ./bucklets/tools/eclipse.py
+```
+
 ### Build in Gerrit tree
 
 Clone or link this plugin to the plugins directory of Gerrit's source
