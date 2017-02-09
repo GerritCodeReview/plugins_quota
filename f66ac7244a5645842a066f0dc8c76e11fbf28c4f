@@ -22,6 +22,30 @@
       "revId": "f66ac7244a5645842a066f0dc8c76e11fbf28c4f",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3cf4a02b_3c9d40a5",
+        "filename": "BUILD",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2017-02-09T11:34:28Z",
+      "side": 1,
+      "message": "There must be something else wrong with it then, because the test build was failing when it was \":quota_plugin\"",
+      "parentUuid": "412b4f54_84c26df2",
+      "range": {
+        "startLine": 24,
+        "startChar": 9,
+        "endLine": 24,
+        "endChar": 15
+      },
+      "revId": "f66ac7244a5645842a066f0dc8c76e11fbf28c4f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
