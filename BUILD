@@ -21,6 +21,6 @@ junit_tests(
     srcs = glob(["src/test/java/**/*.java"]),
     tags = ["quota"],
     deps = PLUGIN_DEPS + PLUGIN_TEST_DEPS + [
-        ":quota",
+        ":quota__plugin",
     ],
 )
