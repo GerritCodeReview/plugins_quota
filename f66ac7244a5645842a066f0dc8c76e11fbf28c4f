@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "412b4f54_84c26df2",
+        "filename": "BUILD",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2017-02-09T11:30:25Z",
+      "side": 1,
+      "message": "\":quota__plugin\" is the plugin JAR (vanilla java_library) and \":quota\" is the stamped  (genrule) shaded jar (java_binary).\n\nBecause java_binary() rule is broken in Bazel, see [1] and we cannot merge git stamped info retrieved by workspace status command:\n\n  build --workspace_status_command\u003d./tools/workspace-status.sh\n\nwith the one provided by the plugin development in manifest_entries set:\n\n  manifest_entries \u003d [\n      \"Gerrit-PluginName: quota\",\n      \"Gerrit-Module: com.googlesource.gerrit.plugins.quota.Module\",\n  ],\n\nwe unzip the java_binary final artifact and munge git stamp info inside additional genrule. The test rule above doesn\u0027t care for stamping etc, and that why it should depend on \":quota__plugin\" and not \":quota\".\n\n* [1] https://github.com/bazelbuild/bazel/issues/2009",
+      "range": {
+        "startLine": 24,
+        "startChar": 9,
+        "endLine": 24,
+        "endChar": 15
+      },
+      "revId": "f66ac7244a5645842a066f0dc8c76e11fbf28c4f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
