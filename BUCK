@@ -13,23 +13,18 @@ gerrit_plugin(
   ]
 )
 
-# this is required for bucklets/tools/eclipse/project.py to work
-# not sure, if this does something useful in standalone context
+TEST_DEPS = GERRIT_PLUGIN_API + GERRIT_TESTS + [
+  ':quota__plugin'
+]
+
 java_library(
   name = 'classpath',
-  deps = [':quota__plugin'],
+  deps = TEST_DEPS,
 )
 
 java_test(
   name = 'quota_tests',
   srcs = glob(['src/test/java/**/*.java']),
   labels = ['quota'],
-  deps = GERRIT_PLUGIN_API + [
-    ':quota__plugin',
-    '//lib:junit',
-    '//lib/easymock:easymock',
-    '//lib/log:log4j',
-    '//lib/log:impl_log4j',
-  ],
-  source_under_test = [':quota__plugin'],
+  deps = TEST_DEPS,
 )

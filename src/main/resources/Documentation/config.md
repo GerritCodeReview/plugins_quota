@@ -119,6 +119,20 @@ sure that each individual repository cannot exceed 3m
     maxTotalSize = 20 m
 ```
 
+If one prefers computing a repository size by adding the size of the git objects,
+the following section should be added into the `gerrit.config` file:
+
+```
+  [plugin "quota"]
+        useGitObjectCount = true
+```
+
+<a id="useGitObjectCount">
+`plugin.quota.useGitObjectCount`
+: Use git object count. If true, *repoSize = looseObjectsSize +
+packedObjectsSize*, where *looseObjectsSize* and *packedObjectsSize* are given
+by JGit RepoStatistics. By default, false.
+
 Publication Schedule
 --------------------
 

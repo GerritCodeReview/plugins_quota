@@ -17,8 +17,10 @@ package com.googlesource.gerrit.plugins.quota;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.google.common.collect.Ordering;
+import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.cache.CacheModule;
+import com.google.gerrit.server.config.PluginConfigFactory;
 import com.google.gerrit.server.git.GitRepositoryManager;
 import com.google.gerrit.server.git.ReceivePackInitializer;
 import com.google.gerrit.server.project.ProjectCache;
@@ -28,6 +30,9 @@ import com.google.inject.Singleton;
 import com.google.inject.name.Named;
 
 import org.apache.commons.lang.mutable.MutableLong;
+import org.eclipse.jgit.internal.storage.file.FileRepository;
+import org.eclipse.jgit.internal.storage.file.GC;
+import org.eclipse.jgit.internal.storage.file.GC.RepoStatistics;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.transport.PostReceiveHook;
 import org.eclipse.jgit.transport.ReceiveCommand;
@@ -145,15 +150,23 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook,
   static class Loader extends CacheLoader<Project.NameKey, AtomicLong> {
 
     private final GitRepositoryManager gitManager;
+    private final boolean useGitObjectCount;
 
     @Inject
-    Loader(GitRepositoryManager gitManager) {
+    Loader(GitRepositoryManager gitManager,
+        PluginConfigFactory cfg,
+        @PluginName String pluginName) {
       this.gitManager = gitManager;
+      this.useGitObjectCount = cfg.getFromGerritConfig(pluginName)
+          .getBoolean("useGitObjectCount", false);
     }
 
     @Override
     public AtomicLong load(Project.NameKey project) throws IOException {
-      try (Repository git = gitManager.openRepository(project)){
+      try (Repository git = gitManager.openRepository(project)) {
+        if (useGitObjectCount) {
+          return new AtomicLong(getDiskUsageByGitObjectCount(git));
+        }
         return new AtomicLong(getDiskUsage(git.getDirectory()));
       }
     }
@@ -171,6 +184,12 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook,
         }
       });
       return size.longValue();
+    }
+
+    private long getDiskUsageByGitObjectCount(Repository repo)
+        throws IOException {
+      RepoStatistics stats = new GC((FileRepository) repo).getStatistics();
+      return stats.sizeOfLooseObjects + stats.sizeOfPackedObjects;
     }
   }
 
