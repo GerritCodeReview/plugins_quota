@@ -133,6 +133,91 @@ the following section should be added into the `gerrit.config` file:
 packedObjectsSize*, where *looseObjectsSize* and *packedObjectsSize* are given
 by JGit RepoStatistics. By default, false.
 
+Rate Limits
+-----------
+
+The defined rate limits are stored in a `quota.config` file in the
+`refs/meta/config` branch of the `All-Projects` root project. Rate
+limits are defined per user group and rate limit type:
+
+Example:
+```
+[group "buildserver"]
+    uploadpack = 10 / min burst 500
+
+[group "Registered Users"]
+    uploadpack = 1 /min burst 180
+
+[group "Anonymous Users"]
+    uploadpack = 6/h burst 12
+```
+
+For logged in users rate limits are associated to their accountId. For
+anonymous users rate limits are associated to their remote host address.
+If multiple anonymous users are accessing Gerrit via the same host (e.g.
+a proxy) they share a common rate limit.
+
+If a user is a member of multiple groups mentioned in `quota.config`
+the limit applies that is defined first in the `quota.config` file.
+This resolves ambiguity in case the user is a member of multiple groups
+used in the configuration.
+
+Use group "Anonymous Users" to define the rate limit for anonymous users.
+Use group "Registered Users" to define the default rate limit for all logged
+in users.
+
+Format of the rate limit entries in `quota.config`:
+```
+[group "<groupName>"]
+    <rateLimitType> = <rateLimit> <rateUnit> burst <storedRequests>
+```
+
+<a id="rateLimitType>">
+`group.<groupName>.<rateLimitType>`
+: identifies which request type is limited by this configuration.
+The following rate limit types are supported:
+* `uploadpack`: rate limit for uploadpack (fetch) requests
+The group can be defined by its name or UUID.
+
+<a id="uploadpack">
+`group.<groupName>.uploadpack`
+: rate limit for uploadpack (fetch) requests for the given group. The
+group can be defined by its name or UUID.
+
+<a id="rateLimit">
+: The rate limit (first parameter) defines the maximum allowed request rate.
+
+<a id="rateUnit">
+: Rate limits can be defined using the following rate units: 
+`/s`, `/sec`, `/second`: requests per second
+`/m`, `/min`, `/minute`: requests per minute
+`/h`, `/hr`, `/hour`: requests per hour
+`/d`, `/day`: requests per day
+
+The default unit used if no unit is configured is `/hour`.
+
+<a id="burst">
+The `burst` parameter allows to define how many unused requests can be
+stored for later use during idle times. This allows clients to send
+bursts of requests exceeding their rate limit until all their stored
+requests are consumed.
+
+If a rate limit configuration value is invalid a default rate limit of 1
+request per minute with 30 stored requests is assumed.
+
+Example:
+
+Configure a rate limit of maximum 30 fetch request per hour for
+the group of registered users. Up to 60 unused requests can be stored
+during idle times which may be consumed at a later time to send bursts
+of requests above the maximum request rate.
+
+```
+[group "Registered Users"]
+	uploadpack = 30/hour burst 60
+```
+
+
 Publication Schedule
 --------------------
 

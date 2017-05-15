@@ -15,24 +15,36 @@
 package com.googlesource.gerrit.plugins.quota;
 
 import static com.google.gerrit.server.config.ConfigResource.CONFIG_KIND;
+import static com.google.gerrit.server.group.SystemGroupBackend.ANONYMOUS_USERS;
 import static com.google.gerrit.server.project.ProjectResource.PROJECT_KIND;
 import static com.googlesource.gerrit.plugins.quota.QuotaResource.QUOTA_KIND;
 
+import com.google.common.cache.CacheLoader;
+import com.google.common.util.concurrent.RateLimiter;
 import com.google.gerrit.extensions.events.GarbageCollectorListener;
 import com.google.gerrit.extensions.events.LifecycleListener;
 import com.google.gerrit.extensions.events.ProjectDeletedListener;
 import com.google.gerrit.extensions.registration.DynamicMap;
 import com.google.gerrit.extensions.registration.DynamicSet;
 import com.google.gerrit.extensions.restapi.RestApiModule;
+import com.google.gerrit.reviewdb.client.Account;
+import com.google.gerrit.server.IdentifiedUser;
+import com.google.gerrit.server.IdentifiedUser.GenericFactory;
+import com.google.gerrit.server.cache.CacheModule;
 import com.google.gerrit.server.git.ReceivePackInitializer;
+import com.google.gerrit.server.git.validators.UploadValidationListener;
+import com.google.gerrit.server.group.SystemGroupBackend;
 import com.google.gerrit.server.validators.ProjectCreationValidationListener;
-import com.google.inject.AbstractModule;
+import com.google.inject.Inject;
 import com.google.inject.Scopes;
 import com.google.inject.internal.UniqueAnnotations;
-
+import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.RateLimit;
+import java.util.Optional;
 import org.eclipse.jgit.transport.PostReceiveHook;
 
-class Module extends AbstractModule {
+class Module extends CacheModule {
+  static final String CACHE_NAME_ACCOUNTID = "rate_limits_by_account";
+  static final String CACHE_NAME_REMOTEHOST = "rate_limits_by_ip";
 
   @Override
   protected void configure() {
@@ -62,5 +74,72 @@ class Module extends AbstractModule {
     bind(LifecycleListener.class)
       .annotatedWith(UniqueAnnotations.create())
       .to(PublisherScheduler.class);
+
+    DynamicSet.bind(binder(), UploadValidationListener.class)
+        .to(RateLimitUploadListener.class);
+    cache(CACHE_NAME_ACCOUNTID, Account.Id.class, Holder.class)
+        .loader(LoaderAccountId.class);
+    cache(CACHE_NAME_REMOTEHOST, String.class, Holder.class)
+        .loader(LoaderRemoteHost.class);
+  }
+
+  static class Holder {
+    public static final Holder EMPTY = new Holder(null);
+    private RateLimiter l;
+
+    public Holder(RateLimiter l) {
+      this.l = l;
+    }
+
+    public RateLimiter get() {
+      return l;
+    }
+  }
+
+  private static class LoaderAccountId extends CacheLoader<Account.Id, Holder> {
+    private GenericFactory userFactory;
+    private AccountLimitsFinder finder;
+
+    @Inject
+    LoaderAccountId(IdentifiedUser.GenericFactory userFactory,
+        AccountLimitsFinder finder) {
+      this.userFactory = userFactory;
+      this.finder = finder;
+    }
+
+    @Override
+    public Holder load(Account.Id key) throws Exception {
+      IdentifiedUser user = userFactory.create(key);
+      Optional<RateLimit> limit =
+          finder.firstMatching(AccountLimitsConfig.Type.UPLOADPACK, user);
+      if (limit.isPresent()) {
+        return new Holder(RateLimitUploadListener.createSmoothBurstyRateLimiter(
+            limit.get().getRatePerSecond(), limit.get().getMaxBurstSeconds()));
+      }
+      return Holder.EMPTY;
+    }
+  }
+
+  private static class LoaderRemoteHost extends CacheLoader<String, Holder> {
+    private AccountLimitsFinder finder;
+    private String anonymous;
+
+    @Inject
+    LoaderRemoteHost(SystemGroupBackend systemGroupBackend,
+        AccountLimitsFinder finder) {
+      this.finder = finder;
+      this.anonymous = systemGroupBackend.get(ANONYMOUS_USERS).getName();
+    }
+
+    @Override
+    public Holder load(String key) throws Exception {
+      Optional<RateLimit> limit =
+          finder.getRateLimit(AccountLimitsConfig.Type.UPLOADPACK, anonymous);
+      if (limit.isPresent()) {
+        return new Holder(RateLimitUploadListener.createSmoothBurstyRateLimiter(
+            limit.get().getRatePerSecond(), limit.get().getMaxBurstSeconds()));
+      }
+      return Holder.EMPTY;
+    }
   }
 }
