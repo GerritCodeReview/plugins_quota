@@ -15,6 +15,7 @@ package com.googlesource.gerrit.plugins.quota;
 
 import static com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.KEY;
 
+import com.google.common.base.Optional;
 import com.google.gerrit.common.data.GroupDescription;
 import com.google.gerrit.server.IdentifiedUser;
 import com.google.gerrit.server.account.GroupMembership;
@@ -30,7 +31,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Map;
-import java.util.Optional;
 
 public class AccountLimitsFinder {
   private static final Logger log =
@@ -64,11 +64,11 @@ public class AccountLimitsFinder {
           log.error("Ignoring limits for unknown group ''{}'' in quota.config",
               groupName);
         } else if (memberShip.contains(d.getGroupUUID())) {
-          return Optional.ofNullable(limits.get().get(groupName));
+          return Optional.fromNullable(limits.get().get(groupName));
         }
       }
     }
-    return Optional.empty();
+    return Optional.absent();
   }
 
   /**
@@ -78,9 +78,9 @@ public class AccountLimitsFinder {
    */
   public Optional<RateLimit> getRateLimit(Type type, String groupName) {
     if (getRatelimits(type).isPresent()) {
-      return Optional.ofNullable(getRatelimits(type).get().get(groupName));
+      return Optional.fromNullable(getRatelimits(type).get().get(groupName));
     }
-    return Optional.empty();
+    return Optional.absent();
   }
 
   /**

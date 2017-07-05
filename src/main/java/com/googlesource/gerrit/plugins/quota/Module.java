@@ -19,6 +19,7 @@ import static com.google.gerrit.server.group.SystemGroupBackend.ANONYMOUS_USERS;
 import static com.google.gerrit.server.project.ProjectResource.PROJECT_KIND;
 import static com.googlesource.gerrit.plugins.quota.QuotaResource.QUOTA_KIND;
 
+import com.google.common.base.Optional;
 import com.google.common.cache.CacheLoader;
 import com.google.common.util.concurrent.RateLimiter;
 import com.google.gerrit.extensions.events.GarbageCollectorListener;
@@ -39,7 +40,6 @@ import com.google.inject.Inject;
 import com.google.inject.Scopes;
 import com.google.inject.internal.UniqueAnnotations;
 import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.RateLimit;
-import java.util.Optional;
 import org.eclipse.jgit.transport.PostReceiveHook;
 
 class Module extends CacheModule {

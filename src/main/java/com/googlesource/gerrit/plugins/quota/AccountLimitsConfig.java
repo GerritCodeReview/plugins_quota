@@ -14,13 +14,13 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
+import com.google.common.base.Optional;
 import com.google.common.collect.ArrayTable;
 import com.google.common.collect.Table;
 import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
@@ -183,8 +183,8 @@ public class AccountLimitsConfig {
    */
   Optional<Map<String, RateLimit>> getRatelimits(Type type) {
     if (rateLimits != null) {
-      return Optional.ofNullable(rateLimits.row(type));
+      return Optional.fromNullable(rateLimits.row(type));
     }
-    return Optional.empty();
+    return Optional.absent();
   }
 }
