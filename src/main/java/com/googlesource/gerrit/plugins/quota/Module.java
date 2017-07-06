@@ -40,6 +40,8 @@ import com.google.inject.Inject;
 import com.google.inject.Scopes;
 import com.google.inject.internal.UniqueAnnotations;
 import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.RateLimit;
+
+import org.eclipse.jgit.lib.Config;
 import org.eclipse.jgit.transport.PostReceiveHook;
 
 class Module extends CacheModule {
@@ -48,6 +50,8 @@ class Module extends CacheModule {
 
   @Override
   protected void configure() {
+    bind(Config.class).annotatedWith(QuotaConfig.class)
+        .toProvider(ConfigProvider.class);
     DynamicSet.bind(binder(), ProjectCreationValidationListener.class)
         .to(MaxRepositoriesQuotaValidator.class);
     DynamicSet.bind(binder(), ReceivePackInitializer.class)
