@@ -20,8 +20,8 @@ import com.google.gerrit.common.data.GroupDescription;
 import com.google.gerrit.server.IdentifiedUser;
 import com.google.gerrit.server.account.GroupMembership;
 import com.google.gerrit.server.group.GroupsCollection;
-import com.google.gerrit.server.project.ProjectCache;
 import com.google.inject.Inject;
+import com.google.inject.Provider;
 import com.google.inject.Singleton;
 
 import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.RateLimit;
@@ -38,13 +38,13 @@ public class AccountLimitsFinder {
   private static final Logger log =
       LoggerFactory.getLogger(AccountLimitsFinder.class);
 
-  private final ProjectCache projectCache;
+  private final Provider<Config> configProvider;
   private final GroupsCollection groupsCollection;
 
   @Inject
-  AccountLimitsFinder(ProjectCache projectCache,
+  AccountLimitsFinder(@QuotaConfig Provider<Config> configProvider,
       GroupsCollection groupsCollection) {
-    this.projectCache = projectCache;
+    this.configProvider = configProvider;
     this.groupsCollection = groupsCollection;
   }
 
@@ -90,8 +90,7 @@ public class AccountLimitsFinder {
    * @return map of rate limits per group name
    */
   private Optional<Map<String, RateLimit>> getRatelimits(Type type) {
-    Config cfg = projectCache.getAllProjects().getConfig("quota.config").get();
-    AccountLimitsConfig limitsCfg = cfg.get(KEY);
+    AccountLimitsConfig limitsCfg = configProvider.get().get(KEY);
     return limitsCfg.getRatelimits(type);
   }
 }

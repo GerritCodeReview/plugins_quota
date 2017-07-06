@@ -15,8 +15,8 @@
 package com.googlesource.gerrit.plugins.quota;
 
 import com.google.gerrit.reviewdb.client.Project;
-import com.google.gerrit.server.project.ProjectCache;
 import com.google.inject.Inject;
+import com.google.inject.Provider;
 import com.google.inject.Singleton;
 
 import org.eclipse.jgit.lib.Config;
@@ -27,15 +27,15 @@ import java.util.regex.Pattern;
 
 @Singleton
 public class QuotaFinder {
-  private final ProjectCache projectCache;
+  private final Provider<Config> configProvider;
 
   @Inject
-  QuotaFinder(ProjectCache projectCache) {
-    this.projectCache = projectCache;
+  QuotaFinder(@QuotaConfig Provider<Config> configProvider) {
+    this.configProvider = configProvider;
   }
 
   public QuotaSection firstMatching(Project.NameKey project) {
-    Config cfg = projectCache.getAllProjects().getConfig("quota.config").get();
+    Config cfg = configProvider.get();
     Set<String> namespaces = cfg.getSubsections(QuotaSection.QUOTA);
     String p = project.get();
     for (String n : namespaces) {
