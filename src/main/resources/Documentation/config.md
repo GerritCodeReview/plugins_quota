@@ -217,6 +217,12 @@ of requests above the maximum request rate.
   [group "Registered Users"]
     uploadpack = 30/hour burst 60
 ```
+The rate limit exceeded message can be configured by setting parameter
+`uploadpackLimitExceededMsg` in the `plugin.quota` subsection of the
+`gerrit.config` file. `${rateLimit}` token is supported in the message and
+will be replaced by effective rate limit per hour.
+
+Defaults to `Exceeded rate limit of ${rateLimit} fetch requests/hour`
 
 Publication Schedule
 --------------------

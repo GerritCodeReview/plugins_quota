@@ -20,9 +20,11 @@ import static com.googlesource.gerrit.plugins.quota.Module.CACHE_NAME_REMOTEHOST
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.cache.LoadingCache;
 import com.google.common.util.concurrent.RateLimiter;
+import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gerrit.reviewdb.client.Account;
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.CurrentUser;
+import com.google.gerrit.server.config.PluginConfigFactory;
 import com.google.gerrit.server.git.validators.UploadValidationListener;
 import com.google.gerrit.server.validators.ValidationException;
 import com.google.inject.Inject;
@@ -50,6 +52,7 @@ public class RateLimitUploadListener implements UploadValidationListener {
       LoggerFactory.getLogger(RateLimitUploadListener.class);
   private static final Method createStopwatchMethod;
   private static final Constructor<?> constructor;
+  private static final String RATE_LIMIT_TOKEN = "${rateLimit}";
 
   static {
     try {
@@ -118,14 +121,21 @@ public class RateLimitUploadListener implements UploadValidationListener {
   private final Provider<CurrentUser> user;
   private final LoadingCache<Account.Id, Holder> limitsPerAccount;
   private final LoadingCache<String, Holder> limitsPerRemoteHost;
+  private final String limitExceededMsg;
 
   @Inject
   RateLimitUploadListener(Provider<CurrentUser> user,
       @Named(CACHE_NAME_ACCOUNTID) LoadingCache<Account.Id, Holder> limitsPerAccount,
-      @Named(CACHE_NAME_REMOTEHOST) LoadingCache<String, Holder> limitsPerRemoteHost) {
+      @Named(CACHE_NAME_REMOTEHOST) LoadingCache<String, Holder> limitsPerRemoteHost,
+      PluginConfigFactory cfg,
+      @PluginName String pluginName) {
     this.user = user;
     this.limitsPerAccount = limitsPerAccount;
     this.limitsPerRemoteHost = limitsPerRemoteHost;
+    String msg = cfg.getFromGerritConfig(pluginName).getString(
+        "uploadpackLimitExceededMsg",
+        "Exceeded rate limit of " + RATE_LIMIT_TOKEN + " fetch requests/hour");
+    limitExceededMsg = msg.replace(RATE_LIMIT_TOKEN, "{0,number,##.##}");
   }
 
   @Override
@@ -155,7 +165,7 @@ public class RateLimitUploadListener implements UploadValidationListener {
     }
     if (limiter != null && !limiter.tryAcquire()) {
       throw new RateLimitException(
-          MessageFormat.format("Exceeded rate limit of {0,number,##.##} fetch requests/hour",
+          MessageFormat.format(limitExceededMsg,
               limiter.getRate() * SECONDS_PER_HOUR));
     }
   }
