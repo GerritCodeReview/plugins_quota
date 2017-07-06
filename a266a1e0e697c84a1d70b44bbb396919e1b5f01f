@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d6930e19_01e3ae15",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RateLimitUploadListener.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2017-07-06T23:03:17Z",
+      "side": 1,
+      "message": "This could be a constant.",
+      "range": {
+        "startLine": 137,
+        "startChar": 8,
+        "endLine": 137,
+        "endChar": 77
+      },
+      "revId": "a266a1e0e697c84a1d70b44bbb396919e1b5f01f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
