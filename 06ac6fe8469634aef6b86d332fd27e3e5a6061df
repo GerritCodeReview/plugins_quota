@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9bbe1639_0b9f50be",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-07-06T15:40:54Z",
+      "side": 1,
+      "message": "can be",
+      "range": {
+        "startLine": 9,
+        "startChar": 5,
+        "endLine": 9,
+        "endChar": 8
+      },
+      "revId": "06ac6fe8469634aef6b86d332fd27e3e5a6061df",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0bdb8066_99b64c4b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RateLimitUploadListener.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-07-06T15:40:54Z",
+      "side": 1,
+      "message": "I don\u0027t understand why do we need a regex pattern here? Basically we want to replace all occurrences of \"${rateLimit}\" with some other string. The following would do the same:\n\n  msg.replace(\"${rateLimit}\", \"...\");\n\nand wouldn\u0027t require any regex compilation.",
+      "revId": "06ac6fe8469634aef6b86d332fd27e3e5a6061df",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
