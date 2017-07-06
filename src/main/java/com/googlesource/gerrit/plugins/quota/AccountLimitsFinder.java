@@ -22,6 +22,7 @@ import com.google.gerrit.server.account.GroupMembership;
 import com.google.gerrit.server.group.GroupsCollection;
 import com.google.gerrit.server.project.ProjectCache;
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 
 import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.RateLimit;
 import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type;
@@ -32,6 +33,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
+@Singleton
 public class AccountLimitsFinder {
   private static final Logger log =
       LoggerFactory.getLogger(AccountLimitsFinder.class);
