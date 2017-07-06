@@ -51,7 +51,7 @@ class Module extends CacheModule {
   @Override
   protected void configure() {
     bind(Config.class).annotatedWith(QuotaConfig.class)
-        .toProvider(ConfigProvider.class);
+        .toProvider(ConfigProvider.class).asEagerSingleton();
     DynamicSet.bind(binder(), ProjectCreationValidationListener.class)
         .to(MaxRepositoriesQuotaValidator.class);
     DynamicSet.bind(binder(), ReceivePackInitializer.class)

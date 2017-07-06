@@ -14,26 +14,58 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
+import com.google.gerrit.extensions.annotations.PluginName;
+import com.google.gerrit.server.config.PluginConfigFactory;
 import com.google.gerrit.server.project.ProjectCache;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
+import com.google.inject.ProvisionException;
 import com.google.inject.Singleton;
 
 import org.eclipse.jgit.lib.Config;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Singleton
 public class ConfigProvider implements Provider<Config> {
+  private static final Logger log =
+      LoggerFactory.getLogger(ConfigProvider.class);
   private static final String QUOTA_CONFIG_FILE = "quota.config";
 
   private final ProjectCache projectCache;
+  private final PluginConfigFactory pluginConfigFactory;
+  private final String pluginName;
+  private final boolean configInReviewSite;
 
   @Inject
-  public ConfigProvider(ProjectCache projectCache) {
+  public ConfigProvider(ProjectCache projectCache,
+      PluginConfigFactory pluginConfigFactory, @PluginName String pluginName) {
+    log.info("in here " + toString());
     this.projectCache = projectCache;
+    this.pluginConfigFactory = pluginConfigFactory;
+    this.pluginName = pluginName;
+    configInReviewSite = !getFromReviewSite().toText().isEmpty();
+    log.info("configContent: " + getFromReviewSite().toText());
+    log.info("inReviewSite: " + configInReviewSite);
+    if (configInReviewSite && !getFromAllProjects().toText().isEmpty()) {
+      throw new ProvisionException(QUOTA_CONFIG_FILE
+          + " must be configure either in All-projects or in review_site/etc, no both");
+    }
+  }
+
+  private Config getFromAllProjects() {
+    return projectCache.getAllProjects().getConfig(QUOTA_CONFIG_FILE).get();
+  }
+
+  private Config getFromReviewSite() {
+    return pluginConfigFactory.getGlobalPluginConfig(pluginName);
   }
 
   @Override
   public Config get() {
-    return projectCache.getAllProjects().getConfig(QUOTA_CONFIG_FILE).get();
+    if (configInReviewSite) {
+      return getFromReviewSite();
+    }
+    return getFromAllProjects();
   }
 }
