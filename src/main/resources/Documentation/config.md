@@ -4,11 +4,18 @@ Configuration
 Quota
 -----
 
-The defined quotas are stored in a `quota.config` file in the
-`refs/meta/config` branch of the `All-Projects` root project.
-Administrators can add and edit quotas by fetching this branch, editing
-the `quota.config` file locally and pushing back the changes. The
-`quota.config` file is a Git config file:
+The defined quotas are stored in a `quota.config` file that must be either in
+the `refs/meta/config` branch of the `All-Projects` root project or in
+`review_site/etc` folder.
+
+If stored in `refs/meta/config` branch of the `All-Projects` root project,
+administrators can add and edit quotas by fetching this branch, editing
+the `quota.config` file locally and pushing back the changes.
+
+If store in `review_site/etc` folder, administrators can add and edit quotas
+by editing the file and reloading the plugin.
+
+The `quota.config` file is a Git config file:
 
 ```
   [quota "sandbox/*"]
@@ -136,9 +143,10 @@ by JGit RepoStatistics. By default, false.
 Rate Limits
 -----------
 
-The defined rate limits are stored in a `quota.config` file in the
-`refs/meta/config` branch of the `All-Projects` root project. Rate
-limits are defined per user group and rate limit type:
+The defined rate limits are stored in a `quota.config` file that must be
+either in the `refs/meta/config` branch of the `All-Projects` root project
+or in `review_site/etc` folder. Rate limits are defined per user group and
+rate limit type:
 
 Example:
 
