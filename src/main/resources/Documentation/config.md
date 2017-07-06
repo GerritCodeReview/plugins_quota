@@ -141,6 +141,7 @@ The defined rate limits are stored in a `quota.config` file in the
 limits are defined per user group and rate limit type:
 
 Example:
+
 ```
 [group "buildserver"]
     uploadpack = 10 / min burst 500
