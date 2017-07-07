@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a0cf816e_2a44e8fc",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ConfigProvider.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-07-07T15:52:50Z",
+      "side": 1,
+      "message": "This doesn\u0027t distinguish between an existing but empty etc/quota.config\nand non existing etc/quota.config.\n\nI see that this issue is partially caused by the\nPluginConfigFactory.getGlobalPluginConfig which also doesn\u0027t make the above distinction.\n\nHowever, since we clearly want to fail plugin loading when both files exist I think\nthat this check should be more strict and check for the existence of the etc/quota.config file.",
+      "revId": "69810ebe2c6981cdbeb061c0969e1175bd25507b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3a45110_207bd6b9",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ConfigProvider.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-07-07T15:52:50Z",
+      "side": 1,
+      "message": "Now that pluginName is injected, this constant can be eliminated or at least defined as:\n\n  pluginName + \".config\"",
+      "range": {
+        "startLine": 51,
+        "startChar": 51,
+        "endLine": 51,
+        "endChar": 68
+      },
+      "revId": "69810ebe2c6981cdbeb061c0969e1175bd25507b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4033221c_15b740db",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-07-07T15:52:50Z",
+      "side": 1,
+      "message": "Mention that the plugin will fail to load if the file is present at both locations.",
+      "revId": "69810ebe2c6981cdbeb061c0969e1175bd25507b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e2724f3_58dc6c44",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-07-07T15:52:50Z",
+      "side": 1,
+      "message": "stored",
+      "range": {
+        "startLine": 15,
+        "startChar": 3,
+        "endLine": 15,
+        "endChar": 8
+      },
+      "revId": "69810ebe2c6981cdbeb061c0969e1175bd25507b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
