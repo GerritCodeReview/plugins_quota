@@ -22,6 +22,23 @@
       "revId": "a266a1e0e697c84a1d70b44bbb396919e1b5f01f",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4302df36_4bdfcadd",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2017-07-07T12:10:30Z",
+      "side": 1,
+      "message": "you plan to move that from gerrit.config to quota.config in a later change, right ?",
+      "revId": "a266a1e0e697c84a1d70b44bbb396919e1b5f01f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
