@@ -11,3 +11,14 @@ The @PLUGIN@ plugin supports the following quotas:
 
 The measured repository sizes can be published periodically to registered
 UsageDataPublishedListeners.
+
+If the `enableDiskQuota` configuration option in `gerrit.config` is set to
+false, then repository sizes are no longer tracked or enforced.
+By default, `enableDiskQuota` is set to true.
+
+The @PLUGIN@ plugin supports the following  rate limits:
+
+* `uploadpack` requests which are executed when a client runs a fetch command.
+
+Rate limits define the maximum request rate for users in a given group
+for a given request type.
