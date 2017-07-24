@@ -4,6 +4,10 @@
 This page describes the REST endpoints that are added by the @PLUGIN@
 plugin.
 
+It is important to note that the REST endpoints added by the @PLUGIN@
+plugin are only available if the enableDiskQuota option is not set to
+false in the global gerrit configuration.
+
 Please also take note of the general information on the
 [REST API](../../../Documentation/rest-api.html).
 

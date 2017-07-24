@@ -21,6 +21,7 @@ import static com.googlesource.gerrit.plugins.quota.QuotaResource.QUOTA_KIND;
 
 import com.google.common.cache.CacheLoader;
 import com.google.common.util.concurrent.RateLimiter;
+import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gerrit.extensions.events.GarbageCollectorListener;
 import com.google.gerrit.extensions.events.LifecycleListener;
 import com.google.gerrit.extensions.events.ProjectDeletedListener;
@@ -41,33 +42,44 @@ import com.google.inject.internal.UniqueAnnotations;
 import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.RateLimit;
 import java.util.Optional;
 import org.eclipse.jgit.transport.PostReceiveHook;
+import com.google.gerrit.server.config.PluginConfigFactory;
+
 
 class Module extends CacheModule {
   static final String CACHE_NAME_ACCOUNTID = "rate_limits_by_account";
   static final String CACHE_NAME_REMOTEHOST = "rate_limits_by_ip";
+  private final boolean enableDiskQuotaModule;
+
+  @Inject
+  Module(PluginConfigFactory cfg, @PluginName String pluginName) {
+    this.enableDiskQuotaModule = cfg.getFromGerritConfig(pluginName)
+        .getBoolean("enableDiskQuota", true);
+  }
 
   @Override
   protected void configure() {
     DynamicSet.bind(binder(), ProjectCreationValidationListener.class)
         .to(MaxRepositoriesQuotaValidator.class);
-    DynamicSet.bind(binder(), ReceivePackInitializer.class)
-        .to(MaxRepositorySizeQuota.class);
-    DynamicSet.bind(binder(), PostReceiveHook.class)
-        .to(MaxRepositorySizeQuota.class);
-    DynamicSet.bind(binder(), ProjectDeletedListener.class).to(
-        DeletionListener.class);
-    DynamicSet.bind(binder(), GarbageCollectorListener.class).to(
-        GCListener.class);
+    if (enableDiskQuotaModule) {
+      DynamicSet.bind(binder(), ReceivePackInitializer.class)
+          .to(MaxRepositorySizeQuota.class);
+      DynamicSet.bind(binder(), PostReceiveHook.class)
+          .to(MaxRepositorySizeQuota.class);
+      install(MaxRepositorySizeQuota.module());
+      install(new RestApiModule() {
+        @Override
+        protected void configure() {
+          DynamicMap.mapOf(binder(), QUOTA_KIND);
+          get(PROJECT_KIND, "quota").to(GetQuota.class);
+          child(CONFIG_KIND, "quota").to(GetQuotas.class);
+        }
+      });
+      DynamicSet.bind(binder(), ProjectDeletedListener.class)
+          .to(DeletionListener.class);
+      DynamicSet.bind(binder(), GarbageCollectorListener.class)
+          .to(GCListener.class);
+    }
     DynamicSet.setOf(binder(), UsageDataEventCreator.class);
-    install(MaxRepositorySizeQuota.module());
-    install(new RestApiModule() {
-      @Override
-      protected void configure() {
-        DynamicMap.mapOf(binder(), QUOTA_KIND);
-        get(PROJECT_KIND, "quota").to(GetQuota.class);
-        child(CONFIG_KIND, "quota").to(GetQuotas.class);
-      }
-    });
     bind(Publisher.class).in(Scopes.SINGLETON);
     bind(PublisherScheduler.class).in(Scopes.SINGLETON);
     bind(ProjectNameResolver.class).in(Scopes.SINGLETON);
