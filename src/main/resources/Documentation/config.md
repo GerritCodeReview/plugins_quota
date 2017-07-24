@@ -3,6 +3,9 @@ Configuration
 
 Quota
 -----
+Quota limitations are only enabled if `enableDiskQuota` is not
+set to false in the global `gerrit.config`. By default,
+`enableDiskQuota` is set to true.
 
 The defined quotas are stored in a `quota.config` file in the
 `refs/meta/config` branch of the `All-Projects` root project.

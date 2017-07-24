@@ -75,21 +75,32 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook,
   private final LoadingCache<Project.NameKey, AtomicLong> cache;
   private final ProjectCache projectCache;
   private final ProjectNameResolver projectNameResolver;
+  private final boolean enableDiskQuota;
 
   @Inject
   MaxRepositorySizeQuota(QuotaFinder quotaFinder,
       @Named(REPO_SIZE_CACHE) LoadingCache<Project.NameKey, AtomicLong> cache,
-      ProjectCache projectCache, ProjectNameResolver projectNameResolver) {
+      ProjectCache projectCache, ProjectNameResolver projectNameResolver,
+      PluginConfigFactory cfg, @PluginName String pluginName) {
     this.quotaFinder = quotaFinder;
     this.cache = cache;
     this.projectCache = projectCache;
     this.projectNameResolver = projectNameResolver;
+    this.enableDiskQuota = cfg.getFromGerritConfig(pluginName)
+        .getBoolean("enableDiskQuota", true);
   }
 
   @Override
   public void init(Project.NameKey project, ReceivePack rp) {
     QuotaSection quotaSection = quotaFinder.firstMatching(project);
+    Long maxPackSize;
     if (quotaSection == null) {
+      return;
+    }
+
+    if (!enableDiskQuota) {
+      maxPackSize = Long.MAX_VALUE;
+      rp.setMaxPackSizeLimit(maxPackSize);
       return;
     }
 
@@ -116,7 +127,7 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook,
         maxPackSize2 = Math.max(0, maxTotalSize - totalSize);
       }
 
-      long maxPackSize = Ordering.<Long> natural().nullsLast().min(
+      maxPackSize = Ordering.<Long> natural().nullsLast().min(
           maxPackSize1, maxPackSize2);
       rp.setMaxPackSizeLimit(maxPackSize);
     } catch (ExecutionException e) {
@@ -128,6 +139,9 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook,
   @Override
   public void onPostReceive(ReceivePack rp, Collection<ReceiveCommand> commands) {
     Project.NameKey project = projectNameResolver.projectName(rp.getRepository());
+    if (!enableDiskQuota) {
+      return;
+    }
     if (needPack(commands)) {
       try {
         cache.get(project).getAndAdd(rp.getPackSize());
@@ -151,6 +165,7 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook,
 
     private final GitRepositoryManager gitManager;
     private final boolean useGitObjectCount;
+    private final boolean enableDiskQuota;
 
     @Inject
     Loader(GitRepositoryManager gitManager,
@@ -159,10 +174,15 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook,
       this.gitManager = gitManager;
       this.useGitObjectCount = cfg.getFromGerritConfig(pluginName)
           .getBoolean("useGitObjectCount", false);
+      this.enableDiskQuota = cfg.getFromGerritConfig(pluginName)
+          .getBoolean("enableDiskQuota", true);
     }
 
     @Override
     public AtomicLong load(Project.NameKey project) throws IOException {
+      if(!enableDiskQuota) {
+        return new AtomicLong(-1);
+      }
       try (Repository git = gitManager.openRepository(project)) {
         if (useGitObjectCount) {
           return new AtomicLong(getDiskUsageByGitObjectCount(git));
@@ -196,7 +216,10 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook,
   @Override
   public long get(Project.NameKey p) {
     try {
-      return cache.get(p).get();
+      if (enableDiskQuota) {
+        return cache.get(p).get();
+      }
+      return -1;
     } catch (ExecutionException e) {
       log.warn("Error creating RepoSizeEvent", e);
       return 0;
@@ -205,13 +228,20 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook,
 
   @Override
   public void evict(Project.NameKey p) {
-    cache.invalidate(p);
+    if (enableDiskQuota) {
+      cache.invalidate(p);
+    }
   }
 
   @Override
   public void set(Project.NameKey p, long size) {
     try {
-      cache.get(p).set(size);
+      if (enableDiskQuota) {
+        cache.get(p).set(size);
+      }
+      else {
+        return;
+      }
     } catch (ExecutionException e) {
       log.warn("Error setting the size of project " + p.get(), e);
     }

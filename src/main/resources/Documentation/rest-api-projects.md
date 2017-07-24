@@ -4,6 +4,10 @@
 This page describes the REST endpoints that are added by the @PLUGIN@
 plugin.
 
+It is important to note that if enableDiskQuota is set to false in
+the global gerrit configuraton, all repo sizes and quota settings
+are no longer enforced.
+
 Please also take note of the general information on the
 [REST API](../../../Documentation/rest-api.html).
 
@@ -39,6 +43,25 @@ that describes the projects quota.
       "name": "customerX/*",
       "total_size": 1874,
       "max_total_size": 10485760
+    }
+  }
+```
+
+In the case that enableDiskQuota is set to false:
+
+```
+  HTTP/1.1 200 OK
+  Content-Disposition: attachment
+  Content-Type: application/json;charset=UTF-8
+
+  )]}'
+{
+    "repo_size": UNKNOWN,
+    "max_repo_size": UNLIMITED,
+    "namespace": {
+      "name": "customerX/*",
+      "total_size": UNLIMITED,
+      "max_total_size": UNLIMITED
     }
   }
 ```
@@ -81,6 +104,29 @@ by project name.
     }
   }
 ```
+In the case that enableDiskQuota is set to false:
+
+```
+  HTTP/1.1 200 OK
+  Content-Disposition: attachment
+  Content-Type: application/json;charset=UTF-8
+
+  )]}'
+  {
+    "external/bison": {
+      "repo_size": UNKNOWN,
+      "max_repo_size": UNLIMITED,
+      "namespace": {
+        "name": "external/*",
+        "total_size": UNLIMITED,
+        "max_total_size": UNLIMITED
+      }
+    },
+    "internal/gcc": {
+      "repo_size": UNKNOWN
+    }
+  }
+```
 
 #### Prefix(p) Option
 
@@ -113,6 +159,26 @@ by project name.
         "name": "external/*",
         "total_size": 1874,
         "max_total_size": 10485760
+      }
+    }
+  }
+```
+In the case that enableDiskQuota is set to false:
+
+```
+  HTTP/1.1 200 OK
+  Content-Disposition: attachment
+  Content-Type: application/json;charset=UTF-8
+
+  )]}'
+  {
+    "external/bison": {
+      "repo_size": UNKNOWN,
+      "max_repo_size": UNLIMITED,
+      "namespace": {
+        "name": "external/*",
+        "total_size": UNLIMITED,
+        "max_total_size": UNLIMITED
       }
     }
   }
