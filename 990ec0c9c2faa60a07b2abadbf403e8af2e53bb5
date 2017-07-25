@@ -39,6 +39,46 @@
       "revId": "990ec0c9c2faa60a07b2abadbf403e8af2e53bb5",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "298075a5_7ecc12bb",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-07-25T15:11:20Z",
+      "side": 1,
+      "message": "enableDiskQuota",
+      "range": {
+        "startLine": 51,
+        "startChar": 24,
+        "endLine": 51,
+        "endChar": 45
+      },
+      "revId": "990ec0c9c2faa60a07b2abadbf403e8af2e53bb5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db9f7a76_e88fb897",
+        "filename": "src/main/resources/Documentation/rest-api-projects.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-07-25T15:11:20Z",
+      "side": 1,
+      "message": "This means that when a caller received 404 NOT FOUND, he is not sure if this is\nbecause enableDiskQuota is true or the quota plugin is not running?\n\nWhat about a different approach where the REST API are still available but have\nspecial value for the enableDiskQuota\u003dfalse case:\n\n  GET /projects/customerX%2Fcalculator/@PLUGIN@~quota/ HTTP/1.0\n\n  {\n    \"repo_size\": 386,\n    \"max_repo_size\": UNLIMITED,\n    \"namespace\": {\n      \"name\": \"customerX/*\",\n      \"total_size\": UNLIMITED,\n      \"max_total_size\": UNLIMITED\n    }\n  }",
+      "revId": "990ec0c9c2faa60a07b2abadbf403e8af2e53bb5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
