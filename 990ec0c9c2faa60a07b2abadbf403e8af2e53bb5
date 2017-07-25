@@ -79,6 +79,24 @@
       "revId": "990ec0c9c2faa60a07b2abadbf403e8af2e53bb5",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3386a519_61fcb8c3",
+        "filename": "src/main/resources/Documentation/rest-api-projects.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1012987
+      },
+      "writtenOn": "2017-07-25T17:41:04Z",
+      "side": 1,
+      "message": "I think the repo_size cache is also disabled when enableDiskQuota\u003dfalse so we would need to return something like this:\n\n{\n    \"repo_size\": UNKNOWN,\n    \"max_repo_size\": UNLIMITED,\n    \"namespace\": {\n      \"name\": \"customerX/*\",\n      \"total_size\": UNLIMITED,\n      \"max_total_size\": UNLIMITED\n    }\n  }",
+      "parentUuid": "db9f7a76_e88fb897",
+      "revId": "990ec0c9c2faa60a07b2abadbf403e8af2e53bb5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
