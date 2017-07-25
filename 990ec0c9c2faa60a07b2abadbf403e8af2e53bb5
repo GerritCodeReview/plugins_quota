@@ -22,6 +22,23 @@
       "revId": "990ec0c9c2faa60a07b2abadbf403e8af2e53bb5",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d9a51f2d_cb073b4a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1012987
+      },
+      "writtenOn": "2017-07-25T14:21:02Z",
+      "side": 1,
+      "message": "Explain why this change is needed: we are not using disk quota so we do not want the plugin to keep track of the repo size...",
+      "revId": "990ec0c9c2faa60a07b2abadbf403e8af2e53bb5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
