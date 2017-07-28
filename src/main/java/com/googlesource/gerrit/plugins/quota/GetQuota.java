@@ -14,28 +14,23 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
-import static com.googlesource.gerrit.plugins.quota.MaxRepositorySizeQuota.REPO_SIZE_CACHE;
-
-import com.google.common.cache.LoadingCache;
 import com.google.gerrit.extensions.restapi.RestReadView;
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.project.ProjectCache;
 import com.google.gerrit.server.project.ProjectResource;
 import com.google.inject.Inject;
-import com.google.inject.name.Named;
 
-import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.ExecutionException;
 
 public class GetQuota implements RestReadView<ProjectResource> {
 
   private final ProjectCache projectCache;
   private final QuotaFinder quotaFinder;
-  private final LoadingCache<Project.NameKey, AtomicLong> repoSizeCache;
+  private final RepoSizeCache repoSizeCache;
 
   @Inject
   public GetQuota(ProjectCache projectCache, QuotaFinder quotaFinder,
-      @Named(REPO_SIZE_CACHE) LoadingCache<Project.NameKey, AtomicLong> repoSizeCache) {
+      RepoSizeCache repoSizeCache) {
     this.projectCache = projectCache;
     this.quotaFinder = quotaFinder;
     this.repoSizeCache = repoSizeCache;
@@ -48,7 +43,7 @@ public class GetQuota implements RestReadView<ProjectResource> {
 
   QuotaInfo getInfo(Project.NameKey n) throws ExecutionException {
     QuotaInfo qi = new QuotaInfo();
-    qi.repoSize = repoSizeCache.get(n).get();
+    qi.repoSize = repoSizeCache.get(n);
 
     QuotaSection qs = quotaFinder.firstMatching(n);
     if (qs == null) {
@@ -61,7 +56,7 @@ public class GetQuota implements RestReadView<ProjectResource> {
     long totalSize = 0;
     for (Project.NameKey p : projectCache.all()) {
       if (qs.matches(p)) {
-        totalSize += repoSizeCache.get(p).get();
+        totalSize += repoSizeCache.get(p);
       }
     }
     qi.namespace.totalSize = totalSize;
