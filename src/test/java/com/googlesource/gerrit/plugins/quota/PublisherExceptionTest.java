@@ -26,7 +26,6 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.spi.LoggingEvent;
 import org.easymock.Capture;
-import org.easymock.EasyMock;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -57,7 +56,7 @@ public class PublisherExceptionTest {
 
   @Before
   public void setupLogging() {
-    captor = new Capture();
+    captor = new Capture<>();
     appender = createMock(Appender.class);
     appender.doAppend(capture(captor));
     expectLastCall().anyTimes();
