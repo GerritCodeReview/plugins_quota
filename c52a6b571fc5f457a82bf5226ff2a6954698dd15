@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2d330efb_02a6742f",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/PublisherExceptionTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1012987
+      },
+      "writtenOn": "2017-07-31T14:58:32Z",
+      "side": 1,
+      "message": "unrelated change",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 42
+      },
+      "revId": "c52a6b571fc5f457a82bf5226ff2a6954698dd15",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
