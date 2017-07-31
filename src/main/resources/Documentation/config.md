@@ -124,7 +124,7 @@ the following section should be added into the `gerrit.config` file:
 
 ```
   [plugin "quota"]
-        useGitObjectCount = true
+    useGitObjectCount = true
 ```
 
 <a id="useGitObjectCount">
@@ -141,14 +141,15 @@ The defined rate limits are stored in a `quota.config` file in the
 limits are defined per user group and rate limit type:
 
 Example:
+
 ```
-[group "buildserver"]
+  [group "buildserver"]
     uploadpack = 10 / min burst 500
 
-[group "Registered Users"]
+  [group "Registered Users"]
     uploadpack = 1 /min burst 180
 
-[group "Anonymous Users"]
+  [group "Anonymous Users"]
     uploadpack = 6/h burst 12
 ```
 
@@ -168,7 +169,7 @@ in users.
 
 Format of the rate limit entries in `quota.config`:
 ```
-[group "<groupName>"]
+  [group "<groupName>"]
     <rateLimitType> = <rateLimit> <rateUnit> burst <storedRequests>
 ```
 
@@ -213,9 +214,15 @@ during idle times which may be consumed at a later time to send bursts
 of requests above the maximum request rate.
 
 ```
-[group "Registered Users"]
-	uploadpack = 30/hour burst 60
+  [group "Registered Users"]
+    uploadpack = 30/hour burst 60
 ```
+The rate limit exceeded message can be configured by setting parameter
+`uploadpackLimitExceededMsg` in the `plugin.quota` subsection of the
+`gerrit.config` file. `${rateLimit}` token is supported in the message and
+will be replaced by effective rate limit per hour.
+
+Defaults to `Exceeded rate limit of ${rateLimit} fetch requests/hour`
 
 Publication Schedule
 --------------------
