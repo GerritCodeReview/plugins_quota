@@ -22,6 +22,30 @@
       "revId": "c52a6b571fc5f457a82bf5226ff2a6954698dd15",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "773b96c6_6bfae828",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/PublisherExceptionTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1019328
+      },
+      "writtenOn": "2017-07-31T15:02:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d330efb_02a6742f",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 42
+      },
+      "revId": "c52a6b571fc5f457a82bf5226ff2a6954698dd15",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
