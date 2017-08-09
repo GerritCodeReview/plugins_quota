@@ -171,6 +171,9 @@ Format of the rate limit entries in `quota.config`:
 ```
   [group "<groupName>"]
     <rateLimitType> = <rateLimit> <rateUnit> burst <storedRequests>
+
+  [group "<anotherGroupName>"]
+    <rateLimitType> = <rateLimit> <rateUnit>
 ```
 
 <a id="rateLimitType>">
@@ -201,7 +204,8 @@ The default unit used if no unit is configured is `/hour`.
 The `burst` parameter allows to define how many unused requests can be
 stored for later use during idle times. This allows clients to send
 bursts of requests exceeding their rate limit until all their stored
-requests are consumed.
+requests are consumed. If the burst parameter is not defined, the default
+value of 30 stored requests is used.
 
 If a rate limit configuration value is invalid a default rate limit of 1
 request per minute with 30 stored requests is assumed.
