@@ -35,7 +35,7 @@ public class AccountLimitsConfig {
   private static final int DEFAULT_BURST_COUNT = 30;
   private static final int DEFAULT_INTERVAL_SECONDS = 60;
   private static final Pattern PATTERN =
-      Pattern.compile("^\\s*(\\d+)\\s*/\\s*(.*)\\s*burst\\s*(\\d+)$");
+      Pattern.compile("\\s*(\\d+)\\s*/\\s*(.*)\\s*(?:burst\\s*(\\d+))?");
   private static final Logger log =
       LoggerFactory.getLogger(AccountLimitsConfig.class);
   static final String GROUP_SECTION = "group";
