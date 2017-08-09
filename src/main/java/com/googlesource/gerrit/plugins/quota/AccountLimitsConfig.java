@@ -128,13 +128,11 @@ public class AccountLimitsConfig {
 
     TimeUnit inputUnit = TimeUnit.HOURS;
     double ratePerSecond = 1.0D / DEFAULT_INTERVAL_SECONDS;
-    if (unitName.isEmpty()) {
-      inputUnit = TimeUnit.SECONDS;
-    } else if (match(unitName, "s", "sec", "second")) {
+    if (match(unitName, "s", "sec", "second")) {
       inputUnit = TimeUnit.SECONDS;
     } else if (match(unitName, "m", "min", "minute")) {
       inputUnit = TimeUnit.MINUTES;
-    } else if (match(unitName, "h", "hr", "hour")) {
+    } else if (match(unitName, "h", "hr", "hour") || unitName.isEmpty()) {
       inputUnit = TimeUnit.HOURS;
     } else if (match(unitName, "d", "day")) {
       inputUnit = TimeUnit.DAYS;
