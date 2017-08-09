@@ -109,7 +109,7 @@ public class AccountLimitsConfig {
     if (!m.matches()) {
       log.warn(
           "Invalid ''{}'' ratelimit configuration ''{}'', use default ratelimit {}/hour",
-          type.toConfigValue(), value, 3600.0D / defaultIntervalSeconds);
+          name, value, 3600.0D / defaultIntervalSeconds);
       return defaultRateLimit(type, defaultIntervalSeconds, defaultBurstCount);
     }
 
@@ -122,7 +122,7 @@ public class AccountLimitsConfig {
     } catch (NumberFormatException e) {
       log.warn(
           "Invalid ''{}'' ratelimit store configuration ''{}'', use default burst count ''{}''",
-          type.toConfigValue(), storeCountString, burstCount);
+          name, storeCountString, burstCount);
     }
 
     TimeUnit inputUnit = TimeUnit.HOURS;
