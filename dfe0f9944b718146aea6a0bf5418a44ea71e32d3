@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c3b8decb_0f95eb29",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2017-09-02T14:08:02Z",
+      "side": 1,
+      "message": "this pattern would accept values like e.g.:\n\n 50 / hour foo bar 42\n\nbut ignore any invalid strings (here \"foo bar 42\") after the second capturing group so this would set the rate limit to 50/hour and leave burst undefined\n\nappending \"$\" to this pattern fixes this fuzziness: \n\n \"^\\\\s*(\\\\d+)\\\\s*/\\\\s*(\\\\w+)?\\\\s*(?:burst\\\\s*(\\\\d+))?$\"",
+      "revId": "dfe0f9944b718146aea6a0bf5418a44ea71e32d3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
