@@ -32,6 +32,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class AccountLimitsConfig {
+  private static final int DEFAULT_BURST_COUNT = 30;
+  private static final int DEFAULT_INTERVAL_SECONDS = 60;
+  private static final Pattern PATTERN =
+      Pattern.compile("^\\s*(\\d+)\\s*/\\s*(.*)\\s*burst\\s*(\\d+)$");
   private static final Logger log =
       LoggerFactory.getLogger(AccountLimitsConfig.class);
   static final String GROUP_SECTION = "group";
@@ -92,48 +96,44 @@ public class AccountLimitsConfig {
     for (String groupName : groups) {
       Type type = Type.UPLOADPACK;
       rateLimits.put(type, groupName,
-          parseRateLimit(c, groupName, type, 60, 30));
+          parseRateLimit(c, groupName, type));
     }
   }
 
-  RateLimit parseRateLimit(Config c, String groupName, Type type,
-      int defaultIntervalSeconds, int defaultBurstCount) {
+  RateLimit parseRateLimit(Config c, String groupName, Type type) {
     String name = type.toConfigValue();
     String value = c.getString(GROUP_SECTION, groupName, name).trim();
     if (value == null) {
-      return defaultRateLimit(type, defaultIntervalSeconds, defaultBurstCount);
+      return defaultRateLimit(type);
     }
 
-    Matcher m = Pattern.compile("^\\s*(\\d+)\\s*/\\s*(.*)\\s*burst\\s*(\\d+)$")
-        .matcher(value);
+    Matcher m = PATTERN.matcher(value);
     if (!m.matches()) {
       log.warn(
           "Invalid ''{}'' ratelimit configuration ''{}'', use default ratelimit {}/hour",
-          type.toConfigValue(), value, 3600.0D / defaultIntervalSeconds);
-      return defaultRateLimit(type, defaultIntervalSeconds, defaultBurstCount);
+          name, value, 3600.0D / DEFAULT_INTERVAL_SECONDS);
+      return defaultRateLimit(type);
     }
 
     String digits = m.group(1);
     String unitName = m.group(2).trim();
     String storeCountString = m.group(3).trim();
-    long burstCount = defaultBurstCount;
+    long burstCount = DEFAULT_BURST_COUNT;
     try {
       burstCount = Long.parseLong(storeCountString);
     } catch (NumberFormatException e) {
       log.warn(
           "Invalid ''{}'' ratelimit store configuration ''{}'', use default burst count ''{}''",
-          type.toConfigValue(), storeCountString, burstCount);
+          name, storeCountString, burstCount);
     }
 
     TimeUnit inputUnit = TimeUnit.HOURS;
-    double ratePerSecond = 1.0D / defaultIntervalSeconds;
-    if (unitName.isEmpty()) {
-      inputUnit = TimeUnit.SECONDS;
-    } else if (match(unitName, "s", "sec", "second")) {
+    double ratePerSecond = 1.0D / DEFAULT_INTERVAL_SECONDS;
+    if (match(unitName, "s", "sec", "second")) {
       inputUnit = TimeUnit.SECONDS;
     } else if (match(unitName, "m", "min", "minute")) {
       inputUnit = TimeUnit.MINUTES;
-    } else if (match(unitName, "h", "hr", "hour")) {
+    } else if (match(unitName, "h", "hr", "hour") || unitName.isEmpty()) {
       inputUnit = TimeUnit.HOURS;
     } else if (match(unitName, "d", "day")) {
       inputUnit = TimeUnit.DAYS;
@@ -171,10 +171,9 @@ public class AccountLimitsConfig {
     }
   }
 
-  private RateLimit defaultRateLimit(Type type, int defaultIntervalSeconds,
-      int defaultStoreCount) {
-    return new RateLimit(type, 1.0D / defaultIntervalSeconds,
-        defaultIntervalSeconds * defaultStoreCount);
+  private RateLimit defaultRateLimit(Type type) {
+    return new RateLimit(type, 1.0D / DEFAULT_INTERVAL_SECONDS,
+        DEFAULT_INTERVAL_SECONDS * DEFAULT_BURST_COUNT);
   }
 
   /**
