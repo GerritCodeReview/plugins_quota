@@ -54,10 +54,10 @@ class Module extends CacheModule {
         .to(MaxRepositorySizeQuota.class);
     DynamicSet.bind(binder(), PostReceiveHook.class)
         .to(MaxRepositorySizeQuota.class);
-    DynamicSet.bind(binder(), ProjectDeletedListener.class).to(
-        DeletionListener.class);
-    DynamicSet.bind(binder(), GarbageCollectorListener.class).to(
-        GCListener.class);
+    DynamicSet.bind(binder(), ProjectDeletedListener.class)
+        .to(DeletionListener.class);
+    DynamicSet.bind(binder(), GarbageCollectorListener.class)
+        .to(GCListener.class);
     DynamicSet.setOf(binder(), UsageDataEventCreator.class);
     install(MaxRepositorySizeQuota.module());
     install(new RestApiModule() {
@@ -71,9 +71,8 @@ class Module extends CacheModule {
     bind(Publisher.class).in(Scopes.SINGLETON);
     bind(PublisherScheduler.class).in(Scopes.SINGLETON);
     bind(ProjectNameResolver.class).in(Scopes.SINGLETON);
-    bind(LifecycleListener.class)
-      .annotatedWith(UniqueAnnotations.create())
-      .to(PublisherScheduler.class);
+    bind(LifecycleListener.class).annotatedWith(UniqueAnnotations.create())
+        .to(PublisherScheduler.class);
 
     DynamicSet.bind(binder(), UploadValidationListener.class)
         .to(RateLimitUploadListener.class);
