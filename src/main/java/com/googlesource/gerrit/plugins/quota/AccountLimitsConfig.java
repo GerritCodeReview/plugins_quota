@@ -99,10 +99,11 @@ public class AccountLimitsConfig {
   RateLimit parseRateLimit(Config c, String groupName, Type type,
       int defaultIntervalSeconds, int defaultBurstCount) {
     String name = type.toConfigValue();
-    String value = c.getString(GROUP_SECTION, groupName, name).trim();
+    String value = c.getString(GROUP_SECTION, groupName, name);
     if (value == null) {
       return defaultRateLimit(type, defaultIntervalSeconds, defaultBurstCount);
     }
+    value = value.trim();
 
     Matcher m = Pattern.compile("^\\s*(\\d+)\\s*/\\s*(.*)\\s*burst\\s*(\\d+)$")
         .matcher(value);
