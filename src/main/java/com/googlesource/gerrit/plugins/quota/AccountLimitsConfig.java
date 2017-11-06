@@ -31,6 +31,9 @@ import org.eclipse.jgit.lib.Config.SectionParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type.RESTAPI;
+import static com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type.UPLOADPACK;
+
 public class AccountLimitsConfig {
   private static final Logger log = LoggerFactory.getLogger(AccountLimitsConfig.class);
   static final String GROUP_SECTION = "group";
@@ -67,7 +70,8 @@ public class AccountLimitsConfig {
   }
 
   public static enum Type implements ConfigEnum {
-    UPLOADPACK;
+    UPLOADPACK,
+    RESTAPI;
 
     @Override
     public String toConfigValue() {
@@ -89,8 +93,8 @@ public class AccountLimitsConfig {
     }
     rateLimits = ArrayTable.create(Arrays.asList(Type.values()), groups);
     for (String groupName : groups) {
-      Type type = Type.UPLOADPACK;
-      rateLimits.put(type, groupName, parseRateLimit(c, groupName, type, 60, 30));
+      rateLimits.put(UPLOADPACK, groupName, parseRateLimit(c, groupName, UPLOADPACK, 60, 30));
+      rateLimits.put(RESTAPI, groupName, parseRateLimit(c, groupName, RESTAPI, 3, 90));
     }
   }
 
