@@ -15,20 +15,40 @@
 package com.googlesource.gerrit.plugins.quota;
 
 public class RateMsgHelper {
-  static final String UPLOADPACK_CONFIGURABLE_MSG_ANNOTATION = "uploadpackLimitExceededMsg";
+  public static final String UPLOADPACK_CONFIGURABLE_MSG_ANNOTATION = "uploadpackLimitExceededMsg";
   private static final String RATE_LIMIT_TOKEN = "${rateLimit}";
+  private static final String BURSTS_LIMIT_TOKEN = "${burstsLimit}";
   private static final String RATE_LIMIT_FORMAT_DOUBLE = "{0,number,##.##}";
+  private static final String RATE_LIMIT_FORMAT_INT = "{1,number,###}";
+  // compare AccountLimitsConfig's constructor for default rate limits
   private static final String UPLOADPACK_DEFAULT_TEMPLATE_MSG =
       "Exceeded rate limit of " + RATE_LIMIT_TOKEN + " fetch requests/hour";
+  private static final String UPLOADPACK_DEFAULT_TEMPLATE_MSG_WITH_BURSTS =
+      "Exceeded rate limit of "
+          + RATE_LIMIT_TOKEN
+          + " fetch requests/hour (or idle time used up in bursts of max "
+          + BURSTS_LIMIT_TOKEN
+          + " requests)";
 
   private String messageFormatMsg;
+  private String messageFormatMsgWithBursts;
 
   public RateMsgHelper(String templateMsg) {
     messageFormatMsg = templateMsg == null ? UPLOADPACK_DEFAULT_TEMPLATE_MSG : templateMsg;
     messageFormatMsg = messageFormatMsg.replace(RATE_LIMIT_TOKEN, RATE_LIMIT_FORMAT_DOUBLE);
+    messageFormatMsgWithBursts =
+        templateMsg == null ? UPLOADPACK_DEFAULT_TEMPLATE_MSG_WITH_BURSTS : templateMsg;
+    messageFormatMsgWithBursts =
+        messageFormatMsgWithBursts
+            .replace(RATE_LIMIT_TOKEN, RATE_LIMIT_FORMAT_DOUBLE)
+            .replace(BURSTS_LIMIT_TOKEN, RATE_LIMIT_FORMAT_INT);
   }
 
   public String getMessageFormatMsg() {
     return messageFormatMsg;
+  }
+
+  public String getMessageFormatMsgWithBursts() {
+    return messageFormatMsgWithBursts;
   }
 }
