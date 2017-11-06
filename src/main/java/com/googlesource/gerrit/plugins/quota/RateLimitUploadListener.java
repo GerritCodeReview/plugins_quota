@@ -14,17 +14,12 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
-import static com.googlesource.gerrit.plugins.quota.Module.CACHE_NAME_ACCOUNTID;
-import static com.googlesource.gerrit.plugins.quota.Module.CACHE_NAME_REMOTEHOST;
-
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.cache.LoadingCache;
 import com.google.common.util.concurrent.RateLimiter;
-import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gerrit.reviewdb.client.Account;
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.CurrentUser;
-import com.google.gerrit.server.config.PluginConfigFactory;
 import com.google.gerrit.server.git.validators.UploadValidationListener;
 import com.google.gerrit.server.validators.ValidationException;
 import com.google.inject.Inject;
@@ -48,9 +43,6 @@ public class RateLimitUploadListener implements UploadValidationListener {
   private static final Logger log = LoggerFactory.getLogger(RateLimitUploadListener.class);
   private static final Method createStopwatchMethod;
   private static final Constructor<?> constructor;
-  private static final String RATE_LIMIT_TOKEN = "${rateLimit}";
-  private static final String DEFAULT_RATE_LIMIT_EXCEEDED_MSG =
-      "Exceeded rate limit of " + RATE_LIMIT_TOKEN + " fetch requests/hour";
 
   static {
     try {
@@ -110,22 +102,19 @@ public class RateLimitUploadListener implements UploadValidationListener {
   private final Provider<CurrentUser> user;
   private final LoadingCache<Account.Id, Holder> limitsPerAccount;
   private final LoadingCache<String, Holder> limitsPerRemoteHost;
-  private final String limitExceededMsg;
+
+  private String limitExceededMsg;
 
   @Inject
   RateLimitUploadListener(
       Provider<CurrentUser> user,
-      @Named(CACHE_NAME_ACCOUNTID) LoadingCache<Account.Id, Holder> limitsPerAccount,
-      @Named(CACHE_NAME_REMOTEHOST) LoadingCache<String, Holder> limitsPerRemoteHost,
-      PluginConfigFactory cfg,
-      @PluginName String pluginName) {
+      @Named(Module.CACHE_NAME_ACCOUNTID) LoadingCache<Account.Id, Holder> limitsPerAccount,
+      @Named(Module.CACHE_NAME_REMOTEHOST) LoadingCache<String, Holder> limitsPerRemoteHost,
+      @Named(RateMsgHelper.UPLOADPACK_CONFIGURABLE_MSG_ANNOTATION) String limitExceededMsg) {
     this.user = user;
     this.limitsPerAccount = limitsPerAccount;
     this.limitsPerRemoteHost = limitsPerRemoteHost;
-    String msg =
-        cfg.getFromGerritConfig(pluginName)
-            .getString("uploadpackLimitExceededMsg", DEFAULT_RATE_LIMIT_EXCEEDED_MSG);
-    limitExceededMsg = msg.replace(RATE_LIMIT_TOKEN, "{0,number,##.##}");
+    this.limitExceededMsg = limitExceededMsg;
   }
 
   @Override
