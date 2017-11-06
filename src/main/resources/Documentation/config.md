@@ -138,7 +138,7 @@ Rate Limits
 
 The defined rate limits are stored in the `quota.config` file in the
 `refs/meta/config` branch of the `All-Projects` root project. Rate
-limits are defined per user group and rate limit type:
+limits are defined per user group and rate limit type.
 
 Example:
 
@@ -146,11 +146,15 @@ Example:
   [group "buildserver"]
     uploadpack = 10 / min burst 500
 
+  [group "app"]
+    restapi = 12 / min burst 60
+
   [group "Registered Users"]
     uploadpack = 1 /min burst 180
 
   [group "Anonymous Users"]
     uploadpack = 6/h burst 12
+    restapi = 30/m burst 200
 ```
 
 For logged in users rate limits are associated to their accountId. For
@@ -161,7 +165,7 @@ a proxy) they share a common rate limit.
 If a user is a member of multiple groups mentioned in `quota.config`
 the limit applies that is defined first in the `quota.config` file.
 This resolves ambiguity in case the user is a member of multiple groups
-used in the configuration.
+used in the configuration. Note, all users are members of "Anonymous Users".
 
 Use group "Anonymous Users" to define the rate limit for anonymous users.
 Use group "Registered Users" to define the default rate limit for all logged
@@ -181,7 +185,8 @@ The group can be defined by its name or UUID.
 : identifies which request type is limited by this configuration.
 The following rate limit types are supported:
 * `uploadpack`: rate limit for uploadpack (fetch) requests
-for the given group.
+for the given group
+* `restapi`: rate limit for REST API requests
 
 <a id="rateLimit" />
 `group.<groupName>.<rateLimit>`
@@ -201,13 +206,18 @@ The default unit used if no unit is configured is `/hour`.
 : The `burst` parameter allows to define how many unused requests can be
 stored for later use during idle times. This allows clients to send
 bursts of requests exceeding their rate limit until all their stored
-requests are consumed.
+requests are consumed. For `restapi`, `burst` requests can be served
+at the very beginning of a client interaction with the back-end server,
+as if idle time would already have been accumulated.
 
 If a rate limit configuration value is invalid or missing for a group,
 default values are assumed.
 
 For `uploadpack`, a default rate limit of 1
 request per minute with 30 stored requests is assumed.
+
+For `restapi`, the default rate limit is 20 requests per minute
+and at most 90 stored requests.
 
 Example:
 
@@ -227,6 +237,15 @@ For `uploadpack`, by setting parameter
 `gerrit.config` file. `${rateLimit}` token is supported in the message and
 will be replaced by effective rate limit per hour.
 Defaults to `Exceeded rate limit of ${rateLimit} fetch requests/hour` .
+
+For `restapi`, configure the message by setting the parameter
+`restapiLimitExceededMsg` in the `plugin.quota` subsection of the
+`gerrit.config` file. `${rateLimit}` and `${burstsLimit}` tokens
+are supported in the message and will be replaced by the effective rate
+limit per hour and the effective number of burst permits, correspondingly.
+The default message reads:
+`Exceeded rate limit of ${rateLimit} REST API requests/hour (or idle `
+`time used up in bursts of max ${burstsLimit} requests)` .
 
 Publication Schedule
 --------------------

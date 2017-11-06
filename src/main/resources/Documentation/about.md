@@ -17,6 +17,7 @@ UsageDataPublishedListeners.
 The @PLUGIN@ plugin supports the following rate limits:
 
 * `uploadpack` requests which are executed when a client runs a fetch command.
+* Maximum number of REST API calls
 
 Rate limits define the maximum request rate for users in a given group
 for a given request type.
