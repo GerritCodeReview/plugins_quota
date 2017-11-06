@@ -22,6 +22,7 @@ import static com.googlesource.gerrit.plugins.quota.QuotaResource.QUOTA_KIND;
 import com.google.common.base.Optional;
 import com.google.common.cache.CacheLoader;
 import com.google.common.util.concurrent.RateLimiter;
+import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gerrit.extensions.events.GarbageCollectorListener;
 import com.google.gerrit.extensions.events.LifecycleListener;
 import com.google.gerrit.extensions.events.ProjectDeletedListener;
@@ -32,6 +33,8 @@ import com.google.gerrit.reviewdb.client.Account;
 import com.google.gerrit.server.IdentifiedUser;
 import com.google.gerrit.server.IdentifiedUser.GenericFactory;
 import com.google.gerrit.server.cache.CacheModule;
+import com.google.gerrit.server.config.PluginConfig;
+import com.google.gerrit.server.config.PluginConfigFactory;
 import com.google.gerrit.server.git.ReceivePackInitializer;
 import com.google.gerrit.server.git.validators.UploadValidationListener;
 import com.google.gerrit.server.group.SystemGroupBackend;
@@ -39,12 +42,23 @@ import com.google.gerrit.server.validators.ProjectCreationValidationListener;
 import com.google.inject.Inject;
 import com.google.inject.Scopes;
 import com.google.inject.internal.UniqueAnnotations;
+import com.google.inject.name.Names;
 import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.RateLimit;
 import org.eclipse.jgit.transport.PostReceiveHook;
 
 class Module extends CacheModule {
   static final String CACHE_NAME_ACCOUNTID = "rate_limits_by_account";
   static final String CACHE_NAME_REMOTEHOST = "rate_limits_by_ip";
+
+  private final String uploadpackLimitExceededMsg;
+
+  @Inject
+  Module(PluginConfigFactory plugincf, @PluginName String pluginName) {
+    PluginConfig pc = plugincf.getFromGerritConfig(pluginName);
+    uploadpackLimitExceededMsg =
+        new RateMsgHelper(pc.getString(RateMsgHelper.UPLOADPACK_CONFIGURABLE_MSG_ANNOTATION))
+            .getMessageFormatMsg();
+  }
 
   @Override
   protected void configure() {
@@ -75,6 +89,9 @@ class Module extends CacheModule {
     DynamicSet.bind(binder(), UploadValidationListener.class).to(RateLimitUploadListener.class);
     cache(CACHE_NAME_ACCOUNTID, Account.Id.class, Holder.class).loader(LoaderAccountId.class);
     cache(CACHE_NAME_REMOTEHOST, String.class, Holder.class).loader(LoaderRemoteHost.class);
+    bindConstant()
+        .annotatedWith(Names.named(RateMsgHelper.UPLOADPACK_CONFIGURABLE_MSG_ANNOTATION))
+        .to(uploadpackLimitExceededMsg);
   }
 
   static class Holder {
