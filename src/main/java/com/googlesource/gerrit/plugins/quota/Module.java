@@ -99,13 +99,30 @@ class Module extends CacheModule {
   static class Holder {
     public static final Holder EMPTY = new Holder(null);
     private RateLimiter l;
+    private int burstpermits;
 
     public Holder(RateLimiter l) {
       this.l = l;
     }
 
+    public Holder(RateLimiter l, int burst) {
+      this(l);
+      this.burstpermits = burst;
+    }
+
     public RateLimiter get() {
       return l;
+    }
+
+    public int getBurst() {
+      return burstpermits;
+    }
+
+    static final Holder createWithBurstyRateLimiter(Optional<RateLimit> limit) {
+      return new Holder(
+          RateLimitUploadListener.createSmoothBurstyRateLimiter(
+              limit.get().getRatePerSecond(), limit.get().getMaxBurstSeconds()),
+          (int) (limit.get().getMaxBurstSeconds() * limit.get().getRatePerSecond()));
     }
   }
 
@@ -124,9 +141,7 @@ class Module extends CacheModule {
       IdentifiedUser user = userFactory.create(key);
       Optional<RateLimit> limit = finder.firstMatching(AccountLimitsConfig.Type.UPLOADPACK, user);
       if (limit.isPresent()) {
-        return new Holder(
-            RateLimitUploadListener.createSmoothBurstyRateLimiter(
-                limit.get().getRatePerSecond(), limit.get().getMaxBurstSeconds()));
+        return Holder.createWithBurstyRateLimiter(limit);
       }
       return Holder.EMPTY;
     }
@@ -147,9 +162,7 @@ class Module extends CacheModule {
       Optional<RateLimit> limit =
           finder.getRateLimit(AccountLimitsConfig.Type.UPLOADPACK, anonymous);
       if (limit.isPresent()) {
-        return new Holder(
-            RateLimitUploadListener.createSmoothBurstyRateLimiter(
-                limit.get().getRatePerSecond(), limit.get().getMaxBurstSeconds()));
+        return Holder.createWithBurstyRateLimiter(limit);
       }
       return Holder.EMPTY;
     }
