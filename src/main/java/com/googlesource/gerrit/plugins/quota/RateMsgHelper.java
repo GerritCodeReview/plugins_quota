@@ -14,30 +14,47 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
+import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type;
+
 public class RateMsgHelper {
   public static final String UPLOADPACK_CONFIGURABLE_MSG_ANNOTATION = "uploadpackLimitExceededMsg";
+  public static final String RESTAPI_CONFIGURABLE_MSG_ANNOTATION = "restapiLimitExceededMsg";
   private static final String RATE_LIMIT_TOKEN = "${rateLimit}";
   private static final String BURSTS_LIMIT_TOKEN = "${burstsLimit}";
   private static final String RATE_LIMIT_FORMAT_DOUBLE = "{0,number,##.##}";
   private static final String RATE_LIMIT_FORMAT_INT = "{1,number,###}";
+  private static final String UPLOADPACK_INLINE_NAME = "fetch";
+  private static final String RESTAPI_INLINE_NAME = "REST API";
+
   // compare AccountLimitsConfig's constructor for default rate limits
-  private static final String UPLOADPACK_DEFAULT_TEMPLATE_MSG =
-      "Exceeded rate limit of " + RATE_LIMIT_TOKEN + " fetch requests/hour";
-  private static final String UPLOADPACK_DEFAULT_TEMPLATE_MSG_WITH_BURSTS =
-      "Exceeded rate limit of "
-          + RATE_LIMIT_TOKEN
-          + " fetch requests/hour (or idle time used up in bursts of max "
-          + BURSTS_LIMIT_TOKEN
-          + " requests)";
+  private static String getDefaultTemplateMsg(String rateLimitTypeName) {
+    return "Exceeded rate limit of "
+        + RATE_LIMIT_TOKEN
+        + " "
+        + rateLimitTypeName
+        + " requests/hour";
+  }
+
+  private static String getDefaultTemplateMsgWithBursts(String rateLimitTypeName) {
+    return "Exceeded rate limit of "
+        + RATE_LIMIT_TOKEN
+        + " "
+        + rateLimitTypeName
+        + " requests/hour (or idle time used up in bursts of max "
+        + BURSTS_LIMIT_TOKEN
+        + " requests)";
+  }
 
   private String messageFormatMsg;
   private String messageFormatMsgWithBursts;
 
-  public RateMsgHelper(String templateMsg) {
-    messageFormatMsg = templateMsg == null ? UPLOADPACK_DEFAULT_TEMPLATE_MSG : templateMsg;
+  public RateMsgHelper(Type limitsConfigType, String templateMsg) {
+    String rateLimitTypeName =
+        limitsConfigType.equals(Type.UPLOADPACK) ? UPLOADPACK_INLINE_NAME : RESTAPI_INLINE_NAME;
+    messageFormatMsg = templateMsg == null ? getDefaultTemplateMsg(rateLimitTypeName) : templateMsg;
     messageFormatMsg = messageFormatMsg.replace(RATE_LIMIT_TOKEN, RATE_LIMIT_FORMAT_DOUBLE);
     messageFormatMsgWithBursts =
-        templateMsg == null ? UPLOADPACK_DEFAULT_TEMPLATE_MSG_WITH_BURSTS : templateMsg;
+        templateMsg == null ? getDefaultTemplateMsgWithBursts(rateLimitTypeName) : templateMsg;
     messageFormatMsgWithBursts =
         messageFormatMsgWithBursts
             .replace(RATE_LIMIT_TOKEN, RATE_LIMIT_FORMAT_DOUBLE)
