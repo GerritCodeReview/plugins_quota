@@ -15,7 +15,6 @@
 package com.googlesource.gerrit.plugins.quota;
 
 import static com.google.gerrit.server.config.ConfigResource.CONFIG_KIND;
-import static com.google.gerrit.server.group.SystemGroupBackend.ANONYMOUS_USERS;
 import static com.google.gerrit.server.project.ProjectResource.PROJECT_KIND;
 import static com.googlesource.gerrit.plugins.quota.QuotaResource.QUOTA_KIND;
 
@@ -44,6 +43,7 @@ import com.google.inject.Scopes;
 import com.google.inject.internal.UniqueAnnotations;
 import com.google.inject.name.Names;
 import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.RateLimit;
+import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type;
 import org.eclipse.jgit.transport.PostReceiveHook;
 
 class Module extends CacheModule {
@@ -99,6 +99,7 @@ class Module extends CacheModule {
     public static final Holder EMPTY = new Holder(null);
     private RateLimiter l;
     private int burstpermits;
+    private int gracepermits;
 
     public Holder(RateLimiter l) {
       this.l = l;
@@ -106,7 +107,8 @@ class Module extends CacheModule {
 
     public Holder(RateLimiter l, int burst) {
       this.l = l;
-      this.burstpermits = burst;
+      this.burstpermits = gracepermits = burst;
+      gracepermits++;
     }
 
     public RateLimiter get() {
@@ -123,47 +125,94 @@ class Module extends CacheModule {
               limit.get().getRatePerSecond(), limit.get().getMaxBurstSeconds()),
           (int) (limit.get().getMaxBurstSeconds() * limit.get().getRatePerSecond()));
     }
+
+    /*
+     * The grace period ensures that a burst of requests can be served
+     * as the first interaction with the back-end server. Without the
+     * grace period, particularly the Gerrit web interface would
+     * display an unexpected error.
+     */
+    public synchronized boolean inGracePeriod() {
+      if (gracepermits < 0) {
+        gracepermits = 0;
+      }
+      return gracepermits-- > 0;
+    }
   }
 
-  private static class LoaderAccountId extends CacheLoader<Account.Id, Holder> {
-    private GenericFactory userFactory;
-    private AccountLimitsFinder finder;
+  abstract static class AbstractHolderCacheLoader<Key> extends CacheLoader<Key, Holder> {
+    private static enum LoaderType {
+      ACCOUNTID,
+      ANONYMOUS
+    }
 
+    private LoaderType kind;
+    private GenericFactory userFactory;
+    private String anonymous;
+    private AccountLimitsFinder finder;
+    private Type limitsConfigType;
+
+    private AbstractHolderCacheLoader(Type limitsConfigType, AccountLimitsFinder finder) {
+      this.limitsConfigType = limitsConfigType;
+      this.finder = finder;
+    }
+
+    protected AbstractHolderCacheLoader(
+        Type limitsConfigType,
+        IdentifiedUser.GenericFactory userFactory,
+        AccountLimitsFinder finder) {
+      this(limitsConfigType, finder);
+      this.kind = LoaderType.ACCOUNTID;
+      this.userFactory = userFactory;
+    }
+
+    @Inject
+    protected AbstractHolderCacheLoader(
+        Type limitsConfigType, SystemGroupBackend systemGroupBackend, AccountLimitsFinder finder) {
+      this(limitsConfigType, finder);
+      this.kind = LoaderType.ANONYMOUS;
+      this.anonymous = systemGroupBackend.get(SystemGroupBackend.ANONYMOUS_USERS).getName();
+    }
+
+    private final Holder createWithBurstyRateLimiter(Optional<RateLimit> limit) throws Exception {
+      if (limit.isPresent()) {
+        return Holder.createWithBurstyRateLimiter(limit);
+      }
+      return Holder.EMPTY;
+    }
+
+    private final Holder createWithBurstyRateLimiter(Account.Id key) throws Exception {
+      return createWithBurstyRateLimiter(
+          finder.firstMatching(limitsConfigType, userFactory.create(key)));
+    }
+
+    private final Holder createWithBurstyRateLimiter() throws Exception {
+      return createWithBurstyRateLimiter(finder.getRateLimit(limitsConfigType, anonymous));
+    }
+
+    @Override
+    public final Holder load(Key key) throws Exception {
+      if (kind == LoaderType.ANONYMOUS && key instanceof String) {
+        return createWithBurstyRateLimiter();
+      }
+      if (kind == LoaderType.ACCOUNTID && key instanceof Account.Id) {
+        return createWithBurstyRateLimiter((Account.Id) key);
+      }
+      return Holder.EMPTY;
+    }
+  }
+
+  private static class LoaderAccountId extends AbstractHolderCacheLoader<Account.Id> {
     @Inject
     LoaderAccountId(IdentifiedUser.GenericFactory userFactory, AccountLimitsFinder finder) {
-      this.userFactory = userFactory;
-      this.finder = finder;
-    }
-
-    @Override
-    public Holder load(Account.Id key) throws Exception {
-      IdentifiedUser user = userFactory.create(key);
-      Optional<RateLimit> limit = finder.firstMatching(AccountLimitsConfig.Type.UPLOADPACK, user);
-      if (limit.isPresent()) {
-        return Holder.createWithBurstyRateLimiter(limit);
-      }
-      return Holder.EMPTY;
+      super(Type.UPLOADPACK, userFactory, finder);
     }
   }
 
-  private static class LoaderRemoteHost extends CacheLoader<String, Holder> {
-    private AccountLimitsFinder finder;
-    private String anonymous;
-
+  private static class LoaderRemoteHost extends AbstractHolderCacheLoader<String> {
     @Inject
     LoaderRemoteHost(SystemGroupBackend systemGroupBackend, AccountLimitsFinder finder) {
-      this.finder = finder;
-      this.anonymous = systemGroupBackend.get(ANONYMOUS_USERS).getName();
-    }
-
-    @Override
-    public Holder load(String key) throws Exception {
-      Optional<RateLimit> limit =
-          finder.getRateLimit(AccountLimitsConfig.Type.UPLOADPACK, anonymous);
-      if (limit.isPresent()) {
-        return Holder.createWithBurstyRateLimiter(limit);
-      }
-      return Holder.EMPTY;
+      super(Type.UPLOADPACK, systemGroupBackend, finder);
     }
   }
 }
