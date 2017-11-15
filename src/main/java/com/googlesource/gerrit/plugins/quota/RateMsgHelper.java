@@ -18,11 +18,13 @@ import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type;
 
 public class RateMsgHelper {
   public static final String UPLOADPACK_CONFIGURABLE_MSG_ANNOTATION = "uploadpackLimitExceededMsg";
+  public static final String RESTAPI_CONFIGURABLE_MSG_ANNOTATION = "restapiLimitExceededMsg";
   static final String RATE_LIMIT_TOKEN = "${rateLimit}";
   static final String BURSTS_LIMIT_TOKEN = "${burstsLimit}";
   static final String FORMAT_REAL = "{0,number,##.##}";
   static final String FORMAT_INT = "{1,number,###}";
   static final String UPLOADPACK_INLINE_NAME = "fetch";
+  static final String RESTAPI_INLINE_NAME = "REST API";
 
   // compare AccountLimitsConfig's constructor for default rate limits
   static final String[] DEFAULT_TEMPLATE_MSG_PARTS = {
@@ -46,13 +48,13 @@ public class RateMsgHelper {
     this(limitsConfigType, null);
   }
 
-  @SuppressWarnings("unused")
   public RateMsgHelper(Type limitsConfigType, String templateMsg) {
-    messageFormatMsg =
-        templateMsg == null ? getDefaultTemplateMsg(UPLOADPACK_INLINE_NAME) : templateMsg;
+    String rateLimitTypeName =
+        limitsConfigType.equals(Type.UPLOADPACK) ? UPLOADPACK_INLINE_NAME : RESTAPI_INLINE_NAME;
+    messageFormatMsg = templateMsg == null ? getDefaultTemplateMsg(rateLimitTypeName) : templateMsg;
     messageFormatMsg = messageFormatMsg.replace(RATE_LIMIT_TOKEN, FORMAT_REAL);
     messageFormatMsgWithBursts =
-        templateMsg == null ? getDefaultTemplateMsgWithBursts(UPLOADPACK_INLINE_NAME) : templateMsg;
+        templateMsg == null ? getDefaultTemplateMsgWithBursts(rateLimitTypeName) : templateMsg;
     messageFormatMsgWithBursts =
         messageFormatMsgWithBursts
             .replace(RATE_LIMIT_TOKEN, FORMAT_REAL)
