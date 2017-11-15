@@ -67,7 +67,8 @@ public class AccountLimitsConfig {
   }
 
   public static enum Type implements ConfigEnum {
-    UPLOADPACK;
+    UPLOADPACK,
+    RESTAPI;
 
     @Override
     public String toConfigValue() {
@@ -88,9 +89,12 @@ public class AccountLimitsConfig {
       return;
     }
     rateLimits = ArrayTable.create(Arrays.asList(Type.values()), groups);
+    Type type;
     for (String groupName : groups) {
-      Type type = Type.UPLOADPACK;
+      type = Type.UPLOADPACK;
       rateLimits.put(type, groupName, parseRateLimit(c, groupName, type, 60, 30));
+      type = Type.RESTAPI;
+      rateLimits.put(type, groupName, parseRateLimit(c, groupName, type, 3, 90));
     }
   }
 

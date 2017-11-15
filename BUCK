@@ -7,6 +7,7 @@ gerrit_plugin(
   manifest_entries = [
     'Gerrit-PluginName: quota',
     'Gerrit-Module: com.googlesource.gerrit.plugins.quota.Module',
+    'Gerrit-HttpModule: com.googlesource.gerrit.plugins.quota.HttpModule',
   ],
   provided_deps = [
     '//lib/commons:lang',
