@@ -34,6 +34,7 @@ public class RateMsgHelper {
   }
 
   public static final String UPLOADPACK_CONFIGURABLE_MSG_ANNOTATION = "uploadpackLimitExceededMsg";
+  public static final String RESTAPI_CONFIGURABLE_MSG_ANNOTATION = "restapiLimitExceededMsg";
 
   private String messageFormatMsg;
   private String messageFormatMsgWithBursts;
