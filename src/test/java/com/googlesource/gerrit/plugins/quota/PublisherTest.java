@@ -23,7 +23,6 @@ import static org.easymock.EasyMock.verify;
 import com.google.gerrit.extensions.events.UsageDataPublishedListener;
 import com.google.gerrit.extensions.events.UsageDataPublishedListener.Event;
 import com.google.gerrit.extensions.registration.DynamicSet;
-
 import org.junit.Test;
 
 public class PublisherTest {
@@ -42,8 +41,7 @@ public class PublisherTest {
     creators.add(c1);
     creators.add(c2);
 
-    UsageDataPublishedListener listener =
-        createMock(UsageDataPublishedListener.class);
+    UsageDataPublishedListener listener = createMock(UsageDataPublishedListener.class);
     listener.onUsageDataPublished(e1);
     expectLastCall();
     listener.onUsageDataPublished(e2);
@@ -67,13 +65,11 @@ public class PublisherTest {
     DynamicSet<UsageDataEventCreator> creators = DynamicSet.emptySet();
     creators.add(creator);
 
-    UsageDataPublishedListener l1 =
-        createMock(UsageDataPublishedListener.class);
+    UsageDataPublishedListener l1 = createMock(UsageDataPublishedListener.class);
     l1.onUsageDataPublished(event);
     expectLastCall();
 
-    UsageDataPublishedListener l2 =
-        createMock(UsageDataPublishedListener.class);
+    UsageDataPublishedListener l2 = createMock(UsageDataPublishedListener.class);
     l2.onUsageDataPublished(event);
     expectLastCall();
 
@@ -102,5 +98,4 @@ public class PublisherTest {
 
     verify(creator);
   }
-
 }

@@ -17,12 +17,10 @@ package com.googlesource.gerrit.plugins.quota;
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.project.ProjectCache;
 import com.google.inject.Inject;
-
-import org.eclipse.jgit.lib.Config;
-
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.eclipse.jgit.lib.Config;
 
 public class QuotaFinder {
   private final ProjectCache projectCache;

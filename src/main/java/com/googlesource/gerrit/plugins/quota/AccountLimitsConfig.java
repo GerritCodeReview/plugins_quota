@@ -32,8 +32,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class AccountLimitsConfig {
-  private static final Logger log =
-      LoggerFactory.getLogger(AccountLimitsConfig.class);
+  private static final Logger log = LoggerFactory.getLogger(AccountLimitsConfig.class);
   static final String GROUP_SECTION = "group";
   static final SectionParser<AccountLimitsConfig> KEY =
       new SectionParser<AccountLimitsConfig>() {
@@ -91,13 +90,12 @@ public class AccountLimitsConfig {
     rateLimits = ArrayTable.create(Arrays.asList(Type.values()), groups);
     for (String groupName : groups) {
       Type type = Type.UPLOADPACK;
-      rateLimits.put(type, groupName,
-          parseRateLimit(c, groupName, type, 60, 30));
+      rateLimits.put(type, groupName, parseRateLimit(c, groupName, type, 60, 30));
     }
   }
 
-  RateLimit parseRateLimit(Config c, String groupName, Type type,
-      int defaultIntervalSeconds, int defaultBurstCount) {
+  RateLimit parseRateLimit(
+      Config c, String groupName, Type type, int defaultIntervalSeconds, int defaultBurstCount) {
     String name = type.toConfigValue();
     String value = c.getString(GROUP_SECTION, groupName, name);
     if (value == null) {
@@ -105,12 +103,13 @@ public class AccountLimitsConfig {
     }
     value = value.trim();
 
-    Matcher m = Pattern.compile("^\\s*(\\d+)\\s*/\\s*(.*)\\s*burst\\s*(\\d+)$")
-        .matcher(value);
+    Matcher m = Pattern.compile("^\\s*(\\d+)\\s*/\\s*(.*)\\s*burst\\s*(\\d+)$").matcher(value);
     if (!m.matches()) {
       log.warn(
           "Invalid ''{}'' ratelimit configuration ''{}'', use default ratelimit {}/hour",
-          type.toConfigValue(), value, 3600.0D / defaultIntervalSeconds);
+          type.toConfigValue(),
+          value,
+          3600.0D / defaultIntervalSeconds);
       return defaultRateLimit(type, defaultIntervalSeconds, defaultBurstCount);
     }
 
@@ -123,7 +122,9 @@ public class AccountLimitsConfig {
     } catch (NumberFormatException e) {
       log.warn(
           "Invalid ''{}'' ratelimit store configuration ''{}'', use default burst count ''{}''",
-          type.toConfigValue(), storeCountString, burstCount);
+          type.toConfigValue(),
+          storeCountString,
+          burstCount);
     }
 
     TimeUnit inputUnit = TimeUnit.HOURS;
@@ -142,8 +143,7 @@ public class AccountLimitsConfig {
       logNotRateUnit(GROUP_SECTION, groupName, name, value);
     }
     try {
-      ratePerSecond = 1.0D * Long.parseLong(digits)
-          / TimeUnit.SECONDS.convert(1, inputUnit);
+      ratePerSecond = 1.0D * Long.parseLong(digits) / TimeUnit.SECONDS.convert(1, inputUnit);
     } catch (NumberFormatException nfe) {
       logNotRateUnit(GROUP_SECTION, groupName, unitName, value);
     }
@@ -161,21 +161,20 @@ public class AccountLimitsConfig {
     return false;
   }
 
-  private void logNotRateUnit(String section, String subsection, String name,
-      String valueString) {
+  private void logNotRateUnit(String section, String subsection, String name, String valueString) {
     if (subsection != null) {
-      log.error(MessageFormat.format("Invalid rate unit value: {0}.{1}.{2}={3}",
-          section, subsection, name, valueString));
+      log.error(
+          MessageFormat.format(
+              "Invalid rate unit value: {0}.{1}.{2}={3}", section, subsection, name, valueString));
     } else {
-      log.error(MessageFormat.format("Invalid rate unit value: {0}.{1}={2}",
-          section, name, valueString));
+      log.error(
+          MessageFormat.format("Invalid rate unit value: {0}.{1}={2}", section, name, valueString));
     }
   }
 
-  private RateLimit defaultRateLimit(Type type, int defaultIntervalSeconds,
-      int defaultStoreCount) {
-    return new RateLimit(type, 1.0D / defaultIntervalSeconds,
-        defaultIntervalSeconds * defaultStoreCount);
+  private RateLimit defaultRateLimit(Type type, int defaultIntervalSeconds, int defaultStoreCount) {
+    return new RateLimit(
+        type, 1.0D / defaultIntervalSeconds, defaultIntervalSeconds * defaultStoreCount);
   }
 
   /**

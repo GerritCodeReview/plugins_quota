@@ -26,22 +26,19 @@ import com.google.inject.Provider;
 import com.google.inject.Singleton;
 
 @Singleton
-public class GetQuotas implements
-    ChildCollection<ConfigResource, QuotaResource> {
+public class GetQuotas implements ChildCollection<ConfigResource, QuotaResource> {
 
   private final Provider<ListQuotas> list;
   private final DynamicMap<RestView<QuotaResource>> views;
 
   @Inject
-  public GetQuotas(Provider<ListQuotas> list,
-      DynamicMap<RestView<QuotaResource>> views) {
+  public GetQuotas(Provider<ListQuotas> list, DynamicMap<RestView<QuotaResource>> views) {
     this.list = list;
     this.views = views;
   }
 
   @Override
-  public RestView<ConfigResource> list() throws ResourceNotFoundException,
-      AuthException {
+  public RestView<ConfigResource> list() throws ResourceNotFoundException, AuthException {
     return list.get();
   }
 
@@ -55,5 +52,4 @@ public class GetQuotas implements
   public DynamicMap<RestView<QuotaResource>> views() {
     return views;
   }
-
 }
