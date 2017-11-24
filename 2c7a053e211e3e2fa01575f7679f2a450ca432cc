@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bf7a55f3_bac96c21",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2017-11-24T14:30:53Z",
+      "side": 1,
+      "message": "call super() instead",
+      "revId": "2c7a053e211e3e2fa01575f7679f2a450ca432cc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
