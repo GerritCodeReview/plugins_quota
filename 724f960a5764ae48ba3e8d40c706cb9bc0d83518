@@ -1,0 +1,215 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c22bdc44_deb80c8e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2017-11-24T14:25:45Z",
+      "side": 1,
+      "message": "explain the grace period you are introducing also here in the commit message",
+      "revId": "724f960a5764ae48ba3e8d40c706cb9bc0d83518",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dad30269_bdf88541",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2017-11-24T14:25:45Z",
+      "side": 1,
+      "message": "this variable is unnecessary and can be inlined",
+      "revId": "724f960a5764ae48ba3e8d40c706cb9bc0d83518",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "658d37f1_38e9f3ba",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2017-11-24T14:25:45Z",
+      "side": 1,
+      "message": "remove this comment",
+      "revId": "724f960a5764ae48ba3e8d40c706cb9bc0d83518",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b1c10a92_7b45f58f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/HttpModule.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2017-11-24T14:25:45Z",
+      "side": 1,
+      "message": "shorten this to cf ?",
+      "range": {
+        "startLine": 38,
+        "startChar": 33,
+        "endLine": 38,
+        "endChar": 41
+      },
+      "revId": "724f960a5764ae48ba3e8d40c706cb9bc0d83518",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ad7f5f1_d959dcbd",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2017-11-24T14:25:45Z",
+      "side": 1,
+      "message": "declare this volatile instead of synchronizing inGracePeriod()",
+      "revId": "724f960a5764ae48ba3e8d40c706cb9bc0d83518",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aa34bc35_73b48255",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2017-11-24T14:25:45Z",
+      "side": 1,
+      "message": "the grace period should be explained in the documentation and also in the commit message",
+      "revId": "724f960a5764ae48ba3e8d40c706cb9bc0d83518",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ae7fda4_f2a53cef",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2017-11-24T14:25:45Z",
+      "side": 1,
+      "message": "gracepermits \u003d max(--gracepermits, 0);\n return gracepermits \u003e 0;",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 139,
+        "endChar": 32
+      },
+      "revId": "724f960a5764ae48ba3e8d40c706cb9bc0d83518",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "780c1da3_1c464c3a",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2017-11-24T14:25:45Z",
+      "side": 1,
+      "message": "declare this class private",
+      "revId": "724f960a5764ae48ba3e8d40c706cb9bc0d83518",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "145b899b_e0830351",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RestApiRequestRateEnforcer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2017-11-24T14:25:45Z",
+      "side": 1,
+      "message": "remove unnecessary blank line",
+      "revId": "724f960a5764ae48ba3e8d40c706cb9bc0d83518",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "30c73a00_2aab6e0c",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2017-11-24T14:25:45Z",
+      "side": 1,
+      "message": "remove this",
+      "range": {
+        "startLine": 189,
+        "startChar": 45,
+        "endLine": 189,
+        "endChar": 59
+      },
+      "revId": "724f960a5764ae48ba3e8d40c706cb9bc0d83518",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e3c8af5c_58f29e41",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2017-11-24T14:25:45Z",
+      "side": 1,
+      "message": "move this to the end of the previous line",
+      "range": {
+        "startLine": 247,
+        "startChar": 0,
+        "endLine": 247,
+        "endChar": 1
+      },
+      "revId": "724f960a5764ae48ba3e8d40c706cb9bc0d83518",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
