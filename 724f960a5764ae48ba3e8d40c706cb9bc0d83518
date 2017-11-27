@@ -364,6 +364,30 @@
     },
     {
       "key": {
+        "uuid": "9cb8ddba_07b9e6b9",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-11-27T10:13:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "30c73a00_2aab6e0c",
+      "range": {
+        "startLine": 189,
+        "startChar": 45,
+        "endLine": 189,
+        "endChar": 59
+      },
+      "revId": "724f960a5764ae48ba3e8d40c706cb9bc0d83518",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e3c8af5c_58f29e41",
         "filename": "src/main/resources/Documentation/config.md",
         "patchSetId": 1
@@ -375,6 +399,30 @@
       "writtenOn": "2017-11-24T14:25:45Z",
       "side": 1,
       "message": "move this to the end of the previous line",
+      "range": {
+        "startLine": 247,
+        "startChar": 0,
+        "endLine": 247,
+        "endChar": 1
+      },
+      "revId": "724f960a5764ae48ba3e8d40c706cb9bc0d83518",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "54f6206a_4245eee3",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-11-27T10:13:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3c8af5c_58f29e41",
       "range": {
         "startLine": 247,
         "startChar": 0,
