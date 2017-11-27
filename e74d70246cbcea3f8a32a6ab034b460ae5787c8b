@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e286866c_0c2d1177",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-11-27T19:15:02Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "39e67856_24d4a616",
+      "range": {
+        "startLine": 27,
+        "startChar": 5,
+        "endLine": 27,
+        "endChar": 10
+      },
+      "revId": "e74d70246cbcea3f8a32a6ab034b460ae5787c8b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "198cce07_bd55ecb5",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/HttpModule.java",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "272a5787_a4292542",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/HttpModule.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-11-27T19:15:02Z",
+      "side": 1,
+      "message": "also isn\u0027t as cryptic",
+      "parentUuid": "198cce07_bd55ecb5",
+      "range": {
+        "startLine": 38,
+        "startChar": 33,
+        "endLine": 38,
+        "endChar": 41
+      },
+      "revId": "e74d70246cbcea3f8a32a6ab034b460ae5787c8b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "96ded5fb_dcbc3421",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/HttpModule.java",
         "patchSetId": 2
@@ -59,6 +107,30 @@
       "writtenOn": "2017-11-27T13:44:31Z",
       "side": 1,
       "message": "Why yet another class must be derived from AbstractHolderCacheLoader to only provide different limit type RESTAPI? This can be done with Guice\u0027s @Provides annotation (See for example gerrit-httpd/src/main/java/com/google/gerrit/httpd/raw/StaticModule.java, how it is used in gerrit core), something like\n\n  @Provides\n  @Named(CACHE_NAME_RESTAPI_ACCOUNTID)\n  @Singleton\n  public LoadingCache\u003cAccount.Id, Holder\u003e limitsByAccountCache(IdentifiedUser.GenericFactory userFactory, AccountLimitsFinder finder) {\n    return CacheBuilder.newBuilder()\n        .build(new LoaderAccountId(Type.RESTAPI, userFactory, finder));\n  }",
+      "range": {
+        "startLine": 58,
+        "startChar": 23,
+        "endLine": 58,
+        "endChar": 45
+      },
+      "revId": "e74d70246cbcea3f8a32a6ab034b460ae5787c8b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "94227cae_39ef5706",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/HttpModule.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-11-27T19:15:02Z",
+      "side": 1,
+      "message": "refactored. thanks for the code example. btw, Sasa Zivkov suggested the same refactoring. (the example builds the cache explicitly...)",
+      "parentUuid": "96ded5fb_dcbc3421",
       "range": {
         "startLine": 58,
         "startChar": 23,
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "fb2687bd_a56a7a4b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-11-27T19:15:02Z",
+      "side": 1,
+      "message": "it was a sanity check, in the implementation at hand indeed unnecessary. anyways, reworked.",
+      "parentUuid": "8ecfc8be_db338001",
+      "range": {
+        "startLine": 143,
+        "startChar": 4,
+        "endLine": 146,
+        "endChar": 5
+      },
+      "revId": "e74d70246cbcea3f8a32a6ab034b460ae5787c8b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a4d24610_a72d8de1",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
         "patchSetId": 2
@@ -105,6 +201,30 @@
       "writtenOn": "2017-11-27T13:44:31Z",
       "side": 1,
       "message": "Inconsistent: you added (erroneously) @Inject on line 168 below, but missed it here.",
+      "range": {
+        "startLine": 159,
+        "startChar": 4,
+        "endLine": 162,
+        "endChar": 35
+      },
+      "revId": "e74d70246cbcea3f8a32a6ab034b460ae5787c8b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4096a650_b2f97c97",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-11-27T19:15:02Z",
+      "side": 1,
+      "message": "see below",
+      "parentUuid": "a4d24610_a72d8de1",
       "range": {
         "startLine": 159,
         "startChar": 4,
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "9d7595bb_b429b71b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-11-27T19:15:02Z",
+      "side": 1,
+      "message": "reworked. is it now easier to comprehend?",
+      "parentUuid": "a5516d76_75679986",
+      "range": {
+        "startLine": 164,
+        "startChar": 6,
+        "endLine": 164,
+        "endChar": 39
+      },
+      "revId": "e74d70246cbcea3f8a32a6ab034b460ae5787c8b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fd3310d4_60e38f7e",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
         "patchSetId": 2
@@ -151,6 +295,30 @@
       "writtenOn": "2017-11-27T13:44:31Z",
       "side": 1,
       "message": "Unused. This class is abstract, so that @Inject is never ever intercepted by Guice DI. Only @Inject annotation for constructors of derived classes are intercepted.",
+      "range": {
+        "startLine": 168,
+        "startChar": 4,
+        "endLine": 168,
+        "endChar": 11
+      },
+      "revId": "e74d70246cbcea3f8a32a6ab034b460ae5787c8b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "934bb8c8_d90c56d9",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-11-27T19:15:02Z",
+      "side": 1,
+      "message": "thank you",
+      "parentUuid": "fd3310d4_60e38f7e",
       "range": {
         "startLine": 168,
         "startChar": 4,
@@ -186,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "6c82724d_afaf2e51",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-11-27T19:15:02Z",
+      "side": 1,
+      "message": "reworked",
+      "parentUuid": "7ab3da27_afc255d8",
+      "range": {
+        "startLine": 194,
+        "startChar": 6,
+        "endLine": 199,
+        "endChar": 7
+      },
+      "revId": "e74d70246cbcea3f8a32a6ab034b460ae5787c8b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5ed93d72_c79f0868",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
         "patchSetId": 2
@@ -197,6 +389,24 @@
       "writtenOn": "2017-11-27T13:44:31Z",
       "side": 1,
       "message": "Bottom line to pulls up all the code from its subclasses, from LoaderAccountId and LoaderRemoteHost into the AbstractHolderCacheLoader makes the code much less readable, and move the differentiation between disjunct load logic in many different places: \n* consructors\n* runtime checks in the load() method\n\nI would prefer to keep the classes separated. This would also make extensions, like adding new caches much simpler: add another new loader class (per cache), done.",
+      "revId": "e74d70246cbcea3f8a32a6ab034b460ae5787c8b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db894de4_26d545ec",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-11-27T19:15:02Z",
+      "side": 1,
+      "message": "hopefully more readable now",
+      "parentUuid": "5ed93d72_c79f0868",
       "revId": "e74d70246cbcea3f8a32a6ab034b460ae5787c8b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
@@ -223,6 +433,30 @@
       "revId": "e74d70246cbcea3f8a32a6ab034b460ae5787c8b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f035bc48_063ce227",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-11-27T19:15:02Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "383fdb2a_cbeffe66",
+      "range": {
+        "startLine": 211,
+        "startChar": 16,
+        "endLine": 211,
+        "endChar": 21
+      },
+      "revId": "e74d70246cbcea3f8a32a6ab034b460ae5787c8b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
