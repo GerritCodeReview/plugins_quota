@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "ddb5164a_0684da74",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2017-11-27T16:16:03Z",
+      "side": 1,
+      "message": "you could still inline it, if you add static imports for the constants this could look like:\n\n rateLimits.put(UPLOADPACK, groupName, parseRateLimit(c, groupName, UPLOADPACK, 60, 30));\n rateLimits.put(RESTAPI, groupName, parseRateLimit(c, groupName, RESTAPI, 3, 90));\n\nfor the reader it\u0027s not easier to read \"type\" twice or read the respective constant twice, but not declaring another variable and assigning it twice removes some unnecessary lines to read.",
+      "parentUuid": "487f0ff0_166fbca8",
+      "revId": "724f960a5764ae48ba3e8d40c706cb9bc0d83518",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "658d37f1_38e9f3ba",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsConfig.java",
         "patchSetId": 1
