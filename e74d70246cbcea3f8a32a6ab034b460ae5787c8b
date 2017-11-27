@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "96ded5fb_dcbc3421",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/HttpModule.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2017-11-27T13:44:31Z",
+      "side": 1,
+      "message": "Why yet another class must be derived from AbstractHolderCacheLoader to only provide different limit type RESTAPI? This can be done with Guice\u0027s @Provides annotation (See for example gerrit-httpd/src/main/java/com/google/gerrit/httpd/raw/StaticModule.java, how it is used in gerrit core), something like\n\n  @Provides\n  @Named(CACHE_NAME_RESTAPI_ACCOUNTID)\n  @Singleton\n  public LoadingCache\u003cAccount.Id, Holder\u003e limitsByAccountCache(IdentifiedUser.GenericFactory userFactory, AccountLimitsFinder finder) {\n    return CacheBuilder.newBuilder()\n        .build(new LoaderAccountId(Type.RESTAPI, userFactory, finder));\n  }",
+      "range": {
+        "startLine": 58,
+        "startChar": 23,
+        "endLine": 58,
+        "endChar": 45
+      },
+      "revId": "e74d70246cbcea3f8a32a6ab034b460ae5787c8b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ecfc8be_db338001",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2017-11-27T13:44:31Z",
+      "side": 1,
+      "message": "The fact, this enum is needed is another reason why this logic shouldn\u0027t be put in the same base class for different loaders. But why it\u0027s needed anyway? Wouldn\u0027t you always be able to differentiate according to the key type? You are already doing this runtime checks combined with AND predicate for key type in load() method. Wouldn\u0027t it be sufficient to just say:\n\n  if (key instanceof String) {\n    // remote host loader logic\n  } else if (key instanceof Account.Id) {\n    // account id loader logic\n  }",
+      "range": {
+        "startLine": 143,
+        "startChar": 4,
+        "endLine": 146,
+        "endChar": 5
+      },
+      "revId": "e74d70246cbcea3f8a32a6ab034b460ae5787c8b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a4d24610_a72d8de1",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2017-11-27T13:44:31Z",
+      "side": 1,
+      "message": "Inconsistent: you added (erroneously) @Inject on line 168 below, but missed it here.",
+      "range": {
+        "startLine": 159,
+        "startChar": 4,
+        "endLine": 162,
+        "endChar": 35
+      },
+      "revId": "e74d70246cbcea3f8a32a6ab034b460ae5787c8b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a5516d76_75679986",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2017-11-27T13:44:31Z",
+      "side": 1,
+      "message": "I\u0027m not convinced, from the readability point of view, that the idea, to put the separated logic from two different loaders in the same class is a good idea. The separation takes place in this class implementation.\n\nIt\u0027s hard to see what is going on here, what belongs to accountId based loader and what to remote ip based loader.",
+      "range": {
+        "startLine": 164,
+        "startChar": 6,
+        "endLine": 164,
+        "endChar": 39
+      },
+      "revId": "e74d70246cbcea3f8a32a6ab034b460ae5787c8b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fd3310d4_60e38f7e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2017-11-27T13:44:31Z",
+      "side": 1,
+      "message": "Unused. This class is abstract, so that @Inject is never ever intercepted by Guice DI. Only @Inject annotation for constructors of derived classes are intercepted.",
+      "range": {
+        "startLine": 168,
+        "startChar": 4,
+        "endLine": 168,
+        "endChar": 11
+      },
+      "revId": "e74d70246cbcea3f8a32a6ab034b460ae5787c8b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7ab3da27_afc255d8",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2017-11-27T13:44:31Z",
+      "side": 1,
+      "message": "These runtime checks really raise the question, whether these two different loaders belong to the same base abstract class?",
+      "range": {
+        "startLine": 194,
+        "startChar": 6,
+        "endLine": 199,
+        "endChar": 7
+      },
+      "revId": "e74d70246cbcea3f8a32a6ab034b460ae5787c8b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ed93d72_c79f0868",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2017-11-27T13:44:31Z",
+      "side": 1,
+      "message": "Bottom line to pulls up all the code from its subclasses, from LoaderAccountId and LoaderRemoteHost into the AbstractHolderCacheLoader makes the code much less readable, and move the differentiation between disjunct load logic in many different places: \n* consructors\n* runtime checks in the load() method\n\nI would prefer to keep the classes separated. This would also make extensions, like adding new caches much simpler: add another new loader class (per cache), done.",
+      "revId": "e74d70246cbcea3f8a32a6ab034b460ae5787c8b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
