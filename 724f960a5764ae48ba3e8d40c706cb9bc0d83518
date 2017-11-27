@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b78ae8b7_82dbf10c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-11-27T09:55:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c22bdc44_deb80c8e",
+      "revId": "724f960a5764ae48ba3e8d40c706cb9bc0d83518",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dad30269_bdf88541",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsConfig.java",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "487f0ff0_166fbca8",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-11-27T09:55:43Z",
+      "side": 1,
+      "message": "it is used twice",
+      "parentUuid": "dad30269_bdf88541",
+      "revId": "724f960a5764ae48ba3e8d40c706cb9bc0d83518",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "658d37f1_38e9f3ba",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsConfig.java",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2017-11-24T14:25:45Z",
       "side": 1,
       "message": "remove this comment",
+      "revId": "724f960a5764ae48ba3e8d40c706cb9bc0d83518",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b56f5141_447b69a2",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-11-27T09:55:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "658d37f1_38e9f3ba",
       "revId": "724f960a5764ae48ba3e8d40c706cb9bc0d83518",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
@@ -76,6 +130,30 @@
     },
     {
       "key": {
+        "uuid": "930659ee_ecf8df3b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/HttpModule.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-11-27T09:55:43Z",
+      "side": 1,
+      "message": "improved the style",
+      "parentUuid": "b1c10a92_7b45f58f",
+      "range": {
+        "startLine": 38,
+        "startChar": 33,
+        "endLine": 38,
+        "endChar": 41
+      },
+      "revId": "724f960a5764ae48ba3e8d40c706cb9bc0d83518",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ad7f5f1_d959dcbd",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
         "patchSetId": 1
@@ -93,6 +171,24 @@
     },
     {
       "key": {
+        "uuid": "28cd7598_ae99158b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-11-27T09:55:43Z",
+      "side": 1,
+      "message": "AtomicInteger now",
+      "parentUuid": "6ad7f5f1_d959dcbd",
+      "revId": "724f960a5764ae48ba3e8d40c706cb9bc0d83518",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aa34bc35_73b48255",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
         "patchSetId": 1
@@ -104,6 +200,24 @@
       "writtenOn": "2017-11-24T14:25:45Z",
       "side": 1,
       "message": "the grace period should be explained in the documentation and also in the commit message",
+      "revId": "724f960a5764ae48ba3e8d40c706cb9bc0d83518",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "20d0e113_28ddf149",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-11-27T09:55:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa34bc35_73b48255",
       "revId": "724f960a5764ae48ba3e8d40c706cb9bc0d83518",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
@@ -133,6 +247,30 @@
     },
     {
       "key": {
+        "uuid": "e5f54e91_3b88c2bf",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-11-27T09:55:43Z",
+      "side": 1,
+      "message": "changed to AtomicInteger logic",
+      "parentUuid": "2ae7fda4_f2a53cef",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 139,
+        "endChar": 32
+      },
+      "revId": "724f960a5764ae48ba3e8d40c706cb9bc0d83518",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "780c1da3_1c464c3a",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
         "patchSetId": 1
@@ -150,6 +288,24 @@
     },
     {
       "key": {
+        "uuid": "2f928526_5f1b3284",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-11-27T09:55:43Z",
+      "side": 1,
+      "message": "it is not private, cmp. HttpModule",
+      "parentUuid": "780c1da3_1c464c3a",
+      "revId": "724f960a5764ae48ba3e8d40c706cb9bc0d83518",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "145b899b_e0830351",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RestApiRequestRateEnforcer.java",
         "patchSetId": 1
@@ -161,6 +317,24 @@
       "writtenOn": "2017-11-24T14:25:45Z",
       "side": 1,
       "message": "remove unnecessary blank line",
+      "revId": "724f960a5764ae48ba3e8d40c706cb9bc0d83518",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "094d41f2_25edda4d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RestApiRequestRateEnforcer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-11-27T09:55:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "145b899b_e0830351",
       "revId": "724f960a5764ae48ba3e8d40c706cb9bc0d83518",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
