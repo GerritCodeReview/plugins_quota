@@ -1,0 +1,153 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b88b43ff_933379a4",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RateLimitUploadListener.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-04T13:45:14Z",
+      "side": 1,
+      "message": "Looks like this bug existed already and is unrelated to this change? Fix it in own change preceding this one?",
+      "revId": "dce2d6c138b0750e7db838bd877d00a491cacb6b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6b0a94a_253dea12",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/RateLimitUploadListenerTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-04T13:45:14Z",
+      "side": 1,
+      "message": "2017",
+      "range": {
+        "startLine": 1,
+        "startChar": 17,
+        "endLine": 1,
+        "endChar": 21
+      },
+      "revId": "dce2d6c138b0750e7db838bd877d00a491cacb6b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd3fc0cb_2db7d2be",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/RateLimitUploadListenerTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-04T13:45:14Z",
+      "side": 1,
+      "message": "LIMIT_EXCEEDED_MSG",
+      "range": {
+        "startLine": 43,
+        "startChar": 30,
+        "endLine": 43,
+        "endChar": 46
+      },
+      "revId": "dce2d6c138b0750e7db838bd877d00a491cacb6b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd9386a8_3732e328",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/RateLimitUploadListenerTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-04T13:45:14Z",
+      "side": 1,
+      "message": "REMOTE_HOST",
+      "range": {
+        "startLine": 44,
+        "startChar": 30,
+        "endLine": 44,
+        "endChar": 40
+      },
+      "revId": "dce2d6c138b0750e7db838bd877d00a491cacb6b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a07a392_a8c413b8",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/RateLimitUploadListenerTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-04T13:45:14Z",
+      "side": 1,
+      "message": "static members should be declared before non-static according to Gerrit\u0027s code organization\nguidelines [1]\n\n[1] https://gerrit-review.googlesource.com/Documentation/dev-contributing.html#_code_organization",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 50
+      },
+      "revId": "dce2d6c138b0750e7db838bd877d00a491cacb6b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "698f0de6_72e0cdf9",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/RestApiRequestRateEnforcerTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-04T13:45:14Z",
+      "side": 1,
+      "message": "For constants (static final) we use all uppercase names delimited by underscore:\n\n  LIMIT_EXCEEDED_MSG \u003d ..",
+      "range": {
+        "startLine": 54,
+        "startChar": 30,
+        "endLine": 54,
+        "endChar": 46
+      },
+      "revId": "dce2d6c138b0750e7db838bd877d00a491cacb6b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0dd7b6e1_a8de36d9",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/RestApiRequestRateEnforcerTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-04T13:45:14Z",
+      "side": 1,
+      "message": "static members should be declared before non-static according to\nGerrit\u0027s Code Orgranization [1] guidelines.\n\n[1] https://gerrit-review.googlesource.com/Documentation/dev-contributing.html#_code_organization",
+      "revId": "dce2d6c138b0750e7db838bd877d00a491cacb6b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
