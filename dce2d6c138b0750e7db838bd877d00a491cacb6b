@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d4149970_4ded6b92",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RateLimitUploadListener.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-04T15:39:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b88b43ff_933379a4",
+      "revId": "dce2d6c138b0750e7db838bd877d00a491cacb6b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e6b0a94a_253dea12",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/RateLimitUploadListenerTest.java",
         "patchSetId": 4
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "6f089e6c_75bac8f3",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/RateLimitUploadListenerTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-04T15:39:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6b0a94a_253dea12",
+      "range": {
+        "startLine": 1,
+        "startChar": 17,
+        "endLine": 1,
+        "endChar": 21
+      },
+      "revId": "dce2d6c138b0750e7db838bd877d00a491cacb6b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bd3fc0cb_2db7d2be",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/RateLimitUploadListenerTest.java",
         "patchSetId": 4
@@ -62,6 +104,30 @@
       "revId": "dce2d6c138b0750e7db838bd877d00a491cacb6b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8d8afd0_6433c244",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/RateLimitUploadListenerTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-04T15:39:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd3fc0cb_2db7d2be",
+      "range": {
+        "startLine": 43,
+        "startChar": 30,
+        "endLine": 43,
+        "endChar": 46
+      },
+      "revId": "dce2d6c138b0750e7db838bd877d00a491cacb6b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     },
     {
       "key": {
@@ -111,6 +177,54 @@
     },
     {
       "key": {
+        "uuid": "27a89a1e_befb02a1",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/RateLimitUploadListenerTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-04T15:39:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd9386a8_3732e328",
+      "range": {
+        "startLine": 44,
+        "startChar": 30,
+        "endLine": 44,
+        "endChar": 40
+      },
+      "revId": "dce2d6c138b0750e7db838bd877d00a491cacb6b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "09b90ae5_be09fe15",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/RateLimitUploadListenerTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-04T15:39:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a07a392_a8c413b8",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 50
+      },
+      "revId": "dce2d6c138b0750e7db838bd877d00a491cacb6b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "698f0de6_72e0cdf9",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/RestApiRequestRateEnforcerTest.java",
         "patchSetId": 4
@@ -148,6 +262,48 @@
       "revId": "dce2d6c138b0750e7db838bd877d00a491cacb6b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd848511_0ad3d9cb",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/RestApiRequestRateEnforcerTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-04T15:39:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "698f0de6_72e0cdf9",
+      "range": {
+        "startLine": 54,
+        "startChar": 30,
+        "endLine": 54,
+        "endChar": 46
+      },
+      "revId": "dce2d6c138b0750e7db838bd877d00a491cacb6b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ca3faa90_55d5c9c4",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/RestApiRequestRateEnforcerTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-04T15:39:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0dd7b6e1_a8de36d9",
+      "revId": "dce2d6c138b0750e7db838bd877d00a491cacb6b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
