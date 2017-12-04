@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fd40b6cd_dc35290d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RateMsgHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-04T16:34:57Z",
+      "side": 1,
+      "message": "Why put RATE_LIMIT_TOKEN in the default message when we know that it will be immediately replaced by the \"{0,number,##.##}\"? Why not just replace it here:\n\n  \"Exceeded rate limit of \" + FORMAT\n\nwhere FORMAT is:\n\n  private static final String FORMAT \u003d \"{0,number,##.##}\";",
+      "range": {
+        "startLine": 22,
+        "startChar": 32,
+        "endLine": 22,
+        "endChar": 48
+      },
+      "revId": "d0cb7011e1a105dad0bd642a3305e3f4a15f965e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07cfbc70_8e555133",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RateMsgHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-04T16:34:57Z",
+      "side": 1,
+      "message": "When templateMsg is NOT null, then rateLimitTypeName is unused, so we can write:\n\n  new RateMsgHelper(\"foo\", \"My custom message with ${rateLimit} token\");\n\nor:\n\n  new RateMsgHelper(\"bar\", \"My custom message with ${rateLimit} token\");\n\nor even:\n\n  new RateMsgHelper(null, \"My custom message with ${rateLimit} token\");\n\nand the resulting message format will be identical for all 3 cases.\n\nThis is confusing.",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 3
+      },
+      "revId": "d0cb7011e1a105dad0bd642a3305e3f4a15f965e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
