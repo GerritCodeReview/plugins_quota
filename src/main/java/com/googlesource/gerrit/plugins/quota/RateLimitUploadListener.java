@@ -133,7 +133,7 @@ public class RateLimitUploadListener implements UploadValidationListener {
       try {
         limiter = limitsPerAccount.get(accountId).get();
       } catch (ExecutionException e) {
-        String msg = MessageFormat.format("Cannot get rate limits for account ''{}''", accountId);
+        String msg = MessageFormat.format("Cannot get rate limits for account ''{0}''", accountId);
         log.warn(msg, e);
       }
     } else {
