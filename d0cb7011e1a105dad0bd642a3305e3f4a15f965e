@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "a297aa97_128206d7",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RateMsgHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-06T12:05:07Z",
+      "side": 1,
+      "message": "\u003e because the format of the \"exceeded message\" to be used in the configuration file and by default should be uniform as well as their processing.\n\nOK, if you want to ensure uniform processing then you could still keep the ${rateLimit} token\nhere. However, replacing the token with format for the default message can be done only once.",
+      "parentUuid": "adfc96e2_ae085ba6",
+      "range": {
+        "startLine": 22,
+        "startChar": 32,
+        "endLine": 22,
+        "endChar": 48
+      },
+      "revId": "d0cb7011e1a105dad0bd642a3305e3f4a15f965e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "07cfbc70_8e555133",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RateMsgHelper.java",
         "patchSetId": 1
