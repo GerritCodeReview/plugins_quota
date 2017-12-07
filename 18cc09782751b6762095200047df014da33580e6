@@ -1,0 +1,187 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bed1a0ec_2797a31b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-07T08:47:01Z",
+      "side": 1,
+      "message": "usage of final for local variables was done in the past. In all new Gerrit code this is done only when really necessary. It can be removed here.",
+      "range": {
+        "startLine": 58,
+        "startChar": 4,
+        "endLine": 58,
+        "endChar": 10
+      },
+      "revId": "18cc09782751b6762095200047df014da33580e6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f899e9e8_a610d8ea",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RateLimitUploadListener.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-07T08:47:01Z",
+      "side": 1,
+      "message": "nit: unnecessary empty line",
+      "revId": "18cc09782751b6762095200047df014da33580e6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "701f08d1_bafef5eb",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RateLimitUploadListener.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-07T08:47:01Z",
+      "side": 1,
+      "message": "final\n\nIt was already final in the old version, why remove it?",
+      "revId": "18cc09782751b6762095200047df014da33580e6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38bfef19_113b8a65",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RateMsgHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-07T08:47:01Z",
+      "side": 1,
+      "message": "optional: I would remove this part of the name",
+      "range": {
+        "startLine": 20,
+        "startChar": 56,
+        "endLine": 20,
+        "endChar": 67
+      },
+      "revId": "18cc09782751b6762095200047df014da33580e6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "edab9800_c93d3a34",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RateMsgHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-07T08:47:01Z",
+      "side": 1,
+      "message": "RATE_LIMIT_FORMAT\n\nto be consistent with RATE_LIMIT_TOKEN",
+      "range": {
+        "startLine": 22,
+        "startChar": 22,
+        "endLine": 22,
+        "endChar": 33
+      },
+      "revId": "18cc09782751b6762095200047df014da33580e6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff90cf34_21ebb46a",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RateMsgHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-07T08:47:01Z",
+      "side": 1,
+      "message": "As I see all these constants are used from this class only. Make them private?",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 0
+      },
+      "revId": "18cc09782751b6762095200047df014da33580e6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d4424fa_449e2856",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RateMsgHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-07T08:47:01Z",
+      "side": 1,
+      "message": "private?\n\nthis is only used from this class",
+      "revId": "18cc09782751b6762095200047df014da33580e6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4af1ed91_34986b3b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RateMsgHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-07T08:47:01Z",
+      "side": 1,
+      "message": "remove\n\nThis constructor is used from line 37",
+      "revId": "18cc09782751b6762095200047df014da33580e6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d7776f5_e90f5a73",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RateMsgHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-07T08:47:01Z",
+      "side": 1,
+      "message": "Unused parameter",
+      "range": {
+        "startLine": 41,
+        "startChar": 23,
+        "endLine": 41,
+        "endChar": 46
+      },
+      "revId": "18cc09782751b6762095200047df014da33580e6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
