@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c0aeac68_de62e211",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-11T09:53:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bed1a0ec_2797a31b",
+      "range": {
+        "startLine": 58,
+        "startChar": 4,
+        "endLine": 58,
+        "endChar": 10
+      },
+      "revId": "18cc09782751b6762095200047df014da33580e6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f899e9e8_a610d8ea",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RateLimitUploadListener.java",
         "patchSetId": 2
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "5afb3a0c_69e0acb2",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RateLimitUploadListener.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-11T09:53:32Z",
+      "side": 1,
+      "message": "the line separated variables \"private final\" vs. \"private\", removed.",
+      "parentUuid": "f899e9e8_a610d8ea",
+      "revId": "18cc09782751b6762095200047df014da33580e6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "701f08d1_bafef5eb",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RateLimitUploadListener.java",
         "patchSetId": 2
@@ -56,6 +98,24 @@
       "revId": "18cc09782751b6762095200047df014da33580e6",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ee55cc2_ec2b2bb8",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RateLimitUploadListener.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-11T09:53:32Z",
+      "side": 1,
+      "message": "was on purpose, but difficult to defend, resumed.",
+      "parentUuid": "701f08d1_bafef5eb",
+      "revId": "18cc09782751b6762095200047df014da33580e6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     },
     {
       "key": {
@@ -82,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "1b8abc76_f97a818d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RateMsgHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-11T09:53:32Z",
+      "side": 1,
+      "message": "this variable has double use, being the name for the configuration option and the annotation label, i\u0027d rather keep it.",
+      "parentUuid": "38bfef19_113b8a65",
+      "range": {
+        "startLine": 20,
+        "startChar": 56,
+        "endLine": 20,
+        "endChar": 67
+      },
+      "revId": "18cc09782751b6762095200047df014da33580e6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "edab9800_c93d3a34",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RateMsgHelper.java",
         "patchSetId": 2
@@ -102,6 +186,30 @@
       "revId": "18cc09782751b6762095200047df014da33580e6",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d32ee8ca_bd0c1428",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RateMsgHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-11T09:53:32Z",
+      "side": 1,
+      "message": "here and for the rest of the comments please see the new patch set.",
+      "parentUuid": "edab9800_c93d3a34",
+      "range": {
+        "startLine": 22,
+        "startChar": 22,
+        "endLine": 22,
+        "endChar": 33
+      },
+      "revId": "18cc09782751b6762095200047df014da33580e6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     },
     {
       "key": {
@@ -128,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "d5232b07_b0f692b1",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RateMsgHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-11T09:53:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff90cf34_21ebb46a",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 0
+      },
+      "revId": "18cc09782751b6762095200047df014da33580e6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8d4424fa_449e2856",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RateMsgHelper.java",
         "patchSetId": 2
@@ -145,6 +277,24 @@
     },
     {
       "key": {
+        "uuid": "b539c5b7_83694a92",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RateMsgHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-11T09:53:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d4424fa_449e2856",
+      "revId": "18cc09782751b6762095200047df014da33580e6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4af1ed91_34986b3b",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RateMsgHelper.java",
         "patchSetId": 2
@@ -159,6 +309,24 @@
       "revId": "18cc09782751b6762095200047df014da33580e6",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cedb294b_988cd588",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RateMsgHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-11T09:53:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4af1ed91_34986b3b",
+      "revId": "18cc09782751b6762095200047df014da33580e6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     },
     {
       "key": {
@@ -182,6 +350,30 @@
       "revId": "18cc09782751b6762095200047df014da33580e6",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba6410f9_811e0dfc",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RateMsgHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-11T09:53:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d7776f5_e90f5a73",
+      "range": {
+        "startLine": 41,
+        "startChar": 23,
+        "endLine": 41,
+        "endChar": 46
+      },
+      "revId": "18cc09782751b6762095200047df014da33580e6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
