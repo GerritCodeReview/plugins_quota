@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2736a0e4_538ea95c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-11T16:19:46Z",
+      "side": 1,
+      "message": "Why, where and for what purpose?",
+      "range": {
+        "startLine": 9,
+        "startChar": 9,
+        "endLine": 9,
+        "endChar": 14
+      },
+      "revId": "c77e1080a5a969a25cedc17c3b3826887cd45d70",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa7a4740_0ab718d2",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-11T16:19:46Z",
+      "side": 1,
+      "message": "burstPermits",
+      "range": {
+        "startLine": 100,
+        "startChar": 16,
+        "endLine": 100,
+        "endChar": 28
+      },
+      "revId": "c77e1080a5a969a25cedc17c3b3826887cd45d70",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9083056_fb7d5195",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-11T16:19:46Z",
+      "side": 1,
+      "message": "private or package private\n\nThis is only used from the Holder class and the class itself is package private.\n\nBtw, the same applies for the constructor at 102. It was a mistake to leave it public.",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 106,
+        "endChar": 10
+      },
+      "revId": "c77e1080a5a969a25cedc17c3b3826887cd45d70",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45cb90e8_9bde8194",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-11T16:19:46Z",
+      "side": 1,
+      "message": "getBurstPermits",
+      "range": {
+        "startLine": 115,
+        "startChar": 15,
+        "endLine": 115,
+        "endChar": 23
+      },
+      "revId": "c77e1080a5a969a25cedc17c3b3826887cd45d70",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa943100_26166c17",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-11T16:19:46Z",
+      "side": 1,
+      "message": "This method is unused. It if gets used in a follow-up change then these two changes should probably get squashed into one.",
+      "revId": "c77e1080a5a969a25cedc17c3b3826887cd45d70",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
