@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b9d31ffc_425f94e4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-12T14:41:02Z",
+      "side": 1,
+      "message": "combined with the using commit making the question obsolete",
+      "parentUuid": "2736a0e4_538ea95c",
+      "range": {
+        "startLine": 9,
+        "startChar": 9,
+        "endLine": 9,
+        "endChar": 14
+      },
+      "revId": "c77e1080a5a969a25cedc17c3b3826887cd45d70",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa7a4740_0ab718d2",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
         "patchSetId": 5
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "569bf748_113aa885",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-12T14:41:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa7a4740_0ab718d2",
+      "range": {
+        "startLine": 100,
+        "startChar": 16,
+        "endLine": 100,
+        "endChar": 28
+      },
+      "revId": "c77e1080a5a969a25cedc17c3b3826887cd45d70",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d9083056_fb7d5195",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
         "patchSetId": 5
@@ -68,6 +116,30 @@
       "revId": "c77e1080a5a969a25cedc17c3b3826887cd45d70",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d09a42b_7fd2ba5d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-12T14:41:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9083056_fb7d5195",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 106,
+        "endChar": 10
+      },
+      "revId": "c77e1080a5a969a25cedc17c3b3826887cd45d70",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     },
     {
       "key": {
@@ -108,6 +180,48 @@
       "revId": "c77e1080a5a969a25cedc17c3b3826887cd45d70",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1fb4f048_ec4aece0",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-12T14:41:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45cb90e8_9bde8194",
+      "range": {
+        "startLine": 115,
+        "startChar": 15,
+        "endLine": 115,
+        "endChar": 23
+      },
+      "revId": "c77e1080a5a969a25cedc17c3b3826887cd45d70",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7014f386_4893e1dd",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-12T14:41:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa943100_26166c17",
+      "revId": "c77e1080a5a969a25cedc17c3b3826887cd45d70",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
