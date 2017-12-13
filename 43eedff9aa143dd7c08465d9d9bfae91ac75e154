@@ -1,0 +1,250 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "80492f92_612f49a2",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/HttpModule.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-13T16:03:55Z",
+      "side": 1,
+      "message": "The (new) REST API limiter uses the extended message format (with the burst information) and the existing upload-pack limiter uses the shorter format (without the burst information). I guess that eventually we want to use the extended format for both limiters and/or have it configurable. This changes does two things:\n* introduce a new rate limiter (REST API)\n* extends the message format\n\nCan we have this two aspects done in two changes, in that order?\nThen we can review each aspect independently.",
+      "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96dd467b_af3a91c2",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-13T16:03:55Z",
+      "side": 1,
+      "message": "Make this javadoc?",
+      "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1408897_75aee54c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-13T16:03:55Z",
+      "side": 1,
+      "message": "Gerrit",
+      "range": {
+        "startLine": 128,
+        "startChar": 37,
+        "endLine": 128,
+        "endChar": 56
+      },
+      "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "398b561f_eed74d68",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-13T16:03:55Z",
+      "side": 1,
+      "message": "We cannot tell this for sure. If rate limit is high enough this may not necessarily happen.",
+      "range": {
+        "startLine": 129,
+        "startChar": 49,
+        "endLine": 130,
+        "endChar": 34
+      },
+      "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "852341f9_e7637583",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-13T16:03:55Z",
+      "side": 1,
+      "message": "General question: isn\u0027t it possible to instantiate Guava rate limiter with a given number of burst permits? If yes, then we wouldn\u0027t need the concept of grace period.",
+      "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "049c52e1_5227463f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-13T16:03:55Z",
+      "side": 1,
+      "message": "Maybe \u0027hasGracePermits\u0027 is a more suitable name as it is not about period of time but the number of permits.",
+      "range": {
+        "startLine": 132,
+        "startChar": 12,
+        "endLine": 132,
+        "endChar": 25
+      },
+      "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "380fd9ec_ad8ec030",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-13T16:03:55Z",
+      "side": 1,
+      "message": "\u003c\u003d\n\nExample: assume we have exactly one grace permit. Then on the first call here the\nexecution will reach line 134 and decrease the gracePermits to zero. On the next call,\nthe gracePermits is zero and because the check in 133 only checks for less than zero,\nit would be once more decrease, which is unnecessary. We could already at the line 133 tell\nthat there are no more permits.",
+      "range": {
+        "startLine": 133,
+        "startChar": 29,
+        "endLine": 133,
+        "endChar": 30
+      },
+      "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e464835_49a603ac",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RateMsgHelper.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-13T16:03:55Z",
+      "side": 1,
+      "message": "Compare Java enums with the \u003d\u003d operator instead of the equals method.",
+      "range": {
+        "startLine": 53,
+        "startChar": 25,
+        "endLine": 53,
+        "endChar": 31
+      },
+      "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "730f763d_c63ded7a",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RestApiRequestRateEnforcer.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-13T16:03:55Z",
+      "side": 1,
+      "message": "RestApiRateLimiter would be a less glorified name :-)",
+      "range": {
+        "startLine": 40,
+        "startChar": 13,
+        "endLine": 40,
+        "endChar": 39
+      },
+      "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78918a6d_25a61d8f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RestApiRequestRateEnforcer.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-13T16:03:55Z",
+      "side": 1,
+      "message": "This variable is used only in the \u0027then\u0027 block of the if statement. Delete this line and declare the variable at the line 79.",
+      "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a322efe5_471550f2",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RestApiRequestRateEnforcer.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-13T16:03:55Z",
+      "side": 1,
+      "message": "rateLimiterHolder \u003d\u003d Holder.EMPTY\n\nBtw, unrelated to your change, EMPTY should be named NO_LIMIT so that its name better explains its meaning. Could be improved in a follow up change.",
+      "range": {
+        "startLine": 99,
+        "startChar": 13,
+        "endLine": 99,
+        "endChar": 44
+      },
+      "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00b0236f_303fd0de",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RestApiRequestRateEnforcer.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-13T16:03:55Z",
+      "side": 1,
+      "message": "Do we really support anything that is not an HttpServletRequest? Why would context path be a good replacement for getRequestURI in this case?\n\nI would say that if it is not HttpServletReqeust then it is not REST API call.",
+      "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
