@@ -191,6 +191,23 @@
     },
     {
       "key": {
+        "uuid": "30deddc7_f1abc251",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RestApiRequestRateEnforcer.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-13T16:42:07Z",
+      "side": 1,
+      "message": "Move this assignment in the catch block (90-96), so that it is clear under which circumstances EMPTY is used?\n\nOf course, declaration stays here, but without initialization.",
+      "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "78918a6d_25a61d8f",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RestApiRequestRateEnforcer.java",
         "patchSetId": 9
