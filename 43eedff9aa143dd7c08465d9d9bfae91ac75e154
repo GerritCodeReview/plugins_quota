@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f9813779_7eb570f0",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/HttpModule.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-15T17:27:05Z",
+      "side": 1,
+      "message": "the rest api rate limiter requires its (\"enhanced\") messaging as an integral part, rather wouldn\u0027t separate them. that would be more consistent.\n\nPS: in the past, both limiters\u0027 messaging had been enhanced, but there were reasons to keep the original format for the upload-pack (including backwards compatibility, arguably lesser necessity, and convenience of reviewers). the upload-pack messaging was also not separate from the core rate limiting functionality. the planned evaluation may, of course, bring sharpened requirements, leading to separated advancement of the aspects of the whole.",
+      "parentUuid": "80492f92_612f49a2",
+      "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "96dd467b_af3a91c2",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
         "patchSetId": 9
@@ -33,6 +51,24 @@
       "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "837a5f8d_8c8661d4",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-15T17:27:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96dd467b_af3a91c2",
+      "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     },
     {
       "key": {
@@ -59,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "2a12614c_2040fb77",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-15T17:27:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1408897_75aee54c",
+      "range": {
+        "startLine": 128,
+        "startChar": 37,
+        "endLine": 128,
+        "endChar": 56
+      },
+      "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "398b561f_eed74d68",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
         "patchSetId": 9
@@ -79,6 +139,30 @@
       "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6c17e83_376d7abb",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-15T17:27:05Z",
+      "side": 1,
+      "message": "stated it more precisely (such configuration would defeat the purpose of the quota)",
+      "parentUuid": "398b561f_eed74d68",
+      "range": {
+        "startLine": 129,
+        "startChar": 49,
+        "endLine": 130,
+        "endChar": 34
+      },
+      "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     },
     {
       "key": {
@@ -122,6 +206,48 @@
     },
     {
       "key": {
+        "uuid": "5471378e_5df332a0",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-15T17:27:05Z",
+      "side": 1,
+      "message": "guava rate limiter is being instantiated with the given maximum number of burst permits. it is not capable of thinking that the idle time has been accrued, before it has been accrued.",
+      "parentUuid": "852341f9_e7637583",
+      "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "816e85d6_fc527e67",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-15T17:27:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "049c52e1_5227463f",
+      "range": {
+        "startLine": 132,
+        "startChar": 12,
+        "endLine": 132,
+        "endChar": 25
+      },
+      "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "380fd9ec_ad8ec030",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
         "patchSetId": 9
@@ -142,6 +268,30 @@
       "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43782fc2_f776a764",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-15T17:27:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "380fd9ec_ad8ec030",
+      "range": {
+        "startLine": 133,
+        "startChar": 29,
+        "endLine": 133,
+        "endChar": 30
+      },
+      "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     },
     {
       "key": {
@@ -168,6 +318,30 @@
     },
     {
       "key": {
+        "uuid": "e569aab6_744d133d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RateMsgHelper.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-15T17:27:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e464835_49a603ac",
+      "range": {
+        "startLine": 53,
+        "startChar": 25,
+        "endLine": 53,
+        "endChar": 31
+      },
+      "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "730f763d_c63ded7a",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RestApiRequestRateEnforcer.java",
         "patchSetId": 9
@@ -191,6 +365,30 @@
     },
     {
       "key": {
+        "uuid": "f87c5780_ecec4187",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RestApiRequestRateEnforcer.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-15T17:27:05Z",
+      "side": 1,
+      "message": "imho, would be less clear, sorry",
+      "parentUuid": "730f763d_c63ded7a",
+      "range": {
+        "startLine": 40,
+        "startChar": 13,
+        "endLine": 40,
+        "endChar": 39
+      },
+      "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "30deddc7_f1abc251",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RestApiRequestRateEnforcer.java",
         "patchSetId": 9
@@ -208,6 +406,24 @@
     },
     {
       "key": {
+        "uuid": "e6c9b523_852b6f6a",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RestApiRequestRateEnforcer.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-15T17:27:05Z",
+      "side": 1,
+      "message": "would result in a compiler error: it is also relevant in another catch block (80-84)",
+      "parentUuid": "30deddc7_f1abc251",
+      "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "78918a6d_25a61d8f",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RestApiRequestRateEnforcer.java",
         "patchSetId": 9
@@ -222,6 +438,24 @@
       "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61df5c4f_6c793358",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RestApiRequestRateEnforcer.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-15T17:27:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78918a6d_25a61d8f",
+      "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     },
     {
       "key": {
@@ -248,6 +482,30 @@
     },
     {
       "key": {
+        "uuid": "a89f27de_08a50bc6",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RestApiRequestRateEnforcer.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-15T17:27:05Z",
+      "side": 1,
+      "message": "agree, it\u0027s about its clarity. EMPTY is actually pretty straightforward: the holder \"holds\", and it is empty, if it doesn\u0027t. maybe better EMPTY_HOLDER or NULL_RATE_LIMITER_HOLDER",
+      "parentUuid": "a322efe5_471550f2",
+      "range": {
+        "startLine": 99,
+        "startChar": 13,
+        "endLine": 99,
+        "endChar": 44
+      },
+      "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "00b0236f_303fd0de",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RestApiRequestRateEnforcer.java",
         "patchSetId": 9
@@ -262,6 +520,24 @@
       "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d9ad6bb_f95b61ac",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RestApiRequestRateEnforcer.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-15T17:27:05Z",
+      "side": 1,
+      "message": "Done (assuming we never get anything else)",
+      "parentUuid": "00b0236f_303fd0de",
+      "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
