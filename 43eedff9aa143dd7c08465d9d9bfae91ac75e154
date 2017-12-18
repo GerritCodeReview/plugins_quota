@@ -389,6 +389,30 @@
     },
     {
       "key": {
+        "uuid": "5f782b63_584fc38f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RestApiRequestRateEnforcer.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-18T13:32:16Z",
+      "side": 1,
+      "message": "OK, let me give more reasons. \"Rate limiting\" seems to be pretty standard term [1].\nGuava also uses RateLimiter name [1], not RateEnforcer.\n\nYour commit message has subject which mentiones rate limits: \"Add REST API rate limits\"\nand the documentation [3] also uses rate limits as the terminology.\n\nTherefore, it is for me hard to understand how \"RateLimiter\" would be here less clear\nthan RateEnforcer. I believe that sticking to standard terminology should be preferred\nover using new terms for the same thing.\n\n[1] https://en.wikipedia.org/wiki/Rate_limiting\n[2] https://github.com/google/guava/blob/master/guava/src/com/google/common/util/concurrent/RateLimiter.java",
+      "parentUuid": "f87c5780_ecec4187",
+      "range": {
+        "startLine": 40,
+        "startChar": 13,
+        "endLine": 40,
+        "endChar": 39
+      },
+      "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "30deddc7_f1abc251",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RestApiRequestRateEnforcer.java",
         "patchSetId": 9
@@ -418,6 +442,24 @@
       "side": 1,
       "message": "would result in a compiler error: it is also relevant in another catch block (80-84)",
       "parentUuid": "30deddc7_f1abc251",
+      "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fdac0f57_5d7c8c59",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RestApiRequestRateEnforcer.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-18T13:32:16Z",
+      "side": 1,
+      "message": "I didn\u0027t mean to move the variable declaration but only initialization. In this line it would be:\n\n  Holder rateLimiterHolder;\n\nand in the two catch blocks:\n\n  rateLimiterHolder \u003d Holder.EMPTY;\n\nThis proposal is optional.",
+      "parentUuid": "e6c9b523_852b6f6a",
       "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
