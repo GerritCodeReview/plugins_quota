@@ -413,6 +413,30 @@
     },
     {
       "key": {
+        "uuid": "87328bb5_1db81154",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RestApiRequestRateEnforcer.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-18T20:25:25Z",
+      "side": 1,
+      "message": "true, the class is technically using guava\u0027s general purpose RateLimiters. but the class is technically a Filter for http requests of the gerrit rest api. the actual enforcement of the maximum rate takes place in this class.\nsemantically, \"rate limiter\" fits, but the HttpModule class is not less a RestApiRateLimiter. as a side note, it\u0027s not \"rest api\", it\u0027s \"gerrit rest api\", not the plugin\u0027s or some other rest api; and the rest api is not being limited in any way, it\u0027s about http requests that get throttled. and one could call the thing a RestApiQuota as in MaxRepositorySizeQuota.\nmy comments may appear artificial or contain flaws, but as somebody, who recently struggled to understand the names with a fresh look and chose the name that could have helped me, i can say that standard names shouldn\u0027t get overused in order to protect the standards.\nwell, it gets philosophical, so let me just change it to your suggestion. and thank you for your time, i mean it.",
+      "parentUuid": "5f782b63_584fc38f",
+      "range": {
+        "startLine": 40,
+        "startChar": 13,
+        "endLine": 40,
+        "endChar": 39
+      },
+      "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "30deddc7_f1abc251",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RestApiRequestRateEnforcer.java",
         "patchSetId": 9
@@ -460,6 +484,24 @@
       "side": 1,
       "message": "I didn\u0027t mean to move the variable declaration but only initialization. In this line it would be:\n\n  Holder rateLimiterHolder;\n\nand in the two catch blocks:\n\n  rateLimiterHolder \u003d Holder.EMPTY;\n\nThis proposal is optional.",
       "parentUuid": "e6c9b523_852b6f6a",
+      "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "24897293_43956c5d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RestApiRequestRateEnforcer.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-18T20:25:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fdac0f57_5d7c8c59",
       "revId": "43eedff9aa143dd7c08465d9d9bfae91ac75e154",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
