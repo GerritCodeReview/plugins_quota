@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cc1dcd32_48a04387",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RestApiRateLimiter.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2017-12-19T09:38:03Z",
+      "side": 1,
+      "message": "Now I see that my comment about considering only HttpServletRequest instances as possible REST API calls could have been more precise. I meant it like following. At this line:\n\n  if (isRest(req)) {\n\n\nand at in the isRest method:\n\n  boolean isRest(ServletRequest req) {\n    return req instanceof HttpServletRequest\n        \u0026\u0026 resturi.matcher(((HttpServletReqeust) req).getRequestURI()).matches();\n  }",
+      "revId": "6981cf9975e353d7c729cf000b4450a9cddbc1fe",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
