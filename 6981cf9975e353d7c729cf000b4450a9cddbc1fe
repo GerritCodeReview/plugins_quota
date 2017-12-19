@@ -16,6 +16,24 @@
       "revId": "6981cf9975e353d7c729cf000b4450a9cddbc1fe",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60e0bf93_782bb6b6",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RestApiRateLimiter.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1056821
+      },
+      "writtenOn": "2017-12-19T10:08:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc1dcd32_48a04387",
+      "revId": "6981cf9975e353d7c729cf000b4450a9cddbc1fe",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
