@@ -93,46 +93,44 @@ public class AccountLimitsConfig {
     }
     rateLimits = ArrayTable.create(Arrays.asList(Type.values()), groups);
     for (String groupName : groups) {
-      rateLimits.put(UPLOADPACK, groupName, parseRateLimit(c, groupName, UPLOADPACK, 60, 30));
-      rateLimits.put(RESTAPI, groupName, parseRateLimit(c, groupName, RESTAPI, 3, 90));
+      parseRateLimit(c, groupName, UPLOADPACK);
+      parseRateLimit(c, groupName, RESTAPI);
     }
   }
 
-  RateLimit parseRateLimit(
-      Config c, String groupName, Type type, int defaultIntervalSeconds, int defaultBurstCount) {
+  void parseRateLimit(Config c, String groupName, Type type) {
     String name = type.toConfigValue();
     String value = c.getString(GROUP_SECTION, groupName, name);
     if (value == null) {
-      return defaultRateLimit(type, defaultIntervalSeconds, defaultBurstCount);
+      return;
     }
     value = value.trim();
 
     Matcher m = Pattern.compile("^\\s*(\\d+)\\s*/\\s*(.*)\\s*burst\\s*(\\d+)$").matcher(value);
     if (!m.matches()) {
-      log.warn(
-          "Invalid ''{}'' ratelimit configuration ''{}'', use default ratelimit {}/hour",
+      log.error(
+          "Invalid ''{}'' ratelimit configuration ''{}''; ignoring the configuration entry",
           type.toConfigValue(),
-          value,
-          3600.0D / defaultIntervalSeconds);
-      return defaultRateLimit(type, defaultIntervalSeconds, defaultBurstCount);
+          value);
+      return;
     }
 
     String digits = m.group(1);
     String unitName = m.group(2).trim();
     String storeCountString = m.group(3).trim();
-    long burstCount = defaultBurstCount;
+    long burstCount;
     try {
       burstCount = Long.parseLong(storeCountString);
     } catch (NumberFormatException e) {
-      log.warn(
-          "Invalid ''{}'' ratelimit store configuration ''{}'', use default burst count ''{}''",
+      log.error(
+          "Invalid ''{}'' ratelimit store configuration ''{}''; ignoring the configuration entry",
           type.toConfigValue(),
-          storeCountString,
-          burstCount);
+          storeCountString);
+      return;
     }
 
-    TimeUnit inputUnit = TimeUnit.HOURS;
-    double ratePerSecond = 1.0D / defaultIntervalSeconds;
+    TimeUnit inputUnit;
+    double ratePerSecond;
     if (unitName.isEmpty()) {
       inputUnit = TimeUnit.SECONDS;
     } else if (match(unitName, "s", "sec", "second")) {
@@ -145,15 +143,17 @@ public class AccountLimitsConfig {
       inputUnit = TimeUnit.DAYS;
     } else {
       logNotRateUnit(GROUP_SECTION, groupName, name, value);
+      return;
     }
     try {
       ratePerSecond = 1.0D * Long.parseLong(digits) / TimeUnit.SECONDS.convert(1, inputUnit);
     } catch (NumberFormatException nfe) {
       logNotRateUnit(GROUP_SECTION, groupName, unitName, value);
+      return;
     }
 
     int maxBurstSeconds = (int) (burstCount / ratePerSecond);
-    return new RateLimit(type, ratePerSecond, maxBurstSeconds);
+    rateLimits.put(type, groupName, new RateLimit(type, ratePerSecond, maxBurstSeconds));
   }
 
   private static boolean match(final String a, final String... cases) {
@@ -169,16 +169,14 @@ public class AccountLimitsConfig {
     if (subsection != null) {
       log.error(
           MessageFormat.format(
-              "Invalid rate unit value: {0}.{1}.{2}={3}", section, subsection, name, valueString));
+              "Invalid rate unit value: {0}.{1}.{2}={3}; ignoring the configuration entry",
+              section, subsection, name, valueString));
     } else {
       log.error(
-          MessageFormat.format("Invalid rate unit value: {0}.{1}={2}", section, name, valueString));
+          MessageFormat.format(
+              "Invalid rate unit value: {0}.{1}={2}; ignoring the configuration entry",
+              section, name, valueString));
     }
-  }
-
-  private RateLimit defaultRateLimit(Type type, int defaultIntervalSeconds, int defaultStoreCount) {
-    return new RateLimit(
-        type, 1.0D / defaultIntervalSeconds, defaultIntervalSeconds * defaultStoreCount);
   }
 
   /**
