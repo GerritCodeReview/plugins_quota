@@ -26,7 +26,6 @@ public class RateMsgHelper {
   private static final String UPLOADPACK_INLINE_NAME = "fetch";
   private static final String RESTAPI_INLINE_NAME = "REST API";
 
-  // compare AccountLimitsConfig's constructor for default rate limits
   private static String getDefaultTemplateMsg(String rateLimitTypeName) {
     return "Exceeded rate limit of "
         + RATE_LIMIT_TOKEN
