@@ -199,7 +199,6 @@ for the given group
 `/m`, `/min`, `/minute`: requests per minute<br />
 `/h`, `/hr`, `/hour`: requests per hour<br />
 `/d`, `/day`: requests per day<br />
-The default unit used if no unit is configured is `/hour`.
 
 <a id="burst" />
 `group.<groupName>.<storedRequests>`
@@ -211,13 +210,7 @@ at the very beginning of a client interaction with the back-end server,
 as if idle time would already have been accumulated.
 
 If a rate limit configuration value is invalid or missing for a group,
-default values are assumed.
-
-For `uploadpack`, a default rate limit of 1
-request per minute with 30 stored requests is assumed.
-
-For `restapi`, the default rate limit is 20 requests per minute
-and at most 90 stored requests.
+the configuration entry gets ignored, and a warning is being logged.
 
 Example:
 
