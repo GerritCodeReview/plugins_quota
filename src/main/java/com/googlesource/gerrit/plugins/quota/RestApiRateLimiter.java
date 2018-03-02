@@ -15,7 +15,7 @@
 package com.googlesource.gerrit.plugins.quota;
 
 import com.google.common.cache.LoadingCache;
-import com.google.gerrit.httpd.AllRequestFilter;
+import com.google.gerrit.httpd.AllAuthenticatedRequestFilter;
 import com.google.gerrit.reviewdb.client.Account;
 import com.google.gerrit.server.CurrentUser;
 import com.google.inject.Inject;
@@ -37,7 +37,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Singleton
-public class RestApiRateLimiter extends AllRequestFilter {
+public class RestApiRateLimiter extends AllAuthenticatedRequestFilter {
   private static final Logger log = LoggerFactory.getLogger(RestApiRateLimiter.class);
   private static final int SECONDS_PER_HOUR = 3600;
 
