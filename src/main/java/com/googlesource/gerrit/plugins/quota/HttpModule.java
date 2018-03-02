@@ -18,7 +18,7 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.LoadingCache;
 import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gerrit.extensions.registration.DynamicSet;
-import com.google.gerrit.httpd.AllRequestFilter;
+import com.google.gerrit.httpd.AllAuthenticatedRequestFilter;
 import com.google.gerrit.reviewdb.client.Account;
 import com.google.gerrit.server.IdentifiedUser.GenericFactory;
 import com.google.gerrit.server.cache.CacheModule;
@@ -49,7 +49,7 @@ class HttpModule extends CacheModule {
 
   @Override
   protected void configure() {
-    DynamicSet.bind(binder(), AllRequestFilter.class).to(RestApiRateLimiter.class);
+    DynamicSet.bind(binder(), AllAuthenticatedRequestFilter.class).to(RestApiRateLimiter.class);
     bindConstant()
         .annotatedWith(Names.named(RateMsgHelper.RESTAPI_CONFIGURABLE_MSG_ANNOTATION))
         .to(restapiLimitExceededMsg);
