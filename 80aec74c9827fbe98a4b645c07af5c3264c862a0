@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "513c7d41_a3c0eb8f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2018-03-07T12:34:26Z",
+      "side": 1,
+      "message": "I think this should be logged as an error",
+      "revId": "80aec74c9827fbe98a4b645c07af5c3264c862a0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d11511cd_5a8a48bc",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2018-03-07T12:34:26Z",
+      "side": 1,
+      "message": "I think this should be logged as an error",
+      "revId": "80aec74c9827fbe98a4b645c07af5c3264c862a0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4590e5a9_376a068c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2018-03-07T12:34:26Z",
+      "side": 1,
+      "message": "I think invalid rate unit values should be logged as an error",
+      "revId": "80aec74c9827fbe98a4b645c07af5c3264c862a0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e762c952_4652c5b9",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2018-03-07T12:34:26Z",
+      "side": 1,
+      "message": "I think invalid rate unit values should be logged as an error",
+      "revId": "80aec74c9827fbe98a4b645c07af5c3264c862a0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
