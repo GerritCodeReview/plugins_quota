@@ -17,7 +17,6 @@ package com.googlesource.gerrit.plugins.quota;
 import com.google.gerrit.extensions.events.UsageDataPublishedListener.Data;
 import com.google.gerrit.extensions.events.UsageDataPublishedListener.Event;
 import com.google.gerrit.extensions.events.UsageDataPublishedListener.MetaData;
-
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,18 +34,19 @@ class UsageDataEvent implements Event {
   }
 
   void addData(final long value, final String projectName) {
-    Data dataRow = new Data() {
+    Data dataRow =
+        new Data() {
 
-      @Override
-      public long getValue() {
-        return value;
-      }
+          @Override
+          public long getValue() {
+            return value;
+          }
 
-      @Override
-      public String getProjectName() {
-        return projectName;
-      }
-    };
+          @Override
+          public String getProjectName() {
+            return projectName;
+          }
+        };
 
     data.add(dataRow);
   }
@@ -58,7 +58,7 @@ class UsageDataEvent implements Event {
 
   @Override
   public Timestamp getInstant() {
-    return timestamp  ;
+    return timestamp;
   }
 
   @Override

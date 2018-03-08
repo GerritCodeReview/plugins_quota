@@ -28,18 +28,6 @@ import com.google.inject.Inject;
 import com.google.inject.Module;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
-
-import org.apache.commons.lang.mutable.MutableLong;
-import org.eclipse.jgit.internal.storage.file.FileRepository;
-import org.eclipse.jgit.internal.storage.file.GC;
-import org.eclipse.jgit.internal.storage.file.GC.RepoStatistics;
-import org.eclipse.jgit.lib.Repository;
-import org.eclipse.jgit.transport.PostReceiveHook;
-import org.eclipse.jgit.transport.ReceiveCommand;
-import org.eclipse.jgit.transport.ReceivePack;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileVisitResult;
@@ -51,11 +39,20 @@ import java.util.Collection;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
+import org.apache.commons.lang.mutable.MutableLong;
+import org.eclipse.jgit.internal.storage.file.FileRepository;
+import org.eclipse.jgit.internal.storage.file.GC;
+import org.eclipse.jgit.internal.storage.file.GC.RepoStatistics;
+import org.eclipse.jgit.lib.Repository;
+import org.eclipse.jgit.transport.PostReceiveHook;
+import org.eclipse.jgit.transport.ReceiveCommand;
+import org.eclipse.jgit.transport.ReceivePack;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Singleton
 class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook, RepoSizeCache {
-  private static final Logger log = LoggerFactory
-      .getLogger(MaxRepositorySizeQuota.class);
+  private static final Logger log = LoggerFactory.getLogger(MaxRepositorySizeQuota.class);
 
   static final String REPO_SIZE_CACHE = "repo_size";
 
@@ -77,9 +74,11 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook,
   private final ProjectNameResolver projectNameResolver;
 
   @Inject
-  MaxRepositorySizeQuota(QuotaFinder quotaFinder,
+  MaxRepositorySizeQuota(
+      QuotaFinder quotaFinder,
       @Named(REPO_SIZE_CACHE) LoadingCache<Project.NameKey, AtomicLong> cache,
-      ProjectCache projectCache, ProjectNameResolver projectNameResolver) {
+      ProjectCache projectCache,
+      ProjectNameResolver projectNameResolver) {
     this.quotaFinder = quotaFinder;
     this.cache = cache;
     this.projectCache = projectCache;
@@ -116,12 +115,10 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook,
         maxPackSize2 = Math.max(0, maxTotalSize - totalSize);
       }
 
-      long maxPackSize = Ordering.<Long> natural().nullsLast().min(
-          maxPackSize1, maxPackSize2);
+      long maxPackSize = Ordering.<Long>natural().nullsLast().min(maxPackSize1, maxPackSize2);
       rp.setMaxPackSizeLimit(maxPackSize);
     } catch (ExecutionException e) {
-      log.warn("Couldn't setMaxPackSizeLimit on receive-pack for "
-          + project.get(), e);
+      log.warn("Couldn't setMaxPackSizeLimit on receive-pack for " + project.get(), e);
     }
   }
 
@@ -153,12 +150,11 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook,
     private final boolean useGitObjectCount;
 
     @Inject
-    Loader(GitRepositoryManager gitManager,
-        PluginConfigFactory cfg,
-        @PluginName String pluginName) {
+    Loader(
+        GitRepositoryManager gitManager, PluginConfigFactory cfg, @PluginName String pluginName) {
       this.gitManager = gitManager;
-      this.useGitObjectCount = cfg.getFromGerritConfig(pluginName)
-          .getBoolean("useGitObjectCount", false);
+      this.useGitObjectCount =
+          cfg.getFromGerritConfig(pluginName).getBoolean("useGitObjectCount", false);
     }
 
     @Override
@@ -173,21 +169,22 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook,
 
     private static long getDiskUsage(File dir) throws IOException {
       final MutableLong size = new MutableLong();
-      Files.walkFileTree(dir.toPath(), new SimpleFileVisitor<Path>() {
-        @Override
-        public FileVisitResult visitFile(Path path, BasicFileAttributes attrs)
-            throws IOException {
-          if (attrs.isRegularFile()) {
-            size.add(attrs.size());
-          }
-          return FileVisitResult.CONTINUE;
-        }
-      });
+      Files.walkFileTree(
+          dir.toPath(),
+          new SimpleFileVisitor<Path>() {
+            @Override
+            public FileVisitResult visitFile(Path path, BasicFileAttributes attrs)
+                throws IOException {
+              if (attrs.isRegularFile()) {
+                size.add(attrs.size());
+              }
+              return FileVisitResult.CONTINUE;
+            }
+          });
       return size.longValue();
     }
 
-    private long getDiskUsageByGitObjectCount(Repository repo)
-        throws IOException {
+    private long getDiskUsageByGitObjectCount(Repository repo) throws IOException {
       RepoStatistics stats = new GC((FileRepository) repo).getStatistics();
       return stats.sizeOfLooseObjects + stats.sizeOfPackedObjects;
     }

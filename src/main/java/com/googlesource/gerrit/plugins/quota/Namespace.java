@@ -31,8 +31,7 @@ public class Namespace {
   public boolean matches(Project.NameKey project) {
     String p = project.get();
     if (namespace.endsWith("/*")) {
-      return p.startsWith(
-          namespace.substring(0, namespace.length() - 1));
+      return p.startsWith(namespace.substring(0, namespace.length() - 1));
     } else if (namespace.startsWith("^")) {
       return p.matches(namespace.substring(1));
     } else {

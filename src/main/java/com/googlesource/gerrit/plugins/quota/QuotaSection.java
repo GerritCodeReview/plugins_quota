@@ -15,7 +15,6 @@
 package com.googlesource.gerrit.plugins.quota;
 
 import com.google.gerrit.reviewdb.client.Project;
-
 import org.eclipse.jgit.lib.Config;
 
 public class QuotaSection {

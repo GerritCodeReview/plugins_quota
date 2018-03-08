@@ -12,6 +12,7 @@ gerrit_plugin(
     manifest_entries = [
         "Gerrit-PluginName: quota",
         "Gerrit-Module: com.googlesource.gerrit.plugins.quota.Module",
+        "Gerrit-HttpModule: com.googlesource.gerrit.plugins.quota.HttpModule",
     ],
     resources = glob(["src/main/resources/**/*"]),
 )
@@ -19,7 +20,10 @@ gerrit_plugin(
 junit_tests(
     name = "quota_tests",
     srcs = glob(["src/test/java/**/*.java"]),
-    tags = ["quota"],
+    tags = [
+        "quota",
+        "local",
+    ],
     deps = [
         ":quota__plugin_test_deps",
     ],
@@ -31,5 +35,6 @@ java_library(
     visibility = ["//visibility:public"],
     exports = PLUGIN_DEPS + PLUGIN_TEST_DEPS + [
         ":quota__plugin",
+        "@mockito//jar",
     ],
 )

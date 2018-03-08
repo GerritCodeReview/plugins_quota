@@ -21,27 +21,22 @@ import com.google.gerrit.server.account.GroupMembership;
 import com.google.gerrit.server.project.ProjectCache;
 import com.google.gerrit.server.restapi.group.GroupsCollection;
 import com.google.inject.Inject;
-
 import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.RateLimit;
 import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type;
-
+import java.util.Map;
+import java.util.Optional;
 import org.eclipse.jgit.lib.Config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Map;
-import java.util.Optional;
-
 public class AccountLimitsFinder {
-  private static final Logger log =
-      LoggerFactory.getLogger(AccountLimitsFinder.class);
+  private static final Logger log = LoggerFactory.getLogger(AccountLimitsFinder.class);
 
   private final ProjectCache projectCache;
   private final GroupsCollection groupsCollection;
 
   @Inject
-  AccountLimitsFinder(ProjectCache projectCache,
-      GroupsCollection groupsCollection) {
+  AccountLimitsFinder(ProjectCache projectCache, GroupsCollection groupsCollection) {
     this.projectCache = projectCache;
     this.groupsCollection = groupsCollection;
   }
@@ -49,20 +44,16 @@ public class AccountLimitsFinder {
   /**
    * @param type type of rate limit
    * @param user identified user
-   * @return the rate limit matching the first configured group limit the given
-   *         user is a member of
+   * @return the rate limit matching the first configured group limit the given user is a member of
    */
-  public Optional<RateLimit> firstMatching(AccountLimitsConfig.Type type,
-      IdentifiedUser user) {
-    Optional<Map<String, AccountLimitsConfig.RateLimit>> limits =
-        getRatelimits(type);
+  public Optional<RateLimit> firstMatching(AccountLimitsConfig.Type type, IdentifiedUser user) {
+    Optional<Map<String, AccountLimitsConfig.RateLimit>> limits = getRatelimits(type);
     if (limits.isPresent()) {
       GroupMembership memberShip = user.getEffectiveGroups();
       for (String groupName : limits.get().keySet()) {
         GroupDescription.Basic d = groupsCollection.parseId(groupName);
         if (d == null) {
-          log.error("Ignoring limits for unknown group ''{}'' in quota.config",
-              groupName);
+          log.error("Ignoring limits for unknown group ''{}'' in quota.config", groupName);
         } else if (memberShip.contains(d.getGroupUUID())) {
           return Optional.ofNullable(limits.get().get(groupName));
         }

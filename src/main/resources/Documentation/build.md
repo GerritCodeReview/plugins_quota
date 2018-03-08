@@ -49,7 +49,16 @@ This project can be imported into the Eclipse IDE:
 ## Build in Gerrit tree
 
 Clone or link this plugin to the plugins directory of Gerrit's
-source tree. From Gerrit source tree issue the command:
+source tree. Put the external dependency Bazel build file into
+the Gerrit /plugins directory, replacing the existing empty one.
+
+```
+  cd gerrit/plugins
+  rm external_plugin_deps.bzl
+  ln -s @PLUGIN@/external_plugin_deps.bzl .
+```
+
+From Gerrit source tree issue the command:
 
 ```
   bazel build plugins/@PLUGIN@
@@ -75,6 +84,8 @@ To execute the tests run:
   bazel test plugins/quota:quota_tests
 ```
 
+How to build the Gerrit Plugin API is described in the [Gerrit
+documentation](../../../Documentation/dev-bazel.html#_extension_and_plugin_api_jar_files).
 
 [Back to @PLUGIN@ documentation index][index]
 
