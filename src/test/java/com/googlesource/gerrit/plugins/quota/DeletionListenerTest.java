@@ -23,7 +23,6 @@ import com.google.gerrit.extensions.events.ProjectDeletedListener;
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.gwtorm.client.KeyUtil;
 import com.google.gwtorm.server.StandardKeyEncoder;
-
 import org.junit.Test;
 
 public class DeletionListenerTest {
@@ -42,20 +41,20 @@ public class DeletionListenerTest {
     DeletionListener classUnderTest = new DeletionListener(repoSizeCache);
     replay(repoSizeCache);
 
-    ProjectDeletedListener.Event event = new ProjectDeletedListener.Event() {
-      @Override
-      public String getProjectName() {
-        return MY_PROJECT;
-      }
+    ProjectDeletedListener.Event event =
+        new ProjectDeletedListener.Event() {
+          @Override
+          public String getProjectName() {
+            return MY_PROJECT;
+          }
 
-      @Override
-      public NotifyHandling getNotify() {
-        return NotifyHandling.ALL;
-      }
-    };
+          @Override
+          public NotifyHandling getNotify() {
+            return NotifyHandling.ALL;
+          }
+        };
     classUnderTest.onProjectDeleted(event);
 
     verify(repoSizeCache);
   }
-
 }

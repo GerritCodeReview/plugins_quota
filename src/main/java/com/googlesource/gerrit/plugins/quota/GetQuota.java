@@ -23,9 +23,8 @@ import com.google.gerrit.server.project.ProjectCache;
 import com.google.gerrit.server.project.ProjectResource;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-
-import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class GetQuota implements RestReadView<ProjectResource> {
 
@@ -34,7 +33,9 @@ public class GetQuota implements RestReadView<ProjectResource> {
   private final LoadingCache<Project.NameKey, AtomicLong> repoSizeCache;
 
   @Inject
-  public GetQuota(ProjectCache projectCache, QuotaFinder quotaFinder,
+  public GetQuota(
+      ProjectCache projectCache,
+      QuotaFinder quotaFinder,
       @Named(REPO_SIZE_CACHE) LoadingCache<Project.NameKey, AtomicLong> repoSizeCache) {
     this.projectCache = projectCache;
     this.quotaFinder = quotaFinder;

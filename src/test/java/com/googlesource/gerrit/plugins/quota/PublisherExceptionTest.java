@@ -20,7 +20,6 @@ import static org.junit.Assert.*;
 import com.google.gerrit.extensions.events.UsageDataPublishedListener;
 import com.google.gerrit.extensions.events.UsageDataPublishedListener.Event;
 import com.google.gerrit.extensions.registration.DynamicSet;
-
 import org.apache.log4j.Appender;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -77,7 +76,7 @@ public class PublisherExceptionTest {
     assertTrue(captor.hasCaptured());
     LoggingEvent event = captor.getValue();
     assertEquals(Level.WARN, event.getLevel());
-    assertTrue(((String)event.getMessage()).contains(CREATOR_NAME));
+    assertTrue(((String) event.getMessage()).contains(CREATOR_NAME));
   }
 
   @Test
@@ -139,5 +138,4 @@ public class PublisherExceptionTest {
 
     verify(listener, good, creator, appender);
   }
-
 }

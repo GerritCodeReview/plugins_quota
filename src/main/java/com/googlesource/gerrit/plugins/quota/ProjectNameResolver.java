@@ -19,25 +19,21 @@ import com.google.gerrit.server.config.GerritServerConfig;
 import com.google.gerrit.server.config.SitePaths;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-
+import java.nio.file.Path;
 import org.eclipse.jgit.lib.Config;
 import org.eclipse.jgit.lib.Repository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.nio.file.Path;
-
 @Singleton
 class ProjectNameResolver {
 
-  private static final Logger log = LoggerFactory
-      .getLogger(ProjectNameResolver.class);
+  private static final Logger log = LoggerFactory.getLogger(ProjectNameResolver.class);
   private final Path basePath;
 
   @Inject
   ProjectNameResolver(SitePaths site, @GerritServerConfig final Config cfg) {
-    this.basePath =
-        site.resolve(cfg.getString("gerrit", null, "basePath"));
+    this.basePath = site.resolve(cfg.getString("gerrit", null, "basePath"));
   }
 
   Project.NameKey projectName(Repository repo) {
