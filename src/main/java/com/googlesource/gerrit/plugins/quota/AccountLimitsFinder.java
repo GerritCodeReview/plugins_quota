@@ -18,8 +18,8 @@ import static com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.KEY;
 import com.google.gerrit.common.data.GroupDescription;
 import com.google.gerrit.server.IdentifiedUser;
 import com.google.gerrit.server.account.GroupMembership;
-import com.google.gerrit.server.group.GroupsCollection;
 import com.google.gerrit.server.project.ProjectCache;
+import com.google.gerrit.server.restapi.group.GroupsCollection;
 import com.google.inject.Inject;
 
 import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.RateLimit;

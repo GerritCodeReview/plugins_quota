@@ -21,19 +21,17 @@ import static org.easymock.EasyMock.replay;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import com.google.common.collect.ImmutableSortedSet;
 import com.google.gerrit.extensions.events.UsageDataPublishedListener.Data;
 import com.google.gerrit.extensions.events.UsageDataPublishedListener.Event;
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.project.ProjectCache;
 import com.google.gwtorm.client.KeyUtil;
 import com.google.gwtorm.server.StandardKeyEncoder;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
+import org.junit.Before;
+import org.junit.Test;
 
 public class RepoSizeEventCreatorTest {
 
@@ -55,13 +53,12 @@ public class RepoSizeEventCreatorTest {
     tmp.delete();
     tmp.mkdir();
     projectCache = createMock(ProjectCache.class);
-    Iterable<Project.NameKey> projects = Arrays.asList(p1, p2, p3);
+    ImmutableSortedSet<Project.NameKey> projects = ImmutableSortedSet.of(p1, p2, p3);
     expect(projectCache.all()).andStubReturn(projects);
     repoSizeCache = createNiceMock(RepoSizeCache.class);
     replay(projectCache);
     classUnderTest = new RepoSizeEventCreator(projectCache, repoSizeCache);
   }
-
 
   @Test
   public void testEmpty() {
@@ -86,5 +83,4 @@ public class RepoSizeEventCreatorTest {
     assertEquals("p1", dataPoint.getProjectName());
     assertEquals(100L, dataPoint.getValue());
   }
-
 }

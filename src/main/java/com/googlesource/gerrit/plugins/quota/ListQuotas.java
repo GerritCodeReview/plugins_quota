@@ -21,7 +21,7 @@ import com.google.gerrit.extensions.restapi.ResourceConflictException;
 import com.google.gerrit.extensions.restapi.RestReadView;
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.config.ConfigResource;
-import com.google.gerrit.server.project.ListProjects;
+import com.google.gerrit.server.restapi.project.ListProjects;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 
