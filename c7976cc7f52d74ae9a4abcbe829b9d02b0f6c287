@@ -22,6 +22,30 @@
       "revId": "c7976cc7f52d74ae9a4abcbe829b9d02b0f6c287",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a02da9c_cf6fd741",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1019328
+      },
+      "writtenOn": "2018-07-17T17:31:59Z",
+      "side": 1,
+      "message": "No, we\u0027re not using this plugin. What I see is that, in the end, we\u0027re having the size of the pack itself in the same way, i.e, getting the length of the pack file. The difference is, the getPackSize() method is adding the size of the index file as well while the counting method introduced by this change is not. Am I missing something?",
+      "parentUuid": "95c994dd_16b300c9",
+      "range": {
+        "startLine": 166,
+        "startChar": 0,
+        "endLine": 168,
+        "endChar": 9
+      },
+      "revId": "c7976cc7f52d74ae9a4abcbe829b9d02b0f6c287",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
