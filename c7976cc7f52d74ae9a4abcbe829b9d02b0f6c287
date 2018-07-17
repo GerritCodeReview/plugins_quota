@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "95c994dd_16b300c9",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2018-07-17T13:08:20Z",
+      "side": 1,
+      "message": "The new option \"useGitObjectCount\" added in this change is actually broken.\nWhile this method properly handles the \"useGitObjectCount \u003d\u003d true\" case, the\nonPostReceive method (line 133) which updates cached repo_size only handles\nthe default \"useGitObjectCount \u003d\u003d false\" case.\n\n@Ericsson: are you actually using this plugin and useGitObjectCount\u003dtrue option?",
+      "range": {
+        "startLine": 166,
+        "startChar": 0,
+        "endLine": 168,
+        "endChar": 9
+      },
+      "revId": "c7976cc7f52d74ae9a4abcbe829b9d02b0f6c287",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
