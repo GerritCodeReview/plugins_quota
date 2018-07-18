@@ -46,6 +46,30 @@
       "revId": "c7976cc7f52d74ae9a4abcbe829b9d02b0f6c287",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5935fbd_756db219",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2018-07-18T13:00:00Z",
+      "side": 1,
+      "message": "\u003e No, we\u0027re not using this plugin. What I see is that, in the end, we\u0027re having the size of the pack itself in the same way, i.e, getting the length of the pack file. The difference is, the getPackSize() method is adding the size of the index file as well while the counting method introduced by this change is not. Am I missing something?\n\nThe (object) counting method is adding received pack size (in bytes) to the number of Git objects. For example, assume we have initially 10 Git objects in one pack file of size\n64K. The counting method will return 10 from the load method. When a new pack of size 1K is received with 2 Git objects in it, the counting method will add 1K to 10 which is 10 + 1024 \u003d 1034. This is adding apples to oranges :-)\nThe correct result for the counting method should be 10 + 2 \u003d 12.",
+      "parentUuid": "5a02da9c_cf6fd741",
+      "range": {
+        "startLine": 166,
+        "startChar": 0,
+        "endLine": 168,
+        "endChar": 9
+      },
+      "revId": "c7976cc7f52d74ae9a4abcbe829b9d02b0f6c287",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
