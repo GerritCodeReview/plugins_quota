@@ -23,14 +23,12 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 @Singleton
-public class MaxRepositoriesQuotaValidator implements
-    ProjectCreationValidationListener {
+public class MaxRepositoriesQuotaValidator implements ProjectCreationValidationListener {
   private final QuotaFinder quotaFinder;
   private final ProjectCache projectCache;
 
   @Inject
-  MaxRepositoriesQuotaValidator(QuotaFinder quotaFinder,
-      ProjectCache projectCache) {
+  MaxRepositoriesQuotaValidator(QuotaFinder quotaFinder, ProjectCache projectCache) {
     this.quotaFinder = quotaFinder;
     this.projectCache = projectCache;
   }

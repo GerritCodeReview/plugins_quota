@@ -24,10 +24,8 @@ import com.google.gerrit.extensions.events.GarbageCollectorListener;
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.gwtorm.client.KeyUtil;
 import com.google.gwtorm.server.StandardKeyEncoder;
-
-import org.junit.Test;
-
 import java.util.Properties;
+import org.junit.Test;
 
 public class GCListenerTest {
   static {
@@ -104,5 +102,4 @@ public class GCListenerTest {
         };
     return event;
   }
-
 }

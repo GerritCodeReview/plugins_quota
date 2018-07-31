@@ -21,12 +21,10 @@ import com.google.gerrit.server.config.GerritServerConfig;
 import com.google.gerrit.server.config.ScheduleConfig;
 import com.google.gerrit.server.git.WorkQueue;
 import com.google.inject.Inject;
-
+import java.util.concurrent.TimeUnit;
 import org.eclipse.jgit.lib.Config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.concurrent.TimeUnit;
 
 public class PublisherScheduler implements LifecycleListener {
 
@@ -36,11 +34,11 @@ public class PublisherScheduler implements LifecycleListener {
   private final ScheduleConfig scheduleConfig;
 
   @Inject
-  PublisherScheduler(WorkQueue workQueue, Publisher publisher,  @GerritServerConfig Config cfg) {
+  PublisherScheduler(WorkQueue workQueue, Publisher publisher, @GerritServerConfig Config cfg) {
     this.workQueue = workQueue;
     this.publisher = publisher;
-    scheduleConfig = new ScheduleConfig(cfg, "plugin", "quota", "publicationInterval",
-        "publicationStartTime");
+    scheduleConfig =
+        new ScheduleConfig(cfg, "plugin", "quota", "publicationInterval", "publicationStartTime");
   }
 
   @Override
@@ -52,13 +50,12 @@ public class PublisherScheduler implements LifecycleListener {
     } else if (delay < 0 || interval <= 0) {
       log.warn("Ignoring invalid schedule configuration");
     } else {
-      workQueue.getDefaultQueue().scheduleAtFixedRate(publisher, delay,
-          interval, TimeUnit.MILLISECONDS);
+      workQueue
+          .getDefaultQueue()
+          .scheduleAtFixedRate(publisher, delay, interval, TimeUnit.MILLISECONDS);
     }
   }
 
   @Override
-  public void stop() {
-  }
-
+  public void stop() {}
 }

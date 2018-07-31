@@ -50,37 +50,31 @@ class Module extends CacheModule {
   protected void configure() {
     DynamicSet.bind(binder(), ProjectCreationValidationListener.class)
         .to(MaxRepositoriesQuotaValidator.class);
-    DynamicSet.bind(binder(), ReceivePackInitializer.class)
-        .to(MaxRepositorySizeQuota.class);
-    DynamicSet.bind(binder(), PostReceiveHook.class)
-        .to(MaxRepositorySizeQuota.class);
-    DynamicSet.bind(binder(), ProjectDeletedListener.class).to(
-        DeletionListener.class);
-    DynamicSet.bind(binder(), GarbageCollectorListener.class).to(
-        GCListener.class);
+    DynamicSet.bind(binder(), ReceivePackInitializer.class).to(MaxRepositorySizeQuota.class);
+    DynamicSet.bind(binder(), PostReceiveHook.class).to(MaxRepositorySizeQuota.class);
+    DynamicSet.bind(binder(), ProjectDeletedListener.class).to(DeletionListener.class);
+    DynamicSet.bind(binder(), GarbageCollectorListener.class).to(GCListener.class);
     DynamicSet.setOf(binder(), UsageDataEventCreator.class);
     install(MaxRepositorySizeQuota.module());
-    install(new RestApiModule() {
-      @Override
-      protected void configure() {
-        DynamicMap.mapOf(binder(), QUOTA_KIND);
-        get(PROJECT_KIND, "quota").to(GetQuota.class);
-        child(CONFIG_KIND, "quota").to(GetQuotas.class);
-      }
-    });
+    install(
+        new RestApiModule() {
+          @Override
+          protected void configure() {
+            DynamicMap.mapOf(binder(), QUOTA_KIND);
+            get(PROJECT_KIND, "quota").to(GetQuota.class);
+            child(CONFIG_KIND, "quota").to(GetQuotas.class);
+          }
+        });
     bind(Publisher.class).in(Scopes.SINGLETON);
     bind(PublisherScheduler.class).in(Scopes.SINGLETON);
     bind(ProjectNameResolver.class).in(Scopes.SINGLETON);
     bind(LifecycleListener.class)
-      .annotatedWith(UniqueAnnotations.create())
-      .to(PublisherScheduler.class);
+        .annotatedWith(UniqueAnnotations.create())
+        .to(PublisherScheduler.class);
 
-    DynamicSet.bind(binder(), UploadValidationListener.class)
-        .to(RateLimitUploadListener.class);
-    cache(CACHE_NAME_ACCOUNTID, Account.Id.class, Holder.class)
-        .loader(LoaderAccountId.class);
-    cache(CACHE_NAME_REMOTEHOST, String.class, Holder.class)
-        .loader(LoaderRemoteHost.class);
+    DynamicSet.bind(binder(), UploadValidationListener.class).to(RateLimitUploadListener.class);
+    cache(CACHE_NAME_ACCOUNTID, Account.Id.class, Holder.class).loader(LoaderAccountId.class);
+    cache(CACHE_NAME_REMOTEHOST, String.class, Holder.class).loader(LoaderRemoteHost.class);
   }
 
   static class Holder {
@@ -101,8 +95,7 @@ class Module extends CacheModule {
     private AccountLimitsFinder finder;
 
     @Inject
-    LoaderAccountId(IdentifiedUser.GenericFactory userFactory,
-        AccountLimitsFinder finder) {
+    LoaderAccountId(IdentifiedUser.GenericFactory userFactory, AccountLimitsFinder finder) {
       this.userFactory = userFactory;
       this.finder = finder;
     }
@@ -110,11 +103,11 @@ class Module extends CacheModule {
     @Override
     public Holder load(Account.Id key) throws Exception {
       IdentifiedUser user = userFactory.create(key);
-      Optional<RateLimit> limit =
-          finder.firstMatching(AccountLimitsConfig.Type.UPLOADPACK, user);
+      Optional<RateLimit> limit = finder.firstMatching(AccountLimitsConfig.Type.UPLOADPACK, user);
       if (limit.isPresent()) {
-        return new Holder(RateLimitUploadListener.createSmoothBurstyRateLimiter(
-            limit.get().getRatePerSecond(), limit.get().getMaxBurstSeconds()));
+        return new Holder(
+            RateLimitUploadListener.createSmoothBurstyRateLimiter(
+                limit.get().getRatePerSecond(), limit.get().getMaxBurstSeconds()));
       }
       return Holder.EMPTY;
     }
@@ -125,8 +118,7 @@ class Module extends CacheModule {
     private String anonymous;
 
     @Inject
-    LoaderRemoteHost(SystemGroupBackend systemGroupBackend,
-        AccountLimitsFinder finder) {
+    LoaderRemoteHost(SystemGroupBackend systemGroupBackend, AccountLimitsFinder finder) {
       this.finder = finder;
       this.anonymous = systemGroupBackend.get(ANONYMOUS_USERS).getName();
     }
@@ -136,8 +128,9 @@ class Module extends CacheModule {
       Optional<RateLimit> limit =
           finder.getRateLimit(AccountLimitsConfig.Type.UPLOADPACK, anonymous);
       if (limit.isPresent()) {
-        return new Holder(RateLimitUploadListener.createSmoothBurstyRateLimiter(
-            limit.get().getRatePerSecond(), limit.get().getMaxBurstSeconds()));
+        return new Holder(
+            RateLimitUploadListener.createSmoothBurstyRateLimiter(
+                limit.get().getRatePerSecond(), limit.get().getMaxBurstSeconds()));
       }
       return Holder.EMPTY;
     }

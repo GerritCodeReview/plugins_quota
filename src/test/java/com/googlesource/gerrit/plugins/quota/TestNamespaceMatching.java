@@ -18,7 +18,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import com.google.gerrit.reviewdb.client.Project;
-
 import org.junit.Test;
 
 public class TestNamespaceMatching {

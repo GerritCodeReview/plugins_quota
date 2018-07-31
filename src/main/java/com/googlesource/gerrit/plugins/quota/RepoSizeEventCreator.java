@@ -24,15 +24,14 @@ import com.google.inject.Singleton;
 @Singleton
 public class RepoSizeEventCreator implements UsageDataEventCreator {
 
-  private static final MetaData REPO_SIZE = new MetaDataImpl("repoSize", "byte", "B",
-      "total file size of the repository");
+  private static final MetaData REPO_SIZE =
+      new MetaDataImpl("repoSize", "byte", "B", "total file size of the repository");
 
   private final ProjectCache projectCache;
   private final RepoSizeCache repoSizeCache;
 
   @Inject
-  public RepoSizeEventCreator(ProjectCache projectCache,
-      RepoSizeCache repoSizeCache) {
+  public RepoSizeEventCreator(ProjectCache projectCache, RepoSizeCache repoSizeCache) {
     this.projectCache = projectCache;
     this.repoSizeCache = repoSizeCache;
   }
