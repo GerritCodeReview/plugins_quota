@@ -14,6 +14,9 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
+import static com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type.RESTAPI;
+import static com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type.UPLOADPACK;
+
 import com.google.common.base.Optional;
 import com.google.common.collect.ArrayTable;
 import com.google.common.collect.Table;
@@ -30,9 +33,6 @@ import org.eclipse.jgit.lib.Config.ConfigEnum;
 import org.eclipse.jgit.lib.Config.SectionParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import static com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type.RESTAPI;
-import static com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type.UPLOADPACK;
 
 public class AccountLimitsConfig {
   private static final Logger log = LoggerFactory.getLogger(AccountLimitsConfig.class);

@@ -41,11 +41,10 @@ public class ListQuotas implements RestReadView<ConfigResource> {
   }
 
   @Option(
-    name = "--prefix",
-    aliases = {"-p"},
-    metaVar = "PREFIX",
-    usage = "match project prefix"
-  )
+      name = "--prefix",
+      aliases = {"-p"},
+      metaVar = "PREFIX",
+      usage = "match project prefix")
   public void setMatchPrefix(String matchPrefix) {
     this.matchPrefix = matchPrefix;
   }
