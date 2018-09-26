@@ -9,13 +9,15 @@ The @PLUGIN@ plugin supports the following quotas:
 
 * Maximum number of projects in a namespace
 * The maximum total file size of a repository in a namespace
+* The maximum total file size of all repositories in a namespace
 
 The measured repository sizes can be published periodically to registered
 UsageDataPublishedListeners.
 
-The @PLUGIN@ plugin supports the following  rate limits:
+The @PLUGIN@ plugin supports the following rate limits:
 
 * `uploadpack` requests which are executed when a client runs a fetch command.
+* Maximum number of REST API calls
 
 Rate limits define the maximum request rate for users in a given group
 for a given request type.

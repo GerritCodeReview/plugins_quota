@@ -15,12 +15,14 @@
 package com.googlesource.gerrit.plugins.quota;
 
 import static com.google.gerrit.server.config.ConfigResource.CONFIG_KIND;
-import static com.google.gerrit.server.group.SystemGroupBackend.ANONYMOUS_USERS;
 import static com.google.gerrit.server.project.ProjectResource.PROJECT_KIND;
 import static com.googlesource.gerrit.plugins.quota.QuotaResource.QUOTA_KIND;
 
+import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
 import com.google.common.util.concurrent.RateLimiter;
+import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gerrit.extensions.events.GarbageCollectorListener;
 import com.google.gerrit.extensions.events.LifecycleListener;
 import com.google.gerrit.extensions.events.ProjectDeletedListener;
@@ -31,20 +33,39 @@ import com.google.gerrit.reviewdb.client.Account;
 import com.google.gerrit.server.IdentifiedUser;
 import com.google.gerrit.server.IdentifiedUser.GenericFactory;
 import com.google.gerrit.server.cache.CacheModule;
+import com.google.gerrit.server.config.PluginConfig;
+import com.google.gerrit.server.config.PluginConfigFactory;
 import com.google.gerrit.server.git.ReceivePackInitializer;
 import com.google.gerrit.server.git.validators.UploadValidationListener;
 import com.google.gerrit.server.group.SystemGroupBackend;
 import com.google.gerrit.server.validators.ProjectCreationValidationListener;
 import com.google.inject.Inject;
+import com.google.inject.Provides;
 import com.google.inject.Scopes;
+import com.google.inject.Singleton;
 import com.google.inject.internal.UniqueAnnotations;
+import com.google.inject.name.Named;
+import com.google.inject.name.Names;
 import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.RateLimit;
+import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 import org.eclipse.jgit.transport.PostReceiveHook;
 
 class Module extends CacheModule {
   static final String CACHE_NAME_ACCOUNTID = "rate_limits_by_account";
   static final String CACHE_NAME_REMOTEHOST = "rate_limits_by_ip";
+
+  private final String uploadpackLimitExceededMsg;
+
+  @Inject
+  Module(PluginConfigFactory plugincf, @PluginName String pluginName) {
+    PluginConfig pc = plugincf.getFromGerritConfig(pluginName);
+    uploadpackLimitExceededMsg =
+        new RateMsgHelper(
+                Type.UPLOADPACK, pc.getString(RateMsgHelper.UPLOADPACK_CONFIGURABLE_MSG_ANNOTATION))
+            .getMessageFormatMsg();
+  }
 
   @Override
   protected void configure() {
@@ -73,66 +94,128 @@ class Module extends CacheModule {
         .to(PublisherScheduler.class);
 
     DynamicSet.bind(binder(), UploadValidationListener.class).to(RateLimitUploadListener.class);
-    cache(CACHE_NAME_ACCOUNTID, Account.Id.class, Holder.class).loader(LoaderAccountId.class);
-    cache(CACHE_NAME_REMOTEHOST, String.class, Holder.class).loader(LoaderRemoteHost.class);
+    bindConstant()
+        .annotatedWith(Names.named(RateMsgHelper.UPLOADPACK_CONFIGURABLE_MSG_ANNOTATION))
+        .to(uploadpackLimitExceededMsg);
   }
 
   static class Holder {
-    public static final Holder EMPTY = new Holder(null);
+    static final Holder EMPTY = new Holder(null);
+    private int burstPermits;
+    private AtomicInteger gracePermits = new AtomicInteger(0);
     private RateLimiter l;
 
-    public Holder(RateLimiter l) {
+    Holder(RateLimiter l) {
       this.l = l;
     }
 
-    public RateLimiter get() {
+    private Holder(RateLimiter l, int burstPermits) {
+      this(l);
+      this.burstPermits = burstPermits;
+      gracePermits.set(burstPermits);
+    }
+
+    RateLimiter get() {
       return l;
     }
+
+    int getBurstPermits() {
+      return burstPermits;
+    }
+
+    /**
+     * The grace permits ensure that a burst of requests can be served as the first interaction with
+     * Gerrit. Without the extra booked burst, particularly the Gerrit web interface would display
+     * an unexpected error, except for inappropriately lax rate limits.
+     *
+     * @return false, once the grace permits have been spent
+     */
+    boolean hasGracePermits() {
+      if (gracePermits.get() <= 0) return false;
+      return gracePermits.getAndDecrement() > 0;
+    }
+
+    private static final Holder createWithBurstyRateLimiter(Optional<RateLimit> limit) {
+      return new Holder(
+          RateLimitUploadListener.createSmoothBurstyRateLimiter(
+              limit.get().getRatePerSecond(), limit.get().getMaxBurstSeconds()),
+          (int) (limit.get().getMaxBurstSeconds() * limit.get().getRatePerSecond()));
+    }
   }
 
-  private static class LoaderAccountId extends CacheLoader<Account.Id, Holder> {
-    private GenericFactory userFactory;
-    private AccountLimitsFinder finder;
+  private abstract static class AbstractHolderCacheLoader<Key> extends CacheLoader<Key, Holder> {
+    protected AccountLimitsFinder finder;
+    protected Type limitsConfigType;
 
-    @Inject
-    LoaderAccountId(IdentifiedUser.GenericFactory userFactory, AccountLimitsFinder finder) {
-      this.userFactory = userFactory;
+    protected AbstractHolderCacheLoader(Type limitsConfigType, AccountLimitsFinder finder) {
+      this.limitsConfigType = limitsConfigType;
       this.finder = finder;
     }
 
-    @Override
-    public Holder load(Account.Id key) throws Exception {
-      IdentifiedUser user = userFactory.create(key);
-      Optional<RateLimit> limit = finder.firstMatching(AccountLimitsConfig.Type.UPLOADPACK, user);
+    protected final Holder createWithBurstyRateLimiter(Optional<RateLimit> limit) throws Exception {
       if (limit.isPresent()) {
-        return new Holder(
-            RateLimitUploadListener.createSmoothBurstyRateLimiter(
-                limit.get().getRatePerSecond(), limit.get().getMaxBurstSeconds()));
+        return Holder.createWithBurstyRateLimiter(limit);
       }
       return Holder.EMPTY;
     }
   }
 
-  private static class LoaderRemoteHost extends CacheLoader<String, Holder> {
-    private AccountLimitsFinder finder;
+  static class HolderCacheLoaderByAccountId extends AbstractHolderCacheLoader<Account.Id> {
+    private GenericFactory userFactory;
+
+    protected HolderCacheLoaderByAccountId(
+        Type limitsConfigType,
+        IdentifiedUser.GenericFactory userFactory,
+        AccountLimitsFinder finder) {
+      super(limitsConfigType, finder);
+      this.userFactory = userFactory;
+    }
+
+    private final Holder createWithBurstyRateLimiter(Account.Id key) throws Exception {
+      return createWithBurstyRateLimiter(
+          finder.firstMatching(limitsConfigType, userFactory.create(key)));
+    }
+
+    @Override
+    public final Holder load(Account.Id key) throws Exception {
+      return createWithBurstyRateLimiter(key);
+    }
+  }
+
+  static class HolderCacheLoaderByRemoteHost extends AbstractHolderCacheLoader<String> {
     private String anonymous;
 
-    @Inject
-    LoaderRemoteHost(SystemGroupBackend systemGroupBackend, AccountLimitsFinder finder) {
-      this.finder = finder;
-      this.anonymous = systemGroupBackend.get(ANONYMOUS_USERS).getName();
+    protected HolderCacheLoaderByRemoteHost(
+        Type limitsConfigType, SystemGroupBackend systemGroupBackend, AccountLimitsFinder finder) {
+      super(limitsConfigType, finder);
+      this.anonymous = systemGroupBackend.get(SystemGroupBackend.ANONYMOUS_USERS).getName();
+    }
+
+    private final Holder createWithBurstyRateLimiter() throws Exception {
+      return createWithBurstyRateLimiter(finder.getRateLimit(limitsConfigType, anonymous));
     }
 
     @Override
-    public Holder load(String key) throws Exception {
-      Optional<RateLimit> limit =
-          finder.getRateLimit(AccountLimitsConfig.Type.UPLOADPACK, anonymous);
-      if (limit.isPresent()) {
-        return new Holder(
-            RateLimitUploadListener.createSmoothBurstyRateLimiter(
-                limit.get().getRatePerSecond(), limit.get().getMaxBurstSeconds()));
-      }
-      return Holder.EMPTY;
+    public final Holder load(String key) throws Exception {
+      return createWithBurstyRateLimiter();
     }
+  }
+
+  @Provides
+  @Named(CACHE_NAME_ACCOUNTID)
+  @Singleton
+  public LoadingCache<Account.Id, Module.Holder> getLoadingCacheByAccountId(
+      GenericFactory userFactory, AccountLimitsFinder finder) {
+    return CacheBuilder.newBuilder()
+        .build(new HolderCacheLoaderByAccountId(Type.UPLOADPACK, userFactory, finder));
+  }
+
+  @Provides
+  @Named(CACHE_NAME_REMOTEHOST)
+  @Singleton
+  public LoadingCache<String, Module.Holder> getLoadingCacheByRemoteHost(
+      SystemGroupBackend systemGroupBackend, AccountLimitsFinder finder) {
+    return CacheBuilder.newBuilder()
+        .build(new HolderCacheLoaderByRemoteHost(Type.UPLOADPACK, systemGroupBackend, finder));
   }
 }

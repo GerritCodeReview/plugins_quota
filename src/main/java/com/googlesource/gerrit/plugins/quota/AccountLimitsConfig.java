@@ -14,6 +14,9 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
+import static com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type.RESTAPI;
+import static com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type.UPLOADPACK;
+
 import com.google.common.collect.ArrayTable;
 import com.google.common.collect.Table;
 import java.text.MessageFormat;
@@ -71,7 +74,8 @@ public class AccountLimitsConfig {
   }
 
   public static enum Type implements ConfigEnum {
-    UPLOADPACK;
+    UPLOADPACK,
+    RESTAPI;
 
     @Override
     public String toConfigValue() {
@@ -93,17 +97,18 @@ public class AccountLimitsConfig {
     }
     rateLimits = ArrayTable.create(Arrays.asList(Type.values()), groups);
     for (String groupName : groups) {
-      Type type = Type.UPLOADPACK;
-      rateLimits.put(type, groupName, parseRateLimit(c, groupName, type));
+      rateLimits.put(UPLOADPACK, groupName, parseRateLimit(c, groupName, UPLOADPACK));
+      rateLimits.put(RESTAPI, groupName, parseRateLimit(c, groupName, RESTAPI));
     }
   }
 
   RateLimit parseRateLimit(Config c, String groupName, Type type) {
     String name = type.toConfigValue();
-    String value = c.getString(GROUP_SECTION, groupName, name).trim();
+    String value = c.getString(GROUP_SECTION, groupName, name);
     if (value == null) {
       return defaultRateLimit(type);
     }
+    value = value.trim();
 
     Matcher m = PATTERN.matcher(value);
     if (!m.matches()) {

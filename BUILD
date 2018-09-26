@@ -31,5 +31,6 @@ java_library(
     visibility = ["//visibility:public"],
     exports = PLUGIN_DEPS + PLUGIN_TEST_DEPS + [
         ":quota__plugin",
+        "@mockito//jar",
     ],
 )

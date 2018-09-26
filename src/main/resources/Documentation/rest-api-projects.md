@@ -7,10 +7,12 @@ plugin.
 Please also take note of the general information on the
 [REST API](../../../Documentation/rest-api.html).
 
-<a id="project-endpoints"> Quota Endpoints
+<a id="project-endpoints" />
+Quota Endpoints
 ------------------------------------------
 
-### <a id="get-quota"> Get Quota
+<a id="get-quota" />
+### Get Quota
 _GET /projects/\{project\}/@PLUGIN@~quota/_
 
 Get quota for a project.
@@ -43,7 +45,8 @@ that describes the projects quota.
   }
 ```
 
-### <a id="get-quotas"> Get Quotas for Multiple Projects
+<a id="get-quotas" />
+### Get Quotas for Multiple Projects
 _GET /config/server/@PLUGIN@~quota/_
 
 Get quota for the projects accessible by the caller.
@@ -118,10 +121,12 @@ by project name.
   }
 ```
 
-<a id="json-entities">JSON Entities
+<a id="json-entities" />
+JSON Entities
 -----------------------------------
 
-### <a id="quota-info"></a>QuotaInfo
+<a id="quota-info" />
+### QuotaInfo
 
 The `QuotaInfo` entity contains information about a project's quota.
 It has the following fields:
@@ -130,8 +135,8 @@ It has the following fields:
 * _max\_repo\_size_: The max allowed size of this project's Git repositoriy on the disk.
 * _namespace_: [NamespaceInfo](#namespace-info)
 
-
-### <a id="namespace-info"></a>NamespaceInfo
+<a id="namespace-info" />
+### NamespaceInfo
 
 The 'NamespaceInfo' entity contains the quota information for the whole namespace.
 This means that the sum of sizes of all repositories under that namespace is not
