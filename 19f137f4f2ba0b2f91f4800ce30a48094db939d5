@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6f31b146_a05ca439",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1016502
+      },
+      "writtenOn": "2018-09-26T10:47:29Z",
+      "side": 1,
+      "message": "possibly better: \"that value is ignored, and a warning is logged\"",
+      "revId": "19f137f4f2ba0b2f91f4800ce30a48094db939d5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
