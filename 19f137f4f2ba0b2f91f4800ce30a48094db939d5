@@ -16,6 +16,24 @@
       "revId": "19f137f4f2ba0b2f91f4800ce30a48094db939d5",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6556cb95_6a86c062",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2018-09-27T23:45:22Z",
+      "side": 1,
+      "message": "Sorry, I overlooked this comment.  Done in a follow up:\n\nhttps://gerrit-review.googlesource.com/c/plugins/quota/+/197654",
+      "parentUuid": "6f31b146_a05ca439",
+      "revId": "19f137f4f2ba0b2f91f4800ce30a48094db939d5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
