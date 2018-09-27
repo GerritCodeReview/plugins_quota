@@ -210,7 +210,7 @@ at the very beginning of a client interaction with the back-end server,
 as if idle time would already have been accumulated.
 
 If a rate limit configuration value is invalid or missing for a group,
-the configuration entry gets ignored, and a warning is being logged.
+that value is ignored and a warning is logged.
 
 Example:
 
