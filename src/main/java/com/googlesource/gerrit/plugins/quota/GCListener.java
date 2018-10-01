@@ -17,9 +17,8 @@ package com.googlesource.gerrit.plugins.quota;
 import com.google.gerrit.extensions.events.GarbageCollectorListener;
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.reviewdb.client.Project.NameKey;
-import com.google.inject.Singleton;
 import com.google.inject.Inject;
-
+import com.google.inject.Singleton;
 import java.util.Properties;
 
 @Singleton
@@ -38,11 +37,9 @@ public class GCListener implements GarbageCollectorListener {
     Properties statistics = event.getStatistics();
     if (statistics != null) {
       Number sizeOfLooseObjects = (Number) statistics.get("sizeOfLooseObjects");
-      Number sizeOfPackedObjects =
-          (Number) statistics.get("sizeOfPackedObjects");
+      Number sizeOfPackedObjects = (Number) statistics.get("sizeOfPackedObjects");
       if (sizeOfLooseObjects != null && sizeOfPackedObjects != null) {
-        repoSizeCache.set(key, sizeOfLooseObjects.longValue()
-            + sizeOfPackedObjects.longValue());
+        repoSizeCache.set(key, sizeOfLooseObjects.longValue() + sizeOfPackedObjects.longValue());
         return;
       }
     }

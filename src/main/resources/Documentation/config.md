@@ -22,11 +22,11 @@ the `quota.config` file locally and pushing back the changes. The
     maxTotalSize = 200 m
 ```
 
-<a id="maxProjects">
+<a id="maxProjects" />
 `quota.<namespace>.maxProjects`
 : The maximum number of projects that can be created in this namespace.
 
-<a id="maxRepoSize">
+<a id="maxRepoSize" />
 `quota.<namespace>.maxRepoSize`
 : The maximum total file size of a repository in this namespace. This is
 the sum of sizes of all files in a Git repository where the size is
@@ -34,7 +34,7 @@ taken using the File.length() method. This means that, for example, a
 reference file is counted as 41 bytes although it typically occupies a
 block of 4K in the file system.
 
-<a id="maxTotalSize">
+<a id="maxTotalSize" />
 `quota.<namespace>.maxTotalSize`
 : The maximum total file size of all repositories in this namespace.
 This is the sum of sizes of all files in all Git repositories in this
@@ -58,11 +58,11 @@ A namespace can be specified as
 namespace matching the regular expression.
 
 * for-each-pattern (`?/*`): Defines the same quota for each
-subfolder. `?` is a placeholder for any name and '?/*' with
+subfolder. `?` is a placeholder for any name and `?/*` with
 'maxProjects = 3' means that for every subfolder 3 projects are
-allowed. Hence '?/*' is a shortcut for having n explicit quotas:
-  '<name1>/*' with 'maxProjects = 3'
-  '<name2>/*' with 'maxProjects = 3'
+allowed. Hence `?/*` is a shortcut for having n explicit quotas:<br />
+  `<name1>/*` with 'maxProjects = 3'<br />
+  `<name2>/*` with 'maxProjects = 3'<br />
   ...
 
 
@@ -90,7 +90,7 @@ projects in each other folder
     maxProjects = 5
 ```
 
-Example: Allow the creation of 10 projects in folder 'test/*' and set
+Example: Allow the creation of 10 projects in folder `test/*` and set
 the quota of 2m for each of them
 
 ```
@@ -99,7 +99,7 @@ the quota of 2m for each of them
     maxRepoSize = 2 m
 ```
 
-Example: Allow the creation of 10 projects in folder 'test/*' and set
+Example: Allow the creation of 10 projects in folder `test/*` and set
 a quota of 20m for the total size of all repositories
 
 ```
@@ -108,7 +108,7 @@ a quota of 20m for the total size of all repositories
     maxTotalSize = 20 m
 ```
 
-Example: Allow the creation of 10 projects in folder 'test/*' and set
+Example: Allow the creation of 10 projects in folder `test/*` and set
 a quota of 20m for the total size of all repositories. In addition make
 sure that each individual repository cannot exceed 3m
 
@@ -127,7 +127,7 @@ the following section should be added into the `gerrit.config` file:
     useGitObjectCount = true
 ```
 
-<a id="useGitObjectCount">
+<a id="useGitObjectCount" />
 `plugin.quota.useGitObjectCount`
 : Use git object count. If true, *repoSize = looseObjectsSize +
 packedObjectsSize*, where *looseObjectsSize* and *packedObjectsSize* are given
@@ -136,9 +136,9 @@ by JGit RepoStatistics. By default, false.
 Rate Limits
 -----------
 
-The defined rate limits are stored in a `quota.config` file in the
+The defined rate limits are stored in the `quota.config` file in the
 `refs/meta/config` branch of the `All-Projects` root project. Rate
-limits are defined per user group and rate limit type:
+limits are defined per user group and rate limit type.
 
 Example:
 
@@ -146,11 +146,15 @@ Example:
   [group "buildserver"]
     uploadpack = 10 / min burst 500
 
+  [group "app"]
+    restapi = 12 / min burst 60
+
   [group "Registered Users"]
     uploadpack = 1 /min burst 180
 
   [group "Anonymous Users"]
     uploadpack = 6/h burst 12
+    restapi = 30/m burst 200
 ```
 
 For logged in users rate limits are associated to their accountId. For
@@ -161,50 +165,52 @@ a proxy) they share a common rate limit.
 If a user is a member of multiple groups mentioned in `quota.config`
 the limit applies that is defined first in the `quota.config` file.
 This resolves ambiguity in case the user is a member of multiple groups
-used in the configuration.
+used in the configuration. Note, all users are members of "Anonymous Users".
 
 Use group "Anonymous Users" to define the rate limit for anonymous users.
 Use group "Registered Users" to define the default rate limit for all logged
 in users.
 
 Format of the rate limit entries in `quota.config`:
+
 ```
   [group "<groupName>"]
     <rateLimitType> = <rateLimit> <rateUnit> burst <storedRequests>
 ```
 
-<a id="rateLimitType>">
+The group can be defined by its name or UUID.
+
+<a id="rateLimitType" />
 `group.<groupName>.<rateLimitType>`
 : identifies which request type is limited by this configuration.
 The following rate limit types are supported:
 * `uploadpack`: rate limit for uploadpack (fetch) requests
-The group can be defined by its name or UUID.
+for the given group
+* `restapi`: rate limit for REST API requests
 
-<a id="uploadpack">
-`group.<groupName>.uploadpack`
-: rate limit for uploadpack (fetch) requests for the given group. The
-group can be defined by its name or UUID.
-
-<a id="rateLimit">
+<a id="rateLimit" />
+`group.<groupName>.<rateLimit>`
 : The rate limit (first parameter) defines the maximum allowed request rate.
 
-<a id="rateUnit">
-: Rate limits can be defined using the following rate units:
-`/s`, `/sec`, `/second`: requests per second
-`/m`, `/min`, `/minute`: requests per minute
-`/h`, `/hr`, `/hour`: requests per hour
-`/d`, `/day`: requests per day
+<a id="rateUnit" />
+`group.<groupName>.<rateUnit>`
+: Rate limits can be defined using the following rate units:<br />
+`/s`, `/sec`, `/second`: requests per second<br />
+`/m`, `/min`, `/minute`: requests per minute<br />
+`/h`, `/hr`, `/hour`: requests per hour<br />
+`/d`, `/day`: requests per day<br />
 
-The default unit used if no unit is configured is `/hour`.
-
-<a id="burst">
-The `burst` parameter allows to define how many unused requests can be
+<a id="burst" />
+`group.<groupName>.<storedRequests>`
+: The `burst` parameter allows to define how many unused requests can be
 stored for later use during idle times. This allows clients to send
 bursts of requests exceeding their rate limit until all their stored
-requests are consumed.
+requests are consumed. For `restapi`, `burst` requests can be served
+at the very beginning of a client interaction with the back-end server,
+as if idle time would already have been accumulated.
 
-If a rate limit configuration value is invalid a default rate limit of 1
-request per minute with 30 stored requests is assumed.
+If a rate limit configuration value is invalid or missing for a group,
+that value is ignored and a warning is logged.
 
 Example:
 
@@ -217,12 +223,22 @@ of requests above the maximum request rate.
   [group "Registered Users"]
     uploadpack = 30/hour burst 60
 ```
-The rate limit exceeded message can be configured by setting parameter
+The rate limit exceeded message can be configured.
+
+For `uploadpack`, by setting parameter
 `uploadpackLimitExceededMsg` in the `plugin.quota` subsection of the
 `gerrit.config` file. `${rateLimit}` token is supported in the message and
 will be replaced by effective rate limit per hour.
+Defaults to `Exceeded rate limit of ${rateLimit} fetch requests/hour` .
 
-Defaults to `Exceeded rate limit of ${rateLimit} fetch requests/hour`
+For `restapi`, configure the message by setting the parameter
+`restapiLimitExceededMsg` in the `plugin.quota` subsection of the
+`gerrit.config` file. `${rateLimit}` and `${burstsLimit}` tokens
+are supported in the message and will be replaced by the effective rate
+limit per hour and the effective number of burst permits, correspondingly.
+The default message reads:
+`Exceeded rate limit of ${rateLimit} REST API requests/hour (or idle `
+`time used up in bursts of max ${burstsLimit} requests)` .
 
 Publication Schedule
 --------------------

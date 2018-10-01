@@ -21,5 +21,4 @@ public interface UsageDataEventCreator {
   String getName();
 
   UsageDataPublishedListener.Event create();
-
 }

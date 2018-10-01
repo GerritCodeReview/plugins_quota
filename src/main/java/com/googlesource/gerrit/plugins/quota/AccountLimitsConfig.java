@@ -14,6 +14,9 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
+import static com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type.RESTAPI;
+import static com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type.UPLOADPACK;
+
 import com.google.common.collect.ArrayTable;
 import com.google.common.collect.Table;
 import java.text.MessageFormat;
@@ -32,12 +35,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class AccountLimitsConfig {
-  private static final int DEFAULT_BURST_COUNT = 30;
-  private static final int DEFAULT_INTERVAL_SECONDS = 60;
   private static final Pattern PATTERN =
       Pattern.compile("^\\s*(\\d+)\\s*/\\s*(.*)\\s*burst\\s*(\\d+)$");
-  private static final Logger log =
-      LoggerFactory.getLogger(AccountLimitsConfig.class);
+  private static final Logger log = LoggerFactory.getLogger(AccountLimitsConfig.class);
   static final String GROUP_SECTION = "group";
   static final SectionParser<AccountLimitsConfig> KEY =
       new SectionParser<AccountLimitsConfig>() {
@@ -72,7 +72,8 @@ public class AccountLimitsConfig {
   }
 
   public static enum Type implements ConfigEnum {
-    UPLOADPACK;
+    UPLOADPACK,
+    RESTAPI;
 
     @Override
     public String toConfigValue() {
@@ -94,41 +95,44 @@ public class AccountLimitsConfig {
     }
     rateLimits = ArrayTable.create(Arrays.asList(Type.values()), groups);
     for (String groupName : groups) {
-      Type type = Type.UPLOADPACK;
-      rateLimits.put(type, groupName,
-          parseRateLimit(c, groupName, type));
+      parseRateLimit(c, groupName, UPLOADPACK);
+      parseRateLimit(c, groupName, RESTAPI);
     }
   }
 
-  RateLimit parseRateLimit(Config c, String groupName, Type type) {
+  void parseRateLimit(Config c, String groupName, Type type) {
     String name = type.toConfigValue();
-    String value = c.getString(GROUP_SECTION, groupName, name).trim();
+    String value = c.getString(GROUP_SECTION, groupName, name);
     if (value == null) {
-      return defaultRateLimit(type);
+      return;
     }
+    value = value.trim();
 
     Matcher m = PATTERN.matcher(value);
     if (!m.matches()) {
-      log.warn(
-          "Invalid ''{}'' ratelimit configuration ''{}'', use default ratelimit {}/hour",
-          name, value, 3600.0D / DEFAULT_INTERVAL_SECONDS);
-      return defaultRateLimit(type);
+      log.error(
+          "Invalid ''{}'' ratelimit configuration ''{}''; ignoring the configuration entry",
+          name,
+          value);
+      return;
     }
 
     String digits = m.group(1);
     String unitName = m.group(2).trim();
     String storeCountString = m.group(3).trim();
-    long burstCount = DEFAULT_BURST_COUNT;
+    long burstCount;
     try {
       burstCount = Long.parseLong(storeCountString);
     } catch (NumberFormatException e) {
-      log.warn(
-          "Invalid ''{}'' ratelimit store configuration ''{}'', use default burst count ''{}''",
-          name, storeCountString, burstCount);
+      log.error(
+          "Invalid ''{}'' ratelimit store configuration ''{}''; ignoring the configuration entry",
+          name,
+          storeCountString);
+      return;
     }
 
     TimeUnit inputUnit = TimeUnit.HOURS;
-    double ratePerSecond = 1.0D / DEFAULT_INTERVAL_SECONDS;
+    double ratePerSecond;
     if (match(unitName, "s", "sec", "second")) {
       inputUnit = TimeUnit.SECONDS;
     } else if (match(unitName, "m", "min", "minute")) {
@@ -139,16 +143,17 @@ public class AccountLimitsConfig {
       inputUnit = TimeUnit.DAYS;
     } else {
       logNotRateUnit(GROUP_SECTION, groupName, name, value);
+      return;
     }
     try {
-      ratePerSecond = 1.0D * Long.parseLong(digits)
-          / TimeUnit.SECONDS.convert(1, inputUnit);
+      ratePerSecond = 1.0D * Long.parseLong(digits) / TimeUnit.SECONDS.convert(1, inputUnit);
     } catch (NumberFormatException nfe) {
       logNotRateUnit(GROUP_SECTION, groupName, unitName, value);
+      return;
     }
 
     int maxBurstSeconds = (int) (burstCount / ratePerSecond);
-    return new RateLimit(type, ratePerSecond, maxBurstSeconds);
+    rateLimits.put(type, groupName, new RateLimit(type, ratePerSecond, maxBurstSeconds));
   }
 
   private static boolean match(final String a, final String... cases) {
@@ -160,20 +165,18 @@ public class AccountLimitsConfig {
     return false;
   }
 
-  private void logNotRateUnit(String section, String subsection, String name,
-      String valueString) {
+  private void logNotRateUnit(String section, String subsection, String name, String valueString) {
     if (subsection != null) {
-      log.error(MessageFormat.format("Invalid rate unit value: {0}.{1}.{2}={3}",
-          section, subsection, name, valueString));
+      log.error(
+          MessageFormat.format(
+              "Invalid rate unit value: {0}.{1}.{2}={3}; ignoring the configuration entry",
+              section, subsection, name, valueString));
     } else {
-      log.error(MessageFormat.format("Invalid rate unit value: {0}.{1}={2}",
-          section, name, valueString));
+      log.error(
+          MessageFormat.format(
+              "Invalid rate unit value: {0}.{1}={2}; ignoring the configuration entry",
+              section, name, valueString));
     }
-  }
-
-  private RateLimit defaultRateLimit(Type type) {
-    return new RateLimit(type, 1.0D / DEFAULT_INTERVAL_SECONDS,
-        DEFAULT_INTERVAL_SECONDS * DEFAULT_BURST_COUNT);
   }
 
   /**

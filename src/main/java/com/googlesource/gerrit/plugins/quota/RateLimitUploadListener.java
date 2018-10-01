@@ -14,90 +14,70 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
-import static com.googlesource.gerrit.plugins.quota.Module.CACHE_NAME_ACCOUNTID;
-import static com.googlesource.gerrit.plugins.quota.Module.CACHE_NAME_REMOTEHOST;
-
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.cache.LoadingCache;
 import com.google.common.util.concurrent.RateLimiter;
-import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gerrit.reviewdb.client.Account;
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.CurrentUser;
-import com.google.gerrit.server.config.PluginConfigFactory;
 import com.google.gerrit.server.git.validators.UploadValidationListener;
 import com.google.gerrit.server.validators.ValidationException;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.name.Named;
-
 import com.googlesource.gerrit.plugins.quota.Module.Holder;
-
-import org.eclipse.jgit.lib.ObjectId;
-import org.eclipse.jgit.lib.Repository;
-import org.eclipse.jgit.transport.UploadPack;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.MessageFormat;
 import java.util.Collection;
 import java.util.concurrent.ExecutionException;
+import org.eclipse.jgit.lib.ObjectId;
+import org.eclipse.jgit.lib.Repository;
+import org.eclipse.jgit.transport.UploadPack;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class RateLimitUploadListener implements UploadValidationListener {
   private static final int SECONDS_PER_HOUR = 3600;
-  private static final Logger log =
-      LoggerFactory.getLogger(RateLimitUploadListener.class);
+  private static final Logger log = LoggerFactory.getLogger(RateLimitUploadListener.class);
   private static final Method createStopwatchMethod;
   private static final Constructor<?> constructor;
-  private static final String RATE_LIMIT_TOKEN = "${rateLimit}";
-  private static final String DEFAULT_RATE_LIMIT_EXCEEDED_MSG =
-      "Exceeded rate limit of " + RATE_LIMIT_TOKEN + " fetch requests/hour";
 
   static {
     try {
-      Class<?> sleepingStopwatchClass = Class.forName(
-          "com.google.common.util.concurrent.RateLimiter$SleepingStopwatch");
-      createStopwatchMethod =
-          sleepingStopwatchClass.getDeclaredMethod("createFromSystemTimer");
+      Class<?> sleepingStopwatchClass =
+          Class.forName("com.google.common.util.concurrent.RateLimiter$SleepingStopwatch");
+      createStopwatchMethod = sleepingStopwatchClass.getDeclaredMethod("createFromSystemTimer");
       createStopwatchMethod.setAccessible(true);
-      Class<?> burstyRateLimiterClass = Class.forName(
-          "com.google.common.util.concurrent.SmoothRateLimiter$SmoothBursty");
+      Class<?> burstyRateLimiterClass =
+          Class.forName("com.google.common.util.concurrent.SmoothRateLimiter$SmoothBursty");
       constructor = burstyRateLimiterClass.getDeclaredConstructors()[0];
       constructor.setAccessible(true);
     } catch (ClassNotFoundException | NoSuchMethodException e) {
       // shouldn't happen
-      throw new RuntimeException(
-          "Failed to prepare loading RateLimiter via reflection", e);
+      throw new RuntimeException("Failed to prepare loading RateLimiter via reflection", e);
     }
   }
 
   /**
-   * Create a custom instance of RateLimiter by accessing the non-public
-   * constructor of the implementation class SmoothRateLimiter.SmoothBursty
-   * through reflection.
+   * Create a custom instance of RateLimiter by accessing the non-public constructor of the
+   * implementation class SmoothRateLimiter.SmoothBursty through reflection.
    *
-   * <p>
-   * RateLimiter's implementation class SmoothRateLimiter.SmoothBursty allows to
-   * collect permits during idle times which can be used to send bursts of
-   * requests exceeding the average rate until the stored permits are consumed.
-   * If the rate per second is 0.2 and you wait 20 seconds you can acquire 4
-   * permits which in average matches the configured rate limit of 0.2
-   * requests/second. If the permitted rate is smaller than 1 per second the
-   * standard implementation doesn't allow any bursts since it hard-codes the
-   * maximum time which can be used to collect stored permits to 1 second.
+   * <p>RateLimiter's implementation class SmoothRateLimiter.SmoothBursty allows to collect permits
+   * during idle times which can be used to send bursts of requests exceeding the average rate until
+   * the stored permits are consumed. If the rate per second is 0.2 and you wait 20 seconds you can
+   * acquire 4 permits which in average matches the configured rate limit of 0.2 requests/second. If
+   * the permitted rate is smaller than 1 per second the standard implementation doesn't allow any
+   * bursts since it hard-codes the maximum time which can be used to collect stored permits to 1
+   * second.
    *
-   * <p>
-   * Build jobs fetching updates from Gerrit are typically triggered by events
-   * which can arrive in bursts. Hence the standard RateLimiter seems not to be
-   * the right choice at least for fetch requests where we probably want to
-   * limit the rate to less than 1 request per second per user.
+   * <p>Build jobs fetching updates from Gerrit are typically triggered by events which can arrive
+   * in bursts. Hence the standard RateLimiter seems not to be the right choice at least for fetch
+   * requests where we probably want to limit the rate to less than 1 request per second per user.
    *
-   * <p>
-   * The used constructor can't be accessed through a public method yet hence
-   * use reflection to instantiate it.
+   * <p>The used constructor can't be accessed through a public method yet hence use reflection to
+   * instantiate it.
    *
    * @see "https://github.com/google/guava/issues/1974"
    * @param permitsPerSecond the new stable rate of this {@code RateLimiter}
@@ -105,15 +85,14 @@ public class RateLimitUploadListener implements UploadValidationListener {
    * @return a new RateLimiter
    */
   @VisibleForTesting
-  static RateLimiter createSmoothBurstyRateLimiter(double permitsPerSecond,
-      double maxBurstSeconds) {
+  static RateLimiter createSmoothBurstyRateLimiter(
+      double permitsPerSecond, double maxBurstSeconds) {
     RateLimiter rl;
     try {
       Object stopwatch = createStopwatchMethod.invoke(null);
       rl = (RateLimiter) constructor.newInstance(stopwatch, maxBurstSeconds);
       rl.setRate(permitsPerSecond);
-    } catch (InvocationTargetException | IllegalAccessException
-        | InstantiationException e) {
+    } catch (InvocationTargetException | IllegalAccessException | InstantiationException e) {
       // shouldn't happen
       throw new RuntimeException(e);
     }
@@ -126,23 +105,26 @@ public class RateLimitUploadListener implements UploadValidationListener {
   private final String limitExceededMsg;
 
   @Inject
-  RateLimitUploadListener(Provider<CurrentUser> user,
-      @Named(CACHE_NAME_ACCOUNTID) LoadingCache<Account.Id, Holder> limitsPerAccount,
-      @Named(CACHE_NAME_REMOTEHOST) LoadingCache<String, Holder> limitsPerRemoteHost,
-      PluginConfigFactory cfg,
-      @PluginName String pluginName) {
+  RateLimitUploadListener(
+      Provider<CurrentUser> user,
+      @Named(Module.CACHE_NAME_ACCOUNTID) LoadingCache<Account.Id, Holder> limitsPerAccount,
+      @Named(Module.CACHE_NAME_REMOTEHOST) LoadingCache<String, Holder> limitsPerRemoteHost,
+      @Named(RateMsgHelper.UPLOADPACK_CONFIGURABLE_MSG_ANNOTATION) String limitExceededMsg) {
     this.user = user;
     this.limitsPerAccount = limitsPerAccount;
     this.limitsPerRemoteHost = limitsPerRemoteHost;
-    String msg = cfg.getFromGerritConfig(pluginName).getString(
-        "uploadpackLimitExceededMsg", DEFAULT_RATE_LIMIT_EXCEEDED_MSG);
-    limitExceededMsg = msg.replace(RATE_LIMIT_TOKEN, "{0,number,##.##}");
+    this.limitExceededMsg = limitExceededMsg;
   }
 
   @Override
-  public void onBeginNegotiate(Repository repository, Project project,
-      String remoteHost, UploadPack up, Collection<? extends ObjectId> wants,
-      int cntOffered) throws ValidationException {
+  public void onBeginNegotiate(
+      Repository repository,
+      Project project,
+      String remoteHost,
+      UploadPack up,
+      Collection<? extends ObjectId> wants,
+      int cntOffered)
+      throws ValidationException {
     RateLimiter limiter = null;
     CurrentUser u = user.get();
     if (u.isIdentifiedUser()) {
@@ -150,30 +132,32 @@ public class RateLimitUploadListener implements UploadValidationListener {
       try {
         limiter = limitsPerAccount.get(accountId).get();
       } catch (ExecutionException e) {
-        String msg = MessageFormat
-            .format("Cannot get rate limits for account ''{}''", accountId);
+        String msg = MessageFormat.format("Cannot get rate limits for account ''{0}''", accountId);
         log.warn(msg, e);
       }
     } else {
       try {
         limiter = limitsPerRemoteHost.get(remoteHost).get();
       } catch (ExecutionException e) {
-        String msg = MessageFormat.format(
-            "Cannot get rate limits for anonymous access from remote host ''{0}''",
-            remoteHost);
+        String msg =
+            MessageFormat.format(
+                "Cannot get rate limits for anonymous access from remote host ''{0}''", remoteHost);
         log.warn(msg, e);
       }
     }
     if (limiter != null && !limiter.tryAcquire()) {
       throw new RateLimitException(
-          MessageFormat.format(limitExceededMsg,
-              limiter.getRate() * SECONDS_PER_HOUR));
+          MessageFormat.format(limitExceededMsg, limiter.getRate() * SECONDS_PER_HOUR));
     }
   }
 
   @Override
-  public void onPreUpload(Repository repository, Project project,
-      String remoteHost, UploadPack up, Collection<? extends ObjectId> wants,
-      Collection<? extends ObjectId> haves) throws ValidationException {
-  }
+  public void onPreUpload(
+      Repository repository,
+      Project project,
+      String remoteHost,
+      UploadPack up,
+      Collection<? extends ObjectId> wants,
+      Collection<? extends ObjectId> haves)
+      throws ValidationException {}
 }

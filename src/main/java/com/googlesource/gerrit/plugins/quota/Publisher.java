@@ -19,12 +19,10 @@ import com.google.gerrit.extensions.events.UsageDataPublishedListener.Event;
 import com.google.gerrit.extensions.registration.DynamicSet;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Singleton
 public class Publisher implements Runnable {
@@ -44,7 +42,7 @@ public class Publisher implements Runnable {
 
   @Override
   public void run() {
-    if(!listeners.iterator().hasNext()) {
+    if (!listeners.iterator().hasNext()) {
       return;
     }
 
@@ -68,5 +66,4 @@ public class Publisher implements Runnable {
       }
     }
   }
-
 }

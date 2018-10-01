@@ -24,12 +24,9 @@ import com.google.gerrit.server.config.ConfigResource;
 import com.google.gerrit.server.project.ListProjects;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
-
 import com.googlesource.gerrit.plugins.quota.GetQuota.QuotaInfo;
-
-import org.kohsuke.args4j.Option;
-
 import java.util.Map;
+import org.kohsuke.args4j.Option;
 
 public class ListQuotas implements RestReadView<ConfigResource> {
 
@@ -43,7 +40,10 @@ public class ListQuotas implements RestReadView<ConfigResource> {
     this.listProjects = listProjects;
   }
 
-  @Option(name = "--prefix", aliases = {"-p"}, metaVar = "PREFIX",
+  @Option(
+      name = "--prefix",
+      aliases = {"-p"},
+      metaVar = "PREFIX",
       usage = "match project prefix")
   public void setMatchPrefix(String matchPrefix) {
     this.matchPrefix = matchPrefix;
@@ -51,8 +51,7 @@ public class ListQuotas implements RestReadView<ConfigResource> {
 
   @Override
   public Map<String, QuotaInfo> apply(ConfigResource resource)
-      throws AuthException, BadRequestException, ResourceConflictException,
-      Exception {
+      throws AuthException, BadRequestException, ResourceConflictException, Exception {
     Map<String, QuotaInfo> result = Maps.newTreeMap();
     ListProjects lister = listProjects.get();
     lister.setMatchPrefix(matchPrefix);

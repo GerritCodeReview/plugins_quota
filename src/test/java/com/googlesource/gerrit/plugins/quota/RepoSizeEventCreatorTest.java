@@ -27,13 +27,11 @@ import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.project.ProjectCache;
 import com.google.gwtorm.client.KeyUtil;
 import com.google.gwtorm.server.StandardKeyEncoder;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
+import org.junit.Before;
+import org.junit.Test;
 
 public class RepoSizeEventCreatorTest {
 
@@ -62,7 +60,6 @@ public class RepoSizeEventCreatorTest {
     classUnderTest = new RepoSizeEventCreator(projectCache, repoSizeCache);
   }
 
-
   @Test
   public void testEmpty() {
     replay(repoSizeCache);
@@ -86,5 +83,4 @@ public class RepoSizeEventCreatorTest {
     assertEquals("p1", dataPoint.getProjectName());
     assertEquals(100L, dataPoint.getValue());
   }
-
 }
