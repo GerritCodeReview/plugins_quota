@@ -76,6 +76,7 @@ class Module extends CacheModule {
     DynamicSet.bind(binder(), ProjectDeletedListener.class).to(DeletionListener.class);
     DynamicSet.bind(binder(), GarbageCollectorListener.class).to(GCListener.class);
     DynamicSet.setOf(binder(), UsageDataEventCreator.class);
+    DynamicSet.bind(binder(), UsageDataEventCreator.class).to(RepoSizeEventCreator.class);
     install(MaxRepositorySizeQuota.module());
     install(
         new RestApiModule() {
