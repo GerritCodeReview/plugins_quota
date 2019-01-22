@@ -16,10 +16,15 @@ package com.googlesource.gerrit.plugins.quota;
 import static com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.KEY;
 
 import com.google.gerrit.common.data.GroupDescription;
+import com.google.gerrit.extensions.restapi.AuthException;
+import com.google.gerrit.extensions.restapi.IdString;
+import com.google.gerrit.extensions.restapi.ResourceNotFoundException;
+import com.google.gerrit.extensions.restapi.TopLevelResource;
 import com.google.gerrit.server.IdentifiedUser;
 import com.google.gerrit.server.account.GroupMembership;
-import com.google.gerrit.server.group.GroupsCollection;
+import com.google.gerrit.server.group.GroupResource;
 import com.google.gerrit.server.project.ProjectCache;
+import com.google.gerrit.server.restapi.group.GroupsCollection;
 import com.google.inject.Inject;
 import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.RateLimit;
 import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type;
@@ -51,11 +56,19 @@ public class AccountLimitsFinder {
     if (limits.isPresent()) {
       GroupMembership memberShip = user.getEffectiveGroups();
       for (String groupName : limits.get().keySet()) {
-        GroupDescription.Basic d = groupsCollection.parseId(groupName);
-        if (d == null) {
+        try {
+          GroupResource group =
+              groupsCollection.parse(TopLevelResource.INSTANCE, IdString.fromDecoded(groupName));
+          Optional<GroupDescription.Internal> maybeInternalGroup = group.asInternalGroup();
+          if (!maybeInternalGroup.isPresent()) {
+            log.error("Ignoring limits for non-internal group ''{}'' in quota.config", groupName);
+          } else if (memberShip.contains(maybeInternalGroup.get().getGroupUUID())) {
+            return Optional.ofNullable(limits.get().get(groupName));
+          }
+        } catch (ResourceNotFoundException e) {
           log.error("Ignoring limits for unknown group ''{}'' in quota.config", groupName);
-        } else if (memberShip.contains(d.getGroupUUID())) {
-          return Optional.ofNullable(limits.get().get(groupName));
+        } catch (AuthException e) {
+          log.error("Ignoring limits for non-visible group ''{}'' in quota.config", groupName);
         }
       }
     }

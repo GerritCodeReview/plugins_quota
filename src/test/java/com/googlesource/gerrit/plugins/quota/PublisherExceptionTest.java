@@ -43,12 +43,12 @@ public class PublisherExceptionTest {
   public void setupClassUnderTest() {
     listener = createMock(UsageDataPublishedListener.class);
     listeners = DynamicSet.emptySet();
-    listeners.add(listener);
+    listeners.add("quota", listener);
 
     creator = createMock(UsageDataEventCreator.class);
     expect(creator.getName()).andStubReturn(CREATOR_NAME);
     creators = DynamicSet.emptySet();
-    creators.add(creator);
+    creators.add("quota", creator);
 
     classUnderTest = new Publisher(listeners, creators);
   }
@@ -87,7 +87,7 @@ public class PublisherExceptionTest {
     UsageDataEventCreator good = createMock(UsageDataEventCreator.class);
     Event data = new UsageDataEvent(null);
     expect(good.create()).andStubReturn(data);
-    creators.add(good);
+    creators.add("quota", good);
 
     listener.onUsageDataPublished(data);
     expectLastCall();
@@ -130,7 +130,7 @@ public class PublisherExceptionTest {
 
     UsageDataPublishedListener good = createMock(UsageDataPublishedListener.class);
     good.onUsageDataPublished(data);
-    listeners.add(good);
+    listeners.add("quota", good);
 
     replay(listener, good, creator, appender);
 
