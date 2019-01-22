@@ -38,8 +38,8 @@ public class PublisherTest {
     expect(c2.create()).andStubReturn(e2);
 
     DynamicSet<UsageDataEventCreator> creators = DynamicSet.emptySet();
-    creators.add(c1);
-    creators.add(c2);
+    creators.add("quota", c1);
+    creators.add("quota", c2);
 
     UsageDataPublishedListener listener = createMock(UsageDataPublishedListener.class);
     listener.onUsageDataPublished(e1);
@@ -49,7 +49,7 @@ public class PublisherTest {
 
     replay(c1, c2, listener);
     DynamicSet<UsageDataPublishedListener> listeners = DynamicSet.emptySet();
-    listeners.add(listener);
+    listeners.add("quota", listener);
 
     Publisher classUnderTest = new Publisher(listeners, creators);
     classUnderTest.run();
@@ -63,7 +63,7 @@ public class PublisherTest {
     UsageDataEventCreator creator = createMock(UsageDataEventCreator.class);
     expect(creator.create()).andStubReturn(event);
     DynamicSet<UsageDataEventCreator> creators = DynamicSet.emptySet();
-    creators.add(creator);
+    creators.add("quota", creator);
 
     UsageDataPublishedListener l1 = createMock(UsageDataPublishedListener.class);
     l1.onUsageDataPublished(event);
@@ -76,8 +76,8 @@ public class PublisherTest {
     replay(creator, l1, l2);
 
     DynamicSet<UsageDataPublishedListener> listeners = DynamicSet.emptySet();
-    listeners.add(l1);
-    listeners.add(l2);
+    listeners.add("quota", l1);
+    listeners.add("quota", l2);
 
     Publisher classUnderTest = new Publisher(listeners, creators);
     classUnderTest.run();
@@ -90,7 +90,7 @@ public class PublisherTest {
     UsageDataEventCreator creator = createMock(UsageDataEventCreator.class);
     replay(creator);
     DynamicSet<UsageDataEventCreator> creators = DynamicSet.emptySet();
-    creators.add(creator);
+    creators.add("quota", creator);
 
     DynamicSet<UsageDataPublishedListener> listeners = DynamicSet.emptySet();
     Publisher classUnderTest = new Publisher(listeners, creators);

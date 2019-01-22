@@ -35,9 +35,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.time.Duration;
 import java.util.Collection;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 import org.apache.commons.lang.mutable.MutableLong;
 import org.eclipse.jgit.internal.storage.file.FileRepository;
@@ -62,7 +62,7 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook,
       protected void configure() {
         persist(REPO_SIZE_CACHE, Project.NameKey.class, AtomicLong.class)
             .loader(Loader.class)
-            .expireAfterWrite(1, TimeUnit.DAYS);
+            .expireAfterWrite(Duration.ofDays(1));
         bind(RepoSizeCache.class).to(MaxRepositorySizeQuota.class);
       }
     };
