@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2f79af70_96df87b3",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsFinder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2019-01-23T20:39:48Z",
+      "side": 1,
+      "message": "Unrelated but can keep it.",
+      "range": {
+        "startLine": 57,
+        "startChar": 28,
+        "endLine": 57,
+        "endChar": 29
+      },
+      "revId": "f843999f4ac3974355665b2ec88e452645ab5b1e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58c8ba17_81ffc7e2",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PublisherScheduler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2019-01-23T20:39:48Z",
+      "side": 1,
+      "message": ").setSubsection(\"quota\").\n\n-And then gjf to reformat this.\nOr, was the subsection deemed unnecessary?",
+      "range": {
+        "startLine": 40,
+        "startChar": 44,
+        "endLine": 41,
+        "endChar": 13
+      },
+      "revId": "f843999f4ac3974355665b2ec88e452645ab5b1e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}

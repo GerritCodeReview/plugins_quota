@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "82521394_2295bbf8",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PublisherScheduler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2019-01-23T20:39:48Z",
+      "side": 0,
+      "message": "I suppose we decide here to no longer handle these cases specifically this way. This implies that we rely on the below scheduleAtFixedRate call to properly handle these. Unless such configuration is now robust against them? Is this diff related to this change? We could have kept these checks based on previously obtained schedule.initialDelay() and schedule.interval() values. -Then maybe refactor this way in a separate change.",
+      "range": {
+        "startLine": 50,
+        "startChar": 6,
+        "endLine": 52,
+        "endChar": 10
+      },
+      "revId": "804d38c690ea80debbb597bb1dcbd7e4f6599f8c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
