@@ -45,6 +45,30 @@
       "revId": "f843999f4ac3974355665b2ec88e452645ab5b1e",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51e6e27b_ebf37f5f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PublisherScheduler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2019-01-23T23:29:49Z",
+      "side": 1,
+      "message": "This was an oversight.   Will fix.",
+      "parentUuid": "58c8ba17_81ffc7e2",
+      "range": {
+        "startLine": 40,
+        "startChar": 44,
+        "endLine": 41,
+        "endChar": 13
+      },
+      "revId": "f843999f4ac3974355665b2ec88e452645ab5b1e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
