@@ -26,19 +26,12 @@ import com.google.gerrit.extensions.events.UsageDataPublishedListener.Data;
 import com.google.gerrit.extensions.events.UsageDataPublishedListener.Event;
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.project.ProjectCache;
-import com.google.gwtorm.client.KeyUtil;
-import com.google.gwtorm.server.StandardKeyEncoder;
 import java.io.File;
 import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
 public class RepoSizeEventCreatorTest {
-
-  static {
-    KeyUtil.setEncoderImpl(new StandardKeyEncoder());
-  }
-
   private Project.NameKey p1 = new Project.NameKey("p1");
   private Project.NameKey p2 = new Project.NameKey("p2");
   private Project.NameKey p3 = new Project.NameKey("p3");

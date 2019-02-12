@@ -21,16 +21,9 @@ import static org.easymock.EasyMock.verify;
 import com.google.gerrit.extensions.api.changes.NotifyHandling;
 import com.google.gerrit.extensions.events.ProjectDeletedListener;
 import com.google.gerrit.reviewdb.client.Project;
-import com.google.gwtorm.client.KeyUtil;
-import com.google.gwtorm.server.StandardKeyEncoder;
 import org.junit.Test;
 
 public class DeletionListenerTest {
-
-  static {
-    KeyUtil.setEncoderImpl(new StandardKeyEncoder());
-  }
-
   protected static final String MY_PROJECT = "my-project";
 
   @Test

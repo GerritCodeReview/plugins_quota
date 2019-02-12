@@ -22,16 +22,10 @@ import static org.easymock.EasyMock.verify;
 import com.google.gerrit.extensions.api.changes.NotifyHandling;
 import com.google.gerrit.extensions.events.GarbageCollectorListener;
 import com.google.gerrit.reviewdb.client.Project;
-import com.google.gwtorm.client.KeyUtil;
-import com.google.gwtorm.server.StandardKeyEncoder;
 import java.util.Properties;
 import org.junit.Test;
 
 public class GCListenerTest {
-  static {
-    KeyUtil.setEncoderImpl(new StandardKeyEncoder());
-  }
-
   private static final String PROJECT_NAME = "my-project";
 
   @Test
