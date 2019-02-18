@@ -51,7 +51,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Singleton
-class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook, RepoSizeCache {
+public class MaxRepositorySizeQuota
+    implements ReceivePackInitializer, PostReceiveHook, RepoSizeCache {
   private static final Logger log = LoggerFactory.getLogger(MaxRepositorySizeQuota.class);
 
   static final String REPO_SIZE_CACHE = "repo_size";
@@ -68,13 +69,13 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook,
     };
   }
 
+  protected final LoadingCache<Project.NameKey, AtomicLong> cache;
   private final QuotaFinder quotaFinder;
-  private final LoadingCache<Project.NameKey, AtomicLong> cache;
   private final ProjectCache projectCache;
   private final ProjectNameResolver projectNameResolver;
 
   @Inject
-  MaxRepositorySizeQuota(
+  protected MaxRepositorySizeQuota(
       QuotaFinder quotaFinder,
       @Named(REPO_SIZE_CACHE) LoadingCache<Project.NameKey, AtomicLong> cache,
       ProjectCache projectCache,
