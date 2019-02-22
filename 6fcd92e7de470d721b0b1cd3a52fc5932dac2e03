@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1b114a0f_1058af35",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2019-02-22T07:10:34Z",
+      "side": 1,
+      "message": "Changes below here are out of scope of what is described in the commit message.  Making the class extensible only requires to change the visibility of the constructor and the cache member variable.",
+      "revId": "6fcd92e7de470d721b0b1cd3a52fc5932dac2e03",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
