@@ -16,6 +16,24 @@
       "revId": "6fcd92e7de470d721b0b1cd3a52fc5932dac2e03",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07ede6ef_bce4599d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2019-02-22T08:51:09Z",
+      "side": 1,
+      "message": "Done - created follow-up change for that",
+      "parentUuid": "1b114a0f_1058af35",
+      "revId": "6fcd92e7de470d721b0b1cd3a52fc5932dac2e03",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
