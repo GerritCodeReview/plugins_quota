@@ -36,6 +36,7 @@ import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Collection;
+import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
@@ -88,15 +89,22 @@ public class MaxRepositorySizeQuota
 
   @Override
   public void init(Project.NameKey project, ReceivePack rp) {
+    Optional<Long> maxPackSize = getMaxPackSize(project);
+    if (maxPackSize.isPresent()) {
+      rp.setMaxPackSizeLimit(maxPackSize.get());
+    }
+  }
+
+  protected Optional<Long> getMaxPackSize(Project.NameKey project) {
     QuotaSection quotaSection = quotaFinder.firstMatching(project);
     if (quotaSection == null) {
-      return;
+      return Optional.empty();
     }
 
     Long maxRepoSize = quotaSection.getMaxRepoSize();
     Long maxTotalSize = quotaSection.getMaxTotalSize();
     if (maxRepoSize == null && maxTotalSize == null) {
-      return;
+      return Optional.empty();
     }
 
     try {
@@ -116,10 +124,11 @@ public class MaxRepositorySizeQuota
         maxPackSize2 = Math.max(0, maxTotalSize - totalSize);
       }
 
-      long maxPackSize = Ordering.<Long>natural().nullsLast().min(maxPackSize1, maxPackSize2);
-      rp.setMaxPackSizeLimit(maxPackSize);
+      return Optional.ofNullable(
+          Ordering.<Long>natural().nullsLast().min(maxPackSize1, maxPackSize2));
     } catch (ExecutionException e) {
-      log.warn("Couldn't setMaxPackSizeLimit on receive-pack for " + project.get(), e);
+      log.warn("Couldn't calculate maxPackSize for " + project.get(), e);
+      return Optional.empty();
     }
   }
 
