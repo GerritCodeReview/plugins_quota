@@ -37,6 +37,7 @@ import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.time.Duration;
 import java.util.Collection;
+import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicLong;
 import org.apache.commons.lang.mutable.MutableLong;
@@ -51,7 +52,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Singleton
-class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook, RepoSizeCache {
+public class MaxRepositorySizeQuota
+    implements ReceivePackInitializer, PostReceiveHook, RepoSizeCache {
   private static final Logger log = LoggerFactory.getLogger(MaxRepositorySizeQuota.class);
 
   static final String REPO_SIZE_CACHE = "repo_size";
@@ -68,13 +70,13 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook,
     };
   }
 
+  protected final LoadingCache<Project.NameKey, AtomicLong> cache;
   private final QuotaFinder quotaFinder;
-  private final LoadingCache<Project.NameKey, AtomicLong> cache;
   private final ProjectCache projectCache;
   private final ProjectNameResolver projectNameResolver;
 
   @Inject
-  MaxRepositorySizeQuota(
+  protected MaxRepositorySizeQuota(
       QuotaFinder quotaFinder,
       @Named(REPO_SIZE_CACHE) LoadingCache<Project.NameKey, AtomicLong> cache,
       ProjectCache projectCache,
@@ -87,15 +89,22 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook,
 
   @Override
   public void init(Project.NameKey project, ReceivePack rp) {
+    Optional<Long> maxPackSize = getMaxPackSize(project);
+    if (maxPackSize.isPresent()) {
+      rp.setMaxPackSizeLimit(maxPackSize.get());
+    }
+  }
+
+  protected Optional<Long> getMaxPackSize(Project.NameKey project) {
     QuotaSection quotaSection = quotaFinder.firstMatching(project);
     if (quotaSection == null) {
-      return;
+      return Optional.empty();
     }
 
     Long maxRepoSize = quotaSection.getMaxRepoSize();
     Long maxTotalSize = quotaSection.getMaxTotalSize();
     if (maxRepoSize == null && maxTotalSize == null) {
-      return;
+      return Optional.empty();
     }
 
     try {
@@ -115,10 +124,11 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook,
         maxPackSize2 = Math.max(0, maxTotalSize - totalSize);
       }
 
-      long maxPackSize = Ordering.<Long>natural().nullsLast().min(maxPackSize1, maxPackSize2);
-      rp.setMaxPackSizeLimit(maxPackSize);
+      return Optional.ofNullable(
+          Ordering.<Long>natural().nullsLast().min(maxPackSize1, maxPackSize2));
     } catch (ExecutionException e) {
-      log.warn("Couldn't setMaxPackSizeLimit on receive-pack for " + project.get(), e);
+      log.warn("Couldn't calculate maxPackSize for " + project.get(), e);
+      return Optional.empty();
     }
   }
 
