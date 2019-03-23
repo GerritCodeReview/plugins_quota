@@ -14,62 +14,14 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
-import com.google.common.cache.CacheBuilder;
-import com.google.common.cache.LoadingCache;
-import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gerrit.extensions.registration.DynamicSet;
 import com.google.gerrit.httpd.AllRequestFilter;
-import com.google.gerrit.reviewdb.client.Account;
-import com.google.gerrit.server.IdentifiedUser.GenericFactory;
-import com.google.gerrit.server.cache.CacheModule;
-import com.google.gerrit.server.config.PluginConfig;
-import com.google.gerrit.server.config.PluginConfigFactory;
-import com.google.gerrit.server.group.SystemGroupBackend;
-import com.google.inject.Inject;
-import com.google.inject.Provides;
-import com.google.inject.Singleton;
-import com.google.inject.name.Named;
-import com.google.inject.name.Names;
-import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type;
+import com.google.inject.Scopes;
+import com.google.inject.servlet.ServletModule;
 
-class HttpModule extends CacheModule {
-  static final String CACHE_NAME_RESTAPI_ACCOUNTID = "restapi_rate_limits_by_account";
-  static final String CACHE_NAME_RESTAPI_REMOTEHOST = "restapi_rate_limits_by_ip";
-
-  private final String restapiLimitExceededMsg;
-
-  @Inject
-  HttpModule(PluginConfigFactory pluginCF, @PluginName String pluginName) {
-    final PluginConfig pc = pluginCF.getFromGerritConfig(pluginName);
-    restapiLimitExceededMsg =
-        new RateMsgHelper(
-                Type.RESTAPI, pc.getString(RateMsgHelper.RESTAPI_CONFIGURABLE_MSG_ANNOTATION))
-            .getMessageFormatMsgWithBursts();
-  }
-
+public class HttpModule extends ServletModule {
   @Override
-  protected void configure() {
-    DynamicSet.bind(binder(), AllRequestFilter.class).to(RestApiRateLimiter.class);
-    bindConstant()
-        .annotatedWith(Names.named(RateMsgHelper.RESTAPI_CONFIGURABLE_MSG_ANNOTATION))
-        .to(restapiLimitExceededMsg);
-  }
-
-  @Provides
-  @Named(CACHE_NAME_RESTAPI_ACCOUNTID)
-  @Singleton
-  public LoadingCache<Account.Id, Module.Holder> getRestApiLoadingCacheByAccountId(
-      GenericFactory userFactory, AccountLimitsFinder finder) {
-    return CacheBuilder.newBuilder()
-        .build(new Module.HolderCacheLoaderByAccountId(Type.RESTAPI, userFactory, finder));
-  }
-
-  @Provides
-  @Named(CACHE_NAME_RESTAPI_REMOTEHOST)
-  @Singleton
-  public LoadingCache<String, Module.Holder> getRestApiLoadingCacheByRemoteHost(
-      SystemGroupBackend systemGroupBackend, AccountLimitsFinder finder) {
-    return CacheBuilder.newBuilder()
-        .build(new Module.HolderCacheLoaderByRemoteHost(Type.RESTAPI, systemGroupBackend, finder));
+  protected void configureServlets() {
+    DynamicSet.bind(binder(), AllRequestFilter.class).to(RestApiRateLimiter.class).in(Scopes.SINGLETON);
   }
 }
