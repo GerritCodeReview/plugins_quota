@@ -14,6 +14,7 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
+import com.google.common.flogger.FluentLogger;
 import com.google.gerrit.extensions.events.UsageDataPublishedListener;
 import com.google.gerrit.extensions.events.UsageDataPublishedListener.Event;
 import com.google.gerrit.extensions.registration.DynamicSet;
@@ -21,13 +22,10 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import java.util.ArrayList;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Singleton
 public class Publisher implements Runnable {
-
-  private static final Logger log = LoggerFactory.getLogger(Publisher.class);
+  private static final FluentLogger logger = FluentLogger.forEnclosingClass();
 
   private final Iterable<UsageDataPublishedListener> listeners;
   private final DynamicSet<UsageDataEventCreator> creators;
@@ -52,7 +50,7 @@ public class Publisher implements Runnable {
         events.add(creator.create());
       } catch (RuntimeException e) {
         String creatorName = creator.getName();
-        log.warn("Exception in usage data event creator " + creatorName, e);
+        logger.atWarning().withCause(e).log("Exception in usage data event creator " + creatorName);
       }
     }
 
@@ -62,7 +60,7 @@ public class Publisher implements Runnable {
           l.onUsageDataPublished(event);
         }
       } catch (RuntimeException e) {
-        log.warn("Exception in UsageDataPublishedListener", e);
+        logger.atWarning().withCause(e).log("Exception in UsageDataPublishedListener");
       }
     }
   }

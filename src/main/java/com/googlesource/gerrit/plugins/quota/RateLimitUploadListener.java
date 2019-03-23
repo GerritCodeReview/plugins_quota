@@ -16,6 +16,7 @@ package com.googlesource.gerrit.plugins.quota;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.cache.LoadingCache;
+import com.google.common.flogger.FluentLogger;
 import com.google.common.util.concurrent.RateLimiter;
 import com.google.gerrit.reviewdb.client.Account;
 import com.google.gerrit.reviewdb.client.Project;
@@ -35,12 +36,11 @@ import java.util.concurrent.ExecutionException;
 import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.transport.UploadPack;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class RateLimitUploadListener implements UploadValidationListener {
+  private static final FluentLogger logger = FluentLogger.forEnclosingClass();
+
   private static final int SECONDS_PER_HOUR = 3600;
-  private static final Logger log = LoggerFactory.getLogger(RateLimitUploadListener.class);
   private static final Method createStopwatchMethod;
   private static final Constructor<?> constructor;
 
@@ -133,7 +133,7 @@ public class RateLimitUploadListener implements UploadValidationListener {
         limiter = limitsPerAccount.get(accountId).get();
       } catch (ExecutionException e) {
         String msg = MessageFormat.format("Cannot get rate limits for account ''{0}''", accountId);
-        log.warn(msg, e);
+        logger.atWarning().withCause(e).log(msg);
       }
     } else {
       try {
@@ -142,7 +142,7 @@ public class RateLimitUploadListener implements UploadValidationListener {
         String msg =
             MessageFormat.format(
                 "Cannot get rate limits for anonymous access from remote host ''{0}''", remoteHost);
-        log.warn(msg, e);
+        logger.atWarning().withCause(e).log(msg);
       }
     }
     if (limiter != null && !limiter.tryAcquire()) {
