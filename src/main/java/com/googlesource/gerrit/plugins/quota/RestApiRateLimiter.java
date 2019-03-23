@@ -47,7 +47,7 @@ public class RestApiRateLimiter extends AllRequestFilter {
   private final LoadingCache<Account.Id, Holder> limitsPerAccount;
   private final LoadingCache<String, Holder> limitsPerRemoteHost;
 
-  private final Pattern resturi =
+  private final Pattern servletpath =
       Pattern.compile(
           "^/(?:a/)?"
               + "(access|accounts|changes|config|groups|plugins|projects|Documentation|tools)/(.*)$");
@@ -113,6 +113,6 @@ public class RestApiRateLimiter extends AllRequestFilter {
 
   boolean isRest(ServletRequest req) {
     return req instanceof HttpServletRequest
-        && resturi.matcher(((HttpServletRequest) req).getRequestURI()).matches();
+        && servletpath.matcher(((HttpServletRequest) req).getServletPath()).matches();
   }
 }
