@@ -14,6 +14,7 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
+import com.google.common.flogger.FluentLogger;
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.config.GerritServerConfig;
 import com.google.gerrit.server.config.SitePaths;
@@ -22,13 +23,10 @@ import com.google.inject.Singleton;
 import java.nio.file.Path;
 import org.eclipse.jgit.lib.Config;
 import org.eclipse.jgit.lib.Repository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Singleton
 class ProjectNameResolver {
-
-  private static final Logger log = LoggerFactory.getLogger(ProjectNameResolver.class);
+  private static final FluentLogger logger = FluentLogger.forEnclosingClass();
   private final Path basePath;
 
   @Inject
@@ -43,7 +41,7 @@ class ProjectNameResolver {
       String n = p.substring(0, p.length() - ".git".length());
       return new Project.NameKey(n);
     }
-    log.warn("Couldn't determine the project name from " + gitDir);
+    logger.atWarning().log("Couldn't determine the project name from %s", gitDir);
     return null;
   }
 }
