@@ -56,11 +56,19 @@ class Module extends CacheModule {
   static final String CACHE_NAME_ACCOUNTID = "rate_limits_by_account";
   static final String CACHE_NAME_REMOTEHOST = "rate_limits_by_ip";
 
+  static final String CACHE_NAME_RESTAPI_ACCOUNTID = "restapi_rate_limits_by_account";
+  static final String CACHE_NAME_RESTAPI_REMOTEHOST = "restapi_rate_limits_by_ip";
+
   private final String uploadpackLimitExceededMsg;
+  private final String restapiLimitExceededMsg;
 
   @Inject
   Module(PluginConfigFactory plugincf, @PluginName String pluginName) {
-    PluginConfig pc = plugincf.getFromGerritConfig(pluginName);
+    final PluginConfig pc = plugincf.getFromGerritConfig(pluginName);
+    restapiLimitExceededMsg =
+        new RateMsgHelper(
+                Type.RESTAPI, pc.getString(RateMsgHelper.RESTAPI_CONFIGURABLE_MSG_ANNOTATION))
+            .getMessageFormatMsgWithBursts();
     uploadpackLimitExceededMsg =
         new RateMsgHelper(
                 Type.UPLOADPACK, pc.getString(RateMsgHelper.UPLOADPACK_CONFIGURABLE_MSG_ANNOTATION))
@@ -217,5 +225,23 @@ class Module extends CacheModule {
       SystemGroupBackend systemGroupBackend, AccountLimitsFinder finder) {
     return CacheBuilder.newBuilder()
         .build(new HolderCacheLoaderByRemoteHost(Type.UPLOADPACK, systemGroupBackend, finder));
+  }
+
+  @Provides
+  @Named(CACHE_NAME_RESTAPI_ACCOUNTID)
+  @Singleton
+  public LoadingCache<Account.Id, Module.Holder> getRestApiLoadingCacheByAccountId(
+      GenericFactory userFactory, AccountLimitsFinder finder) {
+    return CacheBuilder.newBuilder()
+        .build(new Module.HolderCacheLoaderByAccountId(Type.RESTAPI, userFactory, finder));
+  }
+
+  @Provides
+  @Named(CACHE_NAME_RESTAPI_REMOTEHOST)
+  @Singleton
+  public LoadingCache<String, Module.Holder> getRestApiLoadingCacheByRemoteHost(
+      SystemGroupBackend systemGroupBackend, AccountLimitsFinder finder) {
+    return CacheBuilder.newBuilder()
+        .build(new Module.HolderCacheLoaderByRemoteHost(Type.RESTAPI, systemGroupBackend, finder));
   }
 }
