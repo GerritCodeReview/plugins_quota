@@ -47,11 +47,6 @@ public class RestApiRateLimiter extends AllRequestFilter {
   private final LoadingCache<Account.Id, Holder> limitsPerAccount;
   private final LoadingCache<String, Holder> limitsPerRemoteHost;
 
-  private final Pattern resturi =
-      Pattern.compile(
-          "^/(?:a/)?"
-              + "(access|accounts|changes|config|groups|plugins|projects|Documentation|tools)/(.*)$");
-
   private final String limitExceededMsg;
 
   @Inject
@@ -71,7 +66,7 @@ public class RestApiRateLimiter extends AllRequestFilter {
   @Override
   public void doFilter(ServletRequest req, ServletResponse res, final FilterChain chain)
       throws IOException, ServletException {
-    if (isRest(req)) {
+    if (isRest((HttpServletRequest) req)) {
       Holder rateLimiterHolder;
       CurrentUser u = user.get();
       if (u.isIdentifiedUser()) {
@@ -111,8 +106,12 @@ public class RestApiRateLimiter extends AllRequestFilter {
     chain.doFilter(req, res);
   }
 
-  boolean isRest(ServletRequest req) {
-    return req instanceof HttpServletRequest
-        && resturi.matcher(((HttpServletRequest) req).getRequestURI()).matches();
+  boolean isRest(HttpServletRequest req) {
+    String servletPath = req.getServletPath();
+    return servletPath.contains("/access/") || servletPath.contains("/accounts/") ||
+      servletPath.contains("/changes/") || servletPath.contains("/config/") ||
+      servletPath.contains("/Documentation/") || servletPath.contains("/groups/") ||
+      servletPath.contains("/plugins/") || servletPath.contains("/projects/") ||
+      servletPath.contains("/tools/");
   }
 }
