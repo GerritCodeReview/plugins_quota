@@ -19,7 +19,7 @@ import static com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type.UPL
 
 import com.google.common.collect.ArrayTable;
 import com.google.common.collect.Table;
-import java.text.MessageFormat;
+import com.google.common.flogger.FluentLogger;
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.Map;
@@ -31,13 +31,12 @@ import java.util.regex.Pattern;
 import org.eclipse.jgit.lib.Config;
 import org.eclipse.jgit.lib.Config.ConfigEnum;
 import org.eclipse.jgit.lib.Config.SectionParser;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class AccountLimitsConfig {
+  private static final FluentLogger logger = FluentLogger.forEnclosingClass();
+
   private static final Pattern PATTERN =
       Pattern.compile("^\\s*(\\d+)\\s*/\\s*(.*)\\s*burst\\s*(\\d+)$");
-  private static final Logger log = LoggerFactory.getLogger(AccountLimitsConfig.class);
   static final String GROUP_SECTION = "group";
   static final SectionParser<AccountLimitsConfig> KEY =
       new SectionParser<AccountLimitsConfig>() {
@@ -110,10 +109,9 @@ public class AccountLimitsConfig {
 
     Matcher m = PATTERN.matcher(value);
     if (!m.matches()) {
-      log.error(
-          "Invalid ''{}'' ratelimit configuration ''{}''; ignoring the configuration entry",
-          name,
-          value);
+      logger.atSevere().log(
+          "Invalid '%s' ratelimit configuration '%s'; ignoring the configuration entry",
+          name, value);
       return;
     }
 
@@ -124,10 +122,9 @@ public class AccountLimitsConfig {
     try {
       burstCount = Long.parseLong(storeCountString);
     } catch (NumberFormatException e) {
-      log.error(
-          "Invalid ''{}'' ratelimit store configuration ''{}''; ignoring the configuration entry",
-          name,
-          storeCountString);
+      logger.atSevere().log(
+          "Invalid '%s' ratelimit store configuration '%s'; ignoring the configuration entry",
+          name, storeCountString);
       return;
     }
 
@@ -167,15 +164,13 @@ public class AccountLimitsConfig {
 
   private void logNotRateUnit(String section, String subsection, String name, String valueString) {
     if (subsection != null) {
-      log.error(
-          MessageFormat.format(
-              "Invalid rate unit value: {0}.{1}.{2}={3}; ignoring the configuration entry",
-              section, subsection, name, valueString));
+      logger.atSevere().log(
+          "Invalid rate unit value: %s.%s.%s=%s; ignoring the configuration entry",
+          section, subsection, name, valueString);
     } else {
-      log.error(
-          MessageFormat.format(
-              "Invalid rate unit value: {0}.{1}={2}; ignoring the configuration entry",
-              section, name, valueString));
+      logger.atSevere().log(
+          "Invalid rate unit value: %s.%s=%s; ignoring the configuration entry",
+          section, name, valueString);
     }
   }
 

@@ -15,6 +15,7 @@
 package com.googlesource.gerrit.plugins.quota;
 
 import com.google.common.cache.LoadingCache;
+import com.google.common.flogger.FluentLogger;
 import com.google.gerrit.httpd.AllRequestFilter;
 import com.google.gerrit.reviewdb.client.Account;
 import com.google.gerrit.server.CurrentUser;
@@ -33,12 +34,11 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Singleton
 public class RestApiRateLimiter extends AllRequestFilter {
-  private static final Logger log = LoggerFactory.getLogger(RestApiRateLimiter.class);
+  private static final FluentLogger logger = FluentLogger.forEnclosingClass();
+
   private static final int SECONDS_PER_HOUR = 3600;
 
   static final int SC_TOO_MANY_REQUESTS = 429;
@@ -80,20 +80,16 @@ public class RestApiRateLimiter extends AllRequestFilter {
           rateLimiterHolder = limitsPerAccount.get(accountId);
         } catch (ExecutionException e) {
           rateLimiterHolder = Holder.EMPTY;
-          String msg =
-              MessageFormat.format("Cannot get rate limits for account ''{0}''", accountId);
-          log.warn(msg, e);
+          logger.atWarning().withCause(e).log("Cannot get rate limits for account '%s'", accountId);
         }
       } else {
         try {
           rateLimiterHolder = limitsPerRemoteHost.get(req.getRemoteHost());
         } catch (ExecutionException e) {
           rateLimiterHolder = Holder.EMPTY;
-          String msg =
-              MessageFormat.format(
-                  "Cannot get rate limits for anonymous access from remote host ''{0}''",
-                  req.getRemoteHost());
-          log.warn(msg, e);
+          logger.atWarning().withCause(e).log(
+              "Cannot get rate limits for anonymous access from remote host '%s'",
+              req.getRemoteHost());
         }
       }
       if (!rateLimiterHolder.hasGracePermits()

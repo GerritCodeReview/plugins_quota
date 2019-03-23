@@ -17,6 +17,7 @@ package com.googlesource.gerrit.plugins.quota;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.google.common.collect.Ordering;
+import com.google.common.flogger.FluentLogger;
 import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.cache.CacheModule;
@@ -48,13 +49,11 @@ import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.transport.PostReceiveHook;
 import org.eclipse.jgit.transport.ReceiveCommand;
 import org.eclipse.jgit.transport.ReceivePack;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Singleton
 public class MaxRepositorySizeQuota
     implements ReceivePackInitializer, PostReceiveHook, RepoSizeCache {
-  private static final Logger log = LoggerFactory.getLogger(MaxRepositorySizeQuota.class);
+  private static final FluentLogger logger = FluentLogger.forEnclosingClass();
 
   static final String REPO_SIZE_CACHE = "repo_size";
 
@@ -127,7 +126,7 @@ public class MaxRepositorySizeQuota
       return Optional.ofNullable(
           Ordering.<Long>natural().nullsLast().min(maxPackSize1, maxPackSize2));
     } catch (ExecutionException e) {
-      log.warn("Couldn't calculate maxPackSize for " + project.get(), e);
+      logger.atWarning().withCause(e).log("Couldn't calculate maxPackSize for %s", project);
       return Optional.empty();
     }
   }
@@ -139,7 +138,7 @@ public class MaxRepositorySizeQuota
       try {
         cache.get(project).getAndAdd(rp.getPackSize());
       } catch (ExecutionException e) {
-        log.warn("Couldn't process onPostReceive for " + project.get(), e);
+        logger.atWarning().withCause(e).log("Couldn't process onPostReceive for %s", project);
       }
     }
   }
@@ -205,7 +204,7 @@ public class MaxRepositorySizeQuota
     try {
       return cache.get(p).get();
     } catch (ExecutionException e) {
-      log.warn("Error creating RepoSizeEvent", e);
+      logger.atWarning().withCause(e).log("Error creating RepoSizeEvent");
       return 0;
     }
   }
@@ -220,7 +219,7 @@ public class MaxRepositorySizeQuota
     try {
       cache.get(p).set(size);
     } catch (ExecutionException e) {
-      log.warn("Error setting the size of project " + p.get(), e);
+      logger.atWarning().withCause(e).log("Error setting the size of project %s", p);
     }
   }
 }
