@@ -71,7 +71,8 @@ public class RestApiRateLimiter extends AllRequestFilter {
   @Override
   public void doFilter(ServletRequest req, ServletResponse res, final FilterChain chain)
       throws IOException, ServletException {
-    if (isRest(req)) {
+    System.out.print("test " + isRest((HttpServletRequest) req) + "\n");
+    if (isRest((HttpServletRequest) req)) {
       Holder rateLimiterHolder;
       CurrentUser u = user.get();
       if (u.isIdentifiedUser()) {
@@ -96,6 +97,10 @@ public class RestApiRateLimiter extends AllRequestFilter {
           log.warn(msg, e);
         }
       }
+      System.out.print("limit " + rateLimiterHolder.hasGracePermits()+ "\n");
+      //if (rateLimiterHolder.get().tryAcquire() != null) {
+      //  System.out.print("limit 2 " + rateLimiterHolder.get().tryAcquire() + "\n");
+      //}
       if (!rateLimiterHolder.hasGracePermits()
           && rateLimiterHolder.get() != null
           && !rateLimiterHolder.get().tryAcquire()) {
@@ -111,8 +116,11 @@ public class RestApiRateLimiter extends AllRequestFilter {
     chain.doFilter(req, res);
   }
 
-  boolean isRest(ServletRequest req) {
-    return req instanceof HttpServletRequest
-        && resturi.matcher(((HttpServletRequest) req).getRequestURI()).matches();
+  boolean isRest(HttpServletRequest req) {
+    String servletPath = req.getServletPath();
+    return servletPath.contains("/changes/") || servletPath.contains("/projects/") ||
+      servletPath.contains("/accounts/") || servletPath.contains("/access/") ||
+      servletPath.contains("/plugins/") || servletPath.contains("/groups/") ||
+      servletPath.contains("/config/") || servletPath.contains("/Documentation/");
   }
 }
