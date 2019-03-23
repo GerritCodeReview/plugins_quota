@@ -57,9 +57,9 @@ public class RestApiRateLimiter extends AllRequestFilter {
   @Inject
   RestApiRateLimiter(
       Provider<CurrentUser> user,
-      @Named(HttpModule.CACHE_NAME_RESTAPI_ACCOUNTID)
+      @Named(Module.CACHE_NAME_RESTAPI_ACCOUNTID)
           LoadingCache<Account.Id, Holder> limitsPerAccount,
-      @Named(HttpModule.CACHE_NAME_RESTAPI_REMOTEHOST)
+      @Named(Module.CACHE_NAME_RESTAPI_REMOTEHOST)
           LoadingCache<String, Holder> limitsPerRemoteHost,
       @Named(RateMsgHelper.RESTAPI_CONFIGURABLE_MSG_ANNOTATION) String limitExceededMsg) {
     this.user = user;
