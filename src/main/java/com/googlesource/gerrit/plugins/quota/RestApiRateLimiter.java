@@ -113,6 +113,6 @@ public class RestApiRateLimiter extends AllRequestFilter {
 
   boolean isRest(ServletRequest req) {
     return req instanceof HttpServletRequest
-        && resturi.matcher(((HttpServletRequest) req).getRequestURI()).matches();
+        && resturi.matcher(((HttpServletRequest) req).getServletPath()).matches();
   }
 }
