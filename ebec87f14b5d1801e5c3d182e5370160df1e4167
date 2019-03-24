@@ -34,6 +34,24 @@
       "revId": "ebec87f14b5d1801e5c3d182e5370160df1e4167",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b4c8add_5f3bd892",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RestApiRateLimiter.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1029953
+      },
+      "writtenOn": "2019-03-24T17:25:51Z",
+      "side": 0,
+      "message": "Oh, i found a better fix.",
+      "parentUuid": "0fa139ec_dee54b94",
+      "revId": "ebec87f14b5d1801e5c3d182e5370160df1e4167",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
