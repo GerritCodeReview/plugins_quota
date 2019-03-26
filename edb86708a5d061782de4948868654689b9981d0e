@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d63d367d_3cda64ea",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1003935
+      },
+      "writtenOn": "2019-03-26T07:22:52Z",
+      "side": 1,
+      "message": "should be: \u0027%s\u0027",
+      "range": {
+        "startLine": 124,
+        "startChar": 74,
+        "endLine": 124,
+        "endChar": 76
+      },
+      "revId": "edb86708a5d061782de4948868654689b9981d0e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51b0ddc7_5a36d10a",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1003935
+      },
+      "writtenOn": "2019-03-26T07:22:52Z",
+      "side": 1,
+      "message": "should be: \u0027%s\u0027",
+      "range": {
+        "startLine": 124,
+        "startChar": 37,
+        "endLine": 124,
+        "endChar": 43
+      },
+      "revId": "edb86708a5d061782de4948868654689b9981d0e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "595c79a2_03187a9c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsFinder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1003935
+      },
+      "writtenOn": "2019-03-26T07:22:52Z",
+      "side": 1,
+      "message": "should be: \u0027%s\u0027",
+      "range": {
+        "startLine": 64,
+        "startChar": 58,
+        "endLine": 64,
+        "endChar": 61
+      },
+      "revId": "edb86708a5d061782de4948868654689b9981d0e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
