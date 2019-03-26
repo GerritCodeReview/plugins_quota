@@ -87,6 +87,24 @@
       "revId": "c3ee81971ee895bc29338b89f3cd1cdae6917d02",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c1c8388e_493f9760",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1029953
+      },
+      "writtenOn": "2019-03-26T09:27:59Z",
+      "side": 1,
+      "message": "Oh, sorry, thanks for catching!",
+      "parentUuid": "7fd47f4e_764ad29b",
+      "revId": "c3ee81971ee895bc29338b89f3cd1cdae6917d02",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
