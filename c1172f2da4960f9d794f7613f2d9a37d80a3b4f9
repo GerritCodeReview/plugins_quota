@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e16683a6_2f6c5a25",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RestApiRateLimiter.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1003935
+      },
+      "writtenOn": "2019-03-26T09:10:31Z",
+      "side": 1,
+      "message": "Should this variable be renamed now, since it is no longer matched against the request URI?",
+      "range": {
+        "startLine": 116,
+        "startChar": 11,
+        "endLine": 116,
+        "endChar": 18
+      },
+      "revId": "c1172f2da4960f9d794f7613f2d9a37d80a3b4f9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
