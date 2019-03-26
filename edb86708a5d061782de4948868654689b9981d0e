@@ -48,6 +48,54 @@
     },
     {
       "key": {
+        "uuid": "ad2f4ef0_5cc1d62d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1029953
+      },
+      "writtenOn": "2019-03-26T08:57:38Z",
+      "side": 1,
+      "message": "Thanks, done.",
+      "parentUuid": "51b0ddc7_5a36d10a",
+      "range": {
+        "startLine": 124,
+        "startChar": 37,
+        "endLine": 124,
+        "endChar": 43
+      },
+      "revId": "edb86708a5d061782de4948868654689b9981d0e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c011a5c_07f3696b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1029953
+      },
+      "writtenOn": "2019-03-26T08:57:38Z",
+      "side": 1,
+      "message": "Thanks, done.",
+      "parentUuid": "d63d367d_3cda64ea",
+      "range": {
+        "startLine": 124,
+        "startChar": 74,
+        "endLine": 124,
+        "endChar": 76
+      },
+      "revId": "edb86708a5d061782de4948868654689b9981d0e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "595c79a2_03187a9c",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsFinder.java",
         "patchSetId": 3
@@ -68,6 +116,30 @@
       "revId": "edb86708a5d061782de4948868654689b9981d0e",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02b0bed2_edc7fcb2",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsFinder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1029953
+      },
+      "writtenOn": "2019-03-26T08:57:38Z",
+      "side": 1,
+      "message": "Thanks, done.",
+      "parentUuid": "595c79a2_03187a9c",
+      "range": {
+        "startLine": 64,
+        "startChar": 58,
+        "endLine": 64,
+        "endChar": 61
+      },
+      "revId": "edb86708a5d061782de4948868654689b9981d0e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
