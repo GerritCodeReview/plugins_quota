@@ -22,6 +22,30 @@
       "revId": "da8eec385e39cfcb8a5cbfe892a87a9733ef4b2d",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c37a1851_bdc49cf2",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsFinder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1029953
+      },
+      "writtenOn": "2019-04-04T21:20:59Z",
+      "side": 1,
+      "message": "This needs to be debug as this log line is very spammy (if the group is hidden from users) you will constantly get this in the log:\n\nERROR org.wikimedia.gerrit.plugins.xxx.xxx : Ignoring limits for unknown group \u0027\u0027Administrators\u0027\u0027 in xxx.config",
+      "parentUuid": "d62ad066_d10d667d",
+      "range": {
+        "startLine": 56,
+        "startChar": 14,
+        "endLine": 56,
+        "endChar": 19
+      },
+      "revId": "da8eec385e39cfcb8a5cbfe892a87a9733ef4b2d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
