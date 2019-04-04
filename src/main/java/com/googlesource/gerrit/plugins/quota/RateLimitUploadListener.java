@@ -132,17 +132,14 @@ public class RateLimitUploadListener implements UploadValidationListener {
       try {
         limiter = limitsPerAccount.get(accountId).get();
       } catch (ExecutionException e) {
-        String msg = MessageFormat.format("Cannot get rate limits for account ''{0}''", accountId);
-        log.warn(msg, e);
+        log.warn("Cannot get rate limits for account ''{}''", accountId, e);
       }
     } else {
       try {
         limiter = limitsPerRemoteHost.get(remoteHost).get();
       } catch (ExecutionException e) {
-        String msg =
-            MessageFormat.format(
-                "Cannot get rate limits for anonymous access from remote host ''{0}''", remoteHost);
-        log.warn(msg, e);
+        log.warn(
+            "Cannot get rate limits for anonymous access from remote host ''{}''", remoteHost, e);
       }
     }
     if (limiter != null && !limiter.tryAcquire()) {
