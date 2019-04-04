@@ -118,7 +118,7 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook,
       long maxPackSize = Ordering.<Long>natural().nullsLast().min(maxPackSize1, maxPackSize2);
       rp.setMaxPackSizeLimit(maxPackSize);
     } catch (ExecutionException e) {
-      log.warn("Couldn't setMaxPackSizeLimit on receive-pack for " + project.get(), e);
+      log.warn("Couldn't setMaxPackSizeLimit on receive-pack for {}", project, e);
     }
   }
 
@@ -129,7 +129,7 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook,
       try {
         cache.get(project).getAndAdd(rp.getPackSize());
       } catch (ExecutionException e) {
-        log.warn("Couldn't process onPostReceive for " + project.get(), e);
+        log.warn("Couldn't process onPostReceive for {}", project, e);
       }
     }
   }
@@ -210,7 +210,7 @@ class MaxRepositorySizeQuota implements ReceivePackInitializer, PostReceiveHook,
     try {
       cache.get(p).set(size);
     } catch (ExecutionException e) {
-      log.warn("Error setting the size of project " + p.get(), e);
+      log.warn("Error setting the size of project {}", p, e);
     }
   }
 }
