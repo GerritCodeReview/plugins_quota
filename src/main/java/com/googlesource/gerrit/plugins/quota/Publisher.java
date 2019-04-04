@@ -52,7 +52,7 @@ public class Publisher implements Runnable {
         events.add(creator.create());
       } catch (RuntimeException e) {
         String creatorName = creator.getName();
-        log.warn("Exception in usage data event creator " + creatorName, e);
+        log.warn("Exception in usage data event creator {}", creatorName, e);
       }
     }
 

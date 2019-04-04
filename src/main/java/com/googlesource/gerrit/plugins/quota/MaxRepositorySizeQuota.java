@@ -127,7 +127,7 @@ public class MaxRepositorySizeQuota
       return Optional.ofNullable(
           Ordering.<Long>natural().nullsLast().min(maxPackSize1, maxPackSize2));
     } catch (ExecutionException e) {
-      log.warn("Couldn't calculate maxPackSize for " + project.get(), e);
+      log.warn("Couldn't calculate maxPackSize for {}", project, e);
       return Optional.empty();
     }
   }
@@ -139,7 +139,7 @@ public class MaxRepositorySizeQuota
       try {
         cache.get(project).getAndAdd(rp.getPackSize());
       } catch (ExecutionException e) {
-        log.warn("Couldn't process onPostReceive for " + project.get(), e);
+        log.warn("Couldn't process onPostReceive for {}", project, e);
       }
     }
   }
@@ -220,7 +220,7 @@ public class MaxRepositorySizeQuota
     try {
       cache.get(p).set(size);
     } catch (ExecutionException e) {
-      log.warn("Error setting the size of project " + p.get(), e);
+      log.warn("Error setting the size of project {}", p, e);
     }
   }
 }
