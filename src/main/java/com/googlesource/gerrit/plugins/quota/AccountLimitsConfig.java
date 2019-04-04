@@ -90,9 +90,11 @@ public class AccountLimitsConfig {
 
   private AccountLimitsConfig(final Config c) {
     Set<String> groups = c.getSubsections(GROUP_SECTION);
-    if (groups.size() == 0) {
+
+    if (groups.isEmpty()) {
       return;
     }
+
     rateLimits = ArrayTable.create(Arrays.asList(Type.values()), groups);
     for (String groupName : groups) {
       parseRateLimit(c, groupName, UPLOADPACK);
