@@ -53,7 +53,7 @@ public class AccountLimitsFinder {
       for (String groupName : limits.get().keySet()) {
         GroupDescription.Basic d = groupsCollection.parseId(groupName);
         if (d == null) {
-          log.error("Ignoring limits for unknown group ''{}'' in quota.config", groupName);
+          log.debug("Ignoring limits for unknown group ''{}'' in quota.config", groupName);
         } else if (memberShip.contains(d.getGroupUUID())) {
           return Optional.ofNullable(limits.get().get(groupName));
         }
