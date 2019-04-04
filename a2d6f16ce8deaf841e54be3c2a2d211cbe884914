@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "34694ad2_0423b550",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2019-04-04T12:53:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c114ff0d_bd51e963",
+      "range": {
+        "startLine": 129,
+        "startChar": 90,
+        "endLine": 129,
+        "endChar": 96
+      },
+      "revId": "a2d6f16ce8deaf841e54be3c2a2d211cbe884914",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cabb5144_e5ffa3f4",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
         "patchSetId": 7
@@ -45,6 +69,30 @@
       "revId": "a2d6f16ce8deaf841e54be3c2a2d211cbe884914",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69447a82_fbf46bf9",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2019-04-04T12:53:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cabb5144_e5ffa3f4",
+      "range": {
+        "startLine": 222,
+        "startChar": 82,
+        "endLine": 222,
+        "endChar": 89
+      },
+      "revId": "a2d6f16ce8deaf841e54be3c2a2d211cbe884914",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
