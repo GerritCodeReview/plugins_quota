@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a5a89999_bd1e9cd6",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RestApiRateLimiter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1003935
+      },
+      "writtenOn": "2019-04-04T09:39:54Z",
+      "side": 1,
+      "message": "{}",
+      "range": {
+        "startLine": 91,
+        "startChar": 78,
+        "endLine": 91,
+        "endChar": 80
+      },
+      "revId": "1173da43ebded27a86e6cb3ae6462edaaf0fd228",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
