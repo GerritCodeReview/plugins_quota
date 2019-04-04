@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d38d11dd_f312a12d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2019-04-04T23:20:05Z",
+      "side": 1,
+      "message": "What version of SpotBugs are you using?  I don\u0027t get any warning related to this even with the reporting set to the most extreme.",
+      "revId": "6718b8dd4b2061198f58f68b3d43c396362e71b5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
