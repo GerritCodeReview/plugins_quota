@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c114ff0d_bd51e963",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2019-04-04T12:48:28Z",
+      "side": 1,
+      "message": "The .get() call is not necessary.  Same below.",
+      "range": {
+        "startLine": 129,
+        "startChar": 90,
+        "endLine": 129,
+        "endChar": 96
+      },
+      "revId": "a2d6f16ce8deaf841e54be3c2a2d211cbe884914",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cabb5144_e5ffa3f4",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2019-04-04T12:48:28Z",
+      "side": 1,
+      "message": "p",
+      "range": {
+        "startLine": 222,
+        "startChar": 82,
+        "endLine": 222,
+        "endChar": 89
+      },
+      "revId": "a2d6f16ce8deaf841e54be3c2a2d211cbe884914",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
