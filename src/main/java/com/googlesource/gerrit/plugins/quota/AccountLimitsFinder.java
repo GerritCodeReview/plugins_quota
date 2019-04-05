@@ -61,14 +61,14 @@ public class AccountLimitsFinder {
               groupsCollection.parse(TopLevelResource.INSTANCE, IdString.fromDecoded(groupName));
           Optional<GroupDescription.Internal> maybeInternalGroup = group.asInternalGroup();
           if (!maybeInternalGroup.isPresent()) {
-            log.error("Ignoring limits for non-internal group ''{}'' in quota.config", groupName);
+            log.debug("Ignoring limits for non-internal group ''{}'' in quota.config", groupName);
           } else if (memberShip.contains(maybeInternalGroup.get().getGroupUUID())) {
             return Optional.ofNullable(limits.get().get(groupName));
           }
         } catch (ResourceNotFoundException e) {
-          log.error("Ignoring limits for unknown group ''{}'' in quota.config", groupName);
+          log.debug("Ignoring limits for unknown group ''{}'' in quota.config", groupName);
         } catch (AuthException e) {
-          log.error("Ignoring limits for non-visible group ''{}'' in quota.config", groupName);
+          log.debug("Ignoring limits for non-visible group ''{}'' in quota.config", groupName);
         }
       }
     }
