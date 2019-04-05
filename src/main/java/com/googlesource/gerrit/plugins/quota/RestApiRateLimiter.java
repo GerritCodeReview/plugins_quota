@@ -47,7 +47,7 @@ public class RestApiRateLimiter extends AllRequestFilter {
   private final LoadingCache<Account.Id, Holder> limitsPerAccount;
   private final LoadingCache<String, Holder> limitsPerRemoteHost;
 
-  private final Pattern resturi =
+  private final Pattern servletPath =
       Pattern.compile(
           "^/(?:a/)?"
               + "(access|accounts|changes|config|groups|plugins|projects|Documentation|tools)/(.*)$");
@@ -80,20 +80,17 @@ public class RestApiRateLimiter extends AllRequestFilter {
           rateLimiterHolder = limitsPerAccount.get(accountId);
         } catch (ExecutionException e) {
           rateLimiterHolder = Holder.EMPTY;
-          String msg =
-              MessageFormat.format("Cannot get rate limits for account ''{0}''", accountId);
-          log.warn(msg, e);
+          log.warn("Cannot get rate limits for account ''{}''", accountId, e);
         }
       } else {
         try {
           rateLimiterHolder = limitsPerRemoteHost.get(req.getRemoteHost());
         } catch (ExecutionException e) {
           rateLimiterHolder = Holder.EMPTY;
-          String msg =
-              MessageFormat.format(
-                  "Cannot get rate limits for anonymous access from remote host ''{0}''",
-                  req.getRemoteHost());
-          log.warn(msg, e);
+          log.warn(
+              "Cannot get rate limits for anonymous access from remote host ''{}''",
+              req.getRemoteHost(),
+              e);
         }
       }
       if (!rateLimiterHolder.hasGracePermits()
@@ -113,6 +110,6 @@ public class RestApiRateLimiter extends AllRequestFilter {
 
   boolean isRest(ServletRequest req) {
     return req instanceof HttpServletRequest
-        && resturi.matcher(((HttpServletRequest) req).getRequestURI()).matches();
+        && servletPath.matcher(((HttpServletRequest) req).getServletPath()).matches();
   }
 }

@@ -19,7 +19,6 @@ import static com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type.UPL
 
 import com.google.common.collect.ArrayTable;
 import com.google.common.collect.Table;
-import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.Map;
@@ -90,9 +89,11 @@ public class AccountLimitsConfig {
 
   private AccountLimitsConfig(final Config c) {
     Set<String> groups = c.getSubsections(GROUP_SECTION);
-    if (groups.size() == 0) {
+
+    if (groups.isEmpty()) {
       return;
     }
+
     rateLimits = ArrayTable.create(Arrays.asList(Type.values()), groups);
     for (String groupName : groups) {
       parseRateLimit(c, groupName, UPLOADPACK);
@@ -168,14 +169,17 @@ public class AccountLimitsConfig {
   private void logNotRateUnit(String section, String subsection, String name, String valueString) {
     if (subsection != null) {
       log.error(
-          MessageFormat.format(
-              "Invalid rate unit value: {0}.{1}.{2}={3}; ignoring the configuration entry",
-              section, subsection, name, valueString));
+          "Invalid rate unit value: {}.{}.{}={}; ignoring the configuration entry",
+          section,
+          subsection,
+          name,
+          valueString);
     } else {
       log.error(
-          MessageFormat.format(
-              "Invalid rate unit value: {0}.{1}={2}; ignoring the configuration entry",
-              section, name, valueString));
+          "Invalid rate unit value: {}.{}={}; ignoring the configuration entry",
+          section,
+          name,
+          valueString);
     }
   }
 
