@@ -24,6 +24,7 @@ import com.google.common.cache.LoadingCache;
 import com.google.common.util.concurrent.RateLimiter;
 import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gerrit.extensions.events.GarbageCollectorListener;
+import com.google.gerrit.extensions.events.LfsObjectUploadListener;
 import com.google.gerrit.extensions.events.LifecycleListener;
 import com.google.gerrit.extensions.events.ProjectDeletedListener;
 import com.google.gerrit.extensions.registration.DynamicMap;
@@ -77,6 +78,7 @@ class Module extends CacheModule {
     DynamicSet.bind(binder(), GarbageCollectorListener.class).to(GCListener.class);
     DynamicSet.setOf(binder(), UsageDataEventCreator.class);
     DynamicSet.bind(binder(), UsageDataEventCreator.class).to(RepoSizeEventCreator.class);
+    DynamicSet.bind(binder(), LfsObjectUploadListener.class).to(LfsObjectQuota.class);
     install(MaxRepositorySizeQuota.module());
     install(
         new RestApiModule() {
