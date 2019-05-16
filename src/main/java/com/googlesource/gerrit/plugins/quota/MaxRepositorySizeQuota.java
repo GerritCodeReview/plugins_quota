@@ -14,6 +14,11 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
+import static com.google.gerrit.server.quota.QuotaGroupDefinitions.REPOSITORY_SIZE_GROUP;
+import static com.google.gerrit.server.quota.QuotaResponse.error;
+import static com.google.gerrit.server.quota.QuotaResponse.noOp;
+import static com.google.gerrit.server.quota.QuotaResponse.ok;
+
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.google.common.collect.Ordering;
@@ -22,8 +27,10 @@ import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.cache.CacheModule;
 import com.google.gerrit.server.config.PluginConfigFactory;
 import com.google.gerrit.server.git.GitRepositoryManager;
-import com.google.gerrit.server.git.ReceivePackInitializer;
 import com.google.gerrit.server.project.ProjectCache;
+import com.google.gerrit.server.quota.QuotaEnforcer;
+import com.google.gerrit.server.quota.QuotaRequestContext;
+import com.google.gerrit.server.quota.QuotaResponse;
 import com.google.inject.Inject;
 import com.google.inject.Module;
 import com.google.inject.Singleton;
@@ -36,7 +43,6 @@ import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.time.Duration;
-import java.util.Collection;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicLong;
@@ -45,15 +51,11 @@ import org.eclipse.jgit.internal.storage.file.FileRepository;
 import org.eclipse.jgit.internal.storage.file.GC;
 import org.eclipse.jgit.internal.storage.file.GC.RepoStatistics;
 import org.eclipse.jgit.lib.Repository;
-import org.eclipse.jgit.transport.PostReceiveHook;
-import org.eclipse.jgit.transport.ReceiveCommand;
-import org.eclipse.jgit.transport.ReceivePack;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Singleton
-public class MaxRepositorySizeQuota
-    implements ReceivePackInitializer, PostReceiveHook, RepoSizeCache {
+public class MaxRepositorySizeQuota implements QuotaEnforcer, RepoSizeCache {
   private static final Logger log = LoggerFactory.getLogger(MaxRepositorySizeQuota.class);
 
   static final String REPO_SIZE_CACHE = "repo_size";
@@ -73,26 +75,15 @@ public class MaxRepositorySizeQuota
   protected final LoadingCache<Project.NameKey, AtomicLong> cache;
   private final QuotaFinder quotaFinder;
   private final ProjectCache projectCache;
-  private final ProjectNameResolver projectNameResolver;
 
   @Inject
   protected MaxRepositorySizeQuota(
       QuotaFinder quotaFinder,
       @Named(REPO_SIZE_CACHE) LoadingCache<Project.NameKey, AtomicLong> cache,
-      ProjectCache projectCache,
-      ProjectNameResolver projectNameResolver) {
+      ProjectCache projectCache) {
     this.quotaFinder = quotaFinder;
     this.cache = cache;
     this.projectCache = projectCache;
-    this.projectNameResolver = projectNameResolver;
-  }
-
-  @Override
-  public void init(Project.NameKey project, ReceivePack rp) {
-    Optional<Long> maxPackSize = getMaxPackSize(project);
-    if (maxPackSize.isPresent()) {
-      rp.setMaxPackSizeLimit(maxPackSize.get());
-    }
   }
 
   protected Optional<Long> getMaxPackSize(Project.NameKey project) {
@@ -130,27 +121,6 @@ public class MaxRepositorySizeQuota
       log.warn("Couldn't calculate maxPackSize for {}", project, e);
       return Optional.empty();
     }
-  }
-
-  @Override
-  public void onPostReceive(ReceivePack rp, Collection<ReceiveCommand> commands) {
-    Project.NameKey project = projectNameResolver.projectName(rp.getRepository());
-    if (needPack(commands)) {
-      try {
-        cache.get(project).getAndAdd(rp.getPackSize());
-      } catch (ExecutionException e) {
-        log.warn("Couldn't process onPostReceive for {}", project, e);
-      }
-    }
-  }
-
-  private boolean needPack(Collection<ReceiveCommand> commands) {
-    for (ReceiveCommand cmd : commands) {
-      if (cmd.getType() != ReceiveCommand.Type.DELETE) {
-        return true;
-      }
-    }
-    return false;
   }
 
   @Singleton
@@ -222,5 +192,76 @@ public class MaxRepositorySizeQuota
     } catch (ExecutionException e) {
       log.warn("Error setting the size of project {}", p, e);
     }
+  }
+
+  @Override
+  public QuotaResponse dryRun(String quotaGroup, QuotaRequestContext ctx, long numTokens) {
+    if (!REPOSITORY_SIZE_GROUP.equals(quotaGroup)) {
+      return noOp();
+    }
+
+    return ctx.project()
+        .flatMap(p -> getMaxPackSize(p))
+        .map(v -> requestQuota(ctx, numTokens, v, false))
+        .orElse(noOp());
+  }
+
+  @Override
+  public void refill(String quotaGroup, QuotaRequestContext ctx, long numTokens) {
+    if (!REPOSITORY_SIZE_GROUP.equals(quotaGroup)) {
+      return;
+    }
+
+    ctx.project()
+        .ifPresent(
+            p -> {
+              try {
+                cache.get(p).getAndUpdate(current -> current > numTokens ? current - numTokens : 0);
+              } catch (ExecutionException e) {
+                log.warn("Refilling [{}] bytes for repository {} failed", numTokens, p, e);
+              }
+            });
+  }
+
+  @Override
+  public QuotaResponse requestTokens(String quotaGroup, QuotaRequestContext ctx, long numTokens) {
+    if (!REPOSITORY_SIZE_GROUP.equals(quotaGroup)) {
+      return noOp();
+    }
+
+    return ctx.project()
+        .flatMap(p -> getMaxPackSize(p))
+        .map(v -> requestQuota(ctx, numTokens, v, true))
+        .orElse(noOp());
+  }
+
+  @Override
+  public QuotaResponse availableTokens(String quotaGroup, QuotaRequestContext ctx) {
+    if (!REPOSITORY_SIZE_GROUP.equals(quotaGroup)) {
+      return noOp();
+    }
+    return ctx.project().flatMap(p -> getMaxPackSize(p)).map(v -> ok(v)).orElse(noOp());
+  }
+
+  private QuotaResponse requestQuota(
+      QuotaRequestContext ctx, long requested, Long availableSpace, boolean deduct) {
+    Project.NameKey r = ctx.project().get();
+    if (availableSpace >= requested) {
+      if (deduct) {
+        try {
+          cache.get(r).getAndAdd(requested);
+        } catch (ExecutionException e) {
+          String msg = String.format("Quota request [%d] failed for repository %s", requested, r);
+          log.warn(msg, e);
+          return error(msg);
+        }
+        return ok();
+      }
+    }
+
+    return error(
+        String.format(
+            "Requested space [%d] is bigger then available [%d] for repository %s",
+            requested, availableSpace, r));
   }
 }
