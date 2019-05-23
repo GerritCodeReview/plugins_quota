@@ -31,7 +31,7 @@ public class GCListenerTest {
   @Test
   public void testEventWithStatistics() {
     RepoSizeCache repoSizeCache = createMock(RepoSizeCache.class);
-    repoSizeCache.set(new Project.NameKey(PROJECT_NAME), 9999L);
+    repoSizeCache.set(Project.nameKey(PROJECT_NAME), 9999L);
     expectLastCall();
     replay(repoSizeCache);
 
@@ -49,7 +49,7 @@ public class GCListenerTest {
   @Test
   public void testEventWithoutStatistics() {
     RepoSizeCache repoSizeCache = createMock(RepoSizeCache.class);
-    repoSizeCache.evict(new Project.NameKey(PROJECT_NAME));
+    repoSizeCache.evict(Project.nameKey(PROJECT_NAME));
     expectLastCall();
     replay(repoSizeCache);
 
@@ -63,7 +63,7 @@ public class GCListenerTest {
   @Test
   public void testEventWithEmptyStatistics() {
     RepoSizeCache repoSizeCache = createMock(RepoSizeCache.class);
-    repoSizeCache.evict(new Project.NameKey(PROJECT_NAME));
+    repoSizeCache.evict(Project.nameKey(PROJECT_NAME));
     expectLastCall();
     replay(repoSizeCache);
 

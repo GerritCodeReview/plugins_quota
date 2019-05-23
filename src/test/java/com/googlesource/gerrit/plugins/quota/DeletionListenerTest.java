@@ -29,7 +29,7 @@ public class DeletionListenerTest {
   @Test
   public void testName() throws Exception {
     RepoSizeCache repoSizeCache = createMock(RepoSizeCache.class);
-    Project.NameKey p = new Project.NameKey(MY_PROJECT);
+    Project.NameKey p = Project.nameKey(MY_PROJECT);
     repoSizeCache.evict(p);
     DeletionListener classUnderTest = new DeletionListener(repoSizeCache);
     replay(repoSizeCache);

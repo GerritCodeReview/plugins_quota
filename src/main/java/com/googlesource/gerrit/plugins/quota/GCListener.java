@@ -16,7 +16,6 @@ package com.googlesource.gerrit.plugins.quota;
 
 import com.google.gerrit.extensions.events.GarbageCollectorListener;
 import com.google.gerrit.reviewdb.client.Project;
-import com.google.gerrit.reviewdb.client.Project.NameKey;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import java.util.Properties;
@@ -33,7 +32,7 @@ public class GCListener implements GarbageCollectorListener {
 
   @Override
   public void onGarbageCollected(GarbageCollectorListener.Event event) {
-    Project.NameKey key = new NameKey(event.getProjectName());
+    Project.NameKey key = Project.nameKey(event.getProjectName());
     Properties statistics = event.getStatistics();
     if (statistics != null) {
       Number sizeOfLooseObjects = (Number) statistics.get("sizeOfLooseObjects");

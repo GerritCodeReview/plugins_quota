@@ -25,22 +25,22 @@ public class TestNamespaceMatching {
   @Test
   public void exactNamespace() {
     String exact = "test/myProject";
-    assertTrue(new Namespace(exact).matches(new Project.NameKey("test/myProject")));
-    assertFalse(new Namespace(exact).matches(new Project.NameKey("test/myOtherProject")));
+    assertTrue(new Namespace(exact).matches(Project.nameKey("test/myProject")));
+    assertFalse(new Namespace(exact).matches(Project.nameKey("test/myOtherProject")));
   }
 
   @Test
   public void patternNamespace() {
     String pattern = "test/*";
-    assertTrue(new Namespace(pattern).matches(new Project.NameKey("test/myProject")));
-    assertFalse(new Namespace(pattern).matches(new Project.NameKey("other/myOtherProject")));
+    assertTrue(new Namespace(pattern).matches(Project.nameKey("test/myProject")));
+    assertFalse(new Namespace(pattern).matches(Project.nameKey("other/myOtherProject")));
   }
 
   @Test
   public void regExp() {
     String pattern = "^test/.*/my.*";
-    assertTrue(new Namespace(pattern).matches(new Project.NameKey("test/a/myProject")));
-    assertTrue(new Namespace(pattern).matches(new Project.NameKey("test/b/myOtherProject")));
-    assertFalse(new Namespace(pattern).matches(new Project.NameKey("other/otherProject")));
+    assertTrue(new Namespace(pattern).matches(Project.nameKey("test/a/myProject")));
+    assertTrue(new Namespace(pattern).matches(Project.nameKey("test/b/myOtherProject")));
+    assertFalse(new Namespace(pattern).matches(Project.nameKey("other/otherProject")));
   }
 }

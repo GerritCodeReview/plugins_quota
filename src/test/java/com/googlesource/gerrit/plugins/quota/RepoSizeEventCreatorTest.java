@@ -32,9 +32,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class RepoSizeEventCreatorTest {
-  private Project.NameKey p1 = new Project.NameKey("p1");
-  private Project.NameKey p2 = new Project.NameKey("p2");
-  private Project.NameKey p3 = new Project.NameKey("p3");
+  private Project.NameKey p1 = Project.nameKey("p1");
+  private Project.NameKey p2 = Project.nameKey("p2");
+  private Project.NameKey p3 = Project.nameKey("p3");
   private ProjectCache projectCache;
   private RepoSizeEventCreator classUnderTest;
   private File tmp;

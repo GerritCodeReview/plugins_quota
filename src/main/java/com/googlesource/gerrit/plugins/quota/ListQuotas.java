@@ -56,7 +56,7 @@ public class ListQuotas implements RestReadView<ConfigResource> {
     ListProjects lister = listProjects.get();
     lister.setMatchPrefix(matchPrefix);
     for (String projectName : lister.apply().keySet()) {
-      Project.NameKey n = new Project.NameKey(projectName);
+      Project.NameKey n = Project.nameKey(projectName);
       result.put(projectName, getQuota.getInfo(n));
     }
     return result;

@@ -29,6 +29,6 @@ public class DeletionListener implements ProjectDeletedListener {
 
   @Override
   public void onProjectDeleted(Event event) {
-    repoSizeCache.evict(new Project.NameKey(event.getProjectName()));
+    repoSizeCache.evict(Project.nameKey(event.getProjectName()));
   }
 }
