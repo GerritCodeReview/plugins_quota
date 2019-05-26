@@ -14,6 +14,7 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
+import static com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type.BLOCK;
 import static com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type.RESTAPI;
 import static com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type.UPLOADPACK;
 
@@ -46,6 +47,24 @@ public class AccountLimitsConfig {
         }
       };
 
+  public static class Block {
+    public Type getType() {
+      return type;
+    }
+
+    public Boolean getBlockValue() {
+      return block;
+    }
+
+    private Type type;
+    private Boolean block;
+
+    public Block(Type type, Boolean block) {
+      this.type = type;
+      this.block = block;
+    }
+  }
+
   public static class RateLimit {
     public Type getType() {
       return type;
@@ -71,6 +90,7 @@ public class AccountLimitsConfig {
   }
 
   public static enum Type implements ConfigEnum {
+    BLOCK,
     UPLOADPACK,
     RESTAPI;
 
@@ -85,6 +105,7 @@ public class AccountLimitsConfig {
     }
   }
 
+  private Table<Type, String, Block> blocks;
   private Table<Type, String, RateLimit> rateLimits;
 
   private AccountLimitsConfig(final Config c) {
@@ -98,6 +119,7 @@ public class AccountLimitsConfig {
     for (String groupName : groups) {
       parseRateLimit(c, groupName, UPLOADPACK);
       parseRateLimit(c, groupName, RESTAPI);
+      parseBlock(c, groupName, BLOCK);
     }
   }
 
@@ -157,6 +179,15 @@ public class AccountLimitsConfig {
     rateLimits.put(type, groupName, new RateLimit(type, ratePerSecond, maxBurstSeconds));
   }
 
+  void parseBlock(Config c, String groupName, Type type) {
+    String name = type.toConfigValue();
+    String value = c.getString(GROUP_SECTION, groupName, name);
+    if (value == null) {
+      return;
+    }
+    blocks.put(type, groupName, new Block(type, Boolean.parseBoolean(value.trim())));
+  }
+
   private static boolean match(final String a, final String... cases) {
     for (final String b : cases) {
       if (b != null && b.equalsIgnoreCase(a)) {
@@ -190,6 +221,17 @@ public class AccountLimitsConfig {
   Optional<Map<String, RateLimit>> getRatelimits(Type type) {
     if (rateLimits != null) {
       return Optional.ofNullable(rateLimits.row(type));
+    }
+    return Optional.empty();
+  }
+
+  /**
+   * @param type block
+   * @return map of blocks per group name
+   */
+  Optional<Map<String, Block>> getBlocks(Type type) {
+    if (blocks != null) {
+      return Optional.ofNullable(blocks.row(type));
     }
     return Optional.empty();
   }
