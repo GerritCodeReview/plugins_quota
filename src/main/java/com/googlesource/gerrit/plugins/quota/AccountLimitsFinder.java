@@ -26,6 +26,7 @@ import com.google.gerrit.server.group.GroupResource;
 import com.google.gerrit.server.project.ProjectCache;
 import com.google.gerrit.server.restapi.group.GroupsCollection;
 import com.google.inject.Inject;
+import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Block;
 import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.RateLimit;
 import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type;
 import java.util.Map;
@@ -51,7 +52,7 @@ public class AccountLimitsFinder {
    * @param user identified user
    * @return the rate limit matching the first configured group limit the given user is a member of
    */
-  public Optional<RateLimit> firstMatching(AccountLimitsConfig.Type type, IdentifiedUser user) {
+  public Optional<RateLimit> firstMatchingRateLimit(AccountLimitsConfig.Type type, IdentifiedUser user) {
     Optional<Map<String, AccountLimitsConfig.RateLimit>> limits = getRatelimits(type);
     if (limits.isPresent()) {
       GroupMembership memberShip = user.getEffectiveGroups();
@@ -69,6 +70,35 @@ public class AccountLimitsFinder {
           log.debug("Ignoring limits for unknown group ''{}'' in quota.config", groupName);
         } catch (AuthException e) {
           log.debug("Ignoring limits for non-visible group ''{}'' in quota.config", groupName);
+        }
+      }
+    }
+    return Optional.empty();
+  }
+
+  /**
+   * @param type blocks
+   * @param user identified user
+   * @return the block matching the first configured group block the given user is a member of
+   */
+  public Optional<Block> firstMatchingBlock(AccountLimitsConfig.Type type, IdentifiedUser user) {
+    Optional<Map<String, AccountLimitsConfig.Block>> blocks = getBlocks(type);
+    if (blocks.isPresent()) {
+      GroupMembership memberShip = user.getEffectiveGroups();
+      for (String groupName : blocks.get().keySet()) {
+        try {
+          GroupResource group =
+              groupsCollection.parse(TopLevelResource.INSTANCE, IdString.fromDecoded(groupName));
+          Optional<GroupDescription.Internal> maybeInternalGroup = group.asInternalGroup();
+          if (!maybeInternalGroup.isPresent()) {
+            log.debug("Ignoring blocks for non-internal group ''{}'' in quota.config", groupName);
+          } else if (memberShip.contains(maybeInternalGroup.get().getGroupUUID())) {
+            return Optional.ofNullable(blocks.get().get(groupName));
+          }
+        } catch (ResourceNotFoundException e) {
+          log.debug("Ignoring blocks for unknown group ''{}'' in quota.config", groupName);
+        } catch (AuthException e) {
+          log.debug("Ignoring blocks for non-visible group ''{}'' in quota.config", groupName);
         }
       }
     }
@@ -95,5 +125,27 @@ public class AccountLimitsFinder {
     Config cfg = projectCache.getAllProjects().getConfig("quota.config").get();
     AccountLimitsConfig limitsCfg = cfg.get(KEY);
     return limitsCfg.getRatelimits(type);
+  }
+
+  /**
+   * @param type blocks
+   * @param groupName name of group to lookup up rate limit for
+   * @return rate limit
+   */
+  public Optional<Block> getBlock(Type type, String groupName) {
+    if (getBlocks(type).isPresent()) {
+      return Optional.ofNullable(getBlocks(type).get().get(groupName));
+    }
+    return Optional.empty();
+  }
+
+  /**
+   * @param type blocks
+   * @return map of blocks per group name
+   */
+  private Optional<Map<String, Block>> getBlocks(Type type) {
+    Config cfg = projectCache.getAllProjects().getConfig("quota.config").get();
+    AccountLimitsConfig blocksCfg = cfg.get(KEY);
+    return blocksCfg.getRatelimits(type);
   }
 }

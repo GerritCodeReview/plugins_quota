@@ -174,7 +174,7 @@ class Module extends CacheModule {
 
     private final Holder createWithBurstyRateLimiter(Account.Id key) throws Exception {
       return createWithBurstyRateLimiter(
-          finder.firstMatching(limitsConfigType, userFactory.create(key)));
+          finder.firstMatchingRateLimit(limitsConfigType, userFactory.create(key)));
     }
 
     @Override
