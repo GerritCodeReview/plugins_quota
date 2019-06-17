@@ -24,7 +24,3 @@ gerrit_api_maven_local()
 
 # Load release Plugin API
 #gerrit_api()
-
-load("//:external_plugin_deps.bzl", "external_plugin_deps")
-
-external_plugin_deps()
