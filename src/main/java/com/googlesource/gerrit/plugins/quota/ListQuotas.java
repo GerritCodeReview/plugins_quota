@@ -15,9 +15,6 @@
 package com.googlesource.gerrit.plugins.quota;
 
 import com.google.common.collect.Maps;
-import com.google.gerrit.extensions.restapi.AuthException;
-import com.google.gerrit.extensions.restapi.BadRequestException;
-import com.google.gerrit.extensions.restapi.ResourceConflictException;
 import com.google.gerrit.extensions.restapi.RestReadView;
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.config.ConfigResource;
@@ -50,8 +47,7 @@ public class ListQuotas implements RestReadView<ConfigResource> {
   }
 
   @Override
-  public Map<String, QuotaInfo> apply(ConfigResource resource)
-      throws AuthException, BadRequestException, ResourceConflictException, Exception {
+  public Map<String, QuotaInfo> apply(ConfigResource resource) throws Exception {
     Map<String, QuotaInfo> result = Maps.newTreeMap();
     ListProjects lister = listProjects.get();
     lister.setMatchPrefix(matchPrefix);
