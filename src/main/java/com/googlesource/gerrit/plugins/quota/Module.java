@@ -35,9 +35,9 @@ import com.google.gerrit.server.IdentifiedUser.GenericFactory;
 import com.google.gerrit.server.cache.CacheModule;
 import com.google.gerrit.server.config.PluginConfig;
 import com.google.gerrit.server.config.PluginConfigFactory;
-import com.google.gerrit.server.git.ReceivePackInitializer;
 import com.google.gerrit.server.git.validators.UploadValidationListener;
 import com.google.gerrit.server.group.SystemGroupBackend;
+import com.google.gerrit.server.quota.QuotaEnforcer;
 import com.google.gerrit.server.validators.ProjectCreationValidationListener;
 import com.google.inject.Inject;
 import com.google.inject.Provides;
@@ -50,7 +50,6 @@ import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.RateLimit;
 import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
-import org.eclipse.jgit.transport.PostReceiveHook;
 
 class Module extends CacheModule {
   static final String CACHE_NAME_ACCOUNTID = "rate_limits_by_account";
@@ -71,8 +70,7 @@ class Module extends CacheModule {
   protected void configure() {
     DynamicSet.bind(binder(), ProjectCreationValidationListener.class)
         .to(MaxRepositoriesQuotaValidator.class);
-    DynamicSet.bind(binder(), ReceivePackInitializer.class).to(MaxRepositorySizeQuota.class);
-    DynamicSet.bind(binder(), PostReceiveHook.class).to(MaxRepositorySizeQuota.class);
+    DynamicSet.bind(binder(), QuotaEnforcer.class).to(MaxRepositorySizeQuota.class);
     DynamicSet.bind(binder(), ProjectDeletedListener.class).to(DeletionListener.class);
     DynamicSet.bind(binder(), GarbageCollectorListener.class).to(GCListener.class);
     DynamicSet.setOf(binder(), UsageDataEventCreator.class);
@@ -89,7 +87,6 @@ class Module extends CacheModule {
         });
     bind(Publisher.class).in(Scopes.SINGLETON);
     bind(PublisherScheduler.class).in(Scopes.SINGLETON);
-    bind(ProjectNameResolver.class).in(Scopes.SINGLETON);
     bind(LifecycleListener.class)
         .annotatedWith(UniqueAnnotations.create())
         .to(PublisherScheduler.class);
