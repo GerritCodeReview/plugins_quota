@@ -70,7 +70,6 @@ public class RateLimitUploadListenerTest {
     when(currentUser.isIdentifiedUser()).thenReturn(true);
     when(currentUser.asIdentifiedUser().getAccountId()).thenReturn(accountId);
     when(limitsPerAccount.get(accountId)).thenThrow(new ExecutionException(null));
-    when(accountId.toString()).thenReturn("123");
   }
 
   private void setUpAnonymous() throws ExecutionException {

@@ -17,6 +17,7 @@ package com.googlesource.gerrit.plugins.quota;
 import static com.googlesource.gerrit.plugins.quota.MaxRepositorySizeQuota.REPO_SIZE_CACHE;
 
 import com.google.common.cache.LoadingCache;
+import com.google.gerrit.extensions.restapi.Response;
 import com.google.gerrit.extensions.restapi.RestReadView;
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.project.ProjectCache;
@@ -43,8 +44,8 @@ public class GetQuota implements RestReadView<ProjectResource> {
   }
 
   @Override
-  public QuotaInfo apply(ProjectResource rsrc) throws ExecutionException {
-    return getInfo(rsrc.getNameKey());
+  public Response apply(ProjectResource rsrc) throws ExecutionException {
+    return Response.ok(getInfo(rsrc.getNameKey()));
   }
 
   QuotaInfo getInfo(Project.NameKey n) throws ExecutionException {
