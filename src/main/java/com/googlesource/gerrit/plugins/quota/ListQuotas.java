@@ -23,10 +23,12 @@ import com.google.gerrit.extensions.restapi.RestReadView;
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.config.ConfigResource;
 import com.google.gerrit.server.restapi.project.ListProjects;
+import com.google.gerrit.server.permissions.PermissionBackendException;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.googlesource.gerrit.plugins.quota.GetQuota.QuotaInfo;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 import org.kohsuke.args4j.Option;
 
 public class ListQuotas implements RestReadView<ConfigResource> {
