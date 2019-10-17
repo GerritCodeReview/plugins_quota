@@ -14,12 +14,10 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
-import static org.easymock.EasyMock.createMock;
-import static org.easymock.EasyMock.createNiceMock;
-import static org.easymock.EasyMock.expect;
-import static org.easymock.EasyMock.replay;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import com.google.common.collect.ImmutableSortedSet;
 import com.google.gerrit.entities.Project;
@@ -45,18 +43,15 @@ public class RepoSizeEventCreatorTest {
     tmp = File.createTempFile("quota-test", "dir");
     tmp.delete();
     tmp.mkdir();
-    projectCache = createMock(ProjectCache.class);
+    projectCache = mock(ProjectCache.class);
     ImmutableSortedSet<Project.NameKey> projects = ImmutableSortedSet.of(p1, p2, p3);
-    expect(projectCache.all()).andStubReturn(projects);
-    repoSizeCache = createNiceMock(RepoSizeCache.class);
-    replay(projectCache);
+    when(projectCache.all()).thenReturn(projects);
+    repoSizeCache = mock(RepoSizeCache.class);
     classUnderTest = new RepoSizeEventCreator(projectCache, repoSizeCache);
   }
 
   @Test
   public void testEmpty() {
-    replay(repoSizeCache);
-
     Event event = classUnderTest.create();
 
     assertEquals("repoSize", event.getMetaData().getName());
@@ -65,8 +60,7 @@ public class RepoSizeEventCreatorTest {
 
   @Test
   public void testOneDataPoint() {
-    expect(repoSizeCache.get(p1)).andStubReturn(100L);
-    replay(repoSizeCache);
+    when(repoSizeCache.get(p1)).thenReturn(100L);
 
     Event event = classUnderTest.create();
 

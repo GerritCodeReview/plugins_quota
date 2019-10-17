@@ -14,10 +14,8 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
-import static org.easymock.EasyMock.createMock;
-import static org.easymock.EasyMock.expectLastCall;
-import static org.easymock.EasyMock.replay;
-import static org.easymock.EasyMock.verify;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 import com.google.gerrit.entities.Project;
 import com.google.gerrit.extensions.api.changes.NotifyHandling;
@@ -30,10 +28,7 @@ public class GCListenerTest {
 
   @Test
   public void testEventWithStatistics() {
-    RepoSizeCache repoSizeCache = createMock(RepoSizeCache.class);
-    repoSizeCache.set(Project.nameKey(PROJECT_NAME), 9999L);
-    expectLastCall();
-    replay(repoSizeCache);
+    RepoSizeCache repoSizeCache = mock(RepoSizeCache.class);
 
     GCListener listener = new GCListener(repoSizeCache);
 
@@ -43,35 +38,29 @@ public class GCListenerTest {
 
     listener.onGarbageCollected(createEvent(PROJECT_NAME, statistics));
 
-    verify(repoSizeCache);
+    verify(repoSizeCache).set(Project.nameKey(PROJECT_NAME), 9999L);
   }
 
   @Test
   public void testEventWithoutStatistics() {
-    RepoSizeCache repoSizeCache = createMock(RepoSizeCache.class);
-    repoSizeCache.evict(Project.nameKey(PROJECT_NAME));
-    expectLastCall();
-    replay(repoSizeCache);
+    RepoSizeCache repoSizeCache = mock(RepoSizeCache.class);
 
     GCListener listener = new GCListener(repoSizeCache);
 
     listener.onGarbageCollected(createEvent(PROJECT_NAME, null));
 
-    verify(repoSizeCache);
+    verify(repoSizeCache).evict(Project.nameKey(PROJECT_NAME));
   }
 
   @Test
   public void testEventWithEmptyStatistics() {
-    RepoSizeCache repoSizeCache = createMock(RepoSizeCache.class);
-    repoSizeCache.evict(Project.nameKey(PROJECT_NAME));
-    expectLastCall();
-    replay(repoSizeCache);
+    RepoSizeCache repoSizeCache = mock(RepoSizeCache.class);
 
     GCListener listener = new GCListener(repoSizeCache);
 
     listener.onGarbageCollected(createEvent(PROJECT_NAME, new Properties()));
 
-    verify(repoSizeCache);
+    verify(repoSizeCache).evict(Project.nameKey(PROJECT_NAME));
   }
 
   private static GarbageCollectorListener.Event createEvent(
