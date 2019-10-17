@@ -22,9 +22,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import com.google.common.collect.ImmutableSortedSet;
+import com.google.gerrit.entities.Project;
 import com.google.gerrit.extensions.events.UsageDataPublishedListener.Data;
 import com.google.gerrit.extensions.events.UsageDataPublishedListener.Event;
-import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.project.ProjectCache;
 import java.io.File;
 import java.io.IOException;

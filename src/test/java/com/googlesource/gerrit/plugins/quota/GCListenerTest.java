@@ -19,9 +19,9 @@ import static org.easymock.EasyMock.expectLastCall;
 import static org.easymock.EasyMock.replay;
 import static org.easymock.EasyMock.verify;
 
+import com.google.gerrit.entities.Project;
 import com.google.gerrit.extensions.api.changes.NotifyHandling;
 import com.google.gerrit.extensions.events.GarbageCollectorListener;
-import com.google.gerrit.reviewdb.client.Project;
 import java.util.Properties;
 import org.junit.Test;
 

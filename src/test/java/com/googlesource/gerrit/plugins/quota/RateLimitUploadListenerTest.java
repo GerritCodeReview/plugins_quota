@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
 
 import com.google.common.cache.LoadingCache;
 import com.google.common.util.concurrent.RateLimiter;
-import com.google.gerrit.reviewdb.client.Account;
+import com.google.gerrit.entities.Account;
 import com.google.gerrit.server.CurrentUser;
 import com.google.gerrit.server.validators.ValidationException;
 import com.google.inject.Provider;

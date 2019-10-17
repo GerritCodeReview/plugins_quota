@@ -14,8 +14,8 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
+import com.google.gerrit.entities.Project;
 import com.google.gerrit.extensions.events.GarbageCollectorListener;
-import com.google.gerrit.reviewdb.client.Project;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import java.util.Properties;

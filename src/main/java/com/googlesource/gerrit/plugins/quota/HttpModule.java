@@ -16,10 +16,10 @@ package com.googlesource.gerrit.plugins.quota;
 
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.LoadingCache;
+import com.google.gerrit.entities.Account;
 import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gerrit.extensions.registration.DynamicSet;
 import com.google.gerrit.httpd.AllRequestFilter;
-import com.google.gerrit.reviewdb.client.Account;
 import com.google.gerrit.server.IdentifiedUser.GenericFactory;
 import com.google.gerrit.server.cache.CacheModule;
 import com.google.gerrit.server.config.PluginConfig;

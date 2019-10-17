@@ -17,7 +17,7 @@ package com.googlesource.gerrit.plugins.quota;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import com.google.gerrit.reviewdb.client.Project;
+import com.google.gerrit.entities.Project;
 import org.junit.Test;
 
 public class TestNamespaceMatching {

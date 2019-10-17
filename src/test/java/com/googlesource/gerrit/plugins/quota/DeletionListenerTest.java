@@ -18,9 +18,9 @@ import static org.easymock.EasyMock.createMock;
 import static org.easymock.EasyMock.replay;
 import static org.easymock.EasyMock.verify;
 
+import com.google.gerrit.entities.Project;
 import com.google.gerrit.extensions.api.changes.NotifyHandling;
 import com.google.gerrit.extensions.events.ProjectDeletedListener;
-import com.google.gerrit.reviewdb.client.Project;
 import org.junit.Test;
 
 public class DeletionListenerTest {

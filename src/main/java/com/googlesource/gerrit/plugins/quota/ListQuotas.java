@@ -15,10 +15,10 @@
 package com.googlesource.gerrit.plugins.quota;
 
 import com.google.common.collect.Maps;
+import com.google.gerrit.entities.Project;
 import com.google.gerrit.extensions.restapi.Response;
 import com.google.gerrit.extensions.restapi.RestApiException;
 import com.google.gerrit.extensions.restapi.RestReadView;
-import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.config.ConfigResource;
 import com.google.gerrit.server.permissions.PermissionBackendException;
 import com.google.gerrit.server.restapi.project.ListProjects;

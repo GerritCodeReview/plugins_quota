@@ -15,8 +15,8 @@
 package com.googlesource.gerrit.plugins.quota;
 
 import com.google.common.cache.LoadingCache;
+import com.google.gerrit.entities.Account;
 import com.google.gerrit.httpd.AllRequestFilter;
-import com.google.gerrit.reviewdb.client.Account;
 import com.google.gerrit.server.CurrentUser;
 import com.google.inject.Inject;
 import com.google.inject.Provider;

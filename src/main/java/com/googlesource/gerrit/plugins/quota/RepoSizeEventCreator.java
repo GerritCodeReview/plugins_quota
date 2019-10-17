@@ -14,9 +14,9 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
+import com.google.gerrit.entities.Project;
 import com.google.gerrit.extensions.events.UsageDataPublishedListener.Event;
 import com.google.gerrit.extensions.events.UsageDataPublishedListener.MetaData;
-import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.project.ProjectCache;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
