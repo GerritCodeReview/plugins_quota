@@ -22,6 +22,30 @@
       "revId": "1d53f595c78702e8b65d05685a57e36199ae104e",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3db2d49d_5919ea8d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/GetQuota.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2019-10-21T17:21:05Z",
+      "side": 1,
+      "message": "\u003e Response is a raw type, so the type needs to be specified here.  Fixed in https://gerrit-review.googlesource.com/c/plugins/quota/+/241862\n\nAn oversight yes; thanks for the fix.",
+      "parentUuid": "c8ffc540_ca14f53f",
+      "range": {
+        "startLine": 47,
+        "startChar": 9,
+        "endLine": 47,
+        "endChar": 17
+      },
+      "revId": "1d53f595c78702e8b65d05685a57e36199ae104e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
