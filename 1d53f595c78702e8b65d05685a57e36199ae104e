@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c8ffc540_ca14f53f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/GetQuota.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2019-10-21T06:17:14Z",
+      "side": 1,
+      "message": "Response is a raw type, so the type needs to be specified here.  Fixed in https://gerrit-review.googlesource.com/c/plugins/quota/+/241862",
+      "range": {
+        "startLine": 47,
+        "startChar": 9,
+        "endLine": 47,
+        "endChar": 17
+      },
+      "revId": "1d53f595c78702e8b65d05685a57e36199ae104e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
