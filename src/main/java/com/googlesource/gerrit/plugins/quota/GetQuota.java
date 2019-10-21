@@ -44,7 +44,7 @@ public class GetQuota implements RestReadView<ProjectResource> {
   }
 
   @Override
-  public Response apply(ProjectResource rsrc) throws ExecutionException {
+  public Response<QuotaInfo> apply(ProjectResource rsrc) throws ExecutionException {
     return Response.ok(getInfo(rsrc.getNameKey()));
   }
 

@@ -51,7 +51,7 @@ public class ListQuotas implements RestReadView<ConfigResource> {
   }
 
   @Override
-  public Response apply(ConfigResource resource)
+  public Response<Map<String, QuotaInfo>> apply(ConfigResource resource)
       throws RestApiException, ExecutionException, PermissionBackendException {
     Map<String, QuotaInfo> result = Maps.newTreeMap();
     ListProjects lister = listProjects.get();
