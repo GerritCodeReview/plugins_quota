@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f0f44d06_592ddfc3",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/QuotaPluginIT.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-10-22T07:58:14Z",
+      "side": 1,
+      "message": "Is this really required? Or, the plugin also wouldn\u0027t load without this annotation, so that it can be skipped.",
+      "range": {
+        "startLine": 26,
+        "startChar": 2,
+        "endLine": 26,
+        "endChar": 15
+      },
+      "revId": "30cd40bc849a4ca4383fd72cb941faaaeebeb874",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d60bc2ec_056be3a6",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/QuotaPluginIT.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-10-22T07:58:14Z",
+      "side": 1,
+      "message": "Add a comment why this test method is empty? Or change the method name so that it\u0027s clear what it\u0027s testsing, like testThatPLuginCanLoad() or similar.",
+      "revId": "30cd40bc849a4ca4383fd72cb941faaaeebeb874",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
