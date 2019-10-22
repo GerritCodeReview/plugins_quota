@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8250df28_1fb4b0ad",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/QuotaPluginIT.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2019-10-22T08:03:21Z",
+      "side": 1,
+      "message": "It\u0027s not needed.  I copied and pasted it from another test. Removed.",
+      "parentUuid": "f0f44d06_592ddfc3",
+      "range": {
+        "startLine": 26,
+        "startChar": 2,
+        "endLine": 26,
+        "endChar": 15
+      },
+      "revId": "30cd40bc849a4ca4383fd72cb941faaaeebeb874",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d60bc2ec_056be3a6",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/QuotaPluginIT.java",
         "patchSetId": 1
@@ -39,6 +63,24 @@
       "revId": "30cd40bc849a4ca4383fd72cb941faaaeebeb874",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "811435a3_9cd0bc62",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/QuotaPluginIT.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2019-10-22T08:03:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d60bc2ec_056be3a6",
+      "revId": "30cd40bc849a4ca4383fd72cb941faaaeebeb874",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
