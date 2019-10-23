@@ -14,8 +14,12 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
-import static org.easymock.EasyMock.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import com.google.gerrit.extensions.events.UsageDataPublishedListener;
 import com.google.gerrit.extensions.events.UsageDataPublishedListener.Event;
@@ -24,9 +28,9 @@ import org.apache.log4j.Appender;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.spi.LoggingEvent;
-import org.easymock.Capture;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
 
 public class PublisherExceptionTest {
 
@@ -35,18 +39,18 @@ public class PublisherExceptionTest {
   private UsageDataEventCreator creator;
   private Publisher classUnderTest;
   private Appender appender;
-  private Capture<LoggingEvent> captor;
+  private ArgumentCaptor<LoggingEvent> captor;
   private DynamicSet<UsageDataPublishedListener> listeners;
   private DynamicSet<UsageDataEventCreator> creators;
 
   @Before
   public void setupClassUnderTest() {
-    listener = createMock(UsageDataPublishedListener.class);
+    listener = mock(UsageDataPublishedListener.class);
     listeners = DynamicSet.emptySet();
     listeners.add("quota", listener);
 
-    creator = createMock(UsageDataEventCreator.class);
-    expect(creator.getName()).andStubReturn(CREATOR_NAME);
+    creator = mock(UsageDataEventCreator.class);
+    when(creator.getName()).thenReturn(CREATOR_NAME);
     creators = DynamicSet.emptySet();
     creators.add("quota", creator);
 
@@ -55,25 +59,20 @@ public class PublisherExceptionTest {
 
   @Before
   public void setupLogging() {
-    captor = new Capture<>();
-    appender = createMock(Appender.class);
-    appender.doAppend(capture(captor));
-    expectLastCall().anyTimes();
+    captor = ArgumentCaptor.forClass(LoggingEvent.class);
+    appender = mock(Appender.class);
+    // appender.doAppend(captor.capture());
     Logger.getRootLogger().addAppender(appender);
   }
 
   @Test
   public void testExceptionInCreatorIsLogged() {
     RuntimeException ex = new RuntimeException();
-    expect(creator.create()).andStubThrow(ex);
-
-    replay(listener, creator, appender);
+    when(creator.create()).thenThrow(ex);
 
     classUnderTest.run();
 
-    verify(listener, creator, appender);
-
-    assertTrue(captor.hasCaptured());
+    verify(appender).doAppend(captor.capture());
     LoggingEvent event = captor.getValue();
     assertEquals(Level.WARN, event.getLevel());
     assertTrue(((String) event.getMessage()).contains(CREATOR_NAME));
@@ -82,39 +81,30 @@ public class PublisherExceptionTest {
   @Test
   public void testDataFromGoodCreatorIsPropagated() {
     RuntimeException ex = new RuntimeException();
-    expect(creator.create()).andStubThrow(ex);
+    when(creator.create()).thenThrow(ex);
 
-    UsageDataEventCreator good = createMock(UsageDataEventCreator.class);
+    UsageDataEventCreator good = mock(UsageDataEventCreator.class);
     Event data = new UsageDataEvent(null);
-    expect(good.create()).andStubReturn(data);
+    when(good.create()).thenReturn(data);
     creators.add("quota", good);
-
-    listener.onUsageDataPublished(data);
-    expectLastCall();
-
-    replay(listener, creator, good, appender);
 
     classUnderTest.run();
 
-    verify(listener, creator, appender);
+    verify(listener).onUsageDataPublished(data);
   }
 
   @Test
   public void testExceptionInListenerIsLogged() {
     RuntimeException ex = new RuntimeException();
     Event data = new UsageDataEvent(null);
-    expect(creator.create()).andStubReturn(data);
-
-    listener.onUsageDataPublished(data);
-    expectLastCall().andStubThrow(ex);
-
-    replay(listener, creator, appender);
+    when(creator.create()).thenReturn(data);
+    doThrow(ex).when(listener).onUsageDataPublished(data);
 
     classUnderTest.run();
 
-    verify(listener, creator, appender);
+    verify(listener).onUsageDataPublished(data);
 
-    assertTrue(captor.hasCaptured());
+    verify(appender).doAppend(captor.capture());
     LoggingEvent event = captor.getValue();
     assertEquals(Level.WARN, event.getLevel());
   }
@@ -123,19 +113,15 @@ public class PublisherExceptionTest {
   public void testIsPropagatedToGoodListener() {
     RuntimeException ex = new RuntimeException();
     Event data = new UsageDataEvent(null);
-    expect(creator.create()).andStubReturn(data);
+    when(creator.create()).thenReturn(data);
+    doThrow(ex).when(listener).onUsageDataPublished(data);
 
-    listener.onUsageDataPublished(data);
-    expectLastCall().andStubThrow(ex);
-
-    UsageDataPublishedListener good = createMock(UsageDataPublishedListener.class);
-    good.onUsageDataPublished(data);
+    UsageDataPublishedListener good = mock(UsageDataPublishedListener.class);
     listeners.add("quota", good);
-
-    replay(listener, good, creator, appender);
 
     classUnderTest.run();
 
-    verify(listener, good, creator, appender);
+    verify(listener).onUsageDataPublished(data);
+    verify(good).onUsageDataPublished(data);
   }
 }

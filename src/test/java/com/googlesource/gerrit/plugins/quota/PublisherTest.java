@@ -14,11 +14,9 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
-import static org.easymock.EasyMock.createMock;
-import static org.easymock.EasyMock.expect;
-import static org.easymock.EasyMock.expectLastCall;
-import static org.easymock.EasyMock.replay;
-import static org.easymock.EasyMock.verify;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import com.google.gerrit.extensions.events.UsageDataPublishedListener;
 import com.google.gerrit.extensions.events.UsageDataPublishedListener.Event;
@@ -30,50 +28,40 @@ public class PublisherTest {
   @Test
   public void testAllEventsPropagatedToListener() throws Exception {
     Event e1 = new UsageDataEvent(null);
-    UsageDataEventCreator c1 = createMock(UsageDataEventCreator.class);
-    expect(c1.create()).andStubReturn(e1);
+    UsageDataEventCreator c1 = mock(UsageDataEventCreator.class);
+    when(c1.create()).thenReturn(e1);
 
     Event e2 = new UsageDataEvent(null);
-    UsageDataEventCreator c2 = createMock(UsageDataEventCreator.class);
-    expect(c2.create()).andStubReturn(e2);
+    UsageDataEventCreator c2 = mock(UsageDataEventCreator.class);
+    when(c2.create()).thenReturn(e2);
 
     DynamicSet<UsageDataEventCreator> creators = DynamicSet.emptySet();
     creators.add("quota", c1);
     creators.add("quota", c2);
 
-    UsageDataPublishedListener listener = createMock(UsageDataPublishedListener.class);
-    listener.onUsageDataPublished(e1);
-    expectLastCall();
-    listener.onUsageDataPublished(e2);
-    expectLastCall();
+    UsageDataPublishedListener listener = mock(UsageDataPublishedListener.class);
 
-    replay(c1, c2, listener);
     DynamicSet<UsageDataPublishedListener> listeners = DynamicSet.emptySet();
     listeners.add("quota", listener);
 
     Publisher classUnderTest = new Publisher(listeners, creators);
     classUnderTest.run();
 
-    verify(c1, c2, listener);
+    verify(listener).onUsageDataPublished(e1);
+    verify(listener).onUsageDataPublished(e2);
   }
 
   @Test
   public void testEventPropagatedToAllListeners() throws Exception {
     Event event = new UsageDataEvent(null);
-    UsageDataEventCreator creator = createMock(UsageDataEventCreator.class);
-    expect(creator.create()).andStubReturn(event);
+    UsageDataEventCreator creator = mock(UsageDataEventCreator.class);
+    when(creator.create()).thenReturn(event);
     DynamicSet<UsageDataEventCreator> creators = DynamicSet.emptySet();
     creators.add("quota", creator);
 
-    UsageDataPublishedListener l1 = createMock(UsageDataPublishedListener.class);
-    l1.onUsageDataPublished(event);
-    expectLastCall();
+    UsageDataPublishedListener l1 = mock(UsageDataPublishedListener.class);
 
-    UsageDataPublishedListener l2 = createMock(UsageDataPublishedListener.class);
-    l2.onUsageDataPublished(event);
-    expectLastCall();
-
-    replay(creator, l1, l2);
+    UsageDataPublishedListener l2 = mock(UsageDataPublishedListener.class);
 
     DynamicSet<UsageDataPublishedListener> listeners = DynamicSet.emptySet();
     listeners.add("quota", l1);
@@ -82,20 +70,18 @@ public class PublisherTest {
     Publisher classUnderTest = new Publisher(listeners, creators);
     classUnderTest.run();
 
-    verify(creator, l1, l2);
+    verify(l1).onUsageDataPublished(event);
+    verify(l2).onUsageDataPublished(event);
   }
 
   @Test
   public void testNoEventsCreatedIfNoListenersRegistered() throws Exception {
-    UsageDataEventCreator creator = createMock(UsageDataEventCreator.class);
-    replay(creator);
+    UsageDataEventCreator creator = mock(UsageDataEventCreator.class);
     DynamicSet<UsageDataEventCreator> creators = DynamicSet.emptySet();
     creators.add("quota", creator);
 
     DynamicSet<UsageDataPublishedListener> listeners = DynamicSet.emptySet();
     Publisher classUnderTest = new Publisher(listeners, creators);
     classUnderTest.run();
-
-    verify(creator);
   }
 }

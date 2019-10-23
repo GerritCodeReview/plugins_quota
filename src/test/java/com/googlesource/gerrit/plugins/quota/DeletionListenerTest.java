@@ -14,9 +14,8 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
-import static org.easymock.EasyMock.createMock;
-import static org.easymock.EasyMock.replay;
-import static org.easymock.EasyMock.verify;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 import com.google.gerrit.entities.Project;
 import com.google.gerrit.extensions.api.changes.NotifyHandling;
@@ -28,11 +27,9 @@ public class DeletionListenerTest {
 
   @Test
   public void testName() throws Exception {
-    RepoSizeCache repoSizeCache = createMock(RepoSizeCache.class);
+    RepoSizeCache repoSizeCache = mock(RepoSizeCache.class);
     Project.NameKey p = Project.nameKey(MY_PROJECT);
-    repoSizeCache.evict(p);
     DeletionListener classUnderTest = new DeletionListener(repoSizeCache);
-    replay(repoSizeCache);
 
     ProjectDeletedListener.Event event =
         new ProjectDeletedListener.Event() {
@@ -48,6 +45,6 @@ public class DeletionListenerTest {
         };
     classUnderTest.onProjectDeleted(event);
 
-    verify(repoSizeCache);
+    verify(repoSizeCache).evict(p);
   }
 }
