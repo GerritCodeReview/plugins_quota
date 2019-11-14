@@ -23,6 +23,7 @@ import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.google.common.util.concurrent.RateLimiter;
 import com.google.gerrit.entities.Account;
+import com.google.gerrit.extensions.annotations.Exports;
 import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gerrit.extensions.events.GarbageCollectorListener;
 import com.google.gerrit.extensions.events.LifecycleListener;
@@ -35,6 +36,7 @@ import com.google.gerrit.server.IdentifiedUser.GenericFactory;
 import com.google.gerrit.server.cache.CacheModule;
 import com.google.gerrit.server.config.PluginConfig;
 import com.google.gerrit.server.config.PluginConfigFactory;
+import com.google.gerrit.server.git.WorkQueue.TaskListener;
 import com.google.gerrit.server.git.validators.UploadValidationListener;
 import com.google.gerrit.server.group.SystemGroupBackend;
 import com.google.gerrit.server.quota.QuotaEnforcer;
@@ -95,6 +97,8 @@ class Module extends CacheModule {
     bindConstant()
         .annotatedWith(Names.named(RateMsgHelper.UPLOADPACK_CONFIGURABLE_MSG_ANNOTATION))
         .to(uploadpackLimitExceededMsg);
+
+    bind(TaskListener.class).annotatedWith(Exports.named("TaskQuotas")).to(TaskQuotas.class);
   }
 
   static class Holder {

@@ -20,6 +20,9 @@ the `quota.config` file locally and pushing back the changes. The
   [quota "customerX/*"]
     maxProjects = 20
     maxTotalSize = 200 m
+  [quota "*"]
+    maxProjects = 1000
+    taskName = "gerrit query .*status:merged.*" 2
 ```
 
 <a id="maxProjects" />
@@ -47,6 +50,11 @@ currently occupied space of that repository) is 2m and the remaining
 total size (based on the "maxTotalSize" and currently occupied space of
 all repositoris under that namespace) is 1m then the 1m is the remaining
 size for that repository.
+
+<a id="taskName" />
+`quota.<namespace>.taskName`
+: A java regex string used to match tasks by name followed by the maximum
+number of concurrent executions allowed for these tasks.
 
 A namespace can be specified as
 
