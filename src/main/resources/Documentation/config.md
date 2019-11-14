@@ -11,9 +11,25 @@ the `quota.config` file locally and pushing back the changes. The
 `quota.config` file is a Git config file:
 
 ```
+  [taskname "git-upload-pack *"]
+    max = 10
+
+  [quota "*"]
+    maxProjects = 1000
+     git-upload-pack = 2
+     gerrit-query = 5
+     task-name = "gerrit query .*status:merged.*" 2
+  [task-start-threshold]
+    mem = 60G
+    mem = 20%
+
   [quota "sandbox/*"]
     maxProjects = 50
     maxRepoSize = 2 m
+    git-upload-pack = 2
+    gerrit-query = 2
+    plugin-manifest-update = 5
+    taskStartMinMem = ${project_size} * 3 + ${ref_count} * 10M + ${object_count} * 100
   [quota "public/*"]
     maxProjects = 100
     maxRepoSize = 10 m

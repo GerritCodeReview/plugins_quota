@@ -17,6 +17,8 @@ package com.googlesource.gerrit.plugins.quota;
 import com.google.gerrit.entities.Project;
 import com.google.gerrit.server.project.ProjectCache;
 import com.google.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -32,6 +34,18 @@ public class QuotaFinder {
 
   public QuotaSection firstMatching(Project.NameKey project) {
     Config cfg = projectCache.getAllProjects().getConfig("quota.config").get();
+    String namespace = firstNamespace(cfg, project);
+    if (namespace != null) {
+      return new QuotaSection(cfg, namespace);
+    }
+    return null;
+  }
+
+  public String firstNamespace(Project.NameKey project) {
+    return firstNamespace(projectCache.getAllProjects().getConfig("quota.config").get(), project);
+  }
+
+  private String firstNamespace(Config cfg, Project.NameKey project) {
     Set<String> namespaces = cfg.getSubsections(QuotaSection.QUOTA);
     String p = project.get();
     for (String n : namespaces) {
@@ -39,20 +53,29 @@ public class QuotaFinder {
         String prefix = n.substring(0, n.length() - 3);
         Matcher m = Pattern.compile("^" + prefix + "([^/]+)/.*$").matcher(p);
         if (m.matches()) {
-          return new QuotaSection(cfg, n, prefix + m.group(1) + "/*");
+          return n;
         }
       } else if (n.endsWith("/*")) {
         if (p.startsWith(n.substring(0, n.length() - 1))) {
-          return new QuotaSection(cfg, n);
+          return n;
         }
       } else if (n.startsWith("^")) {
         if (p.matches(n.substring(1))) {
-          return new QuotaSection(cfg, n);
+          return n;
         }
       } else if (p.equals(n)) {
-        return new QuotaSection(cfg, n);
+        return n;
       }
     }
     return null;
+  }
+
+  public List<QuotaSection> all() {
+    Config cfg = projectCache.getAllProjects().getConfig("quota.config").get();
+    List<QuotaSection> sections = new ArrayList<>();
+    for (String namespace : cfg.getSubsections(QuotaSection.QUOTA)) {
+      sections.add(new QuotaSection(cfg, namespace));
+    }
+    return sections;
   }
 }

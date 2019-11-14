@@ -15,6 +15,8 @@
 package com.googlesource.gerrit.plugins.quota;
 
 import com.google.gerrit.entities.Project;
+import java.util.HashMap;
+import java.util.Map;
 import org.eclipse.jgit.lib.Config;
 
 public class QuotaSection {
@@ -22,6 +24,7 @@ public class QuotaSection {
   public static final String KEY_MAX_PROJECTS = "maxProjects";
   public static final String KEY_MAX_REPO_SIZE = "maxRepoSize";
   public static final String KEY_MAX_TOTAL_SIZE = "maxTotalSize";
+  public static final String KEY_TASK_NAME = "taskName";
 
   private final Config cfg;
   private final String namespace;
@@ -64,5 +67,20 @@ public class QuotaSection {
       return null;
     }
     return cfg.getLong(QUOTA, namespace, KEY_MAX_TOTAL_SIZE, Long.MAX_VALUE);
+  }
+
+  public Map<String, Integer> getMaxByTaskname() {
+    Map<String, Integer> maxByTaskname = new HashMap<>();
+    String vals[] = cfg.getStringList(QUOTA, namespace, KEY_TASK_NAME);
+    if (vals != null) {
+      for (String val : vals) {
+        int splitter = val.lastIndexOf(" ");
+        if (splitter > 0 && splitter < val.length()) {
+          maxByTaskname.put(
+              val.substring(0, splitter), Integer.valueOf(val.substring(splitter + 1)));
+        }
+      }
+    }
+    return maxByTaskname;
   }
 }
