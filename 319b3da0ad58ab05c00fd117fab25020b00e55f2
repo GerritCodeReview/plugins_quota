@@ -33,6 +33,52 @@
       "revId": "319b3da0ad58ab05c00fd117fab25020b00e55f2",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdb68264_1cafdb7a",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2019-11-14T23:57:38Z",
+      "side": 1,
+      "message": "Can be:\n\n monitors.stream().forEach(m -\u003e m.beforeRunning(task));",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 66,
+        "endChar": 5
+      },
+      "revId": "319b3da0ad58ab05c00fd117fab25020b00e55f2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48a71270_07db5e68",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2019-11-14T23:57:38Z",
+      "side": 1,
+      "message": "and here",
+      "range": {
+        "startLine": 71,
+        "startChar": 4,
+        "endLine": 73,
+        "endChar": 5
+      },
+      "revId": "319b3da0ad58ab05c00fd117fab25020b00e55f2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
