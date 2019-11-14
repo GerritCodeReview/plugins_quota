@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f67257a6_30409aef",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1006432
+      },
+      "writtenOn": "2019-11-14T23:26:12Z",
+      "side": 1,
+      "message": "needs docs\n\ntest?",
+      "revId": "319b3da0ad58ab05c00fd117fab25020b00e55f2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "629b8be7_6acdbcb6",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1006432
+      },
+      "writtenOn": "2019-11-14T23:26:12Z",
+      "side": 1,
+      "message": "javadoc?",
+      "revId": "319b3da0ad58ab05c00fd117fab25020b00e55f2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
