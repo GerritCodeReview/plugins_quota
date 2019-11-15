@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3e4e88cd_e931c571",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2019-11-15T15:19:11Z",
+      "side": 1,
+      "message": "don\u0027t swallow the interrupt, see https://www.ibm.com/developerworks/java/library/j-jtp05236/index.html",
+      "revId": "e16d16e0952f14280910358d611013eb2216e428",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a99bcee_350d4d09",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2019-11-15T15:19:11Z",
+      "side": 1,
+      "message": "fix warning:\n\nWorkQueue.ProjectTask is a raw type. References to generic type WorkQueue.ProjectTask\u003cV\u003e should be parameterized",
+      "revId": "e16d16e0952f14280910358d611013eb2216e428",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
