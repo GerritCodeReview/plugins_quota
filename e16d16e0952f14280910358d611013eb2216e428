@@ -19,6 +19,29 @@
     },
     {
       "key": {
+        "uuid": "87b4d391_aa89482a",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2019-11-15T17:23:40Z",
+      "side": 1,
+      "message": "AFAIR quota can be reconfigured while Gerrit is running and this looks pretty static to me...",
+      "range": {
+        "startLine": 70,
+        "startChar": 4,
+        "endLine": 78,
+        "endChar": 5
+      },
+      "revId": "e16d16e0952f14280910358d611013eb2216e428",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3a99bcee_350d4d09",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
         "patchSetId": 2
