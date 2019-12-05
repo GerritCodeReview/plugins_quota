@@ -48,6 +48,29 @@
     },
     {
       "key": {
+        "uuid": "68ed795b_44c6c85f",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2019-12-05T10:04:00Z",
+      "side": 1,
+      "message": "taskConcurrency would be a better name I think\n\nThis configuration option and format look like a first iteration that could work :-)\nI think we need to discuss the configuration more.\nLet me bring some points which came to my mind:\n\n* the quota (sub)section patterns are foreseen to match project names and namespaces\n* the quota sections are scanned top-down and the first section which matches the project\n  (for which quota check is performed) applies. Further sections below are not applied (see\n  lines 77-79 below. This means that this concurrency limit would apply to all project except\n  for those projects matching any of the previous quota sub-sections.\n* the regex used to match task name (a change query in this example?) is not\n  necessarily project specific. Moving this task to any of the quota sections above would\n  be confusing. For example:\n\n  [quota \"public/*\"]\n    taskName \u003d \"gerrit query .*status:merged.*\" 2\n\n  A change-query request is not necessarily project specific.\n  How can we limit (concurrent) change queries for projects whose name matches public/*?\n\nWhat about dedicated section(s) for the concurrency limits:\n\n  [concurrency \"gerrit query .*status:merged.*]\n    limit \u003d 2\n  [concurrency \"gerrit query .*\"]\n    limit \u003d 10\n  [concurrency \".*upload-pack.*big_repo.*\"]\n    limit \u003d 5\n  [concurrency \".*upload-pack.*\"]\n    limit \u003d 20\n\nWith the above configuration we set concurrency limits to:\n* 2 for all queries using an expensive operator (status:merged)\n* 10 as an overall limit for queries\n* 5 upload-pack for a big repository\n* 20 upload-pack operations overall\n\nHere we likely want to apply all matching sections? For example if we have to process\na query like \"branch:master status:merged owner:self\" then this request should be\nsubject of the first two concurrency limits (as both of them match).\n\nBtw, how do Gerrit admins find the task names? From the show-queue command output?",
+      "range": {
+        "startLine": 25,
+        "startChar": 4,
+        "endLine": 25,
+        "endChar": 12
+      },
+      "revId": "331c7f11651a840ab096cb99ae7abbac2c5131fe",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "69fe7ad2_04a710db",
         "filename": "src/main/resources/Documentation/config.md",
         "patchSetId": 3
