@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ec76e97b_7e387bf5",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1003883
+      },
+      "writtenOn": "2019-12-05T00:12:11Z",
+      "side": 1,
+      "message": "This is not the total permits, it\u0027s only what left. We likely want to store a total as an extra field to make this work right.",
+      "range": {
+        "startLine": 46,
+        "startChar": 16,
+        "endLine": 46,
+        "endChar": 32
+      },
+      "revId": "331c7f11651a840ab096cb99ae7abbac2c5131fe",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e941ef15_20c88234",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1003883
+      },
+      "writtenOn": "2019-12-05T00:12:11Z",
+      "side": 1,
+      "message": "\u003c",
+      "range": {
+        "startLine": 50,
+        "startChar": 14,
+        "endLine": 50,
+        "endChar": 17
+      },
+      "revId": "331c7f11651a840ab096cb99ae7abbac2c5131fe",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
