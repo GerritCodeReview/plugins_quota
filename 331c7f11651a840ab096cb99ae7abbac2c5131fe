@@ -45,6 +45,23 @@
       "revId": "331c7f11651a840ab096cb99ae7abbac2c5131fe",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69fe7ad2_04a710db",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2019-12-05T00:27:12Z",
+      "side": 1,
+      "message": "I\u0027d add also \"upload-pack\" as an example here since it is probably the most important task type which may need limiting to avoid overloading a Gerrit server",
+      "revId": "331c7f11651a840ab096cb99ae7abbac2c5131fe",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
