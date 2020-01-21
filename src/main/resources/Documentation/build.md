@@ -69,10 +69,11 @@ execute:
   ./tools/eclipse/project.py
 ```
 
-To execute the tests run:
+To execute the tests run either one of:
 
 ```
   bazel test plugins/quota:quota_tests
+  bazel test --test_tag_filters=quota //...
 ```
 
 
