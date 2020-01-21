@@ -73,6 +73,7 @@ To execute the tests run:
 
 ```
   bazel test plugins/quota:quota_tests
+  bazel test --test_tag_filters=quota //...
 ```
 
 
