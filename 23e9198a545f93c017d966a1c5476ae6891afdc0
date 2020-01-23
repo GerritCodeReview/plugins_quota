@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1f5deb17_e6c60126",
+        "filename": "src/main/resources/Documentation/build.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2020-01-23T16:42:35Z",
+      "side": 1,
+      "message": "\u003e Is this hard-coding right?\n\nUnrelated by now Done.",
+      "parentUuid": "35494df3_65d05ec6",
+      "range": {
+        "startLine": 75,
+        "startChar": 21,
+        "endLine": 75,
+        "endChar": 32
+      },
+      "revId": "23e9198a545f93c017d966a1c5476ae6891afdc0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "65fa8e3b_50ed511d",
         "filename": "src/main/resources/Documentation/build.md",
         "patchSetId": 2
@@ -39,6 +63,24 @@
       "revId": "23e9198a545f93c017d966a1c5476ae6891afdc0",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5abbbd7c_769a9e17",
+        "filename": "src/main/resources/Documentation/build.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2020-01-23T16:42:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65fa8e3b_50ed511d",
+      "revId": "23e9198a545f93c017d966a1c5476ae6891afdc0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
