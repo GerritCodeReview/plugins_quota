@@ -15,7 +15,7 @@ package com.googlesource.gerrit.plugins.quota;
 
 import static com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.KEY;
 
-import com.google.gerrit.common.data.GroupDescription;
+import com.google.gerrit.entities.GroupDescription;
 import com.google.gerrit.extensions.restapi.AuthException;
 import com.google.gerrit.extensions.restapi.IdString;
 import com.google.gerrit.extensions.restapi.ResourceNotFoundException;
