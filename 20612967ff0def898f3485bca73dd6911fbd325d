@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "056d5034_c03f5f05",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2020-07-18T21:11:35Z",
+      "side": 1,
+      "message": "Prone major",
+      "range": {
+        "startLine": 9,
+        "startChar": 28,
+        "endLine": 9,
+        "endChar": 42
+      },
+      "revId": "20612967ff0def898f3485bca73dd6911fbd325d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ce814db_0b282cfb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2020-07-18T21:11:35Z",
+      "side": 1,
+      "message": "A few nits.",
+      "revId": "20612967ff0def898f3485bca73dd6911fbd325d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8d60f6d2_33838590",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/RestApiRateLimiterTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2020-07-18T21:11:35Z",
+      "side": 1,
+      "message": "so(?)",
+      "range": {
+        "startLine": 157,
+        "startChar": 61,
+        "endLine": 157,
+        "endChar": 62
+      },
+      "revId": "20612967ff0def898f3485bca73dd6911fbd325d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1dfca69e_ea8b07a9",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/RestApiRateLimiterTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2020-07-18T21:11:35Z",
+      "side": 1,
+      "message": "exception: (Or another way of introducing the next line below.)",
+      "range": {
+        "startLine": 158,
+        "startChar": 7,
+        "endLine": 158,
+        "endChar": 16
+      },
+      "revId": "20612967ff0def898f3485bca73dd6911fbd325d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
