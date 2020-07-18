@@ -34,6 +34,24 @@
       "revId": "e9246daccce5b92ec4a301d588cc7292d9730c22",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b0aaf05b_a0143056",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2020-07-18T21:19:08Z",
+      "side": 1,
+      "message": "Done. Thanks for the fixes. I don\u0027t mind rebasing this merge once/if [1] series gets patched (nits).",
+      "parentUuid": "7693b7e6_efc59831",
+      "revId": "e9246daccce5b92ec4a301d588cc7292d9730c22",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
