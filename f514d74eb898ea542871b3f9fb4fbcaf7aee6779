@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "6569bd4c_78421f66",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2020-07-18T21:14:02Z",
+      "side": 1,
+      "message": "Briefly mention the package change?",
+      "revId": "f514d74eb898ea542871b3f9fb4fbcaf7aee6779",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d70d341a_3cd57635",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
