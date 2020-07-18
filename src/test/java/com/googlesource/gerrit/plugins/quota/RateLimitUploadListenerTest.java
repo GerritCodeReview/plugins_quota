@@ -19,14 +19,20 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.LoadingCache;
 import com.google.common.util.concurrent.RateLimiter;
 import com.google.gerrit.entities.Account;
 import com.google.gerrit.server.CurrentUser;
+import com.google.gerrit.server.IdentifiedUser.GenericFactory;
+import com.google.gerrit.server.config.GerritServerConfig;
+import com.google.gerrit.server.group.SystemGroupBackend;
 import com.google.gerrit.server.validators.ValidationException;
 import com.google.inject.Provider;
+import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type;
 import com.googlesource.gerrit.plugins.quota.Module.Holder;
 import java.util.concurrent.ExecutionException;
+import org.eclipse.jgit.lib.Config;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -39,9 +45,13 @@ public class RateLimitUploadListenerTest {
   private static final String LIMIT_EXCEEDED_MSG = "test exceeded message: {0,number,##.##}";
   private static final String REMOTE_HOST = "host";
   private RateLimitUploadListener uploadHook;
+  private LoadingCache<Account.Id, Holder> limitsPerAccount;
+  private LoadingCache<String, Holder> limitsPerRemoteHost;
+  @Mock @GerritServerConfig Config cfg;
+  @Mock GenericFactory userFactory;
+  SystemGroupBackend systemGroupBackend;
+  @Mock AccountLimitsFinder finder;
   @Mock private Provider<CurrentUser> user;
-  @Mock private LoadingCache<Account.Id, Holder> limitsPerAccount;
-  @Mock private LoadingCache<String, Holder> limitsPerRemoteHost;
 
   @Mock(answer = Answers.RETURNS_DEEP_STUBS)
   private CurrentUser currentUser;
@@ -52,6 +62,17 @@ public class RateLimitUploadListenerTest {
 
   @Before
   public void setUp() {
+    systemGroupBackend = new SystemGroupBackend(cfg);
+    limitsPerAccount =
+        CacheBuilder.newBuilder()
+            .build(new Module.HolderCacheLoaderByAccountId(Type.UPLOADPACK, userFactory, finder));
+    limitsPerAccount.put(accountId, holder);
+    limitsPerRemoteHost =
+        CacheBuilder.newBuilder()
+            .build(
+                new Module.HolderCacheLoaderByRemoteHost(
+                    Type.UPLOADPACK, systemGroupBackend, finder));
+    limitsPerRemoteHost.put(REMOTE_HOST, holder);
     uploadHook =
         spy(
             new RateLimitUploadListener(
@@ -62,19 +83,16 @@ public class RateLimitUploadListenerTest {
   private void setUpRegisteredUser() throws ExecutionException {
     when(currentUser.isIdentifiedUser()).thenReturn(true);
     when(currentUser.asIdentifiedUser().getAccountId()).thenReturn(accountId);
-    when(limitsPerAccount.get(accountId)).thenReturn(holder);
     when(holder.get()).thenReturn(limiter);
   }
 
   private void setUpRegisteredUserExecutionException() throws ExecutionException {
     when(currentUser.isIdentifiedUser()).thenReturn(true);
     when(currentUser.asIdentifiedUser().getAccountId()).thenReturn(accountId);
-    when(limitsPerAccount.get(accountId)).thenThrow(new ExecutionException(null));
   }
 
   private void setUpAnonymous() throws ExecutionException {
     when(currentUser.isIdentifiedUser()).thenReturn(false);
-    when(limitsPerRemoteHost.get(REMOTE_HOST)).thenReturn(holder);
     when(holder.get()).thenReturn(limiter);
   }
 
