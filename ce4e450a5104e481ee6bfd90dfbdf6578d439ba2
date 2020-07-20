@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "499ed301_def7c9e3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2020-07-20T08:12:24Z",
+      "side": 1,
+      "message": "The page open by that link doesn\u0027t provide any further info except \"Identifies undesirable mocks\".\n\nIIUC, the mock is undesirable because the com.google.common.cache.Cache is annotated as @DoNotMock. Maybe finding that commit in guava repository would provide additional\nexplanation for that decision? Especially I would like to refer\nto the DoNotMock annotation docs [1] where it is written:\n\n\"When marking a type @DoNotMock, you should always point to alternative testing solutions such as standard fakes or other testing utilities.\"\n\n[1] https://errorprone.info/api/latest/com/google/errorprone/annotations/DoNotMock.html",
+      "revId": "ce4e450a5104e481ee6bfd90dfbdf6578d439ba2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
