@@ -52,6 +52,24 @@
       "revId": "ce4e450a5104e481ee6bfd90dfbdf6578d439ba2",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb149bc6_89a483de",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2020-07-20T09:31:51Z",
+      "side": 1,
+      "message": "However, the boilerplate is needed for one specific test, that also exists in this plugin and was disabled by this change:\n\n  @Test\n  public void testDoFilterCacheMiss() throws IOException, ServletException, ExecutionException {\n    setUpRegisteredUser();\n    restReqFilter.doFilter(req, res, chain);\n    // TODO(davido): cache instance is not mocked so that cache access doesn\u0027t throw exception\n    // verify(res, times(0)).sendError(eq(SC_TOO_MANY_REQUESTS), anyString());\n  }\n\nThat was relying on this mocking facility:\n\n  when(limitsPerAccount.get(accountId)).thenThrow(new ExecutionException(null));\n\nCan you explain, what this test is actually testing? And why would cache acces method throw ExecutionException exception and what problem in real production code path that test is actually checking. What would this plugin lose, if that test would just be removed?\n\nAnother observation is that RateLimitUploadListenerTest class doesn\u0027t have that test, but only Rest-related test class.",
+      "parentUuid": "3b70de02_96b6d658",
+      "revId": "ce4e450a5104e481ee6bfd90dfbdf6578d439ba2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
