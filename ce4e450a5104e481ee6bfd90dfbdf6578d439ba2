@@ -16,6 +16,24 @@
       "revId": "ce4e450a5104e481ee6bfd90dfbdf6578d439ba2",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9042475_a8955f34",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2020-07-20T08:27:16Z",
+      "side": 1,
+      "message": "The corresponding commit in guava is here: https://github.com/google/guava/commit/4eea0f79c27864039a653ec4ca09ef7585e439fc.\n\nSee also a different approach to disable the EP check in: [1], that was abandoned in favor of Luca\u0027s Luca\u0027s fix in multi-site plugin that added substantial boilerplates: [2].\n\n[1] https://gerrit-review.googlesource.com/c/plugins/multi-site/+/275898\n[2] https://gerrit-review.googlesource.com/c/plugins/multi-site/+/275900",
+      "parentUuid": "499ed301_def7c9e3",
+      "revId": "ce4e450a5104e481ee6bfd90dfbdf6578d439ba2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
