@@ -34,6 +34,24 @@
       "revId": "ce4e450a5104e481ee6bfd90dfbdf6578d439ba2",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b70de02_96b6d658",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2020-07-20T08:45:22Z",
+      "side": 1,
+      "message": "I agree that [2] adds substantial boilerplate code. Can anyone explain why is [2] better than [1] for Gerrit project? I mean the explanation like \"guava annotated Cache with @DoNotMock\" doesn\u0027t provide enough info that would justify all the\nboilerplate introduced with [2] and that will be introduced in many other places.\n\nThere might be a really good reason for the code like [2] but to accept that\n\"pain\" we need to know why is it good for us.",
+      "parentUuid": "e9042475_a8955f34",
+      "revId": "ce4e450a5104e481ee6bfd90dfbdf6578d439ba2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
