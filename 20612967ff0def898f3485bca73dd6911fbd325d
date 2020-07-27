@@ -101,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "006f5d9a_9092e6bd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2020-07-27T21:00:00Z",
+      "side": 1,
+      "message": "As I910f26b09 and more downstream changes are about to percolate up to this branch, should we reconsider disabling DoNotMock for now at least?",
+      "parentUuid": "bb57315d_43066883",
+      "revId": "20612967ff0def898f3485bca73dd6911fbd325d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8d60f6d2_33838590",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/RestApiRateLimiterTest.java",
         "patchSetId": 1
