@@ -119,6 +119,24 @@
     },
     {
       "key": {
+        "uuid": "0fc002f1_f9d6532e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2020-07-27T21:07:22Z",
+      "side": 1,
+      "message": "I would defer the decision to Saša. On multi-site plugin we removed the both tests in the end.",
+      "parentUuid": "006f5d9a_9092e6bd",
+      "revId": "20612967ff0def898f3485bca73dd6911fbd325d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8d60f6d2_33838590",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/RestApiRateLimiterTest.java",
         "patchSetId": 1
