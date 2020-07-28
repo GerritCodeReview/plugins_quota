@@ -137,6 +137,24 @@
     },
     {
       "key": {
+        "uuid": "c113bbbb_bb6e7b43",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2020-07-28T08:58:34Z",
+      "side": 1,
+      "message": "Sorry for waiting on me. I will look at this code today afternoon.",
+      "parentUuid": "0fc002f1_f9d6532e",
+      "revId": "20612967ff0def898f3485bca73dd6911fbd325d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8d60f6d2_33838590",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/RestApiRateLimiterTest.java",
         "patchSetId": 1
