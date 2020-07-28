@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d77cd42a_fc640381",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2020-07-28T17:28:50Z",
+      "side": 1,
+      "message": "The CI failure is intresting:\n\n  Submodule \u0027modules/jgit\u0027 (/home/zuul/src/gerrit.googlesource.com/jgit) registered for path \u0027modules/jgit\u0027\n  Cloning into \u0027/home/zuul/src/gerrit.googlesource.com/gerrit/modules/jgit\u0027...\ndone.\n  Fetched in submodule path \u0027modules/jgit\u0027, but it did not contain \n  14c43828d471b811e3245631251a3ce77cc4214a. Direct fetching of that commit failed.\n\nTurns out, I screwed it up in: [1] and JGit module update was merged that is pointing to intermediate commit: 14c43828d471b811e3245631251a3ce77cc4214a and not to final commit: d35f0ffb7c33a11f8192ec64da5a736827ab472d.\n\n[1] https://gerrit-review.googlesource.com/c/gerrit/+/272505",
+      "revId": "20c7963ffb23bd8d1e581a54a8a3da5cca118fe4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
