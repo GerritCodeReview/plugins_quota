@@ -70,6 +70,24 @@
       "revId": "ce4e450a5104e481ee6bfd90dfbdf6578d439ba2",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "741e0f1e_884db0c0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2020-07-28T13:39:11Z",
+      "side": 1,
+      "message": "\u003e However, the boilerplate is needed for one specific test, that also exists in this plugin and was disabled by this change:\n\u003e \n\u003e   @Test\n\u003e   public void testDoFilterCacheMiss() throws IOException, ServletException, ExecutionException {\n\u003e     setUpRegisteredUser();\n\u003e     restReqFilter.doFilter(req, res, chain);\n\u003e     // TODO(davido): cache instance is not mocked so that cache access doesn\u0027t throw exception\n\u003e     // verify(res, times(0)).sendError(eq(SC_TOO_MANY_REQUESTS), anyString());\n\u003e   }\n\u003e \n\u003e That was relying on this mocking facility:\n\u003e \n\u003e   when(limitsPerAccount.get(accountId)).thenThrow(new ExecutionException(null));\n\u003e \n\u003e Can you explain, what this test is actually testing?\n\nI checked that code and I cannot explain. The ExecutionException is throws\nwhen a cache loader throws a (runtime) exception while loading a value (which\nwasn\u0027t present in the cache). The thrown ExecutionException wraps the root\ncause exception. However, I don\u0027t see a need for testing this behavior here\nand I don\u0027t also see why would we (in that case) reject all requests as\nif the rate limit was exceeded.\n\nI suggest to remove this test.",
+      "parentUuid": "cb149bc6_89a483de",
+      "revId": "ce4e450a5104e481ee6bfd90dfbdf6578d439ba2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
