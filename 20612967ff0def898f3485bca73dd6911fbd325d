@@ -155,6 +155,24 @@
     },
     {
       "key": {
+        "uuid": "4bab89bb_4bca752c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2020-07-28T20:45:00Z",
+      "side": 1,
+      "message": "Thanks again Saša.",
+      "parentUuid": "c113bbbb_bb6e7b43",
+      "revId": "20612967ff0def898f3485bca73dd6911fbd325d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8d60f6d2_33838590",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/RestApiRateLimiterTest.java",
         "patchSetId": 1

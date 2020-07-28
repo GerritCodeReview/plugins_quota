@@ -91,6 +91,24 @@
     },
     {
       "key": {
+        "uuid": "1ae074fd_cc5eb610",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2020-07-28T20:45:00Z",
+      "side": 1,
+      "message": "Previously resolved. Thanks to David, too.",
+      "parentUuid": "741e0f1e_884db0c0",
+      "revId": "ce4e450a5104e481ee6bfd90dfbdf6578d439ba2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5917cb9f_1dfc3ecc",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/RestApiRateLimiterTest.java",
         "patchSetId": 2
