@@ -16,6 +16,24 @@
       "revId": "fb114899b1a51233e4c69502606a578db0e67a27",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2b7a0cf7_64d31263",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2020-07-30T19:36:02Z",
+      "side": 1,
+      "message": "So, it builds in tree just fine: [1], but failing in standalone,\nbecause there is no snapshot API available.\n\nAt some point I am thinking about removing standalone build mode for all plugins. What would we be missing if we would do this?\n\n[1] http://paste.openstack.org/show/796476",
+      "parentUuid": "ca63cf0f_abf64b26",
+      "revId": "fb114899b1a51233e4c69502606a578db0e67a27",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
