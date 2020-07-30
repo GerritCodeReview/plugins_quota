@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ea200d12_8832bc4f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2020-07-30T20:15:04Z",
+      "side": 1,
+      "message": "Would this change mean, that we would effectively create stable-3.2 branch for this plugin",
+      "revId": "7b2ce7b53d0046b30ffdaad33f38d0eb003ee943",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
