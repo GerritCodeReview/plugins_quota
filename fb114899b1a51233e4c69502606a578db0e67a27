@@ -122,6 +122,24 @@
       "revId": "fb114899b1a51233e4c69502606a578db0e67a27",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bc27754f_0fbdbc27",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2020-07-30T20:31:54Z",
+      "side": 1,
+      "message": "+1 to gather community feedback. I don\u0027t have time to participate in call, but would be interested to hear feedback.",
+      "parentUuid": "7554e9c4_c0544747",
+      "revId": "fb114899b1a51233e4c69502606a578db0e67a27",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
