@@ -69,6 +69,41 @@
       "revId": "fb114899b1a51233e4c69502606a578db0e67a27",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cb7cc5b7_08f42c07",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2020-07-30T20:17:02Z",
+      "side": 1,
+      "message": "Thanks! -Feedback below.",
+      "revId": "fb114899b1a51233e4c69502606a578db0e67a27",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7554e9c4_c0544747",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2020-07-30T20:17:02Z",
+      "side": 1,
+      "message": "\u003e So, it builds in tree just fine: [1], but failing in standalone,\n\u003e because there is no snapshot API available.\n\u003e \n\u003e At some point I am thinking about removing standalone build mode for all plugins. What would we be missing if we would do this?\n\u003e \n\u003e [1] http://paste.openstack.org/show/796476\n\nI\u0027ve been thinking so too myself for a while already. I can organize a meeting in the coming weeks (TBD) to discuss that community topic, WDYT?",
+      "parentUuid": "2b7a0cf7_64d31263",
+      "revId": "fb114899b1a51233e4c69502606a578db0e67a27",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
