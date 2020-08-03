@@ -266,6 +266,24 @@
       "revId": "fb114899b1a51233e4c69502606a578db0e67a27",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f6441b69_8cc4d6d7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2020-08-03T16:28:49Z",
+      "side": 1,
+      "message": "Yes. You\u0027re right.  Let us add it in lfs plugin build description.",
+      "parentUuid": "ae6b9d82_637993b0",
+      "revId": "fb114899b1a51233e4c69502606a578db0e67a27",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
