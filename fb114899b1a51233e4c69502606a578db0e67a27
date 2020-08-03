@@ -248,6 +248,24 @@
       "revId": "fb114899b1a51233e4c69502606a578db0e67a27",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae6b9d82_637993b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2020-08-03T14:41:19Z",
+      "side": 1,
+      "message": "That\u0027s correct! Thanks for the pointer ;)\n\nYet \u0027lfs\u0027 plugin escapes the rules here as it depends on jgit modules (jgit-lfs, jgit-lfs-server) that are not available in Gerrit core... I understand the motivation of not maintaining the JGit version in plugin since it gets built in-tree now but it seems that one needs to add the following entries:\n\nclasspathentry(\u0027src\u0027, \u0027modules/jgit/org.eclipse.jgit.lfs/src\u0027)\nclasspathentry(\u0027src\u0027, \u0027modules/jgit/org.eclipse.jgit.lfs/resources\u0027)\nclasspathentry(\u0027src\u0027, \u0027modules/jgit/org.eclipse.jgit.lfs.server/src\u0027)\nclasspathentry(\u0027src\u0027, \u0027modules/jgit/org.eclipse.jgit.lfs.server/resources\u0027)\n\ninto tools/eclipse/project.py for the eclipse to properly build the plugin... Should I mention it in the plugins build page e.g. https://gerrit.googlesource.com/plugins/lfs/+/refs/heads/master/src/main/resources/Documentation/build.md ? Build works fine so I\u0027m not sure if it would better suit the eclipse.md (newly created file)...",
+      "parentUuid": "f62f52f9_b77ba0bb",
+      "revId": "fb114899b1a51233e4c69502606a578db0e67a27",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
