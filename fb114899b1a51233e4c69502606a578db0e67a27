@@ -212,6 +212,24 @@
       "revId": "fb114899b1a51233e4c69502606a578db0e67a27",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "940debc6_137b5d94",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2020-08-03T13:32:07Z",
+      "side": 1,
+      "message": "\"Bundle custom plugins in release.war\" section already mentions to extend tools/bzl/plugins.bzl. The only missing thing is to mention that this would also affect .classpath Eclipse file generation.",
+      "parentUuid": "77c9df1d_4958e2ca",
+      "revId": "fb114899b1a51233e4c69502606a578db0e67a27",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
