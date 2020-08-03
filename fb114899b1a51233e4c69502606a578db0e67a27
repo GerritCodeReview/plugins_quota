@@ -194,6 +194,24 @@
       "revId": "fb114899b1a51233e4c69502606a578db0e67a27",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "77c9df1d_4958e2ca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2020-08-03T13:16:32Z",
+      "side": 1,
+      "message": "That makes sense as plugins are almost always developed in a particular Gerrit\u0027s version context IOW one needs to deliberately add them to `tools/eclipse/project.py` in order to start working.\n\nThanks for the clarification. And speaking of, should we mention it somewhere down the lines of https://gerrit-documentation.storage.googleapis.com/Documentation/3.2.3/dev-build-plugins.html or https://gerrit-documentation.storage.googleapis.com/Documentation/3.2.3/dev-plugins.html? I can try doing that if we agree where to place it ;)",
+      "parentUuid": "7de8315c_71578a45",
+      "revId": "fb114899b1a51233e4c69502606a578db0e67a27",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
