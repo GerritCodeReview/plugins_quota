@@ -16,6 +16,24 @@
       "message": "Nit: unneeded empty line.",
       "revId": "2994a6a74b5488ec96101ee639550579d1845f69",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d3d46c9_f05ffd54",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2023-05-09T16:46:31Z",
+      "side": 1,
+      "message": "As we discussed it is OK as it is now.",
+      "parentUuid": "2d7047fd_efc79751",
+      "revId": "2994a6a74b5488ec96101ee639550579d1845f69",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
