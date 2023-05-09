@@ -188,9 +188,6 @@ public class AccountLimitsConfig {
    * @return map of rate limits per group name
    */
   Optional<Map<String, RateLimit>> getRatelimits(Type type) {
-    if (rateLimits != null) {
-      return Optional.ofNullable(rateLimits.row(type));
-    }
-    return Optional.empty();
+    return Optional.ofNullable(rateLimits).map(limits -> limits.row(type));
   }
 }
