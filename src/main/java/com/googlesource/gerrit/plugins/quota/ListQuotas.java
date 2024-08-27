@@ -17,16 +17,13 @@ package com.googlesource.gerrit.plugins.quota;
 import com.google.common.collect.Maps;
 import com.google.gerrit.entities.Project;
 import com.google.gerrit.extensions.restapi.Response;
-import com.google.gerrit.extensions.restapi.RestApiException;
 import com.google.gerrit.extensions.restapi.RestReadView;
 import com.google.gerrit.server.config.ConfigResource;
-import com.google.gerrit.server.permissions.PermissionBackendException;
 import com.google.gerrit.server.restapi.project.ListProjects;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.googlesource.gerrit.plugins.quota.GetQuota.QuotaInfo;
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
 import org.kohsuke.args4j.Option;
 
 public class ListQuotas implements RestReadView<ConfigResource> {
@@ -51,8 +48,7 @@ public class ListQuotas implements RestReadView<ConfigResource> {
   }
 
   @Override
-  public Response<Map<String, QuotaInfo>> apply(ConfigResource resource)
-      throws RestApiException, ExecutionException, PermissionBackendException {
+  public Response<Map<String, QuotaInfo>> apply(ConfigResource resource) throws Exception {
     Map<String, QuotaInfo> result = Maps.newTreeMap();
     ListProjects lister = listProjects.get();
     lister.setMatchPrefix(matchPrefix);
