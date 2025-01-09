@@ -63,7 +63,10 @@ public class AccountLimitsFinder {
           if (!maybeInternalGroup.isPresent()) {
             log.debug("Ignoring limits for non-internal group ''{}'' in quota.config", groupName);
           } else if (memberShip.contains(maybeInternalGroup.get().getGroupUUID())) {
-            return Optional.ofNullable(limits.get().get(groupName));
+            RateLimit groupLimit = limits.get().get(groupName);
+            if (groupLimit != null) {
+              return Optional.of(groupLimit);
+            }
           }
         } catch (ResourceNotFoundException e) {
           log.debug("Ignoring limits for unknown group ''{}'' in quota.config", groupName);
