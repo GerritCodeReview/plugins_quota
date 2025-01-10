@@ -46,6 +46,30 @@
       },
       "revId": "8b71acfd5e92d44f1674b2696171447fb5e1c73f",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fae3b9d_fe10aca5",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsFinder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2025-01-10T16:13:49Z",
+      "side": 1,
+      "message": "Yep that makes sense, I just noticed that the `limits \u003d getRatelimits(type);` returns *both* groups as keys\n\n```\ngroupLimitedOnUploadPack -\u003e {AccountLimitsConfig$RateLimit@12868}\ngroupLimitedOnRestApi -\u003e null\n```\n\nSince the `type` we filter by is `uploadpack`, I was expecting that it only returned the groups -\u003e filter tuple matching the `uploadpack` in configuration, not the `ratelimit` ones as well.\n\nIf this filter was done upfront, the check we do at L67 would be not necessary.\n\nHaving said that, this approach would be more invasive and I would not be confident in changing that at this stage.\n\nLet\u0027s go with your fix (which does the right thing), we can thinkg about consolidating as a separate/follow up step, if necessary.",
+      "parentUuid": "a4defb04_a5823a50",
+      "range": {
+        "startLine": 55,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 86
+      },
+      "revId": "8b71acfd5e92d44f1674b2696171447fb5e1c73f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
