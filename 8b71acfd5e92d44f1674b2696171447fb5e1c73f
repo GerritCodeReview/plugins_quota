@@ -22,6 +22,30 @@
       },
       "revId": "8b71acfd5e92d44f1674b2696171447fb5e1c73f",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4defb04_a5823a50",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsFinder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2025-01-10T15:42:26Z",
+      "side": 1,
+      "message": "I believe it does, the problem is different though.\n\nYou have two groups for two types and you receive the mapping of the limits associated with the two groups:\n- type \u003d\u003e group1 with limit1 for group1\n- type \u003d\u003e group2 with limit2 for group2\n\nIf the limit1 is _unlimited_ then you have a `null` value, which means that you need to look for the second group2 matching with a limit.\n\nI believe this method instead was getting the first matching group regardless that it had a limit or not, therefore was never matching the 2nd group.",
+      "parentUuid": "bbc42646_5a1409da",
+      "range": {
+        "startLine": 55,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 86
+      },
+      "revId": "8b71acfd5e92d44f1674b2696171447fb5e1c73f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
