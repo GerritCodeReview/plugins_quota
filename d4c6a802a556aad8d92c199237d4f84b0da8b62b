@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "982b0925_6a36c9be",
+        "filename": "src/main/resources/Documentation/about.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2025-01-10T18:23:45Z",
+      "side": 1,
+      "message": "Best to render as a real note:\n\n\n\n```suggestion\n\u003e **NOTE**:\n\u003e * When rate limiting is enforced for REST API calls, it operates at\nthe HTTP protocol level. When a client exceeds the allowed\nrequest rate, the server responds with an HTTP status code 429 (Too Many Requests).\n\u003e\n\u003e * Unlike REST API rate limiting, rate limiting for Git upload pack operations\nhappens at the Git protocol level. Even if the rate limit is exceeded, the server\nstill responds with an HTTP status code 200 (OK), indicating a successful HTTP request.\nHowever, within the Git protocol response, the client will receive a message indicating\nthat it has exceeded the rate limit.\n```",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 36
+      },
+      "revId": "d4c6a802a556aad8d92c199237d4f84b0da8b62b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
