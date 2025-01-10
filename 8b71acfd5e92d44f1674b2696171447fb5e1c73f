@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbc42646_5a1409da",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsFinder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2025-01-10T12:23:20Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this `getRateLimits(type)` already filter by `type`?\n\nI can see that it doesn\u0027t, but it doesn\u0027t look right, I was expecting this only to select the `group -\u003e limit` that is relevant for this type.\n\nIf this were the case then the conditional at L67 wouldn\u0027t be necessary right?\n\nAre we using this approach (as opposed to filtering in `getRateLimits`) to be less invasive?",
+      "range": {
+        "startLine": 55,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 86
+      },
+      "revId": "8b71acfd5e92d44f1674b2696171447fb5e1c73f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
