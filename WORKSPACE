@@ -12,4 +12,5 @@ load(
     "gerrit_api",
 )
 
-gerrit_api(version = "3.3.0-SNAPSHOT")
+# specify version with `-SNAPSHOT` prefix to pull from local repo
+gerrit_api()
