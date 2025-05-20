@@ -22,6 +22,30 @@
       },
       "revId": "53f28f95fcf35f6ed1601f9d5cebd3ec481b5aa2",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f4a331d_e470893f",
+        "filename": ".bazelrc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-05-20T22:02:41Z",
+      "side": 1,
+      "message": "`python3` seems to be the actual pattern set to use in the gerrit repo too.\n\nhttps://gerrit.googlesource.com/gerrit/+/2b5fe095f9431e995b23d3517a052fa7f4c36638\n\nhttps://gerrit.googlesource.com/gerrit/+/refs/heads/master/.bazelrc#6\n\nI thought having it as `python` requires changes from user.",
+      "parentUuid": "1ffc6e4c_a8ca3eab",
+      "range": {
+        "startLine": 1,
+        "startChar": 41,
+        "endLine": 1,
+        "endChar": 42
+      },
+      "revId": "53f28f95fcf35f6ed1601f9d5cebd3ec481b5aa2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
