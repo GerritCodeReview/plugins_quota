@@ -12,7 +12,7 @@ gerrit_plugin(
     srcs = glob(["src/main/java/**/*.java"]),
     manifest_entries = [
         "Gerrit-PluginName: quota",
-        "Gerrit-ApiVersion: 3.4.0",
+        "Gerrit-ApiVersion: 3.5.0",
         "Gerrit-Module: com.googlesource.gerrit.plugins.quota.Module",
         "Gerrit-HttpModule: com.googlesource.gerrit.plugins.quota.HttpModule",
     ],
