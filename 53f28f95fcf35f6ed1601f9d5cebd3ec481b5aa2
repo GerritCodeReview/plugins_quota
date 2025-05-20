@@ -46,6 +46,30 @@
       },
       "revId": "53f28f95fcf35f6ed1601f9d5cebd3ec481b5aa2",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02d5a424_619c1e7b",
+        "filename": ".bazelrc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-05-20T22:07:21Z",
+      "side": 1,
+      "message": "What I am suggesting is this:\n```\n build --workspace_status_command\u003d\"./tools/workspace_status.py\"\n```\nand putting python three as the first line in \"./tools/workspace_status.py\"\n```\n#!/bin/python3\n```\nThat would be in line with the first link you have which recommends puttin it in the \"shebang\".",
+      "parentUuid": "0f4a331d_e470893f",
+      "range": {
+        "startLine": 1,
+        "startChar": 41,
+        "endLine": 1,
+        "endChar": 42
+      },
+      "revId": "53f28f95fcf35f6ed1601f9d5cebd3ec481b5aa2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
