@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ffc6e4c_a8ca3eab",
+        "filename": ".bazelrc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-05-20T21:52:09Z",
+      "side": 1,
+      "message": "We probably want to fix this in the script itself since it is bad practice to have to call it like this (since it requires having to fix all the callers).",
+      "range": {
+        "startLine": 1,
+        "startChar": 41,
+        "endLine": 1,
+        "endChar": 42
+      },
+      "revId": "53f28f95fcf35f6ed1601f9d5cebd3ec481b5aa2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
