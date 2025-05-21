@@ -88,6 +88,24 @@
       "parentUuid": "45a5fdcb_4559514c",
       "revId": "e5d864a7ffd899fd064083cde22bbaaa39f6cbdb",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2cb480a_5f3ee029",
+        "filename": "WORKSPACE",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-05-21T19:18:52Z",
+      "side": 1,
+      "message": "OK, so my guess is that we should update it to the 3.3 commits here, and then not bother with the 3.4 and 3.5 updates in the follow-on changes.",
+      "parentUuid": "23647e1b_29c2db3f",
+      "revId": "e5d864a7ffd899fd064083cde22bbaaa39f6cbdb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
