@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1902997a_2ff4e940",
+        "filename": ".bazelrc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-05-21T15:45:53Z",
+      "side": 1,
+      "message": "Extra quote?",
+      "range": {
+        "startLine": 1,
+        "startChar": 59,
+        "endLine": 1,
+        "endChar": 60
+      },
+      "revId": "952f0baeba675d8cf7fac2d5cecc3c0ff186ab0c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
