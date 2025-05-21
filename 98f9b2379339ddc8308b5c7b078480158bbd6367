@@ -16,6 +16,24 @@
       "message": "We probably don\u0027t need intermediate commits. It might make sense to update this to point to the first one with the TaskListener API so that quotas can be built on those, and the follow-on change could update to the first version with Task Parking? We can then likely cut stable branches right before these two changes.",
       "revId": "98f9b2379339ddc8308b5c7b078480158bbd6367",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bbbfa80_c4bb4f0c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-05-21T19:25:19Z",
+      "side": 1,
+      "message": "On second thought, maybe we should have all the intermediate bumps. This would allow us to cut a branch retroactively if we find that development is needed for one of those specific versions of Gerrit.",
+      "parentUuid": "86bf6cd4_08317787",
+      "revId": "98f9b2379339ddc8308b5c7b078480158bbd6367",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
