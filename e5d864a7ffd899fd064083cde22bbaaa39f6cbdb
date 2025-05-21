@@ -34,6 +34,24 @@
       "parentUuid": "0f3772f5_5e8fb5a1",
       "revId": "e5d864a7ffd899fd064083cde22bbaaa39f6cbdb",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b18345be_06074864",
+        "filename": "WORKSPACE",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-05-21T18:56:27Z",
+      "side": 1,
+      "message": "I think what you want to do here is leave the old snapshot code in here commented out to show how to re-enable a snapshot for when it is needed again.\n\nThen I would update the commit message to clarify the intent, i.e. to no longer point to a snapshot since 3.3. has been released already.",
+      "parentUuid": "9c967c27_3a7acad8",
+      "revId": "e5d864a7ffd899fd064083cde22bbaaa39f6cbdb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
