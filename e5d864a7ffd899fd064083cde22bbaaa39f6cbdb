@@ -70,6 +70,24 @@
       "parentUuid": "b18345be_06074864",
       "revId": "e5d864a7ffd899fd064083cde22bbaaa39f6cbdb",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23647e1b_29c2db3f",
+        "filename": "WORKSPACE",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-05-21T19:08:08Z",
+      "side": 1,
+      "message": "they are specified in the bazlets commit.",
+      "parentUuid": "45a5fdcb_4559514c",
+      "revId": "e5d864a7ffd899fd064083cde22bbaaa39f6cbdb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
