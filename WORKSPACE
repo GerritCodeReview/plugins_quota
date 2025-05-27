@@ -12,6 +12,9 @@ load(
     "gerrit_api",
 )
 
+load(":external_plugin_deps.bzl", "external_plugin_deps")
+external_plugin_deps()
+
 # specify version with `-SNAPSHOT` prefix to pull from local repo
 # example: gerrit_api(version = "3.3.0-SNAPSHOT")
 gerrit_api()
