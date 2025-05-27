@@ -24,6 +24,7 @@ import com.google.gerrit.entities.RefNames;
 import com.google.gerrit.extensions.api.groups.GroupApi;
 import com.google.gerrit.extensions.restapi.RestApiException;
 import com.google.gerrit.server.IdentifiedUser;
+import com.google.gerrit.truth.OptionalSubject;
 import com.google.inject.Inject;
 import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type;
 import java.util.Optional;
@@ -106,8 +107,8 @@ public class QuotaPluginIT extends LightweightPluginDaemonTest {
 
   private void assertAdminUserHasNoLimitsOn(Type type) {
     AccountLimitsFinder accountLimitsFinder = getAccountLimitsFinder();
-    assertThat(accountLimitsFinder.getRateLimit(type, "Administrators")).isEmpty();
-    assertThat(accountLimitsFinder.firstMatching(type, userFactory.create(admin.id()))).isEmpty();
+    OptionalSubject.assertThat(accountLimitsFinder.getRateLimit(type, "Administrators")).isEmpty();
+    OptionalSubject.assertThat(accountLimitsFinder.firstMatching(type, userFactory.create(admin.id()))).isEmpty();
   }
 
   private void asserUserLimitedOn(
@@ -115,12 +116,12 @@ public class QuotaPluginIT extends LightweightPluginDaemonTest {
     AccountLimitsFinder accountLimitsFinder = getAccountLimitsFinder();
     Optional<AccountLimitsConfig.RateLimit> groupLimit =
         accountLimitsFinder.getRateLimit(limitType, groupName);
-    assertThat(groupLimit).isPresent();
+    OptionalSubject.assertThat(groupLimit).isPresent();
     assertRateLimits(groupLimit.get(), limitType, ratePerSecLimit, burstSecs);
 
     Optional<AccountLimitsConfig.RateLimit> rateLimit =
         accountLimitsFinder.firstMatching(limitType, userFactory.create(user.id()));
-    assertThat(rateLimit).isPresent();
+    OptionalSubject.assertThat(rateLimit).isPresent();
 
     assertRateLimitsAreEqual(rateLimit.get(), groupLimit.get());
   }
