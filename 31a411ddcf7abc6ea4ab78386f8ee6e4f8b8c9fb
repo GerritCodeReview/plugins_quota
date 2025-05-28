@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26e067b0_749a48f8",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/QuotaPluginIT.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-05-28T15:35:57Z",
+      "side": 1,
+      "message": "Can you import the static method assertThat instead so that the code below can stay simpler?",
+      "revId": "31a411ddcf7abc6ea4ab78386f8ee6e4f8b8c9fb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
