@@ -34,6 +34,24 @@
       "parentUuid": "26e067b0_749a48f8",
       "revId": "31a411ddcf7abc6ea4ab78386f8ee6e4f8b8c9fb",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df203c3e_125bb651",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/QuotaPluginIT.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-05-28T22:59:02Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "1aad8802_72d6c8bb",
+      "revId": "31a411ddcf7abc6ea4ab78386f8ee6e4f8b8c9fb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
