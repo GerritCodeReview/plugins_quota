@@ -16,6 +16,24 @@
       "message": "This needs to be in a different class with its own inject for the projectCache.",
       "revId": "c76692fa192f1a713ab5e3098639641ce680ed44",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f15ce88_b444f9cd",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskParkerModule.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-06-03T19:17:50Z",
+      "side": 1,
+      "message": "I have moved it to separate class but then used field injection for ProjectCache in TaskParkerGenerator. Is that the way to do it ?",
+      "parentUuid": "a4f98ed6_4e21c22b",
+      "revId": "c76692fa192f1a713ab5e3098639641ce680ed44",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
