@@ -34,6 +34,24 @@
       "parentUuid": "a4f98ed6_4e21c22b",
       "revId": "c76692fa192f1a713ab5e3098639641ce680ed44",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8021afb2_e5812f5e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskParkerModule.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2025-06-03T19:31:41Z",
+      "side": 1,
+      "message": "No, you shouldn\u0027t need field injection. Keep the constructor for your module and inject it there.\n\n```java\n  @Inject\n  public TaskParkerModule(TaskParkerGenerator generator) {\n    this.generator \u003d generator;\n  }\n```",
+      "parentUuid": "5f15ce88_b444f9cd",
+      "revId": "c76692fa192f1a713ab5e3098639641ce680ed44",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
