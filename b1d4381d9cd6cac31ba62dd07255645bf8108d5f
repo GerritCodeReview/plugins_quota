@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "913162a5_4b8e8ac8",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/Module.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2025-06-03T19:43:17Z",
+      "side": 1,
+      "message": "You want to install an injected instance here and inject it in your constructor above at L61:\n```\n  @Inject\n  Module(PluginConfigFactory plugincf, @PluginName String pluginName, TaskParkerModule taskParkerModule) {\n    this.taskParkerModule \u003d taskParkerModule;\n    PluginConfig pc \u003d plugincf.getFromGerritConfig(pluginName);\n    uploadpackLimitExceededMsg \u003d\n        new RateMsgHelper(\n                Type.UPLOADPACK, pc.getString(RateMsgHelper.UPLOADPACK_CONFIGURABLE_MSG_ANNOTATION))\n            .getMessageFormatMsg();\n  }\n```\n\n```suggestion\n    install(taskParkerModule);\n```",
+      "revId": "b1d4381d9cd6cac31ba62dd07255645bf8108d5f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

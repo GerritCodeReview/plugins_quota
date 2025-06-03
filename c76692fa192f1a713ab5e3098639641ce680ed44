@@ -70,6 +70,24 @@
       "parentUuid": "8021afb2_e5812f5e",
       "revId": "c76692fa192f1a713ab5e3098639641ce680ed44",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12939c41_1962fb47",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskParkerModule.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2025-06-03T19:43:17Z",
+      "side": 1,
+      "message": "Inject it and install the injected instance of your module. I\u0027ll comment on that file.",
+      "parentUuid": "211ea09b_e9da077a",
+      "revId": "c76692fa192f1a713ab5e3098639641ce680ed44",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
