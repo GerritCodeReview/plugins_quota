@@ -85,6 +85,7 @@ class Module extends CacheModule {
             child(CONFIG_KIND, "quota").to(GetQuotas.class);
           }
         });
+    install(new TaskParkerModule()); /** Can't pass in the project cache here ? */
     bind(Publisher.class).in(Scopes.SINGLETON);
     bind(PublisherScheduler.class).in(Scopes.SINGLETON);
     bind(LifecycleListener.class)
