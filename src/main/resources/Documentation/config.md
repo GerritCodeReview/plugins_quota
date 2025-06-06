@@ -55,16 +55,15 @@ A namespace can be specified as
 * pattern (`sandbox/*`): Defines a quota for one project namespace.
 
 * regular expression (`^test-.*/.*`): Defines a quota for the
-namespace matching the regular expression.
+  namespace matching the regular expression.
 
 * for-each-pattern (`?/*`): Defines the same quota for each
-subfolder. `?` is a placeholder for any name and `?/*` with
-'maxProjects = 3' means that for every subfolder 3 projects are
-allowed. Hence `?/*` is a shortcut for having n explicit quotas:<br />
+  subfolder. `?` is a placeholder for any name and `?/*` with
+  'maxProjects = 3' means that for every subfolder 3 projects are
+  allowed. Hence `?/*` is a shortcut for having n explicit quotas:<br />
   `<name1>/*` with 'maxProjects = 3'<br />
   `<name2>/*` with 'maxProjects = 3'<br />
   ...
-
 
 If a project name matches several quota namespaces the one quota
 applies to the project that is defined first in the `quota.config`
@@ -223,6 +222,7 @@ of requests above the maximum request rate.
   [group "Registered Users"]
     uploadpack = 30/hour burst 60
 ```
+
 The rate limit exceeded message can be configured.
 
 For `uploadpack`, by setting parameter
@@ -239,6 +239,21 @@ limit per hour and the effective number of burst permits, correspondingly.
 The default message reads:
 `Exceeded rate limit of ${rateLimit} REST API requests/hour (or idle `
 `time used up in bursts of max ${burstsLimit} requests)` .
+
+Task Budget
+-----------
+
+Task Budget basically utilizes the `WorkQueue.TaskParker` feature from the core
+gerrit to park the specified tasks without consuming a thread. This is particularly
+useful in cases where one want to limit specific kind of tasks on the server. Queue
+names can be found from the gerrit's `show-queue` API.
+
+```
+  [taskBudget "Limit 10 git-upload-packs for ssh interactive users"]
+    task = git-upload-pack
+    queue = SSH-Interactive-Worker
+    startMax = 10
+```
 
 Publication Schedule
 --------------------

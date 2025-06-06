@@ -56,9 +56,14 @@ class Module extends CacheModule {
   static final String CACHE_NAME_REMOTEHOST = "rate_limits_by_ip";
 
   private final String uploadpackLimitExceededMsg;
+  private final TaskBudgetModule taskBudgetModule;
 
   @Inject
-  Module(PluginConfigFactory plugincf, @PluginName String pluginName) {
+  Module(
+      PluginConfigFactory plugincf,
+      @PluginName String pluginName,
+      TaskBudgetModule taskBudgetModule) {
+    this.taskBudgetModule = taskBudgetModule;
     PluginConfig pc = plugincf.getFromGerritConfig(pluginName);
     uploadpackLimitExceededMsg =
         new RateMsgHelper(
@@ -85,6 +90,7 @@ class Module extends CacheModule {
             child(CONFIG_KIND, "quota").to(GetQuotas.class);
           }
         });
+    install(taskBudgetModule);
     bind(Publisher.class).in(Scopes.SINGLETON);
     bind(PublisherScheduler.class).in(Scopes.SINGLETON);
     bind(LifecycleListener.class)
