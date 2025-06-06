@@ -15,13 +15,21 @@
 package com.googlesource.gerrit.plugins.quota;
 
 import com.google.gerrit.entities.Project;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.regex.Matcher;
 import org.eclipse.jgit.lib.Config;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class QuotaSection {
+  private static final Logger log = LoggerFactory.getLogger(QuotaSection.class);
   public static final String QUOTA = "quota";
   public static final String KEY_MAX_PROJECTS = "maxProjects";
   public static final String KEY_MAX_REPO_SIZE = "maxRepoSize";
   public static final String KEY_MAX_TOTAL_SIZE = "maxTotalSize";
+  public static final String KEY_MAX_START_FOR_TASK_FOR_QUEUE = "maxStartForTaskForQueue";
 
   private final Config cfg;
   private final String namespace;
@@ -64,5 +72,24 @@ public class QuotaSection {
       return null;
     }
     return cfg.getLong(QUOTA, namespace, KEY_MAX_TOTAL_SIZE, Long.MAX_VALUE);
+  }
+
+  public List<TaskQuotaForTaskForQueue> getMaxStartForTaskForQueue() {
+    String[] vals = cfg.getStringList(QUOTA, namespace, KEY_MAX_START_FOR_TASK_FOR_QUEUE);
+    return Arrays.stream(vals)
+        .map(
+            val -> {
+              Matcher matcher = TaskQuotaForTaskForQueue.CONFIG_PATTERN.matcher(val);
+              if (matcher.matches()) {
+                return Optional.of(
+                    new TaskQuotaForTaskForQueue(
+                        matcher.group(3), matcher.group(2), Integer.parseInt(matcher.group(1))));
+              } else {
+                log.error("Invalid configuration entry [{}]", val);
+                return Optional.<TaskQuotaForTaskForQueue>empty();
+              }
+            })
+        .flatMap(Optional::stream)
+        .toList();
   }
 }
