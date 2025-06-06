@@ -15,6 +15,8 @@
 package com.googlesource.gerrit.plugins.quota;
 
 import com.google.gerrit.entities.Project;
+import java.util.Arrays;
+import java.util.List;
 import org.eclipse.jgit.lib.Config;
 
 public class QuotaSection {
@@ -22,6 +24,7 @@ public class QuotaSection {
   public static final String KEY_MAX_PROJECTS = "maxProjects";
   public static final String KEY_MAX_REPO_SIZE = "maxRepoSize";
   public static final String KEY_MAX_TOTAL_SIZE = "maxTotalSize";
+  public static final String KEY_MAX_START_FOR_TASK_FOR_QUEUE = "maxStartForTaskForQueue";
 
   private final Config cfg;
   private final String namespace;
@@ -64,5 +67,25 @@ public class QuotaSection {
       return null;
     }
     return cfg.getLong(QUOTA, namespace, KEY_MAX_TOTAL_SIZE, Long.MAX_VALUE);
+  }
+
+  public List<TaskQuotaForTaskForQueue> getMaxStartForTaskForQueue() {
+    if (!cfg.getNames(QUOTA, namespace).contains(KEY_MAX_START_FOR_TASK_FOR_QUEUE)) {
+      return null;
+    }
+
+    String[] vals = cfg.getStringList(QUOTA, namespace, KEY_MAX_START_FOR_TASK_FOR_QUEUE);
+    return Arrays.stream(vals)
+        .map(
+            val -> {
+              int firstSpace = val.indexOf(" ");
+              int secondSpace = val.indexOf(" ", firstSpace + 1);
+
+              Integer max = Integer.valueOf(val.substring(0, firstSpace));
+              String task = val.substring(firstSpace + 1, secondSpace);
+              String queue = val.substring(secondSpace + 1);
+              return new TaskQuotaForTaskForQueue(queue, task, max);
+            })
+        .toList();
   }
 }

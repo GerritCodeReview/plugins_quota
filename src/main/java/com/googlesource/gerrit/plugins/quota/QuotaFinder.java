@@ -55,4 +55,9 @@ public class QuotaFinder {
     }
     return null;
   }
+
+  public QuotaSection getGlobalNamespacedQuota() {
+    Config cfg = projectCache.getAllProjects().getConfig("quota.config").get();
+    return new QuotaSection(cfg, "*");
+  }
 }
