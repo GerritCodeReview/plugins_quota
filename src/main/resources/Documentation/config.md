@@ -55,16 +55,15 @@ A namespace can be specified as
 * pattern (`sandbox/*`): Defines a quota for one project namespace.
 
 * regular expression (`^test-.*/.*`): Defines a quota for the
-namespace matching the regular expression.
+  namespace matching the regular expression.
 
 * for-each-pattern (`?/*`): Defines the same quota for each
-subfolder. `?` is a placeholder for any name and `?/*` with
-'maxProjects = 3' means that for every subfolder 3 projects are
-allowed. Hence `?/*` is a shortcut for having n explicit quotas:<br />
+  subfolder. `?` is a placeholder for any name and `?/*` with
+  'maxProjects = 3' means that for every subfolder 3 projects are
+  allowed. Hence `?/*` is a shortcut for having n explicit quotas:<br />
   `<name1>/*` with 'maxProjects = 3'<br />
   `<name2>/*` with 'maxProjects = 3'<br />
   ...
-
 
 If a project name matches several quota namespaces the one quota
 applies to the project that is defined first in the `quota.config`
@@ -223,6 +222,7 @@ of requests above the maximum request rate.
   [group "Registered Users"]
     uploadpack = 30/hour burst 60
 ```
+
 The rate limit exceeded message can be configured.
 
 For `uploadpack`, by setting parameter
@@ -239,6 +239,31 @@ limit per hour and the effective number of burst permits, correspondingly.
 The default message reads:
 `Exceeded rate limit of ${rateLimit} REST API requests/hour (or idle `
 `time used up in bursts of max ${burstsLimit} requests)` .
+
+Task Quota
+-----------
+
+Task quotas provide fine-grained control over queues for administrators.
+Quotas should be specified in the global * section (namespacing support
+has not been implemented yet). Once the defined limit is reached, any
+additional tasks are parked, preventing them from consuming threads and
+allowing other tasks to continue execution.
+
+The `maxStartForTaskForQueue` setting defines the maximum number of threads
+that can be started for a specific task and queue combination. Example:
+
+```
+  [quota "*"]
+    maxStartForTaskForQueue = 20 uploadpack SSH-Interactive-Worker
+    maxStartForTaskForQueue = 10 uploadpack SSH-Batch-Worker
+```
+
+Queue names can be found at `GET /config/server/tasks/ HTTP/1.0`
+
+Currently supported tasks:
+
+* `uploadpack`: Maps directly to git-upload-pack operations (used during Git
+  fetches or clones).
 
 Publication Schedule
 --------------------
