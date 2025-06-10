@@ -1,0 +1,255 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f0ce07d_45cf9a19",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskBudgetConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-06-10T18:03:05Z",
+      "side": 1,
+      "message": "Make a Key enum with these (queue, task, startMax) names?",
+      "revId": "0f271b031a7cd11fc68f56d11bda5c103ecef49b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f23dc05d_2b095f58",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskBudgetGenerator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-06-10T18:03:05Z",
+      "side": 1,
+      "message": "I think that if an exception is thrown while calling isReadyToStart() or before that even, that it is possible that this will get called from the finally and it will release a semaphore which was not yet acquired? If so, we should track whether this was acquired somehow?",
+      "revId": "0f271b031a7cd11fc68f56d11bda5c103ecef49b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57d60c97_1bf7b5d0",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskBudgetGenerator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-06-10T18:03:05Z",
+      "side": 1,
+      "message": "?",
+      "revId": "0f271b031a7cd11fc68f56d11bda5c103ecef49b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67ef17fb_ae5112d1",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskBudgetGenerator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-06-10T18:03:05Z",
+      "side": 1,
+      "message": "debug?",
+      "revId": "0f271b031a7cd11fc68f56d11bda5c103ecef49b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5b36a8c_034fe173",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskBudgetGenerator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-06-10T18:03:05Z",
+      "side": 1,
+      "message": "debug?",
+      "revId": "0f271b031a7cd11fc68f56d11bda5c103ecef49b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "701aba1d_7f71911b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskBudgetGenerator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-06-10T18:03:05Z",
+      "side": 1,
+      "message": "isApplicable()?",
+      "range": {
+        "startLine": 84,
+        "startChar": 38,
+        "endLine": 84,
+        "endChar": 47
+      },
+      "revId": "0f271b031a7cd11fc68f56d11bda5c103ecef49b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7a40492_16419ff1",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskBudgetGenerator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-06-10T18:03:05Z",
+      "side": 1,
+      "message": "I\u0027m not sure this default is good, better to output an error on startup and skip?",
+      "revId": "0f271b031a7cd11fc68f56d11bda5c103ecef49b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31b071b9_fc830d24",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-06-10T18:03:05Z",
+      "side": 1,
+      "message": "This is specific to the \"start\" in the startMax key, i.e. if we add a runMax later, it will not so much be TaskParker related.",
+      "range": {
+        "startLine": 246,
+        "startChar": 46,
+        "endLine": 246,
+        "endChar": 56
+      },
+      "revId": "0f271b031a7cd11fc68f56d11bda5c103ecef49b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "febb06c9_7f2d93ad",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-06-10T18:03:05Z",
+      "side": 1,
+      "message": "Add a section describing each key. Mention that this one can be repeated.",
+      "range": {
+        "startLine": 248,
+        "startChar": 78,
+        "endLine": 248,
+        "endChar": 83
+      },
+      "revId": "0f271b031a7cd11fc68f56d11bda5c103ecef49b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc27d871_85ce0cce",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-06-10T18:03:05Z",
+      "side": 1,
+      "message": "d/the/",
+      "range": {
+        "startLine": 249,
+        "startChar": 24,
+        "endLine": 249,
+        "endChar": 28
+      },
+      "revId": "0f271b031a7cd11fc68f56d11bda5c103ecef49b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "278e6b1a_06f35a4b",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-06-10T18:03:05Z",
+      "side": 1,
+      "message": "Specify the switch needed to display these?",
+      "range": {
+        "startLine": 249,
+        "startChar": 53,
+        "endLine": 249,
+        "endChar": 54
+      },
+      "revId": "0f271b031a7cd11fc68f56d11bda5c103ecef49b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dc2daeb_532f6b8c",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-06-10T18:03:05Z",
+      "side": 1,
+      "message": "Reading the entry above taskBudget, I noticed that they specify \"uploadpack \u003d 30/hour burst 60\". I do wonder if we should try to mimmick that syntax more closely by having a special case of uploadpack which the plugin does the matching for. It wouldn\u0027t be as flexible (we could add flexibility later), but it might fit in better with the current syntaxes, and might be able to be put in the existing quota section? Something like:\n\n```\n[quota]\n    maxStart \u003d 16 task uploadpack queue SSH-Batch-Worker\n```\nor\n```\n[quota]\n    maxStart \u003d 16 uploadpack SSH-Batch-Worker\n```\n\nFrom a syntax standpoint, this would make it possible to eventually do:\n```\n[quota \"BigProject\"]\n    maxStart \u003d 16 task uploadpack queue SSH-Batch-Worker\n```\nbut I am not sure we know the project name until after the upload pack starts?",
+      "revId": "0f271b031a7cd11fc68f56d11bda5c103ecef49b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d99b6219_c7940d10",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-06-10T18:03:05Z",
+      "side": 1,
+      "message": "I notice above that most limits start with max, so maybe this should be maxStart instead?",
+      "revId": "0f271b031a7cd11fc68f56d11bda5c103ecef49b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
