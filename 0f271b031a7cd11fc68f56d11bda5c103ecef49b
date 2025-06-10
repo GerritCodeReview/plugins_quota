@@ -237,6 +237,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e25a3375_b5cb6ad3",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-06-10T18:42:01Z",
+      "side": 1,
+      "message": "I would prefer we have separate section for easier configuration (with multiple tasks/queues/users/groups). I agree broad section name (`quota`, it should have ideally been `projectQuota` ?) can infer multiple things but for rate limit api we ended up adding `groups` as another section so as it could be easy to configure different things.",
+      "parentUuid": "8dc2daeb_532f6b8c",
+      "revId": "0f271b031a7cd11fc68f56d11bda5c103ecef49b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d99b6219_c7940d10",
         "filename": "src/main/resources/Documentation/config.md",
         "patchSetId": 1
