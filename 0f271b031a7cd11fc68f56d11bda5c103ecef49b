@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03d7491f_82da2adc",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskBudgetConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-06-11T22:52:26Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "4f0ce07d_45cf9a19",
+      "revId": "0f271b031a7cd11fc68f56d11bda5c103ecef49b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f23dc05d_2b095f58",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-06-10T18:03:05Z",
       "side": 1,
       "message": "I think that if an exception is thrown while calling isReadyToStart() or before that even, that it is possible that this will get called from the finally and it will release a semaphore which was not yet acquired? If so, we should track whether this was acquired somehow?",
+      "revId": "0f271b031a7cd11fc68f56d11bda5c103ecef49b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24d9ea4e_8829e430",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskBudgetGenerator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-06-11T22:52:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f23dc05d_2b095f58",
       "revId": "0f271b031a7cd11fc68f56d11bda5c103ecef49b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -52,6 +88,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "677c89be_77f1ed37",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskBudgetGenerator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-06-11T22:52:26Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "57d60c97_1bf7b5d0",
+      "revId": "0f271b031a7cd11fc68f56d11bda5c103ecef49b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "67ef17fb_ae5112d1",
@@ -69,6 +123,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbcbaa1b_a900cade",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskBudgetGenerator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-06-11T22:52:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67ef17fb_ae5112d1",
+      "revId": "0f271b031a7cd11fc68f56d11bda5c103ecef49b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e5b36a8c_034fe173",
@@ -82,6 +154,24 @@
       "writtenOn": "2025-06-10T18:03:05Z",
       "side": 1,
       "message": "debug?",
+      "revId": "0f271b031a7cd11fc68f56d11bda5c103ecef49b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "738600b8_510a5323",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskBudgetGenerator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-06-11T22:52:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5b36a8c_034fe173",
       "revId": "0f271b031a7cd11fc68f56d11bda5c103ecef49b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -109,6 +199,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2896e639_9e696109",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskBudgetGenerator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-06-11T22:52:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "701aba1d_7f71911b",
+      "range": {
+        "startLine": 84,
+        "startChar": 38,
+        "endLine": 84,
+        "endChar": 47
+      },
+      "revId": "0f271b031a7cd11fc68f56d11bda5c103ecef49b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f7a40492_16419ff1",
@@ -122,6 +236,24 @@
       "writtenOn": "2025-06-10T18:03:05Z",
       "side": 1,
       "message": "I\u0027m not sure this default is good, better to output an error on startup and skip?",
+      "revId": "0f271b031a7cd11fc68f56d11bda5c103ecef49b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c9751c2_e1588493",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskBudgetGenerator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-06-11T22:52:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f7a40492_16419ff1",
       "revId": "0f271b031a7cd11fc68f56d11bda5c103ecef49b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -149,6 +281,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ed53550_b4150e72",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-06-11T22:52:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31b071b9_fc830d24",
+      "range": {
+        "startLine": 246,
+        "startChar": 46,
+        "endLine": 246,
+        "endChar": 56
+      },
+      "revId": "0f271b031a7cd11fc68f56d11bda5c103ecef49b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "febb06c9_7f2d93ad",
@@ -162,6 +318,30 @@
       "writtenOn": "2025-06-10T18:03:05Z",
       "side": 1,
       "message": "Add a section describing each key. Mention that this one can be repeated.",
+      "range": {
+        "startLine": 248,
+        "startChar": 78,
+        "endLine": 248,
+        "endChar": 83
+      },
+      "revId": "0f271b031a7cd11fc68f56d11bda5c103ecef49b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db025211_460d15c4",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-06-11T22:52:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "febb06c9_7f2d93ad",
       "range": {
         "startLine": 248,
         "startChar": 78,
@@ -218,6 +398,54 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "676f5491_7a32b82b",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-06-11T22:52:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc27d871_85ce0cce",
+      "range": {
+        "startLine": 249,
+        "startChar": 24,
+        "endLine": 249,
+        "endChar": 28
+      },
+      "revId": "0f271b031a7cd11fc68f56d11bda5c103ecef49b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c90e7e45_1a8acfde",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-06-11T22:52:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "278e6b1a_06f35a4b",
+      "range": {
+        "startLine": 249,
+        "startChar": 53,
+        "endLine": 249,
+        "endChar": 54
+      },
+      "revId": "0f271b031a7cd11fc68f56d11bda5c103ecef49b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8dc2daeb_532f6b8c",
@@ -253,6 +481,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f51bcf87_c80047af",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-06-11T22:52:26Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e25a3375_b5cb6ad3",
+      "revId": "0f271b031a7cd11fc68f56d11bda5c103ecef49b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d99b6219_c7940d10",
@@ -266,6 +512,24 @@
       "writtenOn": "2025-06-10T18:03:05Z",
       "side": 1,
       "message": "I notice above that most limits start with max, so maybe this should be maxStart instead?",
+      "revId": "0f271b031a7cd11fc68f56d11bda5c103ecef49b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a3fc7f2_ca10e746",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-06-11T22:52:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d99b6219_c7940d10",
       "revId": "0f271b031a7cd11fc68f56d11bda5c103ecef49b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
