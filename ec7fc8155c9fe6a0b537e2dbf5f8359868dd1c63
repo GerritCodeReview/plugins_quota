@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "46970a17_61c8ccee",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QuotaSection.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-06-12T22:24:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09e3552b_b7ccd4ac",
+      "revId": "ec7fc8155c9fe6a0b537e2dbf5f8359868dd1c63",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a538af9_2d482da6",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-06-12T20:24:03Z",
       "side": 1,
       "message": "I feel like using indexes is very error prone and C like and should be avoided. Use REs, or something less \"math\" error prone?",
+      "revId": "ec7fc8155c9fe6a0b537e2dbf5f8359868dd1c63",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "493af8f7_dfda8868",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QuotaSection.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-06-12T22:24:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a538af9_2d482da6",
       "revId": "ec7fc8155c9fe6a0b537e2dbf5f8359868dd1c63",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -52,6 +88,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b14ee55_5ca0ddb6",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuota.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-06-12T22:24:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb826ed6_ca7e23ce",
+      "revId": "ec7fc8155c9fe6a0b537e2dbf5f8359868dd1c63",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a10c6e3b_d2f5d415",
@@ -65,6 +119,24 @@
       "writtenOn": "2025-06-12T20:06:28Z",
       "side": 1,
       "message": "Move all invariable inits to their definitions.",
+      "revId": "ec7fc8155c9fe6a0b537e2dbf5f8359868dd1c63",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d34ecab_2fca3252",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-06-12T22:24:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a10c6e3b_d2f5d415",
       "revId": "ec7fc8155c9fe6a0b537e2dbf5f8359868dd1c63",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -122,6 +194,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2ffea7b_7ce70435",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-06-12T22:24:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab0922b5_99930a96",
+      "revId": "ec7fc8155c9fe6a0b537e2dbf5f8359868dd1c63",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b7e46531_73c94d36",
@@ -139,6 +229,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "50c57afc_f1c47f7f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-06-12T22:24:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7e46531_73c94d36",
+      "revId": "ec7fc8155c9fe6a0b537e2dbf5f8359868dd1c63",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8eb38cf2_9e189b45",
@@ -152,6 +260,24 @@
       "writtenOn": "2025-06-12T20:06:28Z",
       "side": 1,
       "message": "Don\u0027t bother with the if() it is redundant.",
+      "revId": "ec7fc8155c9fe6a0b537e2dbf5f8359868dd1c63",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce8faff2_b031dabf",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-06-12T22:24:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8eb38cf2_9e189b45",
       "revId": "ec7fc8155c9fe6a0b537e2dbf5f8359868dd1c63",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -175,6 +301,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "88f94b8e_baa3aa44",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-06-12T22:24:47Z",
+      "side": 1,
+      "message": "Had to use Optional too.",
+      "parentUuid": "aed87096_fd5b5ba7",
+      "revId": "ec7fc8155c9fe6a0b537e2dbf5f8359868dd1c63",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "309c44fc_8c5e60f0",
         "filename": "src/main/resources/Documentation/config.md",
         "patchSetId": 3
@@ -186,6 +330,24 @@
       "writtenOn": "2025-06-12T20:06:28Z",
       "side": 1,
       "message": "This needs to explain how a task is identified. To be inline with the term from line 223, I think we want to be able to specify just \u0027uploadpack\u0027 (and at some future point receivepack) and have the plugin determine how to identify such tasks.",
+      "revId": "ec7fc8155c9fe6a0b537e2dbf5f8359868dd1c63",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c29a1fc_271774f7",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-06-12T22:24:47Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "309c44fc_8c5e60f0",
       "revId": "ec7fc8155c9fe6a0b537e2dbf5f8359868dd1c63",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
