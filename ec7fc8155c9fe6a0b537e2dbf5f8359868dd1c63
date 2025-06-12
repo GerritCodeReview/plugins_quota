@@ -3,6 +3,57 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "09e3552b_b7ccd4ac",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QuotaSection.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-06-12T20:24:03Z",
+      "side": 1,
+      "message": "This test feels redundant instead of testing after line 77?",
+      "revId": "ec7fc8155c9fe6a0b537e2dbf5f8359868dd1c63",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a538af9_2d482da6",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QuotaSection.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-06-12T20:24:03Z",
+      "side": 1,
+      "message": "I feel like using indexes is very error prone and C like and should be avoided. Use REs, or something less \"math\" error prone?",
+      "revId": "ec7fc8155c9fe6a0b537e2dbf5f8359868dd1c63",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb826ed6_ca7e23ce",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuota.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-06-12T20:24:03Z",
+      "side": 1,
+      "message": "I\u0027m not a huge fan of defining steps in the code for the future, perhaps wait until this class is needed before separating it out from its subclass?",
+      "revId": "ec7fc8155c9fe6a0b537e2dbf5f8359868dd1c63",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a10c6e3b_d2f5d415",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
         "patchSetId": 3
@@ -49,6 +100,24 @@
       "side": 1,
       "message": "I think this comment applies only to L#56 ? \n\nThis for loop is when user specifies multiple `maxStartForTaskForQueue` and we need to find all the applicable ones. There is no short circuiting here I believe ?",
       "parentUuid": "dd312c83_37f4cdb3",
+      "revId": "ec7fc8155c9fe6a0b537e2dbf5f8359868dd1c63",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab0922b5_99930a96",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-06-12T20:24:03Z",
+      "side": 1,
+      "message": "I\u0027m not seeing why not? a) Find the first applicable one, b) see if it can be acquired, c) bail if it cannot?",
+      "parentUuid": "e8ce346e_52caa463",
       "revId": "ec7fc8155c9fe6a0b537e2dbf5f8359868dd1c63",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
