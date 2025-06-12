@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c853401_70ba15d6",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QuotaSection.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-06-12T23:52:08Z",
+      "side": 1,
+      "message": "Compile this at init time (to avoid it later accidentally being done more than once).",
+      "revId": "cd1e0e5159342fc0173f4c666f86e594b47642ce",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a4367a3_4262b708",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QuotaSection.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-06-12T23:52:08Z",
+      "side": 1,
+      "message": "Can you check if this is consistent with other things in the plugin?",
+      "revId": "cd1e0e5159342fc0173f4c666f86e594b47642ce",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbd26ae6_9e9b45bd",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaForTaskForQueue.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-06-12T23:52:08Z",
+      "side": 1,
+      "message": "UPPERCASE_CONSTANT?",
+      "range": {
+        "startLine": 23,
+        "startChar": 47,
+        "endLine": 23,
+        "endChar": 61
+      },
+      "revId": "cd1e0e5159342fc0173f4c666f86e594b47642ce",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d72b080_f3f44794",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaForTaskForQueue.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-06-12T23:52:08Z",
+      "side": 1,
+      "message": "taskNamePrefix?",
+      "range": {
+        "startLine": 25,
+        "startChar": 23,
+        "endLine": 25,
+        "endChar": 27
+      },
+      "revId": "cd1e0e5159342fc0173f4c666f86e594b47642ce",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f08e61df_6b4681d3",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-06-12T23:52:08Z",
+      "side": 1,
+      "message": "Negate this check to avoid the need for an else?",
+      "revId": "cd1e0e5159342fc0173f4c666f86e594b47642ce",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
