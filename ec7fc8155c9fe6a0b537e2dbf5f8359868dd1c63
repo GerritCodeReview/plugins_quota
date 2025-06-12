@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a10c6e3b_d2f5d415",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-06-12T20:06:28Z",
+      "side": 1,
+      "message": "Move all invariable inits to their definitions.",
+      "revId": "ec7fc8155c9fe6a0b537e2dbf5f8359868dd1c63",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd312c83_37f4cdb3",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-06-12T20:06:28Z",
+      "side": 1,
+      "message": "It would be better to test each one in order and short circuit on fail to avoid having to iterate over all of them all the time.",
+      "revId": "ec7fc8155c9fe6a0b537e2dbf5f8359868dd1c63",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7e46531_73c94d36",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-06-12T20:06:28Z",
+      "side": 1,
+      "message": "Again, better to avoid trying to acquire ones after the first fail.",
+      "revId": "ec7fc8155c9fe6a0b537e2dbf5f8359868dd1c63",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8eb38cf2_9e189b45",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-06-12T20:06:28Z",
+      "side": 1,
+      "message": "Don\u0027t bother with the if() it is redundant.",
+      "revId": "ec7fc8155c9fe6a0b537e2dbf5f8359868dd1c63",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aed87096_fd5b5ba7",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-06-12T20:06:28Z",
+      "side": 1,
+      "message": "Avoid the get() with:\n```\n  permitsByTask.remove(task.getTaskId()).forEach(Semaphore::release);\n```",
+      "revId": "ec7fc8155c9fe6a0b537e2dbf5f8359868dd1c63",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "309c44fc_8c5e60f0",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-06-12T20:06:28Z",
+      "side": 1,
+      "message": "This needs to explain how a task is identified. To be inline with the term from line 223, I think we want to be able to specify just \u0027uploadpack\u0027 (and at some future point receivepack) and have the plugin determine how to identify such tasks.",
+      "revId": "ec7fc8155c9fe6a0b537e2dbf5f8359868dd1c63",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
