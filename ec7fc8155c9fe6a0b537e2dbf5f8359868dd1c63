@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e8ce346e_52caa463",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-06-12T20:15:29Z",
+      "side": 1,
+      "message": "I think this comment applies only to L#56 ? \n\nThis for loop is when user specifies multiple `maxStartForTaskForQueue` and we need to find all the applicable ones. There is no short circuiting here I believe ?",
+      "parentUuid": "dd312c83_37f4cdb3",
+      "revId": "ec7fc8155c9fe6a0b537e2dbf5f8359868dd1c63",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b7e46531_73c94d36",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
         "patchSetId": 3
