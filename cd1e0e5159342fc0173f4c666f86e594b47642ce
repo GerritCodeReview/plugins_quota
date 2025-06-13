@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "129e12c1_86ca2921",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-06-13T15:40:16Z",
+      "side": 1,
+      "message": "Its not a good fit for this feature.",
+      "parentUuid": "e410be81_df17e2d1",
+      "revId": "cd1e0e5159342fc0173f4c666f86e594b47642ce",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1c853401_70ba15d6",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QuotaSection.java",
         "patchSetId": 4
@@ -138,6 +156,24 @@
       "side": 1,
       "message": "But not here when the config is bad it looks to be ignored instead: https://gerrit.googlesource.com/plugins/quota/+/refs/heads/master/src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsConfig.java",
       "parentUuid": "c98005d5_94fa1ed4",
+      "revId": "cd1e0e5159342fc0173f4c666f86e594b47642ce",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6ad5689_3d84231e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QuotaSection.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-06-13T15:40:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "17685955_1498e540",
       "revId": "cd1e0e5159342fc0173f4c666f86e594b47642ce",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
