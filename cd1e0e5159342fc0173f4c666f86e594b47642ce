@@ -126,6 +126,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "17685955_1498e540",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QuotaSection.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-06-13T14:53:44Z",
+      "side": 1,
+      "message": "But not here when the config is bad it looks to be ignored instead: https://gerrit.googlesource.com/plugins/quota/+/refs/heads/master/src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsConfig.java",
+      "parentUuid": "c98005d5_94fa1ed4",
+      "revId": "cd1e0e5159342fc0173f4c666f86e594b47642ce",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bbd26ae6_9e9b45bd",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaForTaskForQueue.java",
         "patchSetId": 4
