@@ -71,6 +71,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "182feafe_c494955d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskBudgetGenerator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-06-13T00:18:43Z",
+      "side": 1,
+      "message": "It\u0027s cool that although you have to now store some extra state here, it makes the releases faster because they no longer need to check applicability (which could also be error prone if the task/queue names (or other qualifiers eventually) are not immutable.",
+      "parentUuid": "24d9ea4e_8829e430",
+      "revId": "0f271b031a7cd11fc68f56d11bda5c103ecef49b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "57d60c97_1bf7b5d0",

@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "94659daa_0c06569b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QuotaSection.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-06-13T00:18:43Z",
+      "side": 1,
+      "message": "Mostly I want to be consistent with this plugin.",
+      "parentUuid": "f84a6c2f_a822a748",
+      "revId": "cd1e0e5159342fc0173f4c666f86e594b47642ce",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bbd26ae6_9e9b45bd",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaForTaskForQueue.java",
         "patchSetId": 4
@@ -155,6 +173,30 @@
       "side": 1,
       "message": "This contains `uploadpack` so not really a prefix.",
       "parentUuid": "9d72b080_f3f44794",
+      "range": {
+        "startLine": 25,
+        "startChar": 23,
+        "endLine": 25,
+        "endChar": 27
+      },
+      "revId": "cd1e0e5159342fc0173f4c666f86e594b47642ce",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8e3ad0f_6ff26011",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaForTaskForQueue.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-06-13T00:18:43Z",
+      "side": 1,
+      "message": "True. My real concern is that I don\u0027t like the \"task\u0027 variable shadowing happening on line 42 (and this name here makes things ripe for that problem). Can you improve this name to avoid that?",
+      "parentUuid": "b70e1e81_9ef5ba1d",
       "range": {
         "startLine": 25,
         "startChar": 23,
