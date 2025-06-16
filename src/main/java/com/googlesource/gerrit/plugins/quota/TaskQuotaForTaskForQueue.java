@@ -21,13 +21,13 @@ import java.util.concurrent.Semaphore;
 import java.util.regex.Pattern;
 
 public class TaskQuotaForTaskForQueue extends Semaphore {
+  private static final Map<String, Set<String>> SUPPORTED_TASKS_BY_GROUP =
+          Map.of("uploadpack", Set.of("git-upload-pack"));
   public static final Pattern CONFIG_PATTERN =
       Pattern.compile(
           "(\\d+)\\s+("
               + String.join("|", TaskQuotaForTaskForQueue.supportedTasks())
               + ")\\s+(.+)");
-  private static final Map<String, Set<String>> SUPPORTED_TASKS_BY_GROUP =
-      Map.of("uploadpack", Set.of("git-upload-pack"));
   private final String taskGroup;
   private final String queue;
 
