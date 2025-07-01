@@ -30,9 +30,8 @@ import org.slf4j.LoggerFactory;
 public class TaskQuotas implements WorkQueue.TaskParker {
   private static final Logger log = LoggerFactory.getLogger(TaskQuotas.class);
   private final QuotaFinder quotaFinder;
-  private final List<TaskQuotaForTaskForQueue> quotas = new ArrayList<>();
-  private final Map<Integer, List<TaskQuotaForTaskForQueue>> permitsByTask =
-      new ConcurrentHashMap<>();
+  private final List<TaskQuota> quotas = new ArrayList<>();
+  private final Map<Integer, List<TaskQuota>> permitsByTask = new ConcurrentHashMap<>();
 
   @Inject
   public TaskQuotas(QuotaFinder quotaFinder) {
@@ -41,13 +40,13 @@ public class TaskQuotas implements WorkQueue.TaskParker {
   }
 
   private void initQuotas() {
-    quotas.addAll(quotaFinder.getGlobalNamespacedQuota().getMaxStartForTaskForQueue());
+    quotas.addAll(quotaFinder.getGlobalNamespacedQuota().getAllQuotas());
   }
 
   @Override
   public boolean isReadyToStart(WorkQueue.Task<?> task) {
-    List<TaskQuotaForTaskForQueue> acquiredQuotas = new ArrayList<>();
-    for (TaskQuotaForTaskForQueue quota : quotas) {
+    List<TaskQuota> acquiredQuotas = new ArrayList<>();
+    for (TaskQuota quota : quotas) {
       if (quota.isApplicable(task)) {
         if (!quota.tryAcquire()) {
           log.debug("Task [{}] will be parked due task quota rules", task);

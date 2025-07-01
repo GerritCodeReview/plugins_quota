@@ -1,4 +1,4 @@
-// Copyright (C) 2025 The Android Open Source Project
+// Copyright (C) 2014 The Android Open Source Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,28 +19,37 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class TaskQuotaForTaskForQueue extends TaskQuotaForTask {
+public class TaskQuotaForTaskForQueueForUser extends TaskQuotaForTaskForQueue {
   public static final Pattern CONFIG_PATTERN =
       Pattern.compile(
-          "(\\d+)\\s+(" + String.join("|", SUPPORTED_TASKS_BY_GROUP.keySet()) + ")\\s+(.+)");
-  private final String queueName;
+          "(\\d+)\\s+("
+              + String.join("|", SUPPORTED_TASKS_BY_GROUP.keySet())
+              + ")\\s+([a-zA-Z0-9]+)"
+              + "\\s+(.+)");
+  public static final Pattern USER_EXTRACT_PATTERN = Pattern.compile("\\(([a-z0-9]+)\\)$");
+  private final String user;
 
-  public TaskQuotaForTaskForQueue(String queueName, String taskGroup, int maxStart) {
-    super(taskGroup, maxStart);
-    this.queueName = queueName;
+  public TaskQuotaForTaskForQueueForUser(
+      String queueName, String user, String taskGroup, int maxStart) {
+    super(queueName, taskGroup, maxStart);
+    this.user = user;
   }
 
   @Override
   public boolean isApplicable(WorkQueue.Task<?> task) {
-    return super.isApplicable(task) && task.getQueueName().equals(queueName);
+    Matcher taskUser = USER_EXTRACT_PATTERN.matcher(task.toString());
+    return taskUser.find() && user.equals(taskUser.group(1)) && super.isApplicable(task);
   }
 
   public static Optional<TaskQuota> build(String config) {
-    Matcher matcher = TaskQuotaForTaskForQueue.CONFIG_PATTERN.matcher(config);
+    Matcher matcher = CONFIG_PATTERN.matcher(config);
     if (matcher.matches()) {
       return Optional.of(
-          new TaskQuotaForTaskForQueue(
-              matcher.group(3), matcher.group(2), Integer.parseInt(matcher.group(1))));
+          new TaskQuotaForTaskForQueueForUser(
+              matcher.group(4),
+              matcher.group(3),
+              matcher.group(2),
+              Integer.parseInt(matcher.group(1))));
     } else {
       log.error("Invalid configuration entry [{}]", config);
       return Optional.empty();
