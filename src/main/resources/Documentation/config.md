@@ -260,6 +260,14 @@ that can be started for a specific task and queue combination. Example:
 
 Queue names can be found at `GET /config/server/tasks/ HTTP/1.0`
 
+Additionally, to scope the user use `maxStartForTaskForUserForQueue`
+
+```
+  [quota "*"]
+    maxStartForTaskForUserForQueue = 20 uploadpack userA SSH-Interactive-Worker
+    maxStartForTaskForUserForQueue = 10 uploadpack userB SSH-Batch-Worker
+```
+
 Currently supported tasks:
 
 * `uploadpack`: Maps directly to git-upload-pack operations (used during Git
