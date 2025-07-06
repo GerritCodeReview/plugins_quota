@@ -35,7 +35,9 @@ public class QuotaSection {
           "maxStartForTaskForQueue",
           TaskQuotaForTaskForQueue::build,
           "maxStartForTaskForUserForQueue",
-          TaskQuotaForTaskForQueueForUser::build);
+          TaskQuotaForTaskForQueueForUser::build,
+          "maxStartPerUserForTaskForQueue",
+          TaskQuotaPerUserForTaskForQueue::build);
 
   private final Config cfg;
   private final String namespace;

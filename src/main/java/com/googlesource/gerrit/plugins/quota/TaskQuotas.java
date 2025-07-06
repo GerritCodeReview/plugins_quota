@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.Semaphore;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import org.slf4j.Logger;
@@ -48,9 +47,9 @@ public class TaskQuotas implements WorkQueue.TaskParker {
     List<TaskQuota> acquiredQuotas = new ArrayList<>();
     for (TaskQuota quota : quotas) {
       if (quota.isApplicable(task)) {
-        if (!quota.tryAcquire()) {
+        if (!quota.tryAcquire(task)) {
           log.debug("Task [{}] will be parked due task quota rules", task);
-          acquiredQuotas.forEach(Semaphore::release);
+          acquiredQuotas.forEach(q -> q.release(task));
           return false;
         }
         acquiredQuotas.add(quota);
@@ -76,6 +75,6 @@ public class TaskQuotas implements WorkQueue.TaskParker {
 
   private void release(WorkQueue.Task<?> task) {
     Optional.ofNullable(permitsByTask.remove(task.getTaskId()))
-        .ifPresent(permits -> permits.forEach(Semaphore::release));
+        .ifPresent(permits -> permits.forEach(p -> p.release(task)));
   }
 }
