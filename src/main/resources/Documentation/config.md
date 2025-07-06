@@ -268,6 +268,13 @@ Additionally, to scope the user use `maxStartForTaskForUserForQueue`
     maxStartForTaskForUserForQueue = 10 uploadpack userB SSH-Batch-Worker
 ```
 
+or to make it applicable for every user:
+
+```
+  [quota "*"]
+    maxStartPerUserForTaskForQueue = 20 uploadpack SSH-Interactive-Worker
+```
+
 Currently supported tasks:
 
 * `uploadpack`: Maps directly to git-upload-pack operations (used during Git
