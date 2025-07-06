@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.Semaphore;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import org.slf4j.Logger;
@@ -31,7 +30,7 @@ public class TaskQuotas implements WorkQueue.TaskParker {
   private static final Logger log = LoggerFactory.getLogger(TaskQuotas.class);
   private final QuotaFinder quotaFinder;
   private final List<TaskQuota> quotas = new ArrayList<>();
-  private final Map<Integer, List<TaskQuota>> permitsByTask = new ConcurrentHashMap<>();
+  private final Map<Integer, List<TaskQuota>> quotasByTask = new ConcurrentHashMap<>();
 
   @Inject
   public TaskQuotas(QuotaFinder quotaFinder) {
@@ -48,16 +47,16 @@ public class TaskQuotas implements WorkQueue.TaskParker {
     List<TaskQuota> acquiredQuotas = new ArrayList<>();
     for (TaskQuota quota : quotas) {
       if (quota.isApplicable(task)) {
-        if (!quota.tryAcquire()) {
+        if (!quota.tryAcquire(task)) {
           log.debug("Task [{}] will be parked due task quota rules", task);
-          acquiredQuotas.forEach(Semaphore::release);
+          acquiredQuotas.forEach(q -> q.release(task));
           return false;
         }
         acquiredQuotas.add(quota);
       }
     }
 
-    permitsByTask.put(task.getTaskId(), acquiredQuotas);
+    quotasByTask.put(task.getTaskId(), acquiredQuotas);
     return true;
   }
 
@@ -75,7 +74,7 @@ public class TaskQuotas implements WorkQueue.TaskParker {
   }
 
   private void release(WorkQueue.Task<?> task) {
-    Optional.ofNullable(permitsByTask.remove(task.getTaskId()))
-        .ifPresent(permits -> permits.forEach(Semaphore::release));
+    Optional.ofNullable(quotasByTask.remove(task.getTaskId()))
+        .ifPresent(quotas -> quotas.forEach(q -> q.release(task)));
   }
 }
