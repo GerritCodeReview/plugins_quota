@@ -19,12 +19,21 @@ import java.util.concurrent.Semaphore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class TaskQuota extends Semaphore {
+public abstract class TaskQuota {
   protected static final Logger log = LoggerFactory.getLogger(TaskQuota.class);
+  private final Semaphore permits;
 
-  public TaskQuota(int permits) {
-    super(permits);
+  public TaskQuota(int maxPermits) {
+    this.permits = new Semaphore(maxPermits);
   }
 
   public abstract boolean isApplicable(WorkQueue.Task<?> task);
+
+  public boolean tryAcquire(WorkQueue.Task<?> task) {
+    return permits.tryAcquire();
+  }
+
+  public void release(WorkQueue.Task<?> task) {
+    permits.release();
+  }
 }

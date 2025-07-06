@@ -17,29 +17,30 @@ package com.googlesource.gerrit.plugins.quota;
 import com.google.gerrit.server.git.WorkQueue;
 import java.util.Optional;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-public class TaskQuotaForTaskForQueue extends TaskQuotaForTask {
-  public static final Pattern CONFIG_PATTERN =
-      Pattern.compile(
-          "(\\d+)\\s+(" + String.join("|", SUPPORTED_TASKS_BY_GROUP.keySet()) + ")\\s+(.+)");
-  private final String queueName;
+public class TaskQuotaPerUserForTaskForQueue extends TaskQuotaForTaskForQueue {
+  private final PerUserTaskQuota perUserTaskQuota;
 
-  public TaskQuotaForTaskForQueue(String queueName, String taskGroup, int maxStart) {
-    super(taskGroup, maxStart);
-    this.queueName = queueName;
+  public TaskQuotaPerUserForTaskForQueue(String queue, String taskGroup, int maxStart) {
+    super(queue, taskGroup, maxStart);
+    perUserTaskQuota = new PerUserTaskQuota(maxStart);
   }
 
   @Override
-  public boolean isApplicable(WorkQueue.Task<?> task) {
-    return super.isApplicable(task) && task.getQueueName().equals(queueName);
+  public boolean tryAcquire(WorkQueue.Task<?> task) {
+    return perUserTaskQuota.tryAcquire(task);
+  }
+
+  @Override
+  public void release(WorkQueue.Task<?> task) {
+    perUserTaskQuota.release(task);
   }
 
   public static Optional<TaskQuota> build(String config) {
     Matcher matcher = CONFIG_PATTERN.matcher(config);
     if (matcher.matches()) {
       return Optional.of(
-          new TaskQuotaForTaskForQueue(
+          new TaskQuotaPerUserForTaskForQueue(
               matcher.group(3), matcher.group(2), Integer.parseInt(matcher.group(1))));
     } else {
       log.error("Invalid configuration entry [{}]", config);
