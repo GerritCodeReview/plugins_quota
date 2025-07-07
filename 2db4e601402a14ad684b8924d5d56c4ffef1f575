@@ -24,6 +24,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "404bdab6_ced7b4c6",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PerUserTaskQuota.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-07-07T21:00:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e821f7b_a9c7b27a",
+      "range": {
+        "startLine": 41,
+        "startChar": 9,
+        "endLine": 41,
+        "endChar": 21
+      },
+      "revId": "2db4e601402a14ad684b8924d5d56c4ffef1f575",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d8986ac_b3c1a7b7",
@@ -41,6 +65,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1141861_6814c3c1",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PerUserTaskQuota.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-07-07T21:00:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d8986ac_b3c1a7b7",
+      "revId": "2db4e601402a14ad684b8924d5d56c4ffef1f575",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9f4127c1_d9f1ffde",
@@ -54,6 +96,24 @@
       "writtenOn": "2025-07-07T20:33:56Z",
       "side": 1,
       "message": "Since these are final, it is OK to dispense with the accessors and just use public here. I think it feels more like a CONSTANT then?",
+      "revId": "2db4e601402a14ad684b8924d5d56c4ffef1f575",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e5d4be0_eb172370",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaKeys.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-07-07T21:00:08Z",
+      "side": 1,
+      "message": "Done in parent change",
+      "parentUuid": "9f4127c1_d9f1ffde",
       "revId": "2db4e601402a14ad684b8924d5d56c4ffef1f575",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
