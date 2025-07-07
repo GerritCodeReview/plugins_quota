@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0827b773_7c264edc",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QuotaSection.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-07-07T16:30:09Z",
+      "side": 1,
+      "message": "Would an enum with a build() method be a better fit here?",
+      "revId": "0529cfa05426d66a217ff98f0c34f2bf9be100d3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26ce3005_4a4c2b22",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaForTaskForQueue.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-07-07T16:30:09Z",
+      "side": 1,
+      "message": "This would be better as queueName (or ID...) since it is not actually the queue object.",
+      "revId": "0529cfa05426d66a217ff98f0c34f2bf9be100d3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
