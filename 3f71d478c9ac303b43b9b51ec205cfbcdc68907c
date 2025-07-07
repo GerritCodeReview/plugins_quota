@@ -24,6 +24,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1ff7ab8_69cc4c74",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PerUserTaskQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-07-07T19:09:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0deced3_8d76fd39",
+      "range": {
+        "startLine": 26,
+        "startChar": 53,
+        "endLine": 26,
+        "endChar": 65
+      },
+      "revId": "3f71d478c9ac303b43b9b51ec205cfbcdc68907c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f98de976_67b57ff3",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-07-07T16:32:26Z",
       "side": 1,
       "message": "It\u0027s unclear what \"s\" represents here? I think it is the username from the task id? Can you improve this?",
+      "range": {
+        "startLine": 36,
+        "startChar": 46,
+        "endLine": 36,
+        "endChar": 47
+      },
+      "revId": "3f71d478c9ac303b43b9b51ec205cfbcdc68907c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c640a33_bde74791",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PerUserTaskQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-07-07T19:09:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f98de976_67b57ff3",
       "range": {
         "startLine": 36,
         "startChar": 46,
@@ -102,6 +150,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8c571ec0_a4d9d3ba",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PerUserTaskQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-07-07T19:09:22Z",
+      "side": 1,
+      "message": "used `ConcurrentHashMap#computeIfPresent`. returning null from remappingFunction  would basically remove that key",
+      "parentUuid": "a9e391ff_75d7556a",
+      "revId": "3f71d478c9ac303b43b9b51ec205cfbcdc68907c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "279fd64f_f961587c",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PerUserTaskQuota.java",
         "patchSetId": 1
@@ -130,6 +196,24 @@
       "writtenOn": "2025-07-07T16:32:26Z",
       "side": 1,
       "message": "This is confusing since permits in one case means a number, and in the other a Semaphore. Since this is a common problem, and java is an object oriented language, and thus variable mostly represent objects, I suggest generally using something in the variable name to indicate when instead a scalar or something is represented, such as \"numPermits\", or better here \"maxPermits\".",
+      "revId": "3f71d478c9ac303b43b9b51ec205cfbcdc68907c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a3c7e84_ba2e45d5",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-07-07T19:09:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87c50d80_e9b826d1",
       "revId": "3f71d478c9ac303b43b9b51ec205cfbcdc68907c",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -189,6 +273,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e7e58a55_61f8660b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaPerUserForTaskForQueue.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-07-07T19:09:22Z",
+      "side": 1,
+      "message": "I think it should inherit everything and we can also hide and define new implementation here if need be.",
+      "parentUuid": "3daea870_f77a7b17",
+      "revId": "3f71d478c9ac303b43b9b51ec205cfbcdc68907c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bf219b39_24fc2ea7",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
         "patchSetId": 1
@@ -200,6 +302,24 @@
       "writtenOn": "2025-07-07T16:32:26Z",
       "side": 1,
       "message": "I\u0027m not sure \"permits\" is accurate now?",
+      "revId": "3f71d478c9ac303b43b9b51ec205cfbcdc68907c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c92d93f_184674db",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-07-07T19:09:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf219b39_24fc2ea7",
       "revId": "3f71d478c9ac303b43b9b51ec205cfbcdc68907c",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -217,6 +337,30 @@
       "writtenOn": "2025-07-07T16:32:26Z",
       "side": 1,
       "message": "s/available/applicable/ ?",
+      "range": {
+        "startLine": 271,
+        "startChar": 14,
+        "endLine": 271,
+        "endChar": 24
+      },
+      "revId": "3f71d478c9ac303b43b9b51ec205cfbcdc68907c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "394ef473_d2ca1ff4",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-07-07T19:09:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "70068d25_9ea18db5",
       "range": {
         "startLine": 271,
         "startChar": 14,
