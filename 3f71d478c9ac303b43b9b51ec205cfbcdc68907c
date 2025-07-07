@@ -84,6 +84,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a9e391ff_75d7556a",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PerUserTaskQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-07-07T17:01:04Z",
+      "side": 1,
+      "message": "The synchronized does not cover the tryAcquire() method, so this won\u0027t work as is. Ideally we would not use locking approach here, but rathe take advantage of some method that the ConcurrentHashMap might provide to do this safely.",
+      "parentUuid": "19248dc0_807d9a77",
+      "revId": "3f71d478c9ac303b43b9b51ec205cfbcdc68907c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "279fd64f_f961587c",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PerUserTaskQuota.java",
         "patchSetId": 1
@@ -147,6 +165,24 @@
       "side": 1,
       "message": "Not necessarily since the config syntax is all same with `TaskQuotaForTaskForQueue`",
       "parentUuid": "032a018d_15465eaa",
+      "revId": "3f71d478c9ac303b43b9b51ec205cfbcdc68907c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3daea870_f77a7b17",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaPerUserForTaskForQueue.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-07-07T17:01:04Z",
+      "side": 1,
+      "message": "Currently TaskQuotaPerUserForTaskForQueue::build does not exist as a method, because there is no \"inheritance\" on static methods, so I am surprised this even compiles.",
+      "parentUuid": "2c4a4df8_a6a4377b",
       "revId": "3f71d478c9ac303b43b9b51ec205cfbcdc68907c",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
