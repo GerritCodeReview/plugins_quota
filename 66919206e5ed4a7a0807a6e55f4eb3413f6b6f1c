@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a519548f_9307121b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PerUserTaskQuota.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-07-07T22:31:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3188d55_61913c92",
+      "revId": "66919206e5ed4a7a0807a6e55f4eb3413f6b6f1c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "187ac98e_72804d15",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-07-07T22:25:32Z",
       "side": 1,
       "message": "Use getPlain() to avoid unneeded expensive memory synchronization semantics here.",
+      "revId": "66919206e5ed4a7a0807a6e55f4eb3413f6b6f1c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7c4b611_e6145e01",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PerUserTaskQuota.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-07-07T22:31:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "187ac98e_72804d15",
       "revId": "66919206e5ed4a7a0807a6e55f4eb3413f6b6f1c",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
