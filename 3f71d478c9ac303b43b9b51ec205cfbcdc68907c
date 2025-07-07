@@ -66,6 +66,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "19248dc0_807d9a77",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PerUserTaskQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-07-07T16:36:15Z",
+      "side": 1,
+      "message": "I made the method synchronized. Do you want to use locks instead ?",
+      "parentUuid": "0fa89ae1_1891cb35",
+      "revId": "3f71d478c9ac303b43b9b51ec205cfbcdc68907c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "279fd64f_f961587c",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PerUserTaskQuota.java",
         "patchSetId": 1
@@ -111,6 +129,24 @@
       "writtenOn": "2025-07-07T16:32:26Z",
       "side": 1,
       "message": "Should this not have it\u0027s own build() method?",
+      "revId": "3f71d478c9ac303b43b9b51ec205cfbcdc68907c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c4a4df8_a6a4377b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaPerUserForTaskForQueue.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-07-07T16:36:15Z",
+      "side": 1,
+      "message": "Not necessarily since the config syntax is all same with `TaskQuotaForTaskForQueue`",
+      "parentUuid": "032a018d_15465eaa",
       "revId": "3f71d478c9ac303b43b9b51ec205cfbcdc68907c",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
