@@ -307,6 +307,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "98adbfe5_d3282590",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaPerUserForTaskForQueue.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-07-07T20:33:56Z",
+      "side": 1,
+      "message": "For static methods, it is: s/inherit/shadow/",
+      "parentUuid": "e7e58a55_61f8660b",
+      "revId": "3f71d478c9ac303b43b9b51ec205cfbcdc68907c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bf219b39_24fc2ea7",

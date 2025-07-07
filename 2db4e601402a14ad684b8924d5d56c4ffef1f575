@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e821f7b_a9c7b27a",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PerUserTaskQuota.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-07-07T20:33:56Z",
+      "side": 1,
+      "message": "Remove synchronized now?",
+      "range": {
+        "startLine": 41,
+        "startChar": 9,
+        "endLine": 41,
+        "endChar": 21
+      },
+      "revId": "2db4e601402a14ad684b8924d5d56c4ffef1f575",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d8986ac_b3c1a7b7",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PerUserTaskQuota.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-07-07T20:33:56Z",
+      "side": 1,
+      "message": "This is only \"safe\" if the tryAcquire() is also done in a ConcurrentHashMap operation like this?",
+      "revId": "2db4e601402a14ad684b8924d5d56c4ffef1f575",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f4127c1_d9f1ffde",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaKeys.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-07-07T20:33:56Z",
+      "side": 1,
+      "message": "Since these are final, it is OK to dispense with the accessors and just use public here. I think it feels more like a CONSTANT then?",
+      "revId": "2db4e601402a14ad684b8924d5d56c4ffef1f575",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
