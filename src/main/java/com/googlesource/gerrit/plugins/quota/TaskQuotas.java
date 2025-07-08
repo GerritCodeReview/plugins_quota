@@ -56,7 +56,9 @@ public class TaskQuotas implements WorkQueue.TaskParker {
       }
     }
 
-    quotasByTask.put(task.getTaskId(), acquiredQuotas);
+    if (!acquiredQuotas.isEmpty()) {
+      quotasByTask.put(task.getTaskId(), acquiredQuotas);
+    }
     return true;
   }
 
