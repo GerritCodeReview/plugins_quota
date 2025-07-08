@@ -22,6 +22,30 @@
       },
       "revId": "8545193b7609e07eadf4fa3d3bb7de31e866e61c",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f37e8104_f2281083",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/PerUserTaskQuota.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-07-08T01:56:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9a7973e_e8d2be57",
+      "range": {
+        "startLine": 30,
+        "startChar": 30,
+        "endLine": 30,
+        "endChar": 37
+      },
+      "revId": "8545193b7609e07eadf4fa3d3bb7de31e866e61c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
