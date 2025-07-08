@@ -20,7 +20,7 @@ import java.util.Set;
 
 public abstract class TaskQuotaForTask extends TaskQuota {
   protected static final Map<String, Set<String>> SUPPORTED_TASKS_BY_GROUP =
-      Map.of("uploadpack", Set.of("git-upload-pack"));
+      Map.of("uploadpack", Set.of("git-upload-pack"), "receivepack", Set.of("git-receive-pack"));
   private final String taskGroup;
 
   public TaskQuotaForTask(String taskGroup, int permits) {

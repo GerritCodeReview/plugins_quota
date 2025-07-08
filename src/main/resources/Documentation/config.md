@@ -279,6 +279,8 @@ Currently supported tasks:
 
 * `uploadpack`: Maps directly to git-upload-pack operations (used during Git
   fetches or clones).
+* `receivepack`: Maps directly to git-receive-pack operations (used during Git
+  pushes).
 
 Publication Schedule
 --------------------
