@@ -17,6 +17,7 @@ package com.googlesource.gerrit.plugins.quota;
 import com.google.gerrit.entities.Project;
 import com.google.gerrit.server.project.ProjectCache;
 import com.google.inject.Inject;
+import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -59,5 +60,12 @@ public class QuotaFinder {
   public QuotaSection getGlobalNamespacedQuota() {
     Config cfg = projectCache.getAllProjects().getConfig("quota.config").get();
     return new QuotaSection(cfg, "*");
+  }
+
+  public List<QuotaSection> getQuotaNamespaces() {
+    Config cfg = projectCache.getAllProjects().getConfig("quota.config").get();
+    return cfg.getSubsections(QuotaSection.QUOTA).stream()
+        .map(ns -> new QuotaSection(cfg, ns))
+        .toList();
   }
 }
