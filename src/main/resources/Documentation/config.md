@@ -244,10 +244,8 @@ Task Quota
 -----------
 
 Task quotas provide fine-grained control over queues for administrators.
-Quotas should be specified in the global * section (namespacing support
-has not been implemented yet). Once the defined limit is reached, any
-additional tasks are parked, preventing them from consuming threads and
-allowing other tasks to continue execution.
+Once the defined limit is reached, any additional tasks are parked, preventing
+them from consuming threads and allowing other tasks to continue execution.
 
 The `maxStartForTaskForQueue` setting defines the maximum number of threads
 that can be started for a specific task and queue combination. Example:

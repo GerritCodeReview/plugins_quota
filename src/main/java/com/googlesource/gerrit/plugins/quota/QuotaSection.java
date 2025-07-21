@@ -22,33 +22,23 @@ import org.eclipse.jgit.lib.Config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class QuotaSection {
+public record QuotaSection(Config cfg, String namespace, String resolvedNamespace) {
   private static final Logger log = LoggerFactory.getLogger(QuotaSection.class);
   public static final String QUOTA = "quota";
   public static final String KEY_MAX_PROJECTS = "maxProjects";
   public static final String KEY_MAX_REPO_SIZE = "maxRepoSize";
   public static final String KEY_MAX_TOTAL_SIZE = "maxTotalSize";
 
-  private final Config cfg;
-  private final String namespace;
-  private final Namespace resolvedNamespace;
-
-  QuotaSection(Config cfg, String namespace) {
+  public QuotaSection(Config cfg, String namespace) {
     this(cfg, namespace, namespace);
   }
 
-  QuotaSection(Config cfg, String namespace, String resolvedNamespace) {
-    this.cfg = cfg;
-    this.namespace = namespace;
-    this.resolvedNamespace = new Namespace(resolvedNamespace);
-  }
-
   public String getNamespace() {
-    return resolvedNamespace.get();
+    return resolvedNamespace;
   }
 
   public boolean matches(Project.NameKey project) {
-    return resolvedNamespace.matches(project);
+    return new Namespace(resolvedNamespace).matches(project);
   }
 
   public Integer getMaxProjects() {
