@@ -14,12 +14,14 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
+import com.google.gerrit.entities.Project;
 import com.google.gerrit.server.git.WorkQueue;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import org.slf4j.Logger;
@@ -29,8 +31,9 @@ import org.slf4j.LoggerFactory;
 public class TaskQuotas implements WorkQueue.TaskParker {
   private static final Logger log = LoggerFactory.getLogger(TaskQuotas.class);
   private final QuotaFinder quotaFinder;
-  private final List<TaskQuota> quotas = new ArrayList<>();
   private final Map<Integer, List<TaskQuota>> quotasByTask = new ConcurrentHashMap<>();
+  private final Map<QuotaSection, List<TaskQuota>> quotasByNamespace = new HashMap<>();
+  private final Pattern PROJECT_PATTERN = Pattern.compile("(/.*\\.git)\\s+(\\S+)$");
 
   @Inject
   public TaskQuotas(QuotaFinder quotaFinder) {
@@ -39,11 +42,25 @@ public class TaskQuotas implements WorkQueue.TaskParker {
   }
 
   private void initQuotas() {
-    quotas.addAll(quotaFinder.getGlobalNamespacedQuota().getAllQuotas());
+    quotasByNamespace.putAll(
+        quotaFinder.getQuotaNamespaces().stream()
+            .collect(Collectors.toMap(Function.identity(), QuotaSection::getAllQuotas)));
   }
 
   @Override
   public boolean isReadyToStart(WorkQueue.Task<?> task) {
+    Optional<Project.NameKey> estimatedProject = estimateProject(task);
+    List<TaskQuota> quotas =
+        estimatedProject
+            .map(
+                project -> {
+                  return quotasByNamespace.getOrDefault(
+                      Optional.ofNullable(quotaFinder.firstMatching(project))
+                          .orElse(quotaFinder.getGlobalNamespacedQuota()),
+                      List.of());
+                })
+            .orElse(List.of());
+
     List<TaskQuota> acquiredQuotas = new ArrayList<>();
     for (TaskQuota quota : quotas) {
       if (quota.isApplicable(task)) {
@@ -78,5 +95,11 @@ public class TaskQuotas implements WorkQueue.TaskParker {
   private void release(WorkQueue.Task<?> task) {
     Optional.ofNullable(quotasByTask.remove(task.getTaskId()))
         .ifPresent(quotas -> quotas.forEach(q -> q.release(task)));
+  }
+
+  private Optional<Project.NameKey> estimateProject(WorkQueue.Task<?> task) {
+    Matcher matcher = PROJECT_PATTERN.matcher(task.toString());
+
+    return matcher.find() ? Optional.of(Project.nameKey(matcher.group(1))) : Optional.empty();
   }
 }
