@@ -16,6 +16,24 @@
       "message": "Might it be safer to additionally do this match based on position in the string, i.e. the second to last argument?",
       "revId": "f9c554b49ad5f4a6454bde84b914055118863380",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc67dfdd_5aeb001a",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-07-23T14:51:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12be5816_f2d267aa",
+      "revId": "f9c554b49ad5f4a6454bde84b914055118863380",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
