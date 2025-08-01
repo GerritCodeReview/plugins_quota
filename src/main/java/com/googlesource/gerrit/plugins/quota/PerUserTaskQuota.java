@@ -15,15 +15,14 @@
 package com.googlesource.gerrit.plugins.quota;
 
 import com.google.gerrit.server.git.WorkQueue;
-import java.util.Optional;
+
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
+import static com.googlesource.gerrit.plugins.quota.TaskParser.user;
 
 public class PerUserTaskQuota {
-  public static final Pattern USER_EXTRACT_PATTERN = Pattern.compile("\\(([a-z0-9]+)\\)$");
   private final ConcurrentHashMap<String, Semaphore> quotaByUser = new ConcurrentHashMap<>();
   private final int maxPermits;
 
@@ -62,10 +61,5 @@ public class PerUserTaskQuota {
                       quota.release();
                       return quota.availablePermits() == maxPermits ? null : quota;
                     }));
-  }
-
-  private Optional<String> user(WorkQueue.Task<?> task) {
-    Matcher matcher = USER_EXTRACT_PATTERN.matcher(task.toString());
-    return matcher.find() ? Optional.of(matcher.group()) : Optional.empty();
   }
 }
