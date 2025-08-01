@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
 
 public abstract class TaskQuota {
   protected static final Logger log = LoggerFactory.getLogger(TaskQuota.class);
-  private final Semaphore permits;
+  protected final Semaphore permits;
 
   public TaskQuota(int maxPermits) {
     this.permits = new Semaphore(maxPermits);
@@ -35,5 +35,15 @@ public abstract class TaskQuota {
 
   public void release(WorkQueue.Task<?> task) {
     permits.release();
+  }
+
+  public record BuildInfo(String config, int interactiveThreads, int batchThreads) {
+    public BuildInfo(int interactiveThreads, int batchThreads) {
+      this("", interactiveThreads, batchThreads);
+    }
+
+    public BuildInfo generateWithCfg(String cfg) {
+      return new BuildInfo(cfg, interactiveThreads, batchThreads);
+    }
   }
 }

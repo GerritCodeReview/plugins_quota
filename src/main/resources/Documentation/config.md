@@ -280,6 +280,27 @@ Currently supported tasks:
 * `receivepack`: Maps directly to git-receive-pack operations (used during Git
   pushes).
 
+The `softMaxStartPerUserForQueue` setting defines a soft maximum number of threads
+per user that should be started for a specific task and queue combination. Unlike
+the `maxStartPerUserForTaskForQueue`, a softMax will allow a user to start more tasks
+if the server has more than one idle thread. This helps maintain a high level of
+interactive responsiveness without dedicating too many threads which would likely
+stay idle when using a small `maxStartPerUserForTaskForQueue` setting. This setting
+helps to maintain a good balance between bulk throughput and low latency for
+interactive operations. This setting is recommended to help protect the server
+against users (and automation systems) which may be running the repo tool with high
+sync (-j) counts.
+
+Example:
+
+```
+ [quota "*"]
+   softMaxStartPerUserForQueue = 3 SSH-Interavtive-Users
+```
+
+This config make sures that as soon as a specific user has 3 tasks running, it ensures
+that there is still at least one idle thread remaining after the task is started.
+
 Publication Schedule
 --------------------
 
