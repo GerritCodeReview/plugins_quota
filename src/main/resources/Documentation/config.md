@@ -280,6 +280,23 @@ Currently supported tasks:
 * `receivepack`: Maps directly to git-receive-pack operations (used during Git
   pushes).
 
+To prevent pool exhaustion by a small subset of users, to share the thread pool
+equally among all users, and to utilize the pool to its maximum extent,
+`softMaxStartForQueuePerUser` would be helpful.
+
+Example:
+
+```
+ [quota "*"]
+   softMaxStartForQueuePerUser = 3 SSH-Interavtive-Users
+```
+
+This config make sures that as soon as a specific user has 3 tasks running, for him to run
+a new task there should be at least two available threads so that they don't use up the
+entire capacity and serve the other users. In cases where multiple users are running parallel
+tasks, this logic efficiently distributes the thread pool equally to all the users by reducing
+the share of user who is using who is occupying the pool.
+
 Publication Schedule
 --------------------
 

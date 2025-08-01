@@ -14,8 +14,13 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
+import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.entities.Project;
+import com.google.gerrit.server.config.GerritServerConfig;
+import com.google.gerrit.server.config.ThreadSettingsConfig;
+import com.google.gerrit.server.git.QueueProvider;
 import com.google.gerrit.server.git.WorkQueue;
+
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
@@ -36,18 +41,35 @@ public class TaskQuotas implements WorkQueue.TaskParker {
   private final Map<QuotaSection, List<TaskQuota>> quotasByNamespace = new HashMap<>();
   private final Pattern PROJECT_PATTERN = Pattern.compile("\\s+(.*\\.git)\\s+(\\S+)$");
   private final Config quotaConfig;
+  private final TaskQuota.BuildInfo baseBuildInfo;
 
   @Inject
-  public TaskQuotas(QuotaFinder quotaFinder) {
+  public TaskQuotas(
+      QuotaFinder quotaFinder,
+      @GerritServerConfig Config serverCfg,
+      ThreadSettingsConfig threadSettingsConfig) {
     this.quotaFinder = quotaFinder;
     this.quotaConfig = quotaFinder.getQuotaConfig();
+
+    // Replicating this logic from the core
+    int poolSize = threadSettingsConfig.getSshdThreads();
+    int batchThreads =
+        serverCfg.getInt("sshd", "batchThreads", threadSettingsConfig.getSshdBatchTreads());
+    if (batchThreads > poolSize) {
+      poolSize += batchThreads;
+    }
+    int interactiveThreads = Math.max(1, poolSize - batchThreads);
+    baseBuildInfo = new TaskQuota.BuildInfo(interactiveThreads, batchThreads);
+
+    log.error(baseBuildInfo.toString());
+
     initQuotas();
   }
 
   private void initQuotas() {
     quotasByNamespace.putAll(
         quotaFinder.getQuotaNamespaces(quotaConfig).stream()
-            .collect(Collectors.toMap(Function.identity(), QuotaSection::getAllQuotas)));
+            .collect(Collectors.toMap(Function.identity(), qs -> qs.getAllQuotas(baseBuildInfo))));
   }
 
   @Override
