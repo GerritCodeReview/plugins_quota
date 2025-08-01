@@ -36,14 +36,14 @@ public class TaskQuotaPerUserForTaskForQueue extends TaskQuotaForTaskForQueue {
     perUserTaskQuota.release(task);
   }
 
-  public static Optional<TaskQuota> build(String config) {
-    Matcher matcher = CONFIG_PATTERN.matcher(config);
+  public static Optional<TaskQuota> build(BuildInfo buildInfo) {
+    Matcher matcher = CONFIG_PATTERN.matcher(buildInfo.config());
     if (matcher.matches()) {
       return Optional.of(
           new TaskQuotaPerUserForTaskForQueue(
               matcher.group(3), matcher.group(2), Integer.parseInt(matcher.group(1))));
     } else {
-      log.error("Invalid configuration entry [{}]", config);
+      log.error("Invalid configuration entry [{}]", buildInfo.config());
       return Optional.empty();
     }
   }

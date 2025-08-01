@@ -18,6 +18,7 @@ import com.google.gerrit.entities.Project;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+
 import org.eclipse.jgit.lib.Config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -62,11 +63,12 @@ public record QuotaSection(Config cfg, String namespace, String resolvedNamespac
     return cfg.getLong(QUOTA, namespace, KEY_MAX_TOTAL_SIZE, Long.MAX_VALUE);
   }
 
-  public List<TaskQuota> getAllQuotas() {
+  public List<TaskQuota> getAllQuotas(TaskQuota.BuildInfo buildInfo) {
     return Arrays.stream(TaskQuotaKeys.values())
         .flatMap(
             type ->
                 Arrays.stream(cfg.getStringList(QUOTA, namespace, type.key))
+                    .map(buildInfo::generateWithCfg)
                     .map(type.processor)
                     .flatMap(Optional::stream))
         .toList();
