@@ -35,14 +35,14 @@ public class TaskQuotaForTaskForQueue extends TaskQuotaForTask {
     return super.isApplicable(task) && task.getQueueName().equals(queueName);
   }
 
-  public static Optional<TaskQuota> build(String config) {
-    Matcher matcher = CONFIG_PATTERN.matcher(config);
+  public static Optional<TaskQuota> build(BuildInfo buildInfo) {
+    Matcher matcher = CONFIG_PATTERN.matcher(buildInfo.config());
     if (matcher.matches()) {
       return Optional.of(
           new TaskQuotaForTaskForQueue(
               matcher.group(3), matcher.group(2), Integer.parseInt(matcher.group(1))));
     } else {
-      log.error("Invalid configuration entry [{}]", config);
+      log.error("Invalid configuration entry [{}]", buildInfo.config());
       return Optional.empty();
     }
   }
