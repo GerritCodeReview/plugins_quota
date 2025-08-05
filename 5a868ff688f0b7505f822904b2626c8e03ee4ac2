@@ -1,0 +1,112 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8dad28f_290cbe8c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QuotaSection.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-08-05T21:50:18Z",
+      "side": 1,
+      "message": "Unrelated?",
+      "revId": "5a868ff688f0b7505f822904b2626c8e03ee4ac2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4bde880_4d4f87a3",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/SoftMaxPerUserForQueue.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-08-05T21:50:18Z",
+      "side": 1,
+      "message": "taskStartedCountByUser?",
+      "range": {
+        "startLine": 29,
+        "startChar": 51,
+        "endLine": 29,
+        "endChar": 62
+      },
+      "revId": "5a868ff688f0b7505f822904b2626c8e03ee4ac2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20bf1b01_3f77ca2b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/SoftMaxPerUserForQueue.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-08-05T21:50:18Z",
+      "side": 1,
+      "message": "It might be better to tryAcquire the first permit before calling compute to avoid uneccessary blocking calls if there aren\u0027t enough permits to even run under the soft limit.",
+      "revId": "5a868ff688f0b7505f822904b2626c8e03ee4ac2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3a651b4_9bdfe122",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/SoftMaxPerUserForQueue.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-08-05T21:50:18Z",
+      "side": 1,
+      "message": "release(task, softAcquiredTasks.contains(task.getTaskId()) ? 2 : 1;",
+      "revId": "5a868ff688f0b7505f822904b2626c8e03ee4ac2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cca3b0ba_81df3d6b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/SoftMaxPerUserForQueue.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-08-05T21:50:18Z",
+      "side": 1,
+      "message": "Remove from softAcquiredTasks here?",
+      "revId": "5a868ff688f0b7505f822904b2626c8e03ee4ac2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f658832f_690088b6",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/SoftMaxPerUserForQueue.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-08-05T21:50:18Z",
+      "side": 1,
+      "message": "I actually don\u0027t see any reason to hold the second permit until we start, I think this was bad advice on my part. This could actually prevent a task which is not over the limit by another user from starting, and it seems like it doesn\u0027t really ensure anything of value?",
+      "revId": "5a868ff688f0b7505f822904b2626c8e03ee4ac2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
