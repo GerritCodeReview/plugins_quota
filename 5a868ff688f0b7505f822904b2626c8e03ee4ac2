@@ -58,6 +58,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4f9dec7_35e48dc7",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/SoftMaxPerUserForQueue.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-08-06T00:47:37Z",
+      "side": 1,
+      "message": "Moving it outside this block could cause it to fail inadvertently while an overSoftLimit is in progress.",
+      "parentUuid": "20bf1b01_3f77ca2b",
+      "revId": "5a868ff688f0b7505f822904b2626c8e03ee4ac2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3a651b4_9bdfe122",
@@ -123,6 +141,24 @@
       "side": 1,
       "message": "Do we instead want to release it in tryAcquire() only ?",
       "parentUuid": "f658832f_690088b6",
+      "revId": "5a868ff688f0b7505f822904b2626c8e03ee4ac2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a235559_27f3f8ae",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/SoftMaxPerUserForQueue.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-08-06T00:47:37Z",
+      "side": 1,
+      "message": "Yeah, I think that as soon as it has been acquired, there is proof that this task will not use the last thread, so go ahead and release it so that another task can get it right away if needed. To be fair, that is an argument to not move the first tryAcquire before the compute since it could fail if we try to get it before another thread has released it, so ignore the comment on line 56 then.",
+      "parentUuid": "05a6dfd1_0a0c1573",
       "revId": "5a868ff688f0b7505f822904b2626c8e03ee4ac2",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
