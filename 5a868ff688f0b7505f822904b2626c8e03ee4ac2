@@ -41,6 +41,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eaee69cc_f104a9d6",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/SoftMaxPerUserForQueue.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-08-07T00:04:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4bde880_4d4f87a3",
+      "range": {
+        "startLine": 29,
+        "startChar": 51,
+        "endLine": 29,
+        "endChar": 62
+      },
+      "revId": "5a868ff688f0b7505f822904b2626c8e03ee4ac2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "20bf1b01_3f77ca2b",
@@ -93,6 +117,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "41c3376a_ca8001b1",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/SoftMaxPerUserForQueue.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-08-07T00:04:40Z",
+      "side": 1,
+      "message": "Marked as resolved.",
+      "parentUuid": "e3a651b4_9bdfe122",
+      "revId": "5a868ff688f0b7505f822904b2626c8e03ee4ac2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cca3b0ba_81df3d6b",
@@ -106,6 +148,24 @@
       "writtenOn": "2025-08-05T21:50:18Z",
       "side": 1,
       "message": "Remove from softAcquiredTasks here?",
+      "revId": "5a868ff688f0b7505f822904b2626c8e03ee4ac2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "826b7230_bc1ce647",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/SoftMaxPerUserForQueue.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-08-07T00:04:40Z",
+      "side": 1,
+      "message": "Marked as resolved.",
+      "parentUuid": "cca3b0ba_81df3d6b",
       "revId": "5a868ff688f0b7505f822904b2626c8e03ee4ac2",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -159,6 +219,24 @@
       "side": 1,
       "message": "Yeah, I think that as soon as it has been acquired, there is proof that this task will not use the last thread, so go ahead and release it so that another task can get it right away if needed. To be fair, that is an argument to not move the first tryAcquire before the compute since it could fail if we try to get it before another thread has released it, so ignore the comment on line 56 then.",
       "parentUuid": "05a6dfd1_0a0c1573",
+      "revId": "5a868ff688f0b7505f822904b2626c8e03ee4ac2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "baadd8bb_88fddfcc",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/SoftMaxPerUserForQueue.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-08-07T00:04:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a235559_27f3f8ae",
       "revId": "5a868ff688f0b7505f822904b2626c8e03ee4ac2",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
