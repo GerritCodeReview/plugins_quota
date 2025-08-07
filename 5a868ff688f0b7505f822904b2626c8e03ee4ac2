@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c127fa9_54640697",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QuotaSection.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-08-07T00:04:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8dad28f_290cbe8c",
+      "revId": "5a868ff688f0b7505f822904b2626c8e03ee4ac2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c4bde880_4d4f87a3",
