@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b52b1663_7c66115b",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-08-15T21:52:36Z",
+      "side": 1,
+      "message": "I think we want to describe this more like this:\n\nThe `softMaxStartForQueuePerUser` setting defines a soft maximum number of threads per user that should be started for a specific task and queue combination. Unlike the `maxStartPerUserForTaskForQueue`, a softMax will allow a user to start more tasks if the server has more than one idle thread. This helps maintain a high level of interactive responsiveness without dedicating too many threads which would likely stay idle when using a small `maxStartPerUserForTaskForQueue` setting. This setting helps to maintain a good balance between bulk throughput and low latency for interactive operations. This setting is recommended to help protect the server against users (and automation systems) which may be running the `repo` tool with high sync (-j) counts.\n\nAnd since I am comparing it to `maxStartPerUserForTaskForQueue`, maybe it should be named `softMaxStartPerUserForTaskForQueue`?",
+      "revId": "1b0bb654c1aec6b676d4fdba0f31b4ec2fd83ea9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
