@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c59f4ec_b3843f20",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-08-19T16:13:02Z",
+      "side": 1,
+      "message": "I think the \"consume one\" part might be confusing. Maybe this should be described as, \"it ensures that there is still at least one idle thread remaining after the task is started\"",
+      "revId": "f797f154b0705ca14f96db898f1f811a1c622b2c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
