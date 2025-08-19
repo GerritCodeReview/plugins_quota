@@ -16,6 +16,24 @@
       "message": "Probably should also mention making the leading slash optional?",
       "revId": "68fc60337c12e40eecf734564d19abad64287d3f",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0040e3e5_6017de25",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-08-19T18:30:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6fc34665_b1cebaca",
+      "revId": "68fc60337c12e40eecf734564d19abad64287d3f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
