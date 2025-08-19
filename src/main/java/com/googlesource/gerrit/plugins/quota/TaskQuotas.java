@@ -39,7 +39,7 @@ public class TaskQuotas implements WorkQueue.TaskParker {
   private final QuotaFinder quotaFinder;
   private final Map<Integer, List<TaskQuota>> quotasByTask = new ConcurrentHashMap<>();
   private final Map<QuotaSection, List<TaskQuota>> quotasByNamespace = new HashMap<>();
-  private final Pattern PROJECT_PATTERN = Pattern.compile("\\s+(.*\\.git)\\s+(\\S+)$");
+  private final Pattern PROJECT_PATTERN = Pattern.compile("\\s+/?(.*)\\s+(\\(\\S+\\))$");
   private final Config quotaConfig;
   private final TaskQuota.BuildInfo baseBuildInfo;
 
@@ -123,6 +123,6 @@ public class TaskQuotas implements WorkQueue.TaskParker {
   private Optional<Project.NameKey> estimateProject(WorkQueue.Task<?> task) {
     Matcher matcher = PROJECT_PATTERN.matcher(task.toString());
 
-    return matcher.find() ? Optional.of(Project.nameKey(matcher.group(1))) : Optional.empty();
+    return matcher.find() ? Optional.of(Project.NameKey.parse(matcher.group(1))) : Optional.empty();
   }
 }
