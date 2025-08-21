@@ -22,6 +22,30 @@
       },
       "revId": "89b64c301c26ef2121fc265a38701f6534dc1c3c",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd9181d4_4c179c60",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-08-21T17:01:41Z",
+      "side": 1,
+      "message": "But we aren\u0027t filtering by task. Unlike in `maxStartPerUserForTaskForQueue` where we specify the task type.",
+      "parentUuid": "18119ff1_8883c647",
+      "range": {
+        "startLine": 298,
+        "startChar": 3,
+        "endLine": 298,
+        "endChar": 31
+      },
+      "revId": "89b64c301c26ef2121fc265a38701f6534dc1c3c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ],
   "submitRequirementResults": [
