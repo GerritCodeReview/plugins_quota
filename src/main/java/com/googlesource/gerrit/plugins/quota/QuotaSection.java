@@ -15,62 +15,23 @@
 package com.googlesource.gerrit.plugins.quota;
 
 import com.google.gerrit.entities.Project;
-import java.util.Arrays;
+
 import java.util.List;
-import java.util.Optional;
 
-import org.eclipse.jgit.lib.Config;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+public interface QuotaSection {
+  String KEY_MAX_PROJECTS = "maxProjects";
+  String KEY_MAX_REPO_SIZE = "maxRepoSize";
+  String KEY_MAX_TOTAL_SIZE = "maxTotalSize";
 
-public record QuotaSection(Config cfg, String namespace, String resolvedNamespace) {
-  private static final Logger log = LoggerFactory.getLogger(QuotaSection.class);
-  public static final String QUOTA = "quota";
-  public static final String KEY_MAX_PROJECTS = "maxProjects";
-  public static final String KEY_MAX_REPO_SIZE = "maxRepoSize";
-  public static final String KEY_MAX_TOTAL_SIZE = "maxTotalSize";
+  String getNamespace();
 
-  public QuotaSection(Config cfg, String namespace) {
-    this(cfg, namespace, namespace);
-  }
+  boolean matches(Project.NameKey project);
 
-  public String getNamespace() {
-    return resolvedNamespace;
-  }
+  Integer getMaxProjects();
 
-  public boolean matches(Project.NameKey project) {
-    return new Namespace(resolvedNamespace).matches(project);
-  }
+  Long getMaxRepoSize();
 
-  public Integer getMaxProjects() {
-    if (!cfg.getNames(QUOTA, namespace).contains(KEY_MAX_PROJECTS)) {
-      return null;
-    }
-    return cfg.getInt(QUOTA, namespace, KEY_MAX_PROJECTS, Integer.MAX_VALUE);
-  }
+  Long getMaxTotalSize();
 
-  public Long getMaxRepoSize() {
-    if (!cfg.getNames(QUOTA, namespace).contains(KEY_MAX_REPO_SIZE)) {
-      return null;
-    }
-    return cfg.getLong(QUOTA, namespace, KEY_MAX_REPO_SIZE, Long.MAX_VALUE);
-  }
-
-  public Long getMaxTotalSize() {
-    if (!cfg.getNames(QUOTA, namespace).contains(KEY_MAX_TOTAL_SIZE)) {
-      return null;
-    }
-    return cfg.getLong(QUOTA, namespace, KEY_MAX_TOTAL_SIZE, Long.MAX_VALUE);
-  }
-
-  public List<TaskQuota> getAllQuotas() {
-    return Arrays.stream(TaskQuotaKeys.values())
-        .flatMap(
-            type ->
-                Arrays.stream(cfg.getStringList(QUOTA, namespace, type.key))
-                    .map(cfgLine -> new TaskQuota.BuildInfo(cfgLine, namespace))
-                    .map(type.processor)
-                    .flatMap(Optional::stream))
-        .toList();
-  }
+  List<TaskQuota> getAllQuotas();
 }

@@ -14,11 +14,9 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
-import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.entities.Project;
 import com.google.gerrit.server.config.GerritServerConfig;
 import com.google.gerrit.server.config.ThreadSettingsConfig;
-import com.google.gerrit.server.git.QueueProvider;
 import com.google.gerrit.server.git.WorkQueue;
 
 import java.util.*;
@@ -27,7 +25,6 @@ import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import org.eclipse.jgit.lib.Config;
@@ -73,6 +70,7 @@ public class TaskQuotas implements WorkQueue.TaskParker {
         quotaFinder.getQuotaNamespaces(quotaConfig).stream()
             .collect(Collectors.toMap(Function.identity(), QuotaSection::getAllQuotas)));
 
+    sharedQuotas.addAll(quotaFinder.getGlobalNamespacedQuota().getAllQuotas());
     sharedQuotas.addAll(SoftMaxBuilder.build(threadSizes));
   }
 
@@ -82,7 +80,7 @@ public class TaskQuotas implements WorkQueue.TaskParker {
     QuotaSection applicableQS =
         estimatedProject
             .map(project -> quotaFinder.firstMatching(quotaConfig, project))
-            .orElse(quotaFinder.getGlobalNamespacedQuota(quotaConfig));
+            .orElse(quotaFinder.getFallbackNamespacedQuota(quotaConfig));
     List<TaskQuota> quotas = new ArrayList<>();
     quotas.addAll(quotasByNamespace.getOrDefault(applicableQS, List.of()));
     quotas.addAll(sharedQuotas);
@@ -90,9 +88,9 @@ public class TaskQuotas implements WorkQueue.TaskParker {
     List<TaskQuota> acquiredQuotas = new ArrayList<>();
     for (TaskQuota quota : quotas) {
       if (quota.isApplicable(task)) {
-        if (!quota.tryAcquire(task, applicableQS.namespace())) {
+        if (!quota.tryAcquire(task, applicableQS.getNamespace())) {
           log.debug("Task [{}] will be parked due task quota rules", task);
-          acquiredQuotas.forEach(q -> q.release(task, applicableQS.namespace()));
+          acquiredQuotas.forEach(q -> q.release(task, applicableQS.getNamespace()));
           return false;
         }
         acquiredQuotas.add(quota);
@@ -101,7 +99,7 @@ public class TaskQuotas implements WorkQueue.TaskParker {
 
     if (!acquiredQuotas.isEmpty()) {
       quotaInfosByTask.put(
-          task.getTaskId(), new AcquiredTaskInfo(acquiredQuotas, applicableQS.namespace()));
+          task.getTaskId(), new AcquiredTaskInfo(acquiredQuotas, applicableQS.getNamespace()));
     }
     return true;
   }

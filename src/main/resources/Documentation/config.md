@@ -301,6 +301,19 @@ Example:
 This config make sures that as soon as a specific user has 3 tasks running, it ensures
 that there is still at least one idle thread remaining after the task is started.
 
+Global Quotas
+-------------
+
+In addition to the individual quotas specified in particular namespaces, these quotas
+are always applied.
+
+```
+ [global-quota]
+   maxProjects = 10
+   maxRepoSize = 3 m
+   softMaxStartPerUserForQueue = 3 SSH-Interavtive-Users
+```
+
 Publication Schedule
 --------------------
 
