@@ -13,22 +13,17 @@ import java.util.regex.Pattern;
 import static com.googlesource.gerrit.plugins.quota.TaskParser.user;
 
 public class SoftMaxPerUserForQueue extends TaskQuota {
-  public static final Map<String, Function<BuildInfo, Integer>> QUEUES =
-      Map.of(
-          "SSH-Interactive-Worker",
-          BuildInfo::interactiveThreads,
-          "SSH-Batch-Worker",
-          BuildInfo::batchThreads);
-  public static final Pattern CONFIG_PATTERN =
-      Pattern.compile("(\\d+)\\s+(" + String.join("|", QUEUES.keySet()) + ")");
-  private final int softMax;
+  record NamespacedUser(String namespace, String user) {}
+
+  private final Map<String, Integer> softMaxByNamespace;
   private final String queueName;
-  private final ConcurrentHashMap<String, Integer> taskStartedCountByUser =
+  private final ConcurrentHashMap<NamespacedUser, Integer> taskStartedCountByUser =
       new ConcurrentHashMap<>();
 
-  public SoftMaxPerUserForQueue(int maxPermits, int softMax, String queueName) {
+  public SoftMaxPerUserForQueue(
+      int maxPermits, Map<String, Integer> softMaxByNamespace, String queueName) {
     super(maxPermits);
-    this.softMax = softMax;
+    this.softMaxByNamespace = softMaxByNamespace;
     this.queueName = queueName;
   }
 
@@ -38,16 +33,16 @@ public class SoftMaxPerUserForQueue extends TaskQuota {
   }
 
   @Override
-  public boolean tryAcquire(WorkQueue.Task<?> task) {
+  public boolean tryAcquire(WorkQueue.Task<?> task, String namespace) {
     return user(task)
         .map(
             user -> {
               AtomicBoolean acquired = new AtomicBoolean(false);
               taskStartedCountByUser.compute(
-                  user,
+                  new NamespacedUser(namespace, user),
                   (key, val) -> {
                     int runningTasks = (val != null) ? val : 0;
-                    boolean overSoftLimit = runningTasks >= softMax;
+                    boolean overSoftLimit = runningTasks >= softMaxByNamespace.get(namespace);
                     int permitCost = overSoftLimit ? 2 : 1;
 
                     if (permits.tryAcquire(permitCost)) {
@@ -65,26 +60,15 @@ public class SoftMaxPerUserForQueue extends TaskQuota {
   }
 
   @Override
-  public void release(WorkQueue.Task<?> task) {
+  public void release(WorkQueue.Task<?> task, String namespace) {
     user(task)
         .ifPresent(
             user ->
                 taskStartedCountByUser.computeIfPresent(
-                    user,
+                    new NamespacedUser(namespace, user),
                     (u, tasks) -> {
                       permits.release(1);
                       return tasks == 1 ? null : --tasks;
                     }));
-  }
-
-  public static Optional<TaskQuota> build(BuildInfo buildInfo) {
-    Matcher matcher = CONFIG_PATTERN.matcher(buildInfo.config());
-    return matcher.find()
-        ? Optional.of(
-            new SoftMaxPerUserForQueue(
-                QUEUES.get(matcher.group(2)).apply(buildInfo),
-                Integer.parseInt(matcher.group(1)),
-                matcher.group(2)))
-        : Optional.empty();
   }
 }

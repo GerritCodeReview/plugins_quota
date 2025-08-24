@@ -27,6 +27,7 @@ import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import org.eclipse.jgit.lib.Config;
@@ -35,13 +36,16 @@ import org.slf4j.LoggerFactory;
 
 @Singleton
 public class TaskQuotas implements WorkQueue.TaskParker {
+  record AcquiredTaskInfo(List<TaskQuota> quotas, String namespace) {}
+
   private static final Logger log = LoggerFactory.getLogger(TaskQuotas.class);
   private final QuotaFinder quotaFinder;
-  private final Map<Integer, List<TaskQuota>> quotasByTask = new ConcurrentHashMap<>();
+  private final Map<Integer, AcquiredTaskInfo> quotaInfosByTask = new ConcurrentHashMap<>();
   private final Map<QuotaSection, List<TaskQuota>> quotasByNamespace = new HashMap<>();
   private final Pattern PROJECT_PATTERN = Pattern.compile("\\s+/?(.*)\\s+(\\(\\S+\\))$");
   private final Config quotaConfig;
-  private final TaskQuota.BuildInfo baseBuildInfo;
+  private final SoftMaxBuilder.ThreadSizes threadSizes;
+  private final List<TaskQuota> sharedQuotas = new ArrayList<>();
 
   @Inject
   public TaskQuotas(
@@ -59,7 +63,7 @@ public class TaskQuotas implements WorkQueue.TaskParker {
       poolSize += batchThreads;
     }
     int interactiveThreads = Math.max(1, poolSize - batchThreads);
-    baseBuildInfo = new TaskQuota.BuildInfo(interactiveThreads, batchThreads);
+    threadSizes = new SoftMaxBuilder.ThreadSizes(interactiveThreads, batchThreads);
 
     initQuotas();
   }
@@ -67,29 +71,28 @@ public class TaskQuotas implements WorkQueue.TaskParker {
   private void initQuotas() {
     quotasByNamespace.putAll(
         quotaFinder.getQuotaNamespaces(quotaConfig).stream()
-            .collect(Collectors.toMap(Function.identity(), qs -> qs.getAllQuotas(baseBuildInfo))));
+            .collect(Collectors.toMap(Function.identity(), QuotaSection::getAllQuotas)));
+
+    sharedQuotas.addAll(SoftMaxBuilder.build(threadSizes));
   }
 
   @Override
   public boolean isReadyToStart(WorkQueue.Task<?> task) {
     Optional<Project.NameKey> estimatedProject = estimateProject(task);
-    List<TaskQuota> quotas =
+    QuotaSection applicableQS =
         estimatedProject
-            .map(
-                project -> {
-                  return quotasByNamespace.getOrDefault(
-                      Optional.ofNullable(quotaFinder.firstMatching(quotaConfig, project))
-                          .orElse(quotaFinder.getGlobalNamespacedQuota(quotaConfig)),
-                      List.of());
-                })
-            .orElse(List.of());
+            .map(project -> quotaFinder.firstMatching(quotaConfig, project))
+            .orElse(quotaFinder.getGlobalNamespacedQuota(quotaConfig));
+    List<TaskQuota> quotas = new ArrayList<>();
+    quotas.addAll(quotasByNamespace.getOrDefault(applicableQS, List.of()));
+    quotas.addAll(sharedQuotas);
 
     List<TaskQuota> acquiredQuotas = new ArrayList<>();
     for (TaskQuota quota : quotas) {
       if (quota.isApplicable(task)) {
-        if (!quota.tryAcquire(task)) {
+        if (!quota.tryAcquire(task, applicableQS.namespace())) {
           log.debug("Task [{}] will be parked due task quota rules", task);
-          acquiredQuotas.forEach(q -> q.release(task));
+          acquiredQuotas.forEach(q -> q.release(task, applicableQS.namespace()));
           return false;
         }
         acquiredQuotas.add(quota);
@@ -97,7 +100,8 @@ public class TaskQuotas implements WorkQueue.TaskParker {
     }
 
     if (!acquiredQuotas.isEmpty()) {
-      quotasByTask.put(task.getTaskId(), acquiredQuotas);
+      quotaInfosByTask.put(
+          task.getTaskId(), new AcquiredTaskInfo(acquiredQuotas, applicableQS.namespace()));
     }
     return true;
   }
@@ -116,8 +120,11 @@ public class TaskQuotas implements WorkQueue.TaskParker {
   }
 
   private void release(WorkQueue.Task<?> task) {
-    Optional.ofNullable(quotasByTask.remove(task.getTaskId()))
-        .ifPresent(quotas -> quotas.forEach(q -> q.release(task)));
+    Optional.ofNullable(quotaInfosByTask.remove(task.getTaskId()))
+        .ifPresent(
+            acquiredTaskInfo ->
+                acquiredTaskInfo.quotas.forEach(
+                    q -> q.release(task, acquiredTaskInfo.namespace())));
   }
 
   private Optional<Project.NameKey> estimateProject(WorkQueue.Task<?> task) {
