@@ -46,6 +46,8 @@ import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.stream.Stream;
+
 import org.apache.commons.lang3.mutable.MutableLong;
 import org.eclipse.jgit.internal.storage.file.FileRepository;
 import org.eclipse.jgit.internal.storage.file.GC;
@@ -87,7 +89,14 @@ public class MaxRepositorySizeQuota implements QuotaEnforcer, RepoSizeCache {
   }
 
   protected Optional<Long> getMaxPackSize(Project.NameKey project) {
-    QuotaSection quotaSection = quotaFinder.firstMatching(project);
+    return Stream.of(
+            getMaxPackSize(project, quotaFinder.firstMatching(project)),
+            getMaxPackSize(project, quotaFinder.getGlobalNamespacedQuota()))
+        .flatMap(Optional::stream)
+        .min(Long::compareTo);
+  }
+
+  protected Optional<Long> getMaxPackSize(Project.NameKey project, QuotaSection quotaSection) {
     if (quotaSection == null) {
       return Optional.empty();
     }
