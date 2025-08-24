@@ -27,12 +27,12 @@ public class TaskQuotaPerUserForTaskForQueue extends TaskQuotaForTaskForQueue {
   }
 
   @Override
-  public boolean tryAcquire(WorkQueue.Task<?> task) {
+  public boolean tryAcquire(WorkQueue.Task<?> task, String namespace) {
     return perUserTaskQuota.tryAcquire(task);
   }
 
   @Override
-  public void release(WorkQueue.Task<?> task) {
+  public void release(WorkQueue.Task<?> task, String namespace) {
     perUserTaskQuota.release(task);
   }
 
