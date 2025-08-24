@@ -29,21 +29,13 @@ public abstract class TaskQuota {
 
   public abstract boolean isApplicable(WorkQueue.Task<?> task);
 
-  public boolean tryAcquire(WorkQueue.Task<?> task) {
+  public boolean tryAcquire(WorkQueue.Task<?> task, String namespace) {
     return permits.tryAcquire();
   }
 
-  public void release(WorkQueue.Task<?> task) {
+  public void release(WorkQueue.Task<?> task, String namespace) {
     permits.release();
   }
 
-  public record BuildInfo(String config, int interactiveThreads, int batchThreads) {
-    public BuildInfo(int interactiveThreads, int batchThreads) {
-      this("", interactiveThreads, batchThreads);
-    }
-
-    public BuildInfo generateWithCfg(String cfg) {
-      return new BuildInfo(cfg, interactiveThreads, batchThreads);
-    }
-  }
+  public record BuildInfo(String config, String namespace) {}
 }
