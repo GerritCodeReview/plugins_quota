@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cb7da99_3e53a5a3",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/SoftMaxPerUserForQueue.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-08-25T15:50:54Z",
+      "side": 1,
+      "message": "bug: this should not acquire two permits if we are trying to apply both global and local namespaced quota.",
+      "revId": "036c54028d59c46fdfc86b0c2f0d956607a3370b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
