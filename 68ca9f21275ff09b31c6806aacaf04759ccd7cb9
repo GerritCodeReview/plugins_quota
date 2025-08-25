@@ -141,6 +141,24 @@
       "parentUuid": "dafdc899_ae254b61",
       "revId": "68ca9f21275ff09b31c6806aacaf04759ccd7cb9",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c1409bc_0a362fb9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-08-25T15:42:53Z",
+      "side": 1,
+      "message": "Tried to add some details, lmk if you need any more explanation is needed.",
+      "parentUuid": "a9a29c77_0ac1ba3f",
+      "revId": "68ca9f21275ff09b31c6806aacaf04759ccd7cb9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
