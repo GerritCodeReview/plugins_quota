@@ -123,6 +123,24 @@
       "parentUuid": "b90b8ae5_ca5e6879",
       "revId": "68ca9f21275ff09b31c6806aacaf04759ccd7cb9",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9a29c77_0ac1ba3f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-08-25T15:32:55Z",
+      "side": 1,
+      "message": "If it was buggy, that has to involve bad behavior. Can you describe in the CM what these changes are?",
+      "parentUuid": "dafdc899_ae254b61",
+      "revId": "68ca9f21275ff09b31c6806aacaf04759ccd7cb9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
