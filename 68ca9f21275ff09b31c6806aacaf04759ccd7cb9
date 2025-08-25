@@ -69,6 +69,24 @@
       "parentUuid": "48684c53_447f65f1",
       "revId": "68ca9f21275ff09b31c6806aacaf04759ccd7cb9",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1046f91_1130c7e8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-08-25T15:06:16Z",
+      "side": 1,
+      "message": "\u003e One of the biggest issues, is that this introduces a keyword which behaves differently than all the other keywords, and that makes things harder for admins to work with.\n\nThere should be no difference in terms of behaviour only implementation.",
+      "parentUuid": "0f7f8e4a_00b5cff5",
+      "revId": "68ca9f21275ff09b31c6806aacaf04759ccd7cb9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
