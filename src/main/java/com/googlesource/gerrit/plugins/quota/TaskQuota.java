@@ -16,10 +16,12 @@ package com.googlesource.gerrit.plugins.quota;
 
 import com.google.gerrit.server.git.WorkQueue;
 
-public interface TaskQuota {
+public interface TaskQuota extends WorkQueue.TaskParker {
   boolean isApplicable(WorkQueue.Task<?> task);
 
-  boolean tryAcquire(WorkQueue.Task<?> task);
+  @Override
+  default void onNotReadyToStart(WorkQueue.Task<?> task) {}
 
-  void release(WorkQueue.Task<?> task);
+  @Override
+  default void onStart(WorkQueue.Task<?> task) {}
 }

@@ -90,9 +90,9 @@ public class TaskQuotas implements WorkQueue.TaskParker {
     List<TaskQuota> acquiredQuotas = new ArrayList<>();
     for (TaskQuota quota : quotas) {
       if (quota.isApplicable(task)) {
-        if (!quota.tryAcquire(task)) {
+        if (!quota.isReadyToStart(task)) {
           log.debug("Task [{}] will be parked due task quota rules", task);
-          acquiredQuotas.forEach(q -> q.release(task));
+          acquiredQuotas.forEach(q -> q.onStop(task));
           QueueStats.release(queue, 1);
           return false;
         }
@@ -122,7 +122,7 @@ public class TaskQuotas implements WorkQueue.TaskParker {
   private void release(WorkQueue.Task<?> task) {
     QueueStats.release(QueueStats.Queue.fromKey(task.getQueueName()), 1);
     Optional.ofNullable(quotasByTask.remove(task.getTaskId()))
-        .ifPresent(quotas -> quotas.forEach(q -> q.release(task)));
+        .ifPresent(quotas -> quotas.forEach(q -> q.onStop(task)));
   }
 
   private Optional<Project.NameKey> estimateProject(WorkQueue.Task<?> task) {
