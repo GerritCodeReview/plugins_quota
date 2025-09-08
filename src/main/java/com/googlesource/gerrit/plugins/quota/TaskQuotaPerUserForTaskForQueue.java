@@ -17,8 +17,11 @@ package com.googlesource.gerrit.plugins.quota;
 import com.google.gerrit.server.git.WorkQueue;
 import java.util.Optional;
 import java.util.regex.Matcher;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TaskQuotaPerUserForTaskForQueue extends TaskQuotaForTaskForQueue {
+  public static final Logger log = LoggerFactory.getLogger(TaskQuotaPerUserForTaskForQueue.class);
   private final PerUserTaskQuota perUserTaskQuota;
 
   public TaskQuotaPerUserForTaskForQueue(String queue, String taskGroup, int maxStart) {
@@ -36,14 +39,14 @@ public class TaskQuotaPerUserForTaskForQueue extends TaskQuotaForTaskForQueue {
     perUserTaskQuota.release(task);
   }
 
-  public static Optional<TaskQuota> build(BuildInfo buildInfo) {
-    Matcher matcher = CONFIG_PATTERN.matcher(buildInfo.config());
+  public static Optional<TaskQuota> build(String cfg) {
+    Matcher matcher = CONFIG_PATTERN.matcher(cfg);
     if (matcher.matches()) {
       return Optional.of(
           new TaskQuotaPerUserForTaskForQueue(
               matcher.group(3), matcher.group(2), Integer.parseInt(matcher.group(1))));
     } else {
-      log.error("Invalid configuration entry [{}]", buildInfo.config());
+      log.error("Invalid configuration entry [{}]", cfg);
       return Optional.empty();
     }
   }

@@ -18,8 +18,11 @@ import com.google.gerrit.server.git.WorkQueue;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TaskQuotaForTaskForQueueForUser extends TaskQuotaForTaskForQueue {
+  public static final Logger log = LoggerFactory.getLogger(TaskQuotaForTaskForQueueForUser.class);
   public static final Pattern CONFIG_PATTERN =
       Pattern.compile(
           "(\\d+)\\s+("
