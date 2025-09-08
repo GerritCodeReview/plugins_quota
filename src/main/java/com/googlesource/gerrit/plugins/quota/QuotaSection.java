@@ -62,12 +62,11 @@ public record QuotaSection(Config cfg, String namespace, String resolvedNamespac
     return cfg.getLong(QUOTA, namespace, KEY_MAX_TOTAL_SIZE, Long.MAX_VALUE);
   }
 
-  public List<TaskQuota> getAllQuotas(TaskQuota.BuildInfo buildInfo) {
+  public List<TaskQuota> getAllQuotas() {
     return Arrays.stream(TaskQuotaKeys.values())
         .flatMap(
             type ->
                 Arrays.stream(cfg.getStringList(QUOTA, namespace, type.key))
-                    .map(buildInfo::generateWithCfg)
                     .map(type.processor)
                     .flatMap(Optional::stream))
         .toList();

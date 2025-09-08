@@ -21,29 +21,16 @@ import org.slf4j.LoggerFactory;
 
 public abstract class TaskQuota {
   protected static final Logger log = LoggerFactory.getLogger(TaskQuota.class);
-  protected final Semaphore permits;
-
-  public TaskQuota(int maxPermits) {
-    this.permits = new Semaphore(maxPermits);
-  }
 
   public abstract boolean isApplicable(WorkQueue.Task<?> task);
 
-  public boolean tryAcquire(WorkQueue.Task<?> task) {
-    return permits.tryAcquire();
-  }
+  public abstract boolean tryAcquire(WorkQueue.Task<?> task);
 
-  public void release(WorkQueue.Task<?> task) {
-    permits.release();
-  }
+  public abstract void release(WorkQueue.Task<?> task);
 
-  public record BuildInfo(String config, int interactiveThreads, int batchThreads) {
-    public BuildInfo(int interactiveThreads, int batchThreads) {
-      this("", interactiveThreads, batchThreads);
-    }
-
+  public record BuildInfo(String config) {
     public BuildInfo generateWithCfg(String cfg) {
-      return new BuildInfo(cfg, interactiveThreads, batchThreads);
+      return new BuildInfo(cfg);
     }
   }
 }
