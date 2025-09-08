@@ -104,6 +104,24 @@
       "parentUuid": "23cdb983_b7facccf",
       "revId": "466ad95b22ae33bf9444a26865e167b2aea8fee6",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1eb175b6_c232cf95",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuota.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-09-08T16:53:58Z",
+      "side": 1,
+      "message": "I\u0027ll leave that to you. If it stands on its own before this, go for.",
+      "parentUuid": "91e610e5_6ff75230",
+      "revId": "466ad95b22ae33bf9444a26865e167b2aea8fee6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
