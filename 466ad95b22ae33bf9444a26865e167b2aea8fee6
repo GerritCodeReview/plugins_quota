@@ -122,6 +122,24 @@
       "parentUuid": "91e610e5_6ff75230",
       "revId": "466ad95b22ae33bf9444a26865e167b2aea8fee6",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5e265a1_a3b23d5e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuota.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-09-08T16:59:35Z",
+      "side": 1,
+      "message": "Actually on another look, `isApplicable` is one thing we cannot directly relate to `TaskParker`. `tryAcquire` could be changed to `isReadyToStart` but I like the `acquire` more. Since we anyway need to create a sub interface for the needs of `isApplicable` I would like to have this.",
+      "parentUuid": "1eb175b6_c232cf95",
+      "revId": "466ad95b22ae33bf9444a26865e167b2aea8fee6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
