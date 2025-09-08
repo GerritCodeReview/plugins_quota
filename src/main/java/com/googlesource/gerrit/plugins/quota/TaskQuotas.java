@@ -88,27 +88,25 @@ public class TaskQuotas implements WorkQueue.TaskParker {
     }
 
     List<TaskQuota> acquiredQuotas = new ArrayList<>();
+    quotasByTask.put(task.getTaskId(), acquiredQuotas);
+
     for (TaskQuota quota : quotas) {
       if (quota.isApplicable(task)) {
-        if (!quota.tryAcquire(task)) {
+        if (!quota.isReadyToStart(task)) {
           log.debug("Task [{}] will be parked due task quota rules", task);
-          acquiredQuotas.forEach(q -> q.release(task));
-          QueueStats.release(queue, 1);
           return false;
         }
         acquiredQuotas.add(quota);
       }
-    }
-
-    if (!acquiredQuotas.isEmpty()) {
-      quotasByTask.put(task.getTaskId(), acquiredQuotas);
     }
     return true;
   }
 
   @Override
   public void onNotReadyToStart(WorkQueue.Task<?> task) {
-    release(task);
+    QueueStats.release(QueueStats.Queue.fromKey(task.getQueueName()), 1);
+    Optional.ofNullable(quotasByTask.remove(task.getTaskId()))
+        .ifPresent(quotas -> quotas.forEach(q -> q.onStop(task)));
   }
 
   @Override
@@ -116,13 +114,9 @@ public class TaskQuotas implements WorkQueue.TaskParker {
 
   @Override
   public void onStop(WorkQueue.Task<?> task) {
-    release(task);
-  }
-
-  private void release(WorkQueue.Task<?> task) {
     QueueStats.release(QueueStats.Queue.fromKey(task.getQueueName()), 1);
     Optional.ofNullable(quotasByTask.remove(task.getTaskId()))
-        .ifPresent(quotas -> quotas.forEach(q -> q.release(task)));
+        .ifPresent(quotas -> quotas.forEach(q -> q.onStop(task)));
   }
 
   private Optional<Project.NameKey> estimateProject(WorkQueue.Task<?> task) {
