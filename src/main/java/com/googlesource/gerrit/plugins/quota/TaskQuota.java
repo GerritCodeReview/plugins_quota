@@ -15,35 +15,11 @@
 package com.googlesource.gerrit.plugins.quota;
 
 import com.google.gerrit.server.git.WorkQueue;
-import java.util.concurrent.Semaphore;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public abstract class TaskQuota {
-  protected static final Logger log = LoggerFactory.getLogger(TaskQuota.class);
-  protected final Semaphore permits;
+public interface TaskQuota {
+  boolean isApplicable(WorkQueue.Task<?> task);
 
-  public TaskQuota(int maxPermits) {
-    this.permits = new Semaphore(maxPermits);
-  }
+  boolean tryAcquire(WorkQueue.Task<?> task);
 
-  public abstract boolean isApplicable(WorkQueue.Task<?> task);
-
-  public boolean tryAcquire(WorkQueue.Task<?> task) {
-    return permits.tryAcquire();
-  }
-
-  public void release(WorkQueue.Task<?> task) {
-    permits.release();
-  }
-
-  public record BuildInfo(String config, int interactiveThreads, int batchThreads) {
-    public BuildInfo(int interactiveThreads, int batchThreads) {
-      this("", interactiveThreads, batchThreads);
-    }
-
-    public BuildInfo generateWithCfg(String cfg) {
-      return new BuildInfo(cfg, interactiveThreads, batchThreads);
-    }
-  }
+  void release(WorkQueue.Task<?> task);
 }

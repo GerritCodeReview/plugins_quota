@@ -18,7 +18,7 @@ import com.google.gerrit.server.git.WorkQueue;
 import java.util.Map;
 import java.util.Set;
 
-public abstract class TaskQuotaForTask extends TaskQuota {
+public abstract class TaskQuotaForTask extends TaskQuotaWithPermits {
   protected static final Map<String, Set<String>> SUPPORTED_TASKS_BY_GROUP =
       Map.of("uploadpack", Set.of("git-upload-pack"), "receivepack", Set.of("git-receive-pack"));
   private final String taskGroup;

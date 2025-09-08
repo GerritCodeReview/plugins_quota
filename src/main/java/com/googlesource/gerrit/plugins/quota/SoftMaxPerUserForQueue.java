@@ -17,37 +17,28 @@ package com.googlesource.gerrit.plugins.quota;
 import static com.googlesource.gerrit.plugins.quota.TaskParser.user;
 
 import com.google.gerrit.server.git.WorkQueue;
-import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SoftMaxPerUserForQueue extends TaskQuota {
-  public static final Map<String, Function<BuildInfo, Integer>> QUEUES =
-      Map.of(
-          "SSH-Interactive-Worker",
-          BuildInfo::interactiveThreads,
-          "SSH-Batch-Worker",
-          BuildInfo::batchThreads);
+public class SoftMaxPerUserForQueue implements TaskQuota {
   public static final Pattern CONFIG_PATTERN =
-      Pattern.compile("(\\d+)\\s+(" + String.join("|", QUEUES.keySet()) + ")");
+      Pattern.compile("(\\d+)\\s+(" + String.join("|", QueueStats.Queue.keys()) + ")");
   private final int softMax;
-  private final String queueName;
+  private final QueueStats.Queue queue;
   private final ConcurrentHashMap<String, Integer> taskStartedCountByUser =
       new ConcurrentHashMap<>();
 
-  public SoftMaxPerUserForQueue(int maxPermits, int softMax, String queueName) {
-    super(maxPermits);
+  public SoftMaxPerUserForQueue(int softMax, String queueName) {
     this.softMax = softMax;
-    this.queueName = queueName;
+    this.queue = QueueStats.Queue.fromKey(queueName);
   }
 
   @Override
   public boolean isApplicable(WorkQueue.Task<?> task) {
-    return task.getQueueName().equals(queueName);
+    return task.getQueueName().equals(queue.getName());
   }
 
   @Override
@@ -61,14 +52,12 @@ public class SoftMaxPerUserForQueue extends TaskQuota {
                   (key, val) -> {
                     int runningTasks = (val != null) ? val : 0;
                     boolean overSoftLimit = runningTasks >= softMax;
-                    int permitCost = overSoftLimit ? 2 : 1;
-
-                    if (permits.tryAcquire(permitCost)) {
+                    if (runningTasks < softMax || QueueStats.acquire(queue, 1)) {
                       acquired.setPlain(true);
-                      if (overSoftLimit) {
-                        permits.release(1);
-                      }
                       ++runningTasks;
+                      if (overSoftLimit) {
+                        QueueStats.release(queue, 1);
+                      }
                     }
                     return runningTasks;
                   });
@@ -85,19 +74,15 @@ public class SoftMaxPerUserForQueue extends TaskQuota {
                 taskStartedCountByUser.computeIfPresent(
                     user,
                     (u, tasks) -> {
-                      permits.release(1);
                       return tasks == 1 ? null : --tasks;
                     }));
   }
 
-  public static Optional<TaskQuota> build(BuildInfo buildInfo) {
-    Matcher matcher = CONFIG_PATTERN.matcher(buildInfo.config());
+  public static Optional<TaskQuota> build(String cfg) {
+    Matcher matcher = CONFIG_PATTERN.matcher(cfg);
     return matcher.find()
         ? Optional.of(
-            new SoftMaxPerUserForQueue(
-                QUEUES.get(matcher.group(2)).apply(buildInfo),
-                Integer.parseInt(matcher.group(1)),
-                matcher.group(2)))
+            new SoftMaxPerUserForQueue(Integer.parseInt(matcher.group(1)), matcher.group(2)))
         : Optional.empty();
   }
 }
