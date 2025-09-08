@@ -87,6 +87,24 @@
       "parentUuid": "08a1580d_4eac5556",
       "revId": "056b980d063e41e2e77d422ef593e1905ba89eb8",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be40fff1_422dcf07",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-09-08T21:13:50Z",
+      "side": 1,
+      "message": "OK, but that\u0027s convoluted and hard to follow, which is why behaving as proxy would probably be easier to understand here.",
+      "parentUuid": "3fb789d7_81423f6d",
+      "revId": "056b980d063e41e2e77d422ef593e1905ba89eb8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
