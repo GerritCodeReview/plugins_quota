@@ -30,12 +30,12 @@ public class TaskQuotaPerUserForTaskForQueue extends TaskQuotaForTaskForQueue {
   }
 
   @Override
-  public boolean tryAcquire(WorkQueue.Task<?> task) {
+  public boolean isReadyToStart(WorkQueue.Task<?> task) {
     return perUserTaskQuota.tryAcquire(task);
   }
 
   @Override
-  public void release(WorkQueue.Task<?> task) {
+  public void onStop(WorkQueue.Task<?> task) {
     perUserTaskQuota.release(task);
   }
 
