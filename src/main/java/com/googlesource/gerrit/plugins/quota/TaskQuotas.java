@@ -38,7 +38,6 @@ public class TaskQuotas implements WorkQueue.TaskParker {
   private final Map<QuotaSection, List<TaskQuota>> quotasByNamespace = new HashMap<>();
   private final Pattern PROJECT_PATTERN = Pattern.compile("\\s+/?(.*)\\s+(\\(\\S+\\))$");
   private final Config quotaConfig;
-  private final TaskQuota.BuildInfo baseBuildInfo;
 
   @Inject
   public TaskQuotas(
@@ -56,7 +55,8 @@ public class TaskQuotas implements WorkQueue.TaskParker {
       poolSize += batchThreads;
     }
     int interactiveThreads = Math.max(1, poolSize - batchThreads);
-    baseBuildInfo = new TaskQuota.BuildInfo(interactiveThreads, batchThreads);
+    QueueStats.initQueueWithCapacity(QueueStats.Queue.INTERACTIVE, interactiveThreads);
+    QueueStats.initQueueWithCapacity(QueueStats.Queue.BATCH, batchThreads);
 
     initQuotas();
   }
@@ -64,7 +64,7 @@ public class TaskQuotas implements WorkQueue.TaskParker {
   private void initQuotas() {
     quotasByNamespace.putAll(
         quotaFinder.getQuotaNamespaces(quotaConfig).stream()
-            .collect(Collectors.toMap(Function.identity(), qs -> qs.getAllQuotas(baseBuildInfo))));
+            .collect(Collectors.toMap(Function.identity(), QuotaSection::getAllQuotas)));
   }
 
   @Override
@@ -81,12 +81,19 @@ public class TaskQuotas implements WorkQueue.TaskParker {
                 })
             .orElse(List.of());
 
+    QueueStats.Queue queue = QueueStats.Queue.fromKey(task.getQueueName());
+
+    if (!QueueStats.acquire(queue, 1)) {
+      return false;
+    }
+
     List<TaskQuota> acquiredQuotas = new ArrayList<>();
     for (TaskQuota quota : quotas) {
       if (quota.isApplicable(task)) {
         if (!quota.tryAcquire(task)) {
           log.debug("Task [{}] will be parked due task quota rules", task);
           acquiredQuotas.forEach(q -> q.release(task));
+          QueueStats.release(queue, 1);
           return false;
         }
         acquiredQuotas.add(quota);
@@ -113,6 +120,7 @@ public class TaskQuotas implements WorkQueue.TaskParker {
   }
 
   private void release(WorkQueue.Task<?> task) {
+    QueueStats.release(QueueStats.Queue.fromKey(task.getQueueName()), 1);
     Optional.ofNullable(quotasByTask.remove(task.getTaskId()))
         .ifPresent(quotas -> quotas.forEach(q -> q.release(task)));
   }
