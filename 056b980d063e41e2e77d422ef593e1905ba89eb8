@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "685b26e9_5369128e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-09-08T21:08:19Z",
+      "side": 1,
+      "message": "One thing to note is that even though we have made them implement TaskParker we haven\u0027t wired them yet to guice. So it actually doesn\u0027t call those methods automatically. \n\nThe reason for doing that is we initialize those quotas during runtime after the start of a command. We construct list of quotas by looking at the project on the task. If we were to do that wiring, each parker has to implement the logic of decoding the project and fetching appropriate configs.",
+      "parentUuid": "f841c992_76074952",
+      "revId": "056b980d063e41e2e77d422ef593e1905ba89eb8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "08a1580d_4eac5556",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
         "patchSetId": 1
