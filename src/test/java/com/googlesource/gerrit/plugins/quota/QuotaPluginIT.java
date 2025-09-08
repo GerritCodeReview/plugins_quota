@@ -108,7 +108,9 @@ public class QuotaPluginIT extends LightweightPluginDaemonTest {
   private void assertAdminUserHasNoLimitsOn(Type type) {
     AccountLimitsFinder accountLimitsFinder = getAccountLimitsFinder();
     OptionalSubject.assertThat(accountLimitsFinder.getRateLimit(type, "Administrators")).isEmpty();
-    OptionalSubject.assertThat(accountLimitsFinder.firstMatching(type, userFactory.create(admin.id()))).isEmpty();
+    OptionalSubject.assertThat(
+            accountLimitsFinder.firstMatching(type, userFactory.create(admin.id())))
+        .isEmpty();
   }
 
   private void asserUserLimitedOn(

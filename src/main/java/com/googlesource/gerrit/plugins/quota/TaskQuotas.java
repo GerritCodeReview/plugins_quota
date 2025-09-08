@@ -14,13 +14,10 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
-import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.entities.Project;
 import com.google.gerrit.server.config.GerritServerConfig;
 import com.google.gerrit.server.config.ThreadSettingsConfig;
-import com.google.gerrit.server.git.QueueProvider;
 import com.google.gerrit.server.git.WorkQueue;
-
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;

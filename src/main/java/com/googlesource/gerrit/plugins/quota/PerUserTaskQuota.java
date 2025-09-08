@@ -14,13 +14,12 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
-import com.google.gerrit.server.git.WorkQueue;
+import static com.googlesource.gerrit.plugins.quota.TaskParser.user;
 
+import com.google.gerrit.server.git.WorkQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicBoolean;
-
-import static com.googlesource.gerrit.plugins.quota.TaskParser.user;
 
 public class PerUserTaskQuota {
   private final ConcurrentHashMap<String, Semaphore> quotaByUser = new ConcurrentHashMap<>();
