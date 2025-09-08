@@ -10,11 +10,11 @@ public abstract class TaskQuotaWithPermits implements TaskQuota {
     this.permits = new Semaphore(maxPermits);
   }
 
-  public boolean tryAcquire(WorkQueue.Task<?> task) {
+  public boolean isReadyToStart(WorkQueue.Task<?> task) {
     return permits.tryAcquire();
   }
 
-  public void release(WorkQueue.Task<?> task) {
+  public void onStop(WorkQueue.Task<?> task) {
     permits.release();
   }
 }

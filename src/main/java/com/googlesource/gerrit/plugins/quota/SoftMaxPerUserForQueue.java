@@ -42,7 +42,7 @@ public class SoftMaxPerUserForQueue implements TaskQuota {
   }
 
   @Override
-  public boolean tryAcquire(WorkQueue.Task<?> task) {
+  public boolean isReadyToStart(WorkQueue.Task<?> task) {
     return user(task)
         .map(
             user -> {
@@ -64,7 +64,7 @@ public class SoftMaxPerUserForQueue implements TaskQuota {
   }
 
   @Override
-  public void release(WorkQueue.Task<?> task) {
+  public void onStop(WorkQueue.Task<?> task) {
     user(task)
         .ifPresent(
             user ->
