@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bac9005f_b383de71",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-09-08T14:54:44Z",
+      "side": 1,
+      "message": "reutrns above, so \"else\" line not needed.",
+      "revId": "466ad95b22ae33bf9444a26865e167b2aea8fee6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47a67601_1fff7c03",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/SoftMaxPerUserForQueue.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-09-08T14:54:44Z",
+      "side": 1,
+      "message": "Isn\u0027t this going to incorrectly release a thread when runningTasks is less then softMax?",
+      "revId": "466ad95b22ae33bf9444a26865e167b2aea8fee6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23cdb983_b7facccf",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuota.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-09-08T14:54:44Z",
+      "side": 1,
+      "message": "Why not instead extend the TaskParker interface, isn\u0027t this essentially representing that?",
+      "revId": "466ad95b22ae33bf9444a26865e167b2aea8fee6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
