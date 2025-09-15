@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f56f9f5_c9ff6dce",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-09-15T14:34:46Z",
+      "side": 1,
+      "message": "Calling stop() here is now too much since release() will also be called from onNotReadeToStart()?",
+      "revId": "b20fc023d67e6286a7795a49b6d18c5da04045af",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
