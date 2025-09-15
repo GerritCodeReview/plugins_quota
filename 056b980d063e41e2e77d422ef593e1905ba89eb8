@@ -54,6 +54,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "538859ff_23a2c126",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-09-15T14:17:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "659468f6_0eb818bc",
+      "revId": "056b980d063e41e2e77d422ef593e1905ba89eb8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "08a1580d_4eac5556",
@@ -103,6 +121,24 @@
       "side": 1,
       "message": "OK, but that\u0027s convoluted and hard to follow, which is why behaving as proxy would probably be easier to understand here.",
       "parentUuid": "3fb789d7_81423f6d",
+      "revId": "056b980d063e41e2e77d422ef593e1905ba89eb8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "936851b4_a5701463",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-09-15T14:17:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be40fff1_422dcf07",
       "revId": "056b980d063e41e2e77d422ef593e1905ba89eb8",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
