@@ -69,6 +69,24 @@
       "parentUuid": "96a87726_4f2eed1d",
       "revId": "2e1013ca81daa065d08ec285e519bd5e4ff137d6",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1626d082_df63a485",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QuotaFinder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-09-17T19:55:42Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "059f39df_20e36cb4",
+      "revId": "2e1013ca81daa065d08ec285e519bd5e4ff137d6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
