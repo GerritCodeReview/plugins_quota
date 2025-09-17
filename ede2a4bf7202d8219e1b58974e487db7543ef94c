@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a45736c1_f9d4803b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2025-09-17T20:22:14Z",
+      "side": 1,
+      "message": "Yes, I did think about using `getIfPresent()`, but that\u0027s not the right API here, because it doesn\u0027t trigger a load and it tells you only that the entry isn\u0027t cached, not whether the repository is missing.",
+      "parentUuid": "0c830b5b_f56b911a",
+      "range": {
+        "startLine": 112,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 9
+      },
+      "revId": "ede2a4bf7202d8219e1b58974e487db7543ef94c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "795d8825_9f0c27e0",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuotaTest.java",
         "patchSetId": 3
