@@ -19,9 +19,11 @@ import static com.google.gerrit.server.quota.QuotaResponse.error;
 import static com.google.gerrit.server.quota.QuotaResponse.noOp;
 import static com.google.gerrit.server.quota.QuotaResponse.ok;
 
+import com.google.common.base.Throwables;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.google.common.collect.Ordering;
+import com.google.common.util.concurrent.UncheckedExecutionException;
 import com.google.gerrit.entities.Project;
 import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gerrit.server.cache.CacheModule;
@@ -47,6 +49,7 @@ import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicLong;
 import org.apache.commons.lang3.mutable.MutableLong;
+import org.eclipse.jgit.errors.RepositoryNotFoundException;
 import org.eclipse.jgit.internal.storage.file.FileRepository;
 import org.eclipse.jgit.internal.storage.file.GC;
 import org.eclipse.jgit.internal.storage.file.GC.RepoStatistics;
@@ -87,6 +90,11 @@ public class MaxRepositorySizeQuota implements QuotaEnforcer, RepoSizeCache {
   }
 
   protected Optional<Long> getMaxPackSize(Project.NameKey project) {
+    return getMaxPackSize(project, true);
+  }
+
+  protected Optional<Long> getMaxPackSize(
+      Project.NameKey project, boolean requireProjectExistence) {
     QuotaSection quotaSection = quotaFinder.firstMatching(project);
     if (quotaSection == null) {
       return Optional.empty();
@@ -101,7 +109,11 @@ public class MaxRepositorySizeQuota implements QuotaEnforcer, RepoSizeCache {
     try {
       Long maxPackSize1 = null;
       if (maxRepoSize != null) {
-        maxPackSize1 = Math.max(0, maxRepoSize - cache.get(project).get());
+        long currentSize =
+            requireProjectExistence
+                ? currentSizeStrict(project)
+                : currentSizeOrZeroIfMissing(project);
+        maxPackSize1 = Math.max(0, maxRepoSize - currentSize);
       }
 
       Long maxPackSize2 = null;
@@ -109,7 +121,7 @@ public class MaxRepositorySizeQuota implements QuotaEnforcer, RepoSizeCache {
         long totalSize = 0;
         for (Project.NameKey p : projectCache.all()) {
           if (quotaSection.matches(p)) {
-            totalSize += cache.get(p).get();
+            totalSize += currentSizeStrict(p);
           }
         }
         maxPackSize2 = Math.max(0, maxTotalSize - totalSize);
@@ -120,6 +132,30 @@ public class MaxRepositorySizeQuota implements QuotaEnforcer, RepoSizeCache {
     } catch (ExecutionException e) {
       log.warn("Couldn't calculate maxPackSize for {}", project, e);
       return Optional.empty();
+    }
+  }
+
+  private long currentSizeStrict(Project.NameKey project)
+      throws ExecutionException, UncheckedExecutionException {
+    return cache.get(project).get();
+  }
+
+  /**
+   * Returns the current repository size, or 0 if the repository is missing. Other failures are
+   * propagated.
+   */
+  private long currentSizeOrZeroIfMissing(Project.NameKey project)
+      throws ExecutionException, UncheckedExecutionException {
+    try {
+      return currentSizeStrict(project);
+    } catch (ExecutionException | UncheckedExecutionException e) {
+      boolean missing =
+          Throwables.getCausalChain(e).stream()
+              .anyMatch(t -> t instanceof RepositoryNotFoundException);
+      if (!missing) {
+        throw e;
+      }
+      return 0L;
     }
   }
 
@@ -173,7 +209,7 @@ public class MaxRepositorySizeQuota implements QuotaEnforcer, RepoSizeCache {
   @Override
   public long get(Project.NameKey p) {
     try {
-      return cache.get(p).get();
+      return currentSizeStrict(p);
     } catch (ExecutionException e) {
       log.warn("Error creating RepoSizeEvent", e);
       return 0;
@@ -201,7 +237,7 @@ public class MaxRepositorySizeQuota implements QuotaEnforcer, RepoSizeCache {
     }
 
     return ctx.project()
-        .flatMap(p -> getMaxPackSize(p))
+        .flatMap(p -> getMaxPackSize(p, false))
         .map(v -> requestQuota(ctx, numTokens, v, false))
         .orElse(noOp());
   }
