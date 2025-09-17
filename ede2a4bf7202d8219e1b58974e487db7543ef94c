@@ -46,6 +46,47 @@
       },
       "revId": "ede2a4bf7202d8219e1b58974e487db7543ef94c",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c830b5b_f56b911a",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2025-09-17T19:47:11Z",
+      "side": 1,
+      "message": "Have you thought about using `getIfPresent()` and checking for `null` if the value is not in cache?\n\nI guess the problem with `getIfPresent()` is that we won\u0027t be able to understand *why* we have got a `null` back?",
+      "parentUuid": "1747d697_34092d08",
+      "range": {
+        "startLine": 112,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 9
+      },
+      "revId": "ede2a4bf7202d8219e1b58974e487db7543ef94c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "795d8825_9f0c27e0",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuotaTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2025-09-17T19:47:11Z",
+      "side": 1,
+      "message": "Shold we also assert for `availableTokens()` ?\n\nSame comment for the other tests.",
+      "revId": "ede2a4bf7202d8219e1b58974e487db7543ef94c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
