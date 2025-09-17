@@ -87,7 +87,7 @@ public class MaxRepositorySizeQuota implements QuotaEnforcer, RepoSizeCache {
   }
 
   protected Optional<Long> getMaxPackSize(Project.NameKey project) {
-    QuotaSection quotaSection = quotaFinder.firstMatching(project);
+    QuotaSection quotaSection = quotaFinder.firstMatchingOrElseGlobal(project);
     if (quotaSection == null) {
       return Optional.empty();
     }
