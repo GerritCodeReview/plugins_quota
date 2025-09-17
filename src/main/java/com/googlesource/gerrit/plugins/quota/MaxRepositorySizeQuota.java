@@ -43,6 +43,9 @@ import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicLong;
@@ -87,7 +90,21 @@ public class MaxRepositorySizeQuota implements QuotaEnforcer, RepoSizeCache {
   }
 
   protected Optional<Long> getMaxPackSize(Project.NameKey project) {
-    QuotaSection quotaSection = quotaFinder.firstMatching(project);
+    List<Long> maxPackCandidates = new ArrayList<>();
+
+    Optional<Long> fromProjectQuota = getMaxPackSize(quotaFinder.firstMatching(project), project);
+    fromProjectQuota.ifPresent(maxPackCandidates::add);
+
+    Optional<Long> fromGlobalQuota =
+        getMaxPackSize(quotaFinder.getGlobalNamespacedQuota(), project);
+    fromGlobalQuota.ifPresent(maxPackCandidates::add);
+
+    return maxPackCandidates.isEmpty()
+        ? Optional.empty()
+        : Optional.of(Collections.min(maxPackCandidates));
+  }
+
+  protected Optional<Long> getMaxPackSize(QuotaSection quotaSection, Project.NameKey project) {
     if (quotaSection == null) {
       return Optional.empty();
     }

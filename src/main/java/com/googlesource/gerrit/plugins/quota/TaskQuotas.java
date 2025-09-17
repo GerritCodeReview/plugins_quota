@@ -36,6 +36,7 @@ public class TaskQuotas implements WorkQueue.TaskParker {
   private final QuotaFinder quotaFinder;
   private final Map<Integer, List<TaskQuota>> quotasByTask = new ConcurrentHashMap<>();
   private final Map<QuotaSection, List<TaskQuota>> quotasByNamespace = new HashMap<>();
+  private final List<TaskQuota> globalQuotas = new ArrayList<>();
   private final Pattern PROJECT_PATTERN = Pattern.compile("\\s+/?(.*)\\s+(\\(\\S+\\))$");
   private final Config quotaConfig;
 
@@ -65,24 +66,25 @@ public class TaskQuotas implements WorkQueue.TaskParker {
     quotasByNamespace.putAll(
         quotaFinder.getQuotaNamespaces(quotaConfig).stream()
             .collect(Collectors.toMap(Function.identity(), QuotaSection::getAllQuotas)));
+    globalQuotas.addAll(quotaFinder.getGlobalNamespacedQuota(quotaConfig).getAllQuotas());
   }
 
   @Override
   public boolean isReadyToStart(WorkQueue.Task<?> task) {
     Optional<Project.NameKey> estimatedProject = estimateProject(task);
-    List<TaskQuota> quotas =
+    List<TaskQuota> applicableQuotas = new ArrayList<>(globalQuotas);
+    applicableQuotas.addAll(
         estimatedProject
             .map(
                 project -> {
                   return quotasByNamespace.getOrDefault(
                       Optional.ofNullable(quotaFinder.firstMatching(quotaConfig, project))
-                          .orElse(quotaFinder.getGlobalNamespacedQuota(quotaConfig)),
+                          .orElse(quotaFinder.getFallbackNamespacedQuota(quotaConfig)),
                       List.of());
                 })
-            .orElse(List.of());
+            .orElse(List.of()));
 
     QueueStats.Queue queue = QueueStats.Queue.fromKey(task.getQueueName());
-
     if (!QueueStats.acquire(queue, 1)) {
       return false;
     }
@@ -90,7 +92,7 @@ public class TaskQuotas implements WorkQueue.TaskParker {
     List<TaskQuota> acquiredQuotas = new ArrayList<>();
     quotasByTask.put(task.getTaskId(), acquiredQuotas);
 
-    for (TaskQuota quota : quotas) {
+    for (TaskQuota quota : applicableQuotas) {
       if (quota.isApplicable(task)) {
         if (!quota.isReadyToStart(task)) {
           log.debug("Task [{}] will be parked due task quota rules", task);
