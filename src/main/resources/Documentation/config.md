@@ -118,6 +118,16 @@ sure that each individual repository cannot exceed 3m
     maxTotalSize = 20 m
 ```
 
+One could also add quotas in global section that would be applicable to all
+the projects (including the namespaces that are already defined).
+
+```
+  [global-quota]
+    maxProjects = 500
+    maxRepoSize = 300 m
+    maxTotalSize = 200 m
+```
+
 If one prefers computing a repository size by adding the size of the git objects,
 the following section should be added into the `gerrit.config` file:
 
