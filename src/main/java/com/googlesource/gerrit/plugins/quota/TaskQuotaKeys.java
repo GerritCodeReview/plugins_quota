@@ -26,9 +26,9 @@ public enum TaskQuotaKeys {
   SOFT_MAX_START_FOR_QUEUE_PER_USER("softMaxStartPerUserForQueue", SoftMaxPerUserForQueue::build);
 
   public final String key;
-  public final Function<TaskQuota.BuildInfo, Optional<TaskQuota>> processor;
+  public final Function<String, Optional<TaskQuota>> processor;
 
-  TaskQuotaKeys(String key, Function<TaskQuota.BuildInfo, Optional<TaskQuota>> processor) {
+  TaskQuotaKeys(String key, Function<String, Optional<TaskQuota>> processor) {
     this.key = key;
     this.processor = processor;
   }
