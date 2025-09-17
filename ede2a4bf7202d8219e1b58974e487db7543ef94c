@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f9ecc99_8e958692",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2025-09-17T18:27:32Z",
+      "side": 1,
+      "message": "I find this quite a convoluted logic: why not simply check if the project exists?",
+      "range": {
+        "startLine": 112,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 9
+      },
+      "revId": "ede2a4bf7202d8219e1b58974e487db7543ef94c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
