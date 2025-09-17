@@ -255,8 +255,8 @@ public class MaxRepositorySizeQuota implements QuotaEnforcer, RepoSizeCache {
           log.warn(msg, e);
           return error(msg);
         }
-        return ok();
       }
+      return ok();
     }
 
     return error(
