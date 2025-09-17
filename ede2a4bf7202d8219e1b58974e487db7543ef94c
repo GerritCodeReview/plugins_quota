@@ -22,6 +22,30 @@
       },
       "revId": "ede2a4bf7202d8219e1b58974e487db7543ef94c",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1747d697_34092d08",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2025-09-17T18:45:55Z",
+      "side": 1,
+      "message": "The main reason I don’t just check project existence upfront is that what we really need is the repository’s size, which is obtained through the repository cache.\n\nA separate “exists?” check would still require hitting the same cache or filesystem, so it wouldn’t simplify much imho and could even introduce race conditions (repo created between the existence check and the size lookup).",
+      "parentUuid": "8f9ecc99_8e958692",
+      "range": {
+        "startLine": 112,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 9
+      },
+      "revId": "ede2a4bf7202d8219e1b58974e487db7543ef94c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
