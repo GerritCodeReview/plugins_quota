@@ -19,8 +19,8 @@ import static com.google.gerrit.server.quota.QuotaGroupDefinitions.REPOSITORY_SI
 import static com.google.gerrit.server.quota.QuotaResponse.Status.ERROR;
 import static com.google.gerrit.server.quota.QuotaResponse.Status.NO_OP;
 import static com.google.gerrit.server.quota.QuotaResponse.Status.OK;
+import static com.googlesource.gerrit.plugins.quota.NamespacedQuotaSection.QUOTA;
 import static com.googlesource.gerrit.plugins.quota.QuotaSection.KEY_MAX_REPO_SIZE;
-import static com.googlesource.gerrit.plugins.quota.QuotaSection.QUOTA;
 import static org.mockito.Mockito.when;
 
 import com.google.common.cache.CacheBuilder;
@@ -114,6 +114,6 @@ public class MaxRepositorySizeQuotaTest {
     when(repoSizeLoader.load(PROJECT_NAME)).thenReturn(new AtomicLong(currentRepoSize));
 
     when(quotaFinder.firstMatching(PROJECT_NAME))
-        .thenReturn(new QuotaSection(config, PROJECT_NAME.get()));
+        .thenReturn(new NamespacedQuotaSection(config, PROJECT_NAME.get()));
   }
 }

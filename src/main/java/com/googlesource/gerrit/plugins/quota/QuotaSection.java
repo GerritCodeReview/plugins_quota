@@ -19,56 +19,50 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import org.eclipse.jgit.lib.Config;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public record QuotaSection(Config cfg, String namespace, String resolvedNamespace) {
-  private static final Logger log = LoggerFactory.getLogger(QuotaSection.class);
-  public static final String QUOTA = "quota";
-  public static final String KEY_MAX_PROJECTS = "maxProjects";
-  public static final String KEY_MAX_REPO_SIZE = "maxRepoSize";
-  public static final String KEY_MAX_TOTAL_SIZE = "maxTotalSize";
+public interface QuotaSection {
+  String KEY_MAX_PROJECTS = "maxProjects";
+  String KEY_MAX_REPO_SIZE = "maxRepoSize";
+  String KEY_MAX_TOTAL_SIZE = "maxTotalSize";
 
-  public QuotaSection(Config cfg, String namespace) {
-    this(cfg, namespace, namespace);
-  }
+  String getNamespace();
 
-  public String getNamespace() {
-    return resolvedNamespace;
-  }
+  boolean matches(Project.NameKey project);
 
-  public boolean matches(Project.NameKey project) {
-    return new Namespace(resolvedNamespace).matches(project);
-  }
-
-  public Integer getMaxProjects() {
-    if (!cfg.getNames(QUOTA, namespace).contains(KEY_MAX_PROJECTS)) {
+  default Integer getMaxProjects() {
+    if (!cfg().getNames(section(), subSection()).contains(KEY_MAX_PROJECTS)) {
       return null;
     }
-    return cfg.getInt(QUOTA, namespace, KEY_MAX_PROJECTS, Integer.MAX_VALUE);
+    return cfg().getInt(section(), subSection(), KEY_MAX_PROJECTS, Integer.MAX_VALUE);
   }
 
-  public Long getMaxRepoSize() {
-    if (!cfg.getNames(QUOTA, namespace).contains(KEY_MAX_REPO_SIZE)) {
+  default Long getMaxRepoSize() {
+    if (!cfg().getNames(section(), subSection()).contains(KEY_MAX_REPO_SIZE)) {
       return null;
     }
-    return cfg.getLong(QUOTA, namespace, KEY_MAX_REPO_SIZE, Long.MAX_VALUE);
+    return cfg().getLong(section(), subSection(), KEY_MAX_REPO_SIZE, Long.MAX_VALUE);
   }
 
-  public Long getMaxTotalSize() {
-    if (!cfg.getNames(QUOTA, namespace).contains(KEY_MAX_TOTAL_SIZE)) {
+  default Long getMaxTotalSize() {
+    if (!cfg().getNames(section(), subSection()).contains(KEY_MAX_TOTAL_SIZE)) {
       return null;
     }
-    return cfg.getLong(QUOTA, namespace, KEY_MAX_TOTAL_SIZE, Long.MAX_VALUE);
+    return cfg().getLong(section(), subSection(), KEY_MAX_TOTAL_SIZE, Long.MAX_VALUE);
   }
 
-  public List<TaskQuota> getAllQuotas() {
+  default List<TaskQuota> getAllQuotas() {
     return Arrays.stream(TaskQuotaKeys.values())
         .flatMap(
             type ->
-                Arrays.stream(cfg.getStringList(QUOTA, namespace, type.key))
+                Arrays.stream(cfg().getStringList(section(), subSection(), type.key))
                     .map(type.processor)
                     .flatMap(Optional::stream))
         .toList();
   }
+
+  Config cfg();
+
+  String section();
+
+  String subSection();
 }
