@@ -19,6 +19,7 @@ import static com.google.gerrit.server.quota.QuotaResponse.error;
 import static com.google.gerrit.server.quota.QuotaResponse.noOp;
 import static com.google.gerrit.server.quota.QuotaResponse.ok;
 
+import com.google.common.base.Throwables;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.google.common.collect.Ordering;
@@ -47,6 +48,7 @@ import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicLong;
 import org.apache.commons.lang3.mutable.MutableLong;
+import org.eclipse.jgit.errors.RepositoryNotFoundException;
 import org.eclipse.jgit.internal.storage.file.FileRepository;
 import org.eclipse.jgit.internal.storage.file.GC;
 import org.eclipse.jgit.internal.storage.file.GC.RepoStatistics;
@@ -87,6 +89,11 @@ public class MaxRepositorySizeQuota implements QuotaEnforcer, RepoSizeCache {
   }
 
   protected Optional<Long> getMaxPackSize(Project.NameKey project) {
+    return getMaxPackSize(project, true);
+  }
+
+  protected Optional<Long> getMaxPackSize(
+      Project.NameKey project, boolean requireProjectExistence) {
     QuotaSection quotaSection = quotaFinder.firstMatching(project);
     if (quotaSection == null) {
       return Optional.empty();
@@ -101,7 +108,18 @@ public class MaxRepositorySizeQuota implements QuotaEnforcer, RepoSizeCache {
     try {
       Long maxPackSize1 = null;
       if (maxRepoSize != null) {
-        maxPackSize1 = Math.max(0, maxRepoSize - cache.get(project).get());
+        long currentSize;
+        try {
+          currentSize = cache.get(project).get();
+        } catch (Exception e) {
+          if (requireProjectExistence
+              || !(Throwables.getRootCause(e) instanceof RepositoryNotFoundException)) {
+            throw e;
+          }
+          currentSize = 0L;
+        }
+
+        maxPackSize1 = Math.max(0, maxRepoSize - currentSize);
       }
 
       Long maxPackSize2 = null;
@@ -201,7 +219,7 @@ public class MaxRepositorySizeQuota implements QuotaEnforcer, RepoSizeCache {
     }
 
     return ctx.project()
-        .flatMap(p -> getMaxPackSize(p))
+        .flatMap(p -> getMaxPackSize(p, false))
         .map(v -> requestQuota(ctx, numTokens, v, false))
         .orElse(noOp());
   }
