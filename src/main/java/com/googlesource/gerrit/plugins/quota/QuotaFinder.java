@@ -37,37 +37,45 @@ public class QuotaFinder {
   }
 
   public QuotaSection firstMatching(Config cfg, Project.NameKey project) {
-    Set<String> namespaces = cfg.getSubsections(QuotaSection.QUOTA);
+    Set<String> namespaces = cfg.getSubsections(NamespacedQuotaSection.QUOTA);
     String p = project.get();
     for (String n : namespaces) {
       if ("?/*".equals(n) || n.endsWith("/?/*")) {
         String prefix = n.substring(0, n.length() - 3);
         Matcher m = Pattern.compile("^" + prefix + "([^/]+)/.*$").matcher(p);
         if (m.matches()) {
-          return new QuotaSection(cfg, n, prefix + m.group(1) + "/*");
+          return new NamespacedQuotaSection(cfg, n, prefix + m.group(1) + "/*");
         }
       } else if (n.endsWith("/*")) {
         if (p.startsWith(n.substring(0, n.length() - 1))) {
-          return new QuotaSection(cfg, n);
+          return new NamespacedQuotaSection(cfg, n);
         }
       } else if (n.startsWith("^")) {
         if (p.matches(n.substring(1))) {
-          return new QuotaSection(cfg, n);
+          return new NamespacedQuotaSection(cfg, n);
         }
       } else if (p.equals(n)) {
-        return new QuotaSection(cfg, n);
+        return new NamespacedQuotaSection(cfg, n);
       }
     }
     return null;
   }
 
-  public QuotaSection getGlobalNamespacedQuota(Config cfg) {
-    return new QuotaSection(cfg, "*");
+  public QuotaSection getGlobalNamespacedQuota() {
+    return getGlobalNamespacedQuota(getQuotaConfig());
   }
 
-  public List<QuotaSection> getQuotaNamespaces(Config cfg) {
-    return cfg.getSubsections(QuotaSection.QUOTA).stream()
-        .map(ns -> new QuotaSection(cfg, ns))
+  public QuotaSection getGlobalNamespacedQuota(Config cfg) {
+    return new GlobalQuotaSection(cfg);
+  }
+
+  public QuotaSection getFallbackNamespacedQuota(Config cfg) {
+    return new NamespacedQuotaSection(cfg, "*");
+  }
+
+  public List<NamespacedQuotaSection> getQuotaNamespaces(Config cfg) {
+    return cfg.getSubsections(NamespacedQuotaSection.QUOTA).stream()
+        .map(ns -> new NamespacedQuotaSection(cfg, ns))
         .toList();
   }
 

@@ -35,7 +35,11 @@ public class MaxRepositoriesQuotaValidator implements ProjectCreationValidationL
 
   @Override
   public void validateNewProject(CreateProjectArgs args) throws ValidationException {
-    QuotaSection quotaSection = quotaFinder.firstMatching(args.getProject());
+    validateNewProject(quotaFinder.firstMatching(args.getProject()));
+    validateNewProject(quotaFinder.getGlobalNamespacedQuota());
+  }
+
+  private void validateNewProject(QuotaSection quotaSection) throws ValidationException {
     if (quotaSection != null) {
       Integer maxProjects = quotaSection.getMaxProjects();
       if (maxProjects != null) {
