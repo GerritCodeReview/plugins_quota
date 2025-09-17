@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3664c393_5e1410df",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-09-17T20:30:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c462c536_6f6e3d86",
+      "revId": "b485785cd9a55103f6f79e61c77301beee1624f8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d2babf97_ded18387",
@@ -35,6 +53,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b9d0cee_aec61ce7",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-09-17T20:30:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2babf97_ded18387",
+      "revId": "b485785cd9a55103f6f79e61c77301beee1624f8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "790ed53e_d1866e90",
@@ -48,6 +84,24 @@
       "writtenOn": "2025-09-17T19:55:42Z",
       "side": 1,
       "message": "This sentence doesn\u0027t make sense to me. It assumes the sub namespaces are stricter, but the global quota makes more sense specifically when it is stricter than the subnamespaces.",
+      "revId": "b485785cd9a55103f6f79e61c77301beee1624f8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7bc0bc4_c9e7a92a",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-09-17T20:30:26Z",
+      "side": 1,
+      "message": "actually removed it all together.",
+      "parentUuid": "790ed53e_d1866e90",
       "revId": "b485785cd9a55103f6f79e61c77301beee1624f8",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
