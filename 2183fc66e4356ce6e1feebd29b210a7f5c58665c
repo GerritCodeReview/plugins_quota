@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e149841_e5a3e151",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsFinder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-09-18T21:39:47Z",
+      "side": 1,
+      "message": "Use orElse() instead of ifPresent() (which probably should only be used to force a return) or something similar to avoid an if?",
+      "revId": "2183fc66e4356ce6e1feebd29b210a7f5c58665c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f99c8c1_56653005",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RateLimitUploadListener.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-09-18T21:39:47Z",
+      "side": 1,
+      "message": "The lack of symmetry between the global and scoped approaches does not feel right to me.",
+      "revId": "2183fc66e4356ce6e1feebd29b210a7f5c58665c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d997561_d3562424",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-09-18T21:39:47Z",
+      "side": 1,
+      "message": "Needs to mention something about how both the global and non global limits apply.",
+      "revId": "2183fc66e4356ce6e1feebd29b210a7f5c58665c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
