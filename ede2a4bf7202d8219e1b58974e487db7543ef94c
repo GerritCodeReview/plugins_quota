@@ -122,6 +122,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6fa4b91e_07ff0ad4",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuota.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2025-09-18T08:09:38Z",
+      "side": 1,
+      "message": "Perhaps wrapping the check in function that has a clear name would work here?",
+      "parentUuid": "d035cc28_73fb1a7e",
+      "range": {
+        "startLine": 112,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 9
+      },
+      "revId": "ede2a4bf7202d8219e1b58974e487db7543ef94c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "795d8825_9f0c27e0",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/MaxRepositorySizeQuotaTest.java",
         "patchSetId": 3
