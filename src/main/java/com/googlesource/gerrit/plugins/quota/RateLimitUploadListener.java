@@ -102,6 +102,7 @@ public class RateLimitUploadListener implements UploadValidationListener {
   private final Provider<CurrentUser> user;
   private final LoadingCache<Account.Id, Holder> limitsPerAccount;
   private final LoadingCache<String, Holder> limitsPerRemoteHost;
+  private final LoadingCache<String, Holder> globalLimits;
   private final String limitExceededMsg;
 
   @Inject
@@ -109,10 +110,12 @@ public class RateLimitUploadListener implements UploadValidationListener {
       Provider<CurrentUser> user,
       @Named(Module.CACHE_NAME_ACCOUNTID) LoadingCache<Account.Id, Holder> limitsPerAccount,
       @Named(Module.CACHE_NAME_REMOTEHOST) LoadingCache<String, Holder> limitsPerRemoteHost,
+      @Named(Module.CACHE_NAME_GLOBAL) LoadingCache<String, Holder> globalLimits,
       @Named(RateMsgHelper.UPLOADPACK_CONFIGURABLE_MSG_ANNOTATION) String limitExceededMsg) {
     this.user = user;
     this.limitsPerAccount = limitsPerAccount;
     this.limitsPerRemoteHost = limitsPerRemoteHost;
+    this.globalLimits = globalLimits;
     this.limitExceededMsg = limitExceededMsg;
   }
 
@@ -126,25 +129,33 @@ public class RateLimitUploadListener implements UploadValidationListener {
       int cntOffered)
       throws ValidationException {
     RateLimiter limiter = null;
+    RateLimiter globalLimiter = null;
     CurrentUser u = user.get();
     if (u.isIdentifiedUser()) {
       Account.Id accountId = u.asIdentifiedUser().getAccountId();
       try {
         limiter = limitsPerAccount.get(accountId).get();
+        globalLimiter = globalLimits.get(accountId.toString()).get();
       } catch (ExecutionException e) {
         log.warn("Cannot get rate limits for account ''{}''", accountId, e);
       }
     } else {
       try {
         limiter = limitsPerRemoteHost.get(remoteHost).get();
+        globalLimiter = globalLimits.get(remoteHost).get();
       } catch (ExecutionException e) {
         log.warn(
             "Cannot get rate limits for anonymous access from remote host ''{}''", remoteHost, e);
       }
     }
-    if (limiter != null && !limiter.tryAcquire()) {
+    validateLimiter(limiter);
+    validateLimiter(globalLimiter);
+  }
+
+  private void validateLimiter(RateLimiter l) throws RateLimitException {
+    if (l != null && !l.tryAcquire()) {
       throw new RateLimitException(
-          MessageFormat.format(limitExceededMsg, limiter.getRate() * SECONDS_PER_HOUR));
+          MessageFormat.format(limitExceededMsg, l.getRate() * SECONDS_PER_HOUR));
     }
   }
 
