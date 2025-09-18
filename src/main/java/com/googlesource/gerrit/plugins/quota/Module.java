@@ -55,6 +55,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 class Module extends CacheModule {
   static final String CACHE_NAME_ACCOUNTID = "rate_limits_by_account";
+  static final String CACHE_NAME_GLOBAL = "rate_limits_global";
   static final String CACHE_NAME_REMOTEHOST = "rate_limits_by_ip";
 
   private final String uploadpackLimitExceededMsg;
@@ -204,6 +205,22 @@ class Module extends CacheModule {
     }
   }
 
+  static class HolderCacheLoaderByGlobalAccount extends AbstractHolderCacheLoader<String> {
+
+    protected HolderCacheLoaderByGlobalAccount(Type limitsConfigType, AccountLimitsFinder finder) {
+      super(limitsConfigType, finder);
+    }
+
+    private final Holder createWithBurstyRateLimiter() throws Exception {
+      return createWithBurstyRateLimiter(finder.getGlobalRateLimit(limitsConfigType));
+    }
+
+    @Override
+    public final Holder load(String key) throws Exception {
+      return createWithBurstyRateLimiter();
+    }
+  }
+
   @Provides
   @Named(CACHE_NAME_ACCOUNTID)
   @Singleton
@@ -211,6 +228,15 @@ class Module extends CacheModule {
       GenericFactory userFactory, AccountLimitsFinder finder) {
     return CacheBuilder.newBuilder()
         .build(new HolderCacheLoaderByAccountId(Type.UPLOADPACK, userFactory, finder));
+  }
+
+  @Provides
+  @Named(CACHE_NAME_GLOBAL)
+  @Singleton
+  public LoadingCache<String, Module.Holder> getLoadingCacheByGlobal(
+      GenericFactory userFactory, AccountLimitsFinder finder) {
+    return CacheBuilder.newBuilder()
+        .build(new HolderCacheLoaderByGlobalAccount(Type.UPLOADPACK, finder));
   }
 
   @Provides

@@ -45,6 +45,7 @@ public class RestApiRateLimiter extends AllRequestFilter {
 
   private final Provider<CurrentUser> user;
   private final LoadingCache<Account.Id, Holder> limitsPerAccount;
+  private final LoadingCache<String, Holder> globalLimitsPerAccount;
   private final LoadingCache<String, Holder> limitsPerRemoteHost;
 
   private final Pattern servletPath =
@@ -58,13 +59,15 @@ public class RestApiRateLimiter extends AllRequestFilter {
   RestApiRateLimiter(
       Provider<CurrentUser> user,
       @Named(HttpModule.CACHE_NAME_RESTAPI_ACCOUNTID)
-          LoadingCache<Account.Id, Holder> limitsPerAccount,
+          LoadingCache<Account.Id, Holder> scopedLimitsPerAccount,
       @Named(HttpModule.CACHE_NAME_RESTAPI_REMOTEHOST)
           LoadingCache<String, Holder> limitsPerRemoteHost,
+      @Named(HttpModule.CACHE_NAME_GLOBAL) LoadingCache<String, Holder> globalLimitsPerAccount,
       @Named(RateMsgHelper.RESTAPI_CONFIGURABLE_MSG_ANNOTATION) String limitExceededMsg) {
     this.user = user;
-    this.limitsPerAccount = limitsPerAccount;
+    this.limitsPerAccount = scopedLimitsPerAccount;
     this.limitsPerRemoteHost = limitsPerRemoteHost;
+    this.globalLimitsPerAccount = globalLimitsPerAccount;
     this.limitExceededMsg = limitExceededMsg;
   }
 
@@ -73,39 +76,51 @@ public class RestApiRateLimiter extends AllRequestFilter {
       throws IOException, ServletException {
     if (isRest(req)) {
       Holder rateLimiterHolder;
+      Holder globalRateLimiterHolder;
       CurrentUser u = user.get();
       if (u.isIdentifiedUser()) {
         Account.Id accountId = u.asIdentifiedUser().getAccountId();
         try {
           rateLimiterHolder = limitsPerAccount.get(accountId);
+          globalRateLimiterHolder = globalLimitsPerAccount.get(accountId.toString());
         } catch (ExecutionException e) {
           rateLimiterHolder = Holder.EMPTY;
+          globalRateLimiterHolder = Holder.EMPTY;
           log.warn("Cannot get rate limits for account ''{}''", accountId, e);
         }
       } else {
         try {
           rateLimiterHolder = limitsPerRemoteHost.get(req.getRemoteHost());
+          globalRateLimiterHolder = globalLimitsPerAccount.get(req.getRemoteHost());
         } catch (ExecutionException e) {
           rateLimiterHolder = Holder.EMPTY;
+          globalRateLimiterHolder = Holder.EMPTY;
           log.warn(
               "Cannot get rate limits for anonymous access from remote host ''{}''",
               req.getRemoteHost(),
               e);
         }
       }
-      if (!rateLimiterHolder.hasGracePermits()
-          && rateLimiterHolder.get() != null
-          && !rateLimiterHolder.get().tryAcquire()) {
-        String msg =
-            MessageFormat.format(
-                limitExceededMsg,
-                rateLimiterHolder.get().getRate() * SECONDS_PER_HOUR,
-                rateLimiterHolder.getBurstPermits());
-        ((HttpServletResponse) res).sendError(SC_TOO_MANY_REQUESTS, msg);
+      if (!isAllowed(rateLimiterHolder, res) || !isAllowed(globalRateLimiterHolder, res)) {
         return;
       }
     }
     chain.doFilter(req, res);
+  }
+
+  private boolean isAllowed(Holder rateLimiterHolder, ServletResponse res) throws IOException {
+    if (!rateLimiterHolder.hasGracePermits()
+        && rateLimiterHolder.get() != null
+        && !rateLimiterHolder.get().tryAcquire()) {
+      String msg =
+          MessageFormat.format(
+              limitExceededMsg,
+              rateLimiterHolder.get().getRate() * SECONDS_PER_HOUR,
+              rateLimiterHolder.getBurstPermits());
+      ((HttpServletResponse) res).sendError(SC_TOO_MANY_REQUESTS, msg);
+      return false;
+    }
+    return true;
   }
 
   boolean isRest(ServletRequest req) {

@@ -38,6 +38,7 @@ public class AccountLimitsConfig {
       Pattern.compile("^\\s*(\\d+)\\s*/\\s*(.*)\\s*burst\\s*(\\d+)$");
   private static final Logger log = LoggerFactory.getLogger(AccountLimitsConfig.class);
   static final String GROUP_SECTION = "group";
+  static final String GLOBAL_SECTION = "global";
   static final SectionParser<AccountLimitsConfig> KEY =
       new SectionParser<AccountLimitsConfig>() {
         @Override
@@ -96,14 +97,17 @@ public class AccountLimitsConfig {
 
     rateLimits = ArrayTable.create(Arrays.asList(Type.values()), groups);
     for (String groupName : groups) {
-      parseRateLimit(c, groupName, UPLOADPACK);
-      parseRateLimit(c, groupName, RESTAPI);
+      parseRateLimit(c, GROUP_SECTION, groupName, UPLOADPACK);
+      parseRateLimit(c, GROUP_SECTION, groupName, RESTAPI);
     }
+
+    parseRateLimit(c, GLOBAL_SECTION, null, UPLOADPACK);
+    parseRateLimit(c, GLOBAL_SECTION, null, RESTAPI);
   }
 
-  void parseRateLimit(Config c, String groupName, Type type) {
+  void parseRateLimit(Config c, String group, String groupName, Type type) {
     String name = type.toConfigValue();
-    String value = c.getString(GROUP_SECTION, groupName, name);
+    String value = c.getString(group, groupName, name);
     if (value == null) {
       return;
     }
