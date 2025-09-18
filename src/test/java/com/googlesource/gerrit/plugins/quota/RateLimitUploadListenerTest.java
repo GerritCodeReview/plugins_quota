@@ -47,6 +47,7 @@ public class RateLimitUploadListenerTest {
   private RateLimitUploadListener uploadHook;
   private LoadingCache<Account.Id, Holder> limitsPerAccount;
   private LoadingCache<String, Holder> limitsPerRemoteHost;
+  private LoadingCache<String, Holder> globalLimits;
   @Mock @GerritServerConfig Config cfg;
   @Mock GenericFactory userFactory;
   SystemGroupBackend systemGroupBackend;
@@ -67,6 +68,12 @@ public class RateLimitUploadListenerTest {
         CacheBuilder.newBuilder()
             .build(new Module.HolderCacheLoaderByAccountId(Type.UPLOADPACK, userFactory, finder));
     limitsPerAccount.put(accountId, holder);
+
+    globalLimits =
+        CacheBuilder.newBuilder()
+            .build(new Module.HolderCacheLoaderByGlobalAccount(Type.UPLOADPACK, finder));
+    globalLimits.put(accountId.toString(), holder);
+
     limitsPerRemoteHost =
         CacheBuilder.newBuilder()
             .build(
@@ -76,7 +83,7 @@ public class RateLimitUploadListenerTest {
     uploadHook =
         spy(
             new RateLimitUploadListener(
-                user, limitsPerAccount, limitsPerRemoteHost, LIMIT_EXCEEDED_MSG));
+                user, limitsPerAccount, limitsPerRemoteHost, globalLimits, LIMIT_EXCEEDED_MSG));
     when(user.get()).thenReturn(currentUser);
   }
 

@@ -76,6 +76,7 @@ public class RestApiRateLimiterTest {
   private RestApiRateLimiter restReqFilter;
   private SystemGroupBackend systemGroupBackend;
   private LoadingCache<Account.Id, Holder> limitsPerAccount;
+  private LoadingCache<String, Holder> globalLimitsPerAccount;
   private LoadingCache<String, Holder> limitsPerRemoteHost;
 
   @Before
@@ -87,6 +88,10 @@ public class RestApiRateLimiterTest {
             .build(new Module.HolderCacheLoaderByAccountId(Type.UPLOADPACK, userFactory, finder));
     limitsPerAccount.put(accountId, holder);
 
+    globalLimitsPerAccount =
+        CacheBuilder.newBuilder()
+            .build(new Module.HolderCacheLoaderByGlobalAccount(Type.UPLOADPACK, finder));
+
     limitsPerRemoteHost =
         CacheBuilder.newBuilder()
             .build(
@@ -97,7 +102,11 @@ public class RestApiRateLimiterTest {
     restReqFilter =
         spy(
             new RestApiRateLimiter(
-                user, limitsPerAccount, limitsPerRemoteHost, LIMIT_EXCEEDED_MSG));
+                user,
+                limitsPerAccount,
+                globalLimitsPerAccount,
+                limitsPerRemoteHost,
+                LIMIT_EXCEEDED_MSG));
     doReturn(true).when(restReqFilter).isRest(req);
     when(user.get()).thenReturn(currentUser);
     doNothing().when(chain).doFilter(req, res);

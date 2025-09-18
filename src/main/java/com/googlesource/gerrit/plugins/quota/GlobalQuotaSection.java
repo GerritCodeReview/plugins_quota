@@ -23,7 +23,7 @@ import org.eclipse.jgit.lib.Config;
  * @param cfg quota.cfg file
  */
 public record GlobalQuotaSection(Config cfg) implements QuotaSection {
-  public static final String GLOBAL_QUOTA = "global-quota";
+  public static final String GLOBAL_QUOTA = "global";
 
   public String getNamespace() {
     return GLOBAL_QUOTA;
