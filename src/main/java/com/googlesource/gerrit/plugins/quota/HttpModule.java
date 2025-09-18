@@ -33,7 +33,8 @@ import com.google.inject.name.Names;
 import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type;
 
 class HttpModule extends CacheModule {
-  static final String CACHE_NAME_RESTAPI_ACCOUNTID = "restapi_rate_limits_by_account";
+  static final String CACHE_NAME_RESTAPI_ACCOUNTID = "restapi_rate_scoped_limits_by_account";
+  static final String CACHE_NAME_GLOBAL = "restapi_rate_global";
   static final String CACHE_NAME_RESTAPI_REMOTEHOST = "restapi_rate_limits_by_ip";
 
   private final String restapiLimitExceededMsg;
@@ -62,6 +63,15 @@ class HttpModule extends CacheModule {
       GenericFactory userFactory, AccountLimitsFinder finder) {
     return CacheBuilder.newBuilder()
         .build(new Module.HolderCacheLoaderByAccountId(Type.RESTAPI, userFactory, finder));
+  }
+
+  @Provides
+  @Named(CACHE_NAME_GLOBAL)
+  @Singleton
+  public LoadingCache<String, Module.Holder> getGlobalRestApiLoadingCacheByAccountId(
+      GenericFactory userFactory, AccountLimitsFinder finder) {
+    return CacheBuilder.newBuilder()
+        .build(new Module.HolderCacheLoaderByGlobalAccount(Type.RESTAPI, finder));
   }
 
   @Provides

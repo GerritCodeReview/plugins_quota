@@ -122,7 +122,7 @@ One could also add quotas in global section that would be applicable to all
 the projects (including the namespaces that are already defined).
 
 ```
-  [global-quota]
+  [global]
     maxProjects = 500
     maxRepoSize = 300 m
     maxTotalSize = 200 m
@@ -179,6 +179,11 @@ used in the configuration. Note, all users are members of "Anonymous Users".
 Use group "Anonymous Users" to define the rate limit for anonymous users.
 Use group "Registered Users" to define the default rate limit for all logged
 in users.
+
+Rate limits can also be specified in the global section; these limits are
+always applied, regardless of group matching. If a user matches a group, the
+limits from the first matching group are applied in addition to the global
+limits.
 
 Format of the rate limit entries in `quota.config`:
 
