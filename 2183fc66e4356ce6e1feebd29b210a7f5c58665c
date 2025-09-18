@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9afd9baa_b7feb04a",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RateLimitUploadListener.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-09-18T21:54:56Z",
+      "side": 1,
+      "message": "Both account and hosts use two caches (one which has scoped ratelimiter and other having global limiter).\n\nWe use a single global cache for both accounts and hosts for all the limits specified in global section.\n\nHow do want to change this relationship ?",
+      "parentUuid": "9ce696b2_76811d24",
+      "revId": "2183fc66e4356ce6e1feebd29b210a7f5c58665c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5d997561_d3562424",
         "filename": "src/main/resources/Documentation/config.md",
         "patchSetId": 2
