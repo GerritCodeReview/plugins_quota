@@ -89,6 +89,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "824043dc_8370841d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/RateLimitUploadListener.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-09-18T22:10:44Z",
+      "side": 1,
+      "message": "It seems like the split is because of the use of caches. I can see why we don\u0027t need that complexity for globals.",
+      "parentUuid": "9afd9baa_b7feb04a",
+      "revId": "2183fc66e4356ce6e1feebd29b210a7f5c58665c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5d997561_d3562424",
