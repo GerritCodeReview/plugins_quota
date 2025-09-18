@@ -13,6 +13,7 @@
 // limitations under the License.
 package com.googlesource.gerrit.plugins.quota;
 
+import static com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.GLOBAL_SECTION;
 import static com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.KEY;
 
 import com.google.gerrit.entities.GroupDescription;
@@ -76,6 +77,14 @@ public class AccountLimitsFinder {
       }
     }
     return Optional.empty();
+  }
+
+  /**
+   * @param type type of rate limit
+   * @return global rate limit
+   */
+  public Optional<RateLimit> getGlobalRateLimit(Type type) {
+    return getRatelimits(type).map(map -> map.get(GLOBAL_SECTION));
   }
 
   /**
