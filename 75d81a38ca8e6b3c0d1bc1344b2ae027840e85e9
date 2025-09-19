@@ -1,5 +1,57 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4439ded_c91dea17",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuota.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-09-19T19:16:59Z",
+      "side": 1,
+      "message": "We probably should eliminate this as a default since it signals a potential problem if this is not implemented.",
+      "revId": "75d81a38ca8e6b3c0d1bc1344b2ae027840e85e9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c487524_bf24a61f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-09-19T19:16:59Z",
+      "side": 1,
+      "message": "This should be move to the beginning of this function?",
+      "revId": "75d81a38ca8e6b3c0d1bc1344b2ae027840e85e9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47001107_d4bc4f3a",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-09-19T19:16:59Z",
+      "side": 1,
+      "message": "I think I miss-guided things on this change, I\u0027m sorry. If this returns false from isReadyToStart(), then this will never get called.",
+      "revId": "75d81a38ca8e6b3c0d1bc1344b2ae027840e85e9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
