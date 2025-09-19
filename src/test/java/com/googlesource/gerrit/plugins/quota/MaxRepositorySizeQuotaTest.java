@@ -33,6 +33,7 @@ import java.io.IOException;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 import javax.servlet.ServletException;
+import org.eclipse.jgit.errors.RepositoryNotFoundException;
 import org.eclipse.jgit.lib.Config;
 import org.junit.Before;
 import org.junit.Test;
@@ -106,6 +107,51 @@ public class MaxRepositorySizeQuotaTest {
         maxRepositorySizeQuota.dryRun(REPOSITORY_SIZE_GROUP, quotaRequestContext, requestQuotaSize);
 
     assertThat(quotaResponse.status()).isEqualTo(NO_OP);
+  }
+
+  @Test
+  public void dryRunOKOnNonExistingProject() throws IOException {
+    long currentRepoSize = 1;
+    long maxRepoSize = 3;
+    long requestQuotaSize = 1;
+    setupQuotas(currentRepoSize, maxRepoSize);
+    when(repoSizeLoader.load(PROJECT_NAME))
+        .thenThrow(new RepositoryNotFoundException("/var/gerrit/" + PROJECT_NAME));
+
+    QuotaResponse quotaResponse =
+        maxRepositorySizeQuota.dryRun(REPOSITORY_SIZE_GROUP, quotaRequestContext, requestQuotaSize);
+
+    assertThat(quotaResponse.status().isOk()).isTrue();
+  }
+
+  @Test
+  public void requestTokensNotOKOnNonExistingProject() throws IOException {
+    long currentRepoSize = 1;
+    long maxRepoSize = 3;
+    long requestQuotaSize = 1;
+    setupQuotas(currentRepoSize, maxRepoSize);
+    when(repoSizeLoader.load(PROJECT_NAME))
+        .thenThrow(new RepositoryNotFoundException("/var/gerrit/" + PROJECT_NAME));
+
+    QuotaResponse quotaResponse =
+        maxRepositorySizeQuota.requestTokens(
+            REPOSITORY_SIZE_GROUP, quotaRequestContext, requestQuotaSize);
+
+    assertThat(quotaResponse.status().isOk()).isFalse();
+  }
+
+  @Test
+  public void dryRunNotOKWhenOtherExceptionsOccur() throws IOException {
+    long currentRepoSize = 1;
+    long maxRepoSize = 3;
+    long requestQuotaSize = 1;
+    setupQuotas(currentRepoSize, maxRepoSize);
+    when(repoSizeLoader.load(PROJECT_NAME)).thenThrow(new IOException("Some exception occurred"));
+
+    QuotaResponse quotaResponse =
+        maxRepositorySizeQuota.dryRun(REPOSITORY_SIZE_GROUP, quotaRequestContext, requestQuotaSize);
+
+    assertThat(quotaResponse.status().isOk()).isFalse();
   }
 
   private void setupQuotas(long currentRepoSize, long maxRepoSize) throws IOException {
