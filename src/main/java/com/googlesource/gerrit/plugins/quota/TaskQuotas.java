@@ -71,6 +71,11 @@ public class TaskQuotas implements WorkQueue.TaskParker {
 
   @Override
   public boolean isReadyToStart(WorkQueue.Task<?> task) {
+    QueueStats.Queue queue = QueueStats.Queue.fromKey(task.getQueueName());
+    if (!QueueStats.acquire(queue, 1)) {
+      return false;
+    }
+
     Optional<Project.NameKey> estimatedProject = estimateProject(task);
     List<TaskQuota> applicableQuotas = new ArrayList<>(globalQuotas);
     applicableQuotas.addAll(
@@ -84,22 +89,21 @@ public class TaskQuotas implements WorkQueue.TaskParker {
                 })
             .orElse(List.of()));
 
-    QueueStats.Queue queue = QueueStats.Queue.fromKey(task.getQueueName());
-    if (!QueueStats.acquire(queue, 1)) {
-      return false;
-    }
-
     List<TaskQuota> acquiredQuotas = new ArrayList<>();
-    quotasByTask.put(task.getTaskId(), acquiredQuotas);
-
     for (TaskQuota quota : applicableQuotas) {
       if (quota.isApplicable(task)) {
         if (!quota.isReadyToStart(task)) {
           log.debug("Task [{}] will be parked due task quota rules", task);
+          QueueStats.release(queue, 1);
+          acquiredQuotas.forEach(q -> q.onStop(task));
           return false;
         }
         acquiredQuotas.add(quota);
       }
+    }
+
+    if (!acquiredQuotas.isEmpty()) {
+      quotasByTask.put(task.getTaskId(), acquiredQuotas);
     }
     return true;
   }
