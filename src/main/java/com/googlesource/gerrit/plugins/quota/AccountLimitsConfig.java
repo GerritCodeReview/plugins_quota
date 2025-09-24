@@ -14,9 +14,6 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
-import static com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type.RESTAPI;
-import static com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type.UPLOADPACK;
-
 import com.google.common.collect.ArrayTable;
 import com.google.common.collect.Table;
 import java.util.Arrays;
@@ -32,6 +29,8 @@ import org.eclipse.jgit.lib.Config.ConfigEnum;
 import org.eclipse.jgit.lib.Config.SectionParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import static com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type.*;
 
 public class AccountLimitsConfig {
   private static final Pattern PATTERN =
@@ -60,24 +59,42 @@ public class AccountLimitsConfig {
       return maxBurstSeconds;
     }
 
+    public int getConcurrentRestApiRequests() {
+      return concurrentRestApiRequests;
+    }
+
     private Type type;
     private double ratePerSecond;
     private int maxBurstSeconds;
+    private Integer concurrentRestApiRequests;
 
     public RateLimit(Type type, double ratePerSecond, int maxBurstSeconds) {
       this.type = type;
       this.ratePerSecond = ratePerSecond;
       this.maxBurstSeconds = maxBurstSeconds;
+      this.concurrentRestApiRequests = -1;
+    }
+
+    public RateLimit(Type type, int concurrentRestApiRequests) {
+      this.type = type;
+      this.concurrentRestApiRequests = concurrentRestApiRequests;
     }
   }
 
   public static enum Type implements ConfigEnum {
-    UPLOADPACK,
-    RESTAPI;
+    UPLOADPACK("uploadpack"),
+    RESTAPI("restapi"),
+    CONCURRENT_RESTAPI("maxConcurrentRestApiCallsPerUser");
+
+    private final String name;
+
+    Type(String type) {
+      this.name = type;
+    }
 
     @Override
     public String toConfigValue() {
-      return name().toLowerCase(Locale.ROOT);
+      return name();
     }
 
     @Override
@@ -99,10 +116,21 @@ public class AccountLimitsConfig {
     for (String groupName : groups) {
       parseRateLimit(c, GROUP_SECTION, groupName, UPLOADPACK);
       parseRateLimit(c, GROUP_SECTION, groupName, RESTAPI);
+      parseConcurrentLimit(c, GROUP_SECTION, groupName);
     }
 
     parseRateLimit(c, GLOBAL_SECTION, null, UPLOADPACK);
     parseRateLimit(c, GLOBAL_SECTION, null, RESTAPI);
+    parseConcurrentLimit(c, GLOBAL_SECTION, null);
+  }
+
+  void parseConcurrentLimit(Config c, String group, String groupName) {
+    int value = c.getInt(group, groupName, CONCURRENT_RESTAPI.toConfigValue(), -1);
+    if (value < 0) {
+      return;
+    }
+
+    rateLimits.put(CONCURRENT_RESTAPI, groupName, new RateLimit(CONCURRENT_RESTAPI, value));
   }
 
   void parseRateLimit(Config c, String group, String groupName, Type type) {
