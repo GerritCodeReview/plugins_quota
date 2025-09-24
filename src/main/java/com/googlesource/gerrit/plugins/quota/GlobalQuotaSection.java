@@ -24,6 +24,8 @@ import org.eclipse.jgit.lib.Config;
  */
 public record GlobalQuotaSection(Config cfg) implements QuotaSection {
   public static final String GLOBAL_QUOTA = "global";
+  public static final String KEY_MAX_CONCURRENT_REST_API_CALLS_PER_USER =
+      "maxConcurrentRestApiCallsPerUser";
 
   public String getNamespace() {
     return GLOBAL_QUOTA;
