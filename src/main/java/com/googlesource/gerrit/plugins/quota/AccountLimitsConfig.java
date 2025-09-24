@@ -19,11 +19,8 @@ import static com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type.UPL
 
 import com.google.common.collect.ArrayTable;
 import com.google.common.collect.Table;
-import java.util.Arrays;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

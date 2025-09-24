@@ -29,8 +29,9 @@ import com.google.gerrit.server.restapi.group.GroupsCollection;
 import com.google.inject.Inject;
 import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.RateLimit;
 import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type;
-import java.util.Map;
-import java.util.Optional;
+
+import java.util.*;
+
 import org.eclipse.jgit.lib.Config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,34 +58,43 @@ public class AccountLimitsFinder {
     if (limits.isPresent()) {
       GroupMembership memberShip = user.getEffectiveGroups();
       for (String groupName : limits.get().keySet()) {
-        try {
-          GroupResource group =
-              groupsCollection.parse(TopLevelResource.INSTANCE, IdString.fromDecoded(groupName));
-          Optional<GroupDescription.Internal> maybeInternalGroup = group.asInternalGroup();
-          if (!maybeInternalGroup.isPresent()) {
-            log.debug("Ignoring limits for non-internal group ''{}'' in quota.config", groupName);
-          } else if (memberShip.contains(maybeInternalGroup.get().getGroupUUID())) {
-            RateLimit groupLimit = limits.get().get(groupName);
-            if (groupLimit != null) {
-              return Optional.of(groupLimit);
-            }
-          }
-        } catch (ResourceNotFoundException e) {
-          log.debug("Ignoring limits for unknown group ''{}'' in quota.config", groupName);
-        } catch (AuthException e) {
-          log.debug("Ignoring limits for non-visible group ''{}'' in quota.config", groupName);
+        RateLimit groupLimit = limits.get().get(groupName);
+        if (groupLimit != null && isMatching(memberShip, groupName)) {
+          return Optional.of(groupLimit);
         }
       }
     }
     return Optional.empty();
   }
 
-  /**
-   * @param type type of rate limit
-   * @return global rate limit
-   */
-  public Optional<RateLimit> getGlobalRateLimit(Type type) {
-    return getRatelimits(type).map(map -> map.get(GLOBAL_SECTION));
+  public Optional<String> firstMatching(Collection<String> groups, IdentifiedUser user) {
+    GroupMembership memberShip = user.getEffectiveGroups();
+    for (String group : groups) {
+      if (isMatching(memberShip, group)) {
+        return Optional.of(group);
+      }
+    }
+    return Optional.empty();
+  }
+
+  public boolean isMatching(GroupMembership membership, String groupName) {
+    try {
+      Optional<GroupDescription.Internal> maybeInternalGroup =
+          groupsCollection
+              .parse(TopLevelResource.INSTANCE, IdString.fromDecoded(groupName))
+              .asInternalGroup();
+      if (!maybeInternalGroup.isPresent()) {
+        log.debug("Ignoring limits for non-internal group ''{}'' in quota.config", groupName);
+      } else if (membership.contains(maybeInternalGroup.get().getGroupUUID())) {
+        return true;
+      }
+    } catch (ResourceNotFoundException e) {
+      log.debug("Ignoring limits for unknown group ''{}'' in quota.config", groupName);
+    } catch (AuthException e) {
+      log.debug("Ignoring limits for non-visible group ''{}'' in quota.config", groupName);
+    }
+
+    return false;
   }
 
   /**

@@ -26,6 +26,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import javax.inject.Inject;
 import javax.inject.Singleton;
+
 import org.eclipse.jgit.lib.Config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,6 +40,7 @@ public class TaskQuotas implements WorkQueue.TaskParker {
   private final List<TaskQuota> globalQuotas = new ArrayList<>();
   private final Pattern PROJECT_PATTERN = Pattern.compile("\\s+/?(.*)\\s+(\\(\\S+\\))$");
   private final Config quotaConfig;
+  private final Map<Integer, Integer> onStopCalled = new ConcurrentHashMap<>();
 
   @Inject
   public TaskQuotas(
@@ -71,58 +73,103 @@ public class TaskQuotas implements WorkQueue.TaskParker {
 
   @Override
   public boolean isReadyToStart(WorkQueue.Task<?> task) {
-    QueueStats.Queue queue = QueueStats.Queue.fromKey(task.getQueueName());
-    if (!QueueStats.acquire(queue, 1)) {
-      return false;
-    }
-
-    Optional<Project.NameKey> estimatedProject = estimateProject(task);
-    List<TaskQuota> applicableQuotas = new ArrayList<>(globalQuotas);
-    applicableQuotas.addAll(
-        estimatedProject
-            .map(
-                project -> {
-                  return quotasByNamespace.getOrDefault(
-                      Optional.ofNullable(quotaFinder.firstMatching(quotaConfig, project))
-                          .orElse(quotaFinder.getFallbackNamespacedQuota(quotaConfig)),
-                      List.of());
-                })
-            .orElse(List.of()));
-
-    List<TaskQuota> acquiredQuotas = new ArrayList<>();
-    for (TaskQuota quota : applicableQuotas) {
-      if (quota.isApplicable(task)) {
-        if (!quota.isReadyToStart(task)) {
-          log.debug("Task [{}] will be parked due task quota rules", task);
-          QueueStats.release(queue, 1);
-          acquiredQuotas.forEach(q -> q.onStop(task));
-          return false;
-        }
-        acquiredQuotas.add(quota);
+    synchronized (task) {
+      //      if (onStopCalled.containsKey(task.getTaskId()) || task.isCancelled()) {
+      //        log.error(
+      //            "improper isReadyToStart call: "
+      //                + onStopCalled.containsKey(task.getTaskId())
+      //                + " "
+      //                + task.isCancelled());
+      //        return false;
+      //      }
+      QueueStats.Queue queue = QueueStats.Queue.fromKey(task.getQueueName());
+      if (!QueueStats.acquire(queue, 1)) {
+        if (task.getQueueName().equalsIgnoreCase(QueueStats.Queue.INTERACTIVE.getName()))
+          log.error(
+              task.getTaskId()
+                  + " isReadyToStart called with false returning by QueueStats. "
+                  + task);
+        return false;
       }
-    }
 
-    if (!acquiredQuotas.isEmpty()) {
-      quotasByTask.put(task.getTaskId(), acquiredQuotas);
+      Optional<Project.NameKey> estimatedProject = estimateProject(task);
+      List<TaskQuota> applicableQuotas = new ArrayList<>(globalQuotas);
+      applicableQuotas.addAll(
+          estimatedProject
+              .map(
+                  project -> {
+                    return quotasByNamespace.getOrDefault(
+                        Optional.ofNullable(quotaFinder.firstMatching(quotaConfig, project))
+                            .orElse(quotaFinder.getFallbackNamespacedQuota(quotaConfig)),
+                        List.of());
+                  })
+              .orElse(List.of()));
+
+      List<TaskQuota> acquiredQuotas = new ArrayList<>();
+      for (TaskQuota quota : applicableQuotas) {
+        if (quota.isApplicable(task)) {
+          if (!quota.isReadyToStart(task)) {
+            log.debug("Task [{}] will be parked due task quota rules", task);
+            QueueStats.release(queue, 1);
+            acquiredQuotas.forEach(q -> q.onStop(task));
+
+            if (task.getQueueName().equalsIgnoreCase(QueueStats.Queue.INTERACTIVE.getName()))
+              log.error(task.getTaskId() + " isReadyToStart called with false returning. " + task);
+            return false;
+          }
+          acquiredQuotas.add(quota);
+        }
+      }
+
+      if (!acquiredQuotas.isEmpty()) {
+        quotasByTask.put(task.getTaskId(), acquiredQuotas);
+      }
+
+      if (task.getQueueName().equalsIgnoreCase(QueueStats.Queue.INTERACTIVE.getName()))
+        log.error(
+            task.getTaskId() + " isReadyToStart called with true returning. " + task.toString());
+      return true;
     }
-    return true;
   }
 
   @Override
   public void onNotReadyToStart(WorkQueue.Task<?> task) {
-    QueueStats.release(QueueStats.Queue.fromKey(task.getQueueName()), 1);
-    Optional.ofNullable(quotasByTask.remove(task.getTaskId()))
-        .ifPresent(quotas -> quotas.forEach(q -> q.onStop(task)));
+    synchronized (task) {
+      if (!quotasByTask.containsKey(task.getTaskId())) {
+        if (task.getQueueName().equalsIgnoreCase(QueueStats.Queue.INTERACTIVE.getName()))
+          log.error(task.getTaskId() + " improper onNotReadyToStart called. " + task);
+        return;
+      }
+      if (task.getQueueName().equalsIgnoreCase(QueueStats.Queue.INTERACTIVE.getName()))
+        log.error(task.getTaskId() + " onNotReadyToStart called. " + task.toString());
+      QueueStats.release(QueueStats.Queue.fromKey(task.getQueueName()), 1);
+      Optional.ofNullable(quotasByTask.remove(task.getTaskId()))
+          .ifPresent(quotas -> quotas.forEach(q -> q.onStop(task)));
+    }
   }
 
   @Override
-  public void onStart(WorkQueue.Task<?> task) {}
+  public void onStart(WorkQueue.Task<?> task) {
+    synchronized (task) {
+      if (task.getQueueName().equalsIgnoreCase(QueueStats.Queue.INTERACTIVE.getName()))
+        log.error(task.getTaskId() + " onStart called.");
+    }
+  }
 
   @Override
   public void onStop(WorkQueue.Task<?> task) {
-    QueueStats.release(QueueStats.Queue.fromKey(task.getQueueName()), 1);
-    Optional.ofNullable(quotasByTask.remove(task.getTaskId()))
-        .ifPresent(quotas -> quotas.forEach(q -> q.onStop(task)));
+    synchronized (task) {
+      //      if (!quotasByTask.containsKey(task.getTaskId())) {
+      //        log.error(task.getTaskId() + " improper onStop called. " + task);
+      //        return;
+      //      }
+      onStopCalled.put(task.getTaskId(), -1);
+      if (task.getQueueName().equalsIgnoreCase(QueueStats.Queue.INTERACTIVE.getName()))
+        log.error(task.getTaskId() + " onStop called. " + task.toString());
+      QueueStats.release(QueueStats.Queue.fromKey(task.getQueueName()), 1);
+      Optional.ofNullable(quotasByTask.remove(task.getTaskId()))
+          .ifPresent(quotas -> quotas.forEach(q -> q.onStop(task)));
+    }
   }
 
   private Optional<Project.NameKey> estimateProject(WorkQueue.Task<?> task) {
