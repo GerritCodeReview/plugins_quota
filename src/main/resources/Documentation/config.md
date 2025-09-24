@@ -255,6 +255,19 @@ The default message reads:
 `Exceeded rate limit of ${rateLimit} REST API requests/hour (or idle `
 `time used up in bursts of max ${burstsLimit} requests)` .
 
+<a id="maxConnectionsPerUserForTask" />
+`maxConnectionsPerUserForTask`
+: Even though we have ratelimiting over a window of period, costly restapis
+run concurrently by users can still bring down the server. Using the
+below config we could limit the concurrent calls. This helps in limiting the
+costly calls that can occupy threads for long periods and prevent other shorter
+operations by other users from being processed.
+
+```
+  [group "Registered Users"]
+    maxConnectionsPerUserForTask = 20 rest-api
+```
+
 Task Quota
 -----------
 
