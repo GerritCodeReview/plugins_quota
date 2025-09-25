@@ -89,6 +89,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a6a5b644_ef0b4074",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-09-25T23:38:19Z",
+      "side": 1,
+      "message": "I should\u0027ve clarified. It is only applicable for Http rest api calls and http git protocol. For SSH, we don\u0027t have a task type decoding for restapis implemented yet (we only could identify {upload|receive}packs for now).",
+      "parentUuid": "7f2764d6_c8e438db",
+      "range": {
+        "startLine": 11,
+        "startChar": 39,
+        "endLine": 11,
+        "endChar": 44
+      },
+      "revId": "aa9b4c54c8791e3e7bb76f74cc599b1b9045a238",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3eb6a931_5129d827",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsConfig.java",
         "patchSetId": 4
@@ -123,6 +147,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5b8393f5_6cadbb26",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-09-25T23:38:19Z",
+      "side": 1,
+      "message": "Instead the name RateLimit should be changed to GroupLimit or something this is representing the config.",
+      "parentUuid": "22541f07_be0edf74",
+      "revId": "aa9b4c54c8791e3e7bb76f74cc599b1b9045a238",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b33c7c73_4e9e5c69",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ConcurrentRestApiLimiter.java",
         "patchSetId": 4
@@ -140,6 +182,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cbfab00c_f5ea4283",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ConcurrentRestApiLimiter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-09-25T23:38:19Z",
+      "side": 1,
+      "message": "if we fall thorough, we need extra var to track if we had made changes to map for this call or reached there because its not a rest api maybe ?",
+      "parentUuid": "b33c7c73_4e9e5c69",
+      "revId": "aa9b4c54c8791e3e7bb76f74cc599b1b9045a238",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b8182ec1_b8930ff2",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ConcurrentRestApiLimiter.java",
         "patchSetId": 4
@@ -151,6 +211,24 @@
       "writtenOn": "2025-09-25T23:29:52Z",
       "side": 1,
       "message": "I don\u0027t see this happening below for line 64, so why here?",
+      "revId": "aa9b4c54c8791e3e7bb76f74cc599b1b9045a238",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0779dada_92dddf39",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ConcurrentRestApiLimiter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-09-25T23:38:19Z",
+      "side": 1,
+      "message": "we only want to decrement when we performed the increment",
+      "parentUuid": "b8182ec1_b8930ff2",
       "revId": "aa9b4c54c8791e3e7bb76f74cc599b1b9045a238",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
