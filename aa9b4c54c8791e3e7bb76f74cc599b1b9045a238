@@ -1,0 +1,209 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96042a85_30b97a05",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-09-25T23:29:52Z",
+      "side": 1,
+      "message": "concurrent",
+      "range": {
+        "startLine": 7,
+        "startChar": 17,
+        "endLine": 7,
+        "endChar": 28
+      },
+      "revId": "aa9b4c54c8791e3e7bb76f74cc599b1b9045a238",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25db887f_f3011150",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-09-25T23:29:52Z",
+      "side": 1,
+      "message": "Even though",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 11
+      },
+      "revId": "aa9b4c54c8791e3e7bb76f74cc599b1b9045a238",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c3e567e_7e10ccef",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-09-25T23:29:52Z",
+      "side": 1,
+      "message": "\"run\" \n\ns/could/can/\n\ns/Have/Add/",
+      "revId": "aa9b4c54c8791e3e7bb76f74cc599b1b9045a238",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f2764d6_c8e438db",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-09-25T23:29:52Z",
+      "side": 1,
+      "message": "(we already have this for SSH I think?)",
+      "range": {
+        "startLine": 11,
+        "startChar": 39,
+        "endLine": 11,
+        "endChar": 44
+      },
+      "revId": "aa9b4c54c8791e3e7bb76f74cc599b1b9045a238",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3eb6a931_5129d827",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-09-25T23:29:52Z",
+      "side": 1,
+      "message": "int? final (most of these could be final?)",
+      "revId": "aa9b4c54c8791e3e7bb76f74cc599b1b9045a238",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22541f07_be0edf74",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-09-25T23:29:52Z",
+      "side": 1,
+      "message": "I feel like this might be better in its own class since this is not a rate limit (there is no time component to it)?",
+      "revId": "aa9b4c54c8791e3e7bb76f74cc599b1b9045a238",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b33c7c73_4e9e5c69",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ConcurrentRestApiLimiter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-09-25T23:29:52Z",
+      "side": 1,
+      "message": "Why not fall through here and on line 59?",
+      "revId": "aa9b4c54c8791e3e7bb76f74cc599b1b9045a238",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8182ec1_b8930ff2",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ConcurrentRestApiLimiter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-09-25T23:29:52Z",
+      "side": 1,
+      "message": "I don\u0027t see this happening below for line 64, so why here?",
+      "revId": "aa9b4c54c8791e3e7bb76f74cc599b1b9045a238",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce01a18e_a2831372",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ConcurrentRestApiLimiter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-09-25T23:29:52Z",
+      "side": 1,
+      "message": "Shouldn\u0027t be generic (k,v) s here. Single char is fine, (u,c), but (k,v) probably is only good if you were creating a map and didn\u0027t know what they represent.",
+      "revId": "aa9b4c54c8791e3e7bb76f74cc599b1b9045a238",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7aae534_cbfbfc40",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ConcurrentRestApiLimiter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-09-25T23:29:52Z",
+      "side": 1,
+      "message": "Simplify?\n```\nconnections \u003d connections \u003d\u003d null ? 0 : connections;\nreturn connections \u003c limit ? connections + 1 : connections;\n```\n\nIf you want smaller vars:\n```\nc \u003d c \u003d\u003d null ? 0 : c;\nreturn c \u003c limit ? c + 1 : c;\n```\n\nSeems like there should be an idiomatic method to do?\n```connections \u003d connections \u003d\u003d null ? 0 : connections;```",
+      "revId": "aa9b4c54c8791e3e7bb76f74cc599b1b9045a238",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62267d0f_036bbd4c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ConcurrentRestApiLimiter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-09-25T23:29:52Z",
+      "side": 1,
+      "message": "Simpler:\n```\nc--;\nreturn c \u003c\u003d 0 ? null : c;\n```\nAlthough it should never happen, maybe protect against c \u003d\u003d null also here?\n```c \u003d c \u003d\u003d null ? 0 : c;```",
+      "revId": "aa9b4c54c8791e3e7bb76f74cc599b1b9045a238",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
