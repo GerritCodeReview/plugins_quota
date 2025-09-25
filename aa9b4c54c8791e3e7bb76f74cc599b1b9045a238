@@ -420,6 +420,23 @@
       "parentUuid": "62267d0f_036bbd4c",
       "revId": "aa9b4c54c8791e3e7bb76f74cc599b1b9045a238",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ad04979_7f0282ca",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-09-25T23:54:42Z",
+      "side": 1,
+      "message": "\"Concurrent...Calls\" is a bit wordy, and yet, not quite descriptive enough. I would like to find something that implies that a rejection will happen, and not just that it will be throttled (such as the \"maxStarts\" do). My first thought is that this is like a connection limit (since it disconnects), but it is a bit different than a usual connection limit since it only disconnects once it reaches the running phase. But maybe that is OK, because if we had the ability to cut the connection earlier, we would, and it we gain that ability it would likely make sense to move the logic and keep the same keyword? So maybe \"maxConnections\" describes what we want better?\n\nAnd maybe we shouldn\u0027t encode the rest-api part in the keyword since that leads to more keyword combinations down the line?\n\n```maxConnectionsPerUserForTask \u003d 20 rest-api```\n\nThat would leave the door open for not just applying this to other connection types, but also a future enhancement:\n\n```maxConnectionsPerUserForTask \u003d 20 rest-api:changes|plugin|...```",
+      "revId": "aa9b4c54c8791e3e7bb76f74cc599b1b9045a238",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
