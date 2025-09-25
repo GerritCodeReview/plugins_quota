@@ -24,6 +24,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5eef63d8_177f4079",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-09-25T23:49:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96042a85_30b97a05",
+      "range": {
+        "startLine": 7,
+        "startChar": 17,
+        "endLine": 7,
+        "endChar": 28
+      },
+      "revId": "aa9b4c54c8791e3e7bb76f74cc599b1b9045a238",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "25db887f_f3011150",
@@ -47,6 +71,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a09b570_7b3b7543",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-09-25T23:49:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25db887f_f3011150",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 11
+      },
+      "revId": "aa9b4c54c8791e3e7bb76f74cc599b1b9045a238",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6c3e567e_7e10ccef",
@@ -60,6 +108,24 @@
       "writtenOn": "2025-09-25T23:29:52Z",
       "side": 1,
       "message": "\"run\" \n\ns/could/can/\n\ns/Have/Add/",
+      "revId": "aa9b4c54c8791e3e7bb76f74cc599b1b9045a238",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7707335c_58407453",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-09-25T23:49:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c3e567e_7e10ccef",
       "revId": "aa9b4c54c8791e3e7bb76f74cc599b1b9045a238",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -124,6 +190,24 @@
       "writtenOn": "2025-09-25T23:29:52Z",
       "side": 1,
       "message": "int? final (most of these could be final?)",
+      "revId": "aa9b4c54c8791e3e7bb76f74cc599b1b9045a238",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3e7ac19_433b802a",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-09-25T23:49:45Z",
+      "side": 1,
+      "message": "just making this variable final for now. don\u0027t wanna touch other code of now.",
+      "parentUuid": "3eb6a931_5129d827",
       "revId": "aa9b4c54c8791e3e7bb76f74cc599b1b9045a238",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -250,6 +334,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e61dc000_c312318d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ConcurrentRestApiLimiter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-09-25T23:49:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce01a18e_a2831372",
+      "revId": "aa9b4c54c8791e3e7bb76f74cc599b1b9045a238",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e7aae534_cbfbfc40",
@@ -267,6 +369,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3caa59da_15905c07",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ConcurrentRestApiLimiter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-09-25T23:49:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7aae534_cbfbfc40",
+      "revId": "aa9b4c54c8791e3e7bb76f74cc599b1b9045a238",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "62267d0f_036bbd4c",
@@ -280,6 +400,24 @@
       "writtenOn": "2025-09-25T23:29:52Z",
       "side": 1,
       "message": "Simpler:\n```\nc--;\nreturn c \u003c\u003d 0 ? null : c;\n```\nAlthough it should never happen, maybe protect against c \u003d\u003d null also here?\n```c \u003d c \u003d\u003d null ? 0 : c;```",
+      "revId": "aa9b4c54c8791e3e7bb76f74cc599b1b9045a238",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc473323_0347602c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ConcurrentRestApiLimiter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-09-25T23:49:45Z",
+      "side": 1,
+      "message": "used computeIfPresent, so should be fine",
+      "parentUuid": "62267d0f_036bbd4c",
       "revId": "aa9b4c54c8791e3e7bb76f74cc599b1b9045a238",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
