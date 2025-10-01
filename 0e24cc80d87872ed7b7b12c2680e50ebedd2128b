@@ -39,6 +39,24 @@
       "message": "This might be problematic if the project really starts with /a?",
       "revId": "0e24cc80d87872ed7b7b12c2680e50ebedd2128b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d35925a_425e355c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-01T14:58:39Z",
+      "side": 1,
+      "message": "Do you think is there any other way to identify if a task is coming from ssh/http ?",
+      "parentUuid": "4a4a8139_4004c2dc",
+      "revId": "0e24cc80d87872ed7b7b12c2680e50ebedd2128b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
