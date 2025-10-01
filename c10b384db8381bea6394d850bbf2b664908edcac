@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95c1614f_687d0e86",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsFinder.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-01T18:36:29Z",
+      "side": 1,
+      "message": "Not related to this change?",
+      "revId": "c10b384db8381bea6394d850bbf2b664908edcac",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c8733af_d176b040",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxConnectionsLimiter.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-01T18:36:29Z",
+      "side": 1,
+      "message": "Init to 2",
+      "revId": "c10b384db8381bea6394d850bbf2b664908edcac",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

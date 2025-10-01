@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "44b90401_b8492228",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsFinder.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-01T18:36:29Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "86cf2640_0efbeb19",
+      "revId": "589c32e2d7aa7656a367a51a081cf98d6dba02c4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c6ec4b5d_29ae6af8",
