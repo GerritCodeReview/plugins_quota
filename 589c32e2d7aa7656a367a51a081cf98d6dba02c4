@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86cf2640_0efbeb19",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/AccountLimitsFinder.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-01T13:30:39Z",
+      "side": 1,
+      "message": "This is wrong from what is says in the doc, not preserving order, looking for other groups if a certain limit (uploadpack/restapi) is not set. But not in the scope of this change to fix.",
+      "revId": "589c32e2d7aa7656a367a51a081cf98d6dba02c4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
