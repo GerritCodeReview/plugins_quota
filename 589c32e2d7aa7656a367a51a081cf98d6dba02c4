@@ -16,6 +16,23 @@
       "message": "This is wrong from what is says in the doc, not preserving order, looking for other groups if a certain limit (uploadpack/restapi) is not set. But not in the scope of this change to fix.",
       "revId": "589c32e2d7aa7656a367a51a081cf98d6dba02c4",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de653516_0ee1854c",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-01T17:31:20Z",
+      "side": 1,
+      "message": "Also mention that \"costly calls can occupy threads for long periods and prevent other shorter operations by other users from being processed.\"?",
+      "revId": "589c32e2d7aa7656a367a51a081cf98d6dba02c4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
