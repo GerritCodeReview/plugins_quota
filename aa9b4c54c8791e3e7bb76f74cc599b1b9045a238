@@ -324,6 +324,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1eee9211_1c543ce4",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ConcurrentRestApiLimiter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-02T20:45:25Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "cbfab00c_f5ea4283",
+      "revId": "aa9b4c54c8791e3e7bb76f74cc599b1b9045a238",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8182ec1_b8930ff2",
@@ -355,6 +373,24 @@
       "side": 1,
       "message": "we only want to decrement when we performed the increment",
       "parentUuid": "b8182ec1_b8930ff2",
+      "revId": "aa9b4c54c8791e3e7bb76f74cc599b1b9045a238",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fd9b29e_65a83c2e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ConcurrentRestApiLimiter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-02T20:45:25Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0779dada_92dddf39",
       "revId": "aa9b4c54c8791e3e7bb76f74cc599b1b9045a238",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
