@@ -15,8 +15,8 @@
 package com.googlesource.gerrit.plugins.quota;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -50,7 +50,7 @@ public class QueueStats {
     }
   }
 
-  public static Map<Queue, AtomicInteger> availableThreadsPerQueue = new HashMap<>();
+  public static Map<Queue, AtomicInteger> availableThreadsPerQueue = new ConcurrentHashMap<>();
 
   public static void initQueueWithCapacity(Queue q, int c) {
     availableThreadsPerQueue.put(q, new AtomicInteger(c));
