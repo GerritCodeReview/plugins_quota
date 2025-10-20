@@ -52,10 +52,10 @@ public class QueueManagerTest {
     QueueInfo info = QueueManager.infoByQueue.get(TEST_QUEUE);
 
     assertEquals(
-        "QueueInfo should store the correct maxThreads capacity.", MAX_CAPACITY, info.maxThreads());
-    assertNotNull("QueueInfo's runningTasks set should not be null.", info.runningTasks());
+        "QueueInfo should store the correct maxThreads capacity.", MAX_CAPACITY, info.maxThreads);
+    assertNotNull("QueueInfo's runningTasks set should not be null.", info.runningTasks);
     assertTrue(
-        "QueueInfo's runningTasks set should be empty initially.", info.runningTasks().isEmpty());
+        "QueueInfo's runningTasks set should be empty initially.", info.runningTasks.isEmpty());
   }
 
   @Test
@@ -77,8 +77,8 @@ public class QueueManagerTest {
 
     QueueInfo info = QueueManager.infoByQueue.get(TEST_QUEUE);
 
-    assertEquals("Running tasks count should be 2.", 2, info.runningTasks().size());
-    assertTrue("Task 1 ID should be registered.", info.runningTasks().contains(101));
+    assertEquals("Running tasks count should be 2.", 2, info.runningTasks.size());
+    assertTrue("Task 1 ID should be registered.", info.runningTasks.contains(101));
   }
 
   @Test
@@ -92,8 +92,8 @@ public class QueueManagerTest {
 
     QueueInfo info = QueueManager.infoByQueue.get(TEST_QUEUE);
 
-    assertEquals("Running tasks count should remain 1.", 1, info.runningTasks().size());
-    assertFalse("Task 2 ID should not be registered.", info.runningTasks().contains(102));
+    assertEquals("Running tasks count should remain 1.", 1, info.runningTasks.size());
+    assertFalse("Task 2 ID should not be registered.", info.runningTasks.contains(102));
   }
 
   @Test
@@ -103,11 +103,11 @@ public class QueueManagerTest {
 
     QueueManager.acquire(task);
     QueueInfo info = QueueManager.infoByQueue.get(TEST_QUEUE);
-    assertTrue("Task should be running before release.", info.runningTasks().contains(201));
+    assertTrue("Task should be running before release.", info.runningTasks.contains(201));
 
     QueueManager.release(task);
-    assertFalse("Task should be removed after release.", info.runningTasks().contains(201));
-    assertTrue("Running tasks set should be empty.", info.runningTasks().isEmpty());
+    assertFalse("Task should be removed after release.", info.runningTasks.contains(201));
+    assertTrue("Running tasks set should be empty.", info.runningTasks.isEmpty());
   }
 
   @Test
@@ -126,10 +126,10 @@ public class QueueManagerTest {
 
     QueueManager.acquire(runningTask);
     QueueInfo info = QueueManager.infoByQueue.get(TEST_QUEUE);
-    int initialSize = info.runningTasks().size();
+    int initialSize = info.runningTasks.size();
 
     QueueManager.release(releasedTask);
-    assertEquals("Running tasks count should not change.", initialSize, info.runningTasks().size());
+    assertEquals("Running tasks count should not change.", initialSize, info.runningTasks.size());
   }
 
   @Test
@@ -201,7 +201,7 @@ public class QueueManagerTest {
     assertEquals(
         "The number of running tasks must not exceed the max capacity due to race conditions.",
         MAX_CAPACITY,
-        info.runningTasks().size());
+        info.runningTasks.size());
 
     assertEquals(
         "The correct number of unique task IDs should be acquired.", MAX_CAPACITY, acquired.size());
