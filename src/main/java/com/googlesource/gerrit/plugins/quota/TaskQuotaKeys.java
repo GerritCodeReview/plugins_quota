@@ -19,6 +19,7 @@ import java.util.function.Function;
 
 public enum TaskQuotaKeys {
   MAX_START_FOR_TASK_FOR_QUEUE("maxStartForTaskForQueue", TaskQuotaForTaskForQueue::build),
+  MIN_START_FOR_TASK_FOR_QUEUE("minStartForTaskForQueue", MinStartQuota::build),
   MAX_START_FOR_TASK_FOR_USER_FOR_QUEUE(
       "maxStartForTaskForUserForQueue", TaskQuotaForTaskForQueueForUser::build),
   MAX_START_PER_USER_FOR_TASK_FOR_QUEUE(

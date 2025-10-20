@@ -38,8 +38,8 @@ public class QueueStatsTest {
 
   @Before
   public void setUp() {
-    QueueStats.maxThreadsPerQueue.clear();
-    QueueStats.runningTasksPerQueue.clear();
+    QueueStats.spareThreadsPerQueue.clear();
+    QueueStats.runningTasksByQueue.clear();
   }
 
   @Test
@@ -48,17 +48,17 @@ public class QueueStatsTest {
 
     assertTrue(
         "maxThreadsPerQueue should contain the queue.",
-        QueueStats.maxThreadsPerQueue.containsKey(TEST_QUEUE));
+        QueueStats.spareThreadsPerQueue.containsKey(TEST_QUEUE));
     assertEquals(
         "maxThreadsPerQueue should store the correct capacity.",
         MAX_CAPACITY,
-        (int) QueueStats.maxThreadsPerQueue.get(TEST_QUEUE));
+        (int) QueueStats.spareThreadsPerQueue.get(TEST_QUEUE));
     assertTrue(
         "runningTasksPerQueue should contain the queue.",
-        QueueStats.runningTasksPerQueue.containsKey(TEST_QUEUE));
+        QueueStats.runningTasksByQueue.containsKey(TEST_QUEUE));
     assertTrue(
         "runningTasksPerQueue set should be empty initially.",
-        QueueStats.runningTasksPerQueue.get(TEST_QUEUE).isEmpty());
+        QueueStats.runningTasksByQueue.get(TEST_QUEUE).isEmpty());
   }
 
   @Test
@@ -66,7 +66,7 @@ public class QueueStatsTest {
     WorkQueue.Task<?> task = createTask(1, "UNMANAGED-QUEUE");
 
     assertTrue("Acquire should succeed for an unmanaged queue.", QueueStats.acquire(task));
-    assertTrue("Running tasks map should remain empty.", QueueStats.runningTasksPerQueue.isEmpty());
+    assertTrue("Running tasks map should remain empty.", QueueStats.runningTasksByQueue.isEmpty());
   }
 
   @Test
@@ -81,10 +81,10 @@ public class QueueStatsTest {
     assertEquals(
         "Running tasks count should be 2.",
         2,
-        QueueStats.runningTasksPerQueue.get(TEST_QUEUE).size());
+        QueueStats.runningTasksByQueue.get(TEST_QUEUE).size());
     assertTrue(
         "Task 1 ID should be registered.",
-        QueueStats.runningTasksPerQueue.get(TEST_QUEUE).contains(101));
+        QueueStats.runningTasksByQueue.get(TEST_QUEUE).contains(101));
   }
 
   @Test
@@ -99,10 +99,10 @@ public class QueueStatsTest {
     assertEquals(
         "Running tasks count should remain 1.",
         1,
-        QueueStats.runningTasksPerQueue.get(TEST_QUEUE).size());
+        QueueStats.runningTasksByQueue.get(TEST_QUEUE).size());
     assertFalse(
         "Task 2 ID should not be registered.",
-        QueueStats.runningTasksPerQueue.get(TEST_QUEUE).contains(102));
+        QueueStats.runningTasksByQueue.get(TEST_QUEUE).contains(102));
   }
 
   @Test
@@ -113,15 +113,15 @@ public class QueueStatsTest {
     QueueStats.acquire(task);
     assertTrue(
         "Task should be running before release.",
-        QueueStats.runningTasksPerQueue.get(TEST_QUEUE).contains(201));
+        QueueStats.runningTasksByQueue.get(TEST_QUEUE).contains(201));
 
     QueueStats.release(task);
     assertFalse(
         "Task should be removed after release.",
-        QueueStats.runningTasksPerQueue.get(TEST_QUEUE).contains(201));
+        QueueStats.runningTasksByQueue.get(TEST_QUEUE).contains(201));
     assertTrue(
         "Running tasks set should be empty.",
-        QueueStats.runningTasksPerQueue.get(TEST_QUEUE).isEmpty());
+        QueueStats.runningTasksByQueue.get(TEST_QUEUE).isEmpty());
   }
 
   @Test
@@ -129,7 +129,7 @@ public class QueueStatsTest {
     WorkQueue.Task<?> task = createTask(201, TEST_QUEUE_NAME);
 
     QueueStats.release(task);
-    assertTrue(QueueStats.runningTasksPerQueue.isEmpty());
+    assertTrue(QueueStats.runningTasksByQueue.isEmpty());
   }
 
   @Test
@@ -139,13 +139,13 @@ public class QueueStatsTest {
     WorkQueue.Task<?> releasedTask = createTask(302, TEST_QUEUE_NAME);
 
     QueueStats.acquire(runningTask);
-    int initialSize = QueueStats.runningTasksPerQueue.get(TEST_QUEUE).size();
+    int initialSize = QueueStats.runningTasksByQueue.get(TEST_QUEUE).size();
 
     QueueStats.release(releasedTask);
     assertEquals(
         "Running tasks count should not change.",
         initialSize,
-        QueueStats.runningTasksPerQueue.get(TEST_QUEUE).size());
+        QueueStats.runningTasksByQueue.get(TEST_QUEUE).size());
   }
 
   // --- Test ensureIdle ---
@@ -217,7 +217,7 @@ public class QueueStatsTest {
     assertEquals(
         "The number of running tasks must not exceed the max capacity due to race conditions.",
         MAX_CAPACITY,
-        QueueStats.runningTasksPerQueue.get(TEST_QUEUE).size());
+        QueueStats.runningTasksByQueue.get(TEST_QUEUE).size());
 
     assertEquals(
         "The correct number of unique task IDs should be acquired.", MAX_CAPACITY, acquired.size());
