@@ -14,13 +14,36 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
-import java.util.Arrays;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
+import com.google.gerrit.server.git.WorkQueue;
 
-public class QueueStats {
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+public class QueueManager {
+  public record QueueInfo(int maxThreads, Set<Integer> runningTasks) {
+    public QueueInfo(int maxThreads) {
+      this(maxThreads, new HashSet<>());
+    }
+
+    public boolean run(int taskId) {
+      if (runningTasks().size() < maxThreads()) {
+        runningTasks().add(taskId);
+        return true;
+      }
+      return false;
+    }
+
+    public void complete(int taskId) {
+      runningTasks().remove(taskId);
+    }
+
+    public boolean ensureIdle(int threads) {
+      return maxThreads() - runningTasks().size() >= threads;
+    }
+  }
+
   public enum Queue {
     INTERACTIVE("SSH-Interactive-Worker"),
     BATCH("SSH-Batch-Worker"),
@@ -50,44 +73,45 @@ public class QueueStats {
     }
   }
 
-  public static Map<Queue, AtomicInteger> availableThreadsPerQueue = new ConcurrentHashMap<>();
+  public static ConcurrentMap<Queue, QueueInfo> infoByQueue = new ConcurrentHashMap<>();
 
   public static void initQueueWithCapacity(Queue q, int c) {
-    availableThreadsPerQueue.put(q, new AtomicInteger(c));
+    infoByQueue.put(q, new QueueInfo(c));
   }
 
-  public static boolean acquire(Queue q, int c) {
-    AtomicInteger available = availableThreadsPerQueue.get(q);
-    if (available == null) {
+  public static boolean acquire(WorkQueue.Task<?> task) {
+    Queue q = Queue.fromKey(task.getQueueName());
+    if (q == Queue.UNKNOWN) {
       return true;
     }
 
-    AtomicBoolean success = new AtomicBoolean(false);
-    available.updateAndGet(
-        current -> {
-          if (current < c) {
-            success.setPlain(false);
-            return current;
-          }
-          success.setPlain(true);
-          return current - c;
+    final AtomicBoolean acquired = new AtomicBoolean(false);
+    infoByQueue.computeIfPresent(
+        q,
+        (queue, info) -> {
+          acquired.setPlain(info.run(task.getTaskId()));
+          return info;
         });
-    return success.getPlain();
+
+    return acquired.getPlain();
   }
 
-  public static void release(Queue q, int c) {
-    AtomicInteger available = availableThreadsPerQueue.get(q);
-    if (available != null) {
-      available.addAndGet(c);
-    }
+  public static void release(WorkQueue.Task<?> task) {
+    Queue q = Queue.fromKey(task.getQueueName());
+    infoByQueue.computeIfPresent(
+        q,
+        (queue, info) -> {
+          info.complete(task.getTaskId());
+          return info;
+        });
   }
 
   public static boolean ensureIdle(Queue q, int c) {
-    AtomicInteger available = availableThreadsPerQueue.get(q);
-    if (available == null) {
+    QueueInfo info = infoByQueue.get(q);
+    if (info == null) {
       return true;
     }
 
-    return available.get() > c;
+    return info.ensureIdle(c);
   }
 }
