@@ -15,32 +15,95 @@
 package com.googlesource.gerrit.plugins.quota;
 
 import com.google.gerrit.server.git.WorkQueue;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Predicate;
 
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class QueueManager {
-  public record QueueInfo(int maxThreads, Set<Integer> runningTasks) {
+  public static final Logger log = LoggerFactory.getLogger(QueueManager.class);
+
+  public static class QueueInfo {
+    public final int maxThreads;
+    public int spareThreads;
+    public final Map<Integer, WorkQueue.Task<?>> runningTaskById;
+    public final List<Reservation> reservations;
+
     public QueueInfo(int maxThreads) {
-      this(maxThreads, new HashSet<>());
+      this.maxThreads = maxThreads;
+      this.spareThreads = maxThreads;
+      this.runningTaskById = new HashMap<>();
+      this.reservations = new ArrayList<>();
     }
 
-    public boolean run(int taskId) {
-      if (runningTasks().size() < maxThreads()) {
-        runningTasks().add(taskId);
+    public boolean run(WorkQueue.Task<?> task) {
+      if (runningTaskById.size() >= maxThreads) {
+        return false;
+      }
+
+      if (runningTaskById.put(task.getTaskId(), task) != null) {
         return true;
       }
-      return false;
+
+      if (!reservations.isEmpty() && !canAllocate()) {
+        runningTaskById.remove((task.getTaskId()));
+        return false;
+      }
+
+      return true;
     }
 
-    public void complete(int taskId) {
-      runningTasks().remove(taskId);
+    public void complete(WorkQueue.Task<?> task) {
+      runningTaskById.remove(task.getTaskId());
     }
 
     public boolean ensureIdle(int threads) {
-      return maxThreads() - runningTasks().size() >= threads;
+      return maxThreads - runningTaskById.size() >= threads;
+    }
+
+    public void addReservation(Reservation incomingReservation) {
+      reservations.add(incomingReservation);
+      spareThreads -= incomingReservation.reservedCapacity();
+    }
+
+    public boolean canAllocate() {
+      int spareAllocations = 0;
+      Map<Reservation, Integer> allocationsByReservation = new HashMap<>();
+
+      for (WorkQueue.Task<?> runningTask : runningTaskById.values()) {
+        boolean allocatedToReservation = false;
+        for (Reservation reservation : reservations) {
+          if (reservation.matches(runningTask)) {
+            int currentAllocation = allocationsByReservation.getOrDefault(reservation, 0);
+            if (currentAllocation < reservation.reservedCapacity()) {
+              allocationsByReservation.put(reservation, currentAllocation + 1);
+              allocatedToReservation = true;
+              break;
+            }
+          }
+        }
+
+        if (!allocatedToReservation) {
+          spareAllocations++;
+        }
+      }
+
+      return spareAllocations <= spareThreads;
+    }
+  }
+
+  public record Reservation(int reservedCapacity, Predicate<WorkQueue.Task<?>> taskMatcher) {
+    public boolean matches(WorkQueue.Task<?> task) {
+      return taskMatcher.test(task);
     }
   }
 
@@ -79,6 +142,35 @@ public class QueueManager {
     infoByQueue.put(q, new QueueInfo(c));
   }
 
+  public static void registerReservation(String qName, Reservation reservation) {
+    Queue q = Queue.fromKey(qName);
+    if (q == Queue.UNKNOWN) {
+      return;
+    }
+
+    QueueInfo queueInfo = infoByQueue.get(q);
+    int capacityToReserve = queueInfo.spareThreads - 1;
+    if (capacityToReserve < 1) {
+      log.error(
+          "Cannot enforce reservation for queue '{}' Requested: {} threads. No threads reserved.",
+          qName,
+          reservation.reservedCapacity());
+      return;
+    }
+
+    if (reservation.reservedCapacity() > capacityToReserve) {
+      log.warn(
+          "Partial reservation enforced for queue '{}'. Requested: {}, Actual reserved: {}",
+          qName,
+          reservation.reservedCapacity(),
+          capacityToReserve);
+      queueInfo.addReservation(new Reservation(capacityToReserve, reservation.taskMatcher));
+      return;
+    }
+
+    queueInfo.addReservation(reservation);
+  }
+
   public static boolean acquire(WorkQueue.Task<?> task) {
     Queue q = Queue.fromKey(task.getQueueName());
     if (q == Queue.UNKNOWN) {
@@ -89,7 +181,7 @@ public class QueueManager {
     infoByQueue.computeIfPresent(
         q,
         (queue, info) -> {
-          acquired.setPlain(info.run(task.getTaskId()));
+          acquired.setPlain(info.run(task));
           return info;
         });
 
@@ -101,7 +193,7 @@ public class QueueManager {
     infoByQueue.computeIfPresent(
         q,
         (queue, info) -> {
-          info.complete(task.getTaskId());
+          info.complete(task);
           return info;
         });
   }

@@ -39,7 +39,7 @@ public class TaskQuotaPerUserForTaskForQueue extends TaskQuotaForTaskForQueue {
     perUserTaskQuota.release(task);
   }
 
-  public static Optional<TaskQuota> build(String cfg) {
+  public static Optional<TaskQuota> build(QuotaSection qs, String cfg) {
     Matcher matcher = CONFIG_PATTERN.matcher(cfg);
     if (matcher.matches()) {
       return Optional.of(

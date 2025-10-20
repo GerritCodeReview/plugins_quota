@@ -75,7 +75,7 @@ public class SoftMaxPerUserForQueue implements TaskQuota {
                     }));
   }
 
-  public static Optional<TaskQuota> build(String cfg) {
+  public static Optional<TaskQuota> build(QuotaSection qs, String cfg) {
     Matcher matcher = CONFIG_PATTERN.matcher(cfg);
     return matcher.find()
         ? Optional.of(

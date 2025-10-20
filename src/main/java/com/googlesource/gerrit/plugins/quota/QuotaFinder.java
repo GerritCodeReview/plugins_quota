@@ -44,7 +44,7 @@ public class QuotaFinder {
         String prefix = n.substring(0, n.length() - 3);
         Matcher m = Pattern.compile("^" + prefix + "([^/]+)/.*$").matcher(p);
         if (m.matches()) {
-          return new NamespacedQuotaSection(cfg, n, prefix + m.group(1) + "/*");
+          return new NamespacedQuotaSection(cfg, n, prefix + m.group(1) + "/*", false);
         }
       } else if (n.endsWith("/*")) {
         if (p.startsWith(n.substring(0, n.length() - 1))) {
@@ -70,7 +70,7 @@ public class QuotaFinder {
   }
 
   public QuotaSection getFallbackNamespacedQuota(Config cfg) {
-    return new NamespacedQuotaSection(cfg, "*");
+    return new NamespacedQuotaSection(cfg, "*", true);
   }
 
   public List<NamespacedQuotaSection> getQuotaNamespaces(Config cfg) {

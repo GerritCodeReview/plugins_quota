@@ -55,9 +55,13 @@ public interface QuotaSection {
         .flatMap(
             type ->
                 Arrays.stream(cfg().getStringList(section(), subSection(), type.key))
-                    .map(type.processor)
+                    .map(cfg -> type.processor.apply(this, cfg))
                     .flatMap(Optional::stream))
         .toList();
+  }
+
+  default boolean isFallbackQuota() {
+    return false;
   }
 
   Config cfg();

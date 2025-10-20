@@ -17,12 +17,17 @@ package com.googlesource.gerrit.plugins.quota;
 import com.google.gerrit.entities.Project;
 import org.eclipse.jgit.lib.Config;
 
-public record NamespacedQuotaSection(Config cfg, String namespace, String resolvedNamespace)
+public record NamespacedQuotaSection(
+    Config cfg, String namespace, String resolvedNamespace, boolean isFallBack)
     implements QuotaSection {
   public static final String QUOTA = "quota";
 
   public NamespacedQuotaSection(Config cfg, String namespace) {
-    this(cfg, namespace, namespace);
+    this(cfg, namespace, false);
+  }
+
+  public NamespacedQuotaSection(Config cfg, String namespace, boolean isFallBack) {
+    this(cfg, namespace, namespace, isFallBack);
   }
 
   public String getNamespace() {
@@ -41,5 +46,10 @@ public record NamespacedQuotaSection(Config cfg, String namespace, String resolv
   @Override
   public String subSection() {
     return namespace();
+  }
+
+  @Override
+  public boolean isFallbackQuota() {
+    return isFallBack;
   }
 }

@@ -301,6 +301,20 @@ or to make it applicable for every user:
     maxStartPerUserForTaskForQueue = 20 uploadpack SSH-Interactive-Worker
 ```
 
+We can also reserve a certain amount of the queue's capacity for specific project
+namespaces using `minStartForQueue`.
+
+```
+  [quota "android"]
+    minStartForQueue = 5 SSH-Interactive-Worker
+```
+
+The configuration reserves 5 threads from the interactive queue exclusively for tasks
+related to the android project. One must ensure the total number of reserved threads does
+not exceed the queue's capacity. If this limit is surpassed, some of the configured
+minStarts will not be enforced and will be logged. Additionally, note that
+`minStartForQueue` cannot be defined in the global or fallback quota sections.
+
 Currently supported tasks:
 
 * `uploadpack`: Maps directly to git-upload-pack operations (used during Git
