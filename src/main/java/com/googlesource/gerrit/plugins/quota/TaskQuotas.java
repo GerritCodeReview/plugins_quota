@@ -72,7 +72,7 @@ public class TaskQuotas implements WorkQueue.TaskParker {
   @Override
   public boolean isReadyToStart(WorkQueue.Task<?> task) {
     QueueStats.Queue queue = QueueStats.Queue.fromKey(task.getQueueName());
-    if (!QueueStats.acquire(queue, 1)) {
+    if (!QueueStats.acquire(task)) {
       return false;
     }
 
@@ -94,7 +94,7 @@ public class TaskQuotas implements WorkQueue.TaskParker {
       if (quota.isApplicable(task)) {
         if (!quota.isReadyToStart(task)) {
           log.debug("Task [{}] will be parked due task quota rules", task);
-          QueueStats.release(queue, 1);
+          QueueStats.release(task);
           acquiredQuotas.forEach(q -> q.onStop(task));
           return false;
         }
@@ -110,7 +110,7 @@ public class TaskQuotas implements WorkQueue.TaskParker {
 
   @Override
   public void onNotReadyToStart(WorkQueue.Task<?> task) {
-    QueueStats.release(QueueStats.Queue.fromKey(task.getQueueName()), 1);
+    QueueStats.release(task);
     Optional.ofNullable(quotasByTask.remove(task.getTaskId()))
         .ifPresent(quotas -> quotas.forEach(q -> q.onStop(task)));
   }
@@ -120,7 +120,7 @@ public class TaskQuotas implements WorkQueue.TaskParker {
 
   @Override
   public void onStop(WorkQueue.Task<?> task) {
-    QueueStats.release(QueueStats.Queue.fromKey(task.getQueueName()), 1);
+    QueueStats.release(task);
     Optional.ofNullable(quotasByTask.remove(task.getTaskId()))
         .ifPresent(quotas -> quotas.forEach(q -> q.onStop(task)));
   }
