@@ -25,15 +25,15 @@ import java.util.regex.Pattern;
 
 public class SoftMaxPerUserForQueue implements TaskQuota {
   public static final Pattern CONFIG_PATTERN =
-      Pattern.compile("(\\d+)\\s+(" + String.join("|", QueueStats.Queue.keys()) + ")");
+      Pattern.compile("(\\d+)\\s+(" + String.join("|", QueueManager.Queue.keys()) + ")");
   private final int softMax;
-  private final QueueStats.Queue queue;
+  private final QueueManager.Queue queue;
   private final ConcurrentHashMap<String, Integer> taskStartedCountByUser =
       new ConcurrentHashMap<>();
 
   public SoftMaxPerUserForQueue(int softMax, String queueName) {
     this.softMax = softMax;
-    this.queue = QueueStats.Queue.fromKey(queueName);
+    this.queue = QueueManager.Queue.fromKey(queueName);
   }
 
   @Override
@@ -52,7 +52,7 @@ public class SoftMaxPerUserForQueue implements TaskQuota {
                   (key, val) -> {
                     int runningTasks = (val != null) ? val : 0;
 
-                    if (runningTasks < softMax || QueueStats.ensureIdle(queue, 1)) {
+                    if (runningTasks < softMax || QueueManager.ensureIdle(queue, 1)) {
                       acquired.setPlain(true);
                       ++runningTasks;
                     }
