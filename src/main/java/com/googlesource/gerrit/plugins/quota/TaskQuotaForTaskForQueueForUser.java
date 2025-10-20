@@ -44,7 +44,7 @@ public class TaskQuotaForTaskForQueueForUser extends TaskQuotaForTaskForQueue {
     return taskUser.find() && user.equals(taskUser.group(1)) && super.isApplicable(task);
   }
 
-  public static Optional<TaskQuota> build(String config) {
+  public static Optional<TaskQuota> build(QuotaSection qs, String config) {
     Matcher matcher = CONFIG_PATTERN.matcher(config);
     if (matcher.matches()) {
       return Optional.of(
