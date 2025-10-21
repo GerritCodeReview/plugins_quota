@@ -71,6 +71,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0f5e6e6_b2f595ce",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueStats.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-21T17:28:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9461d06b_b1027156",
+      "revId": "c8ab51888a3564bb886c3ece3b1c89ff2a1b4d09",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "507bd552_5d278a69",
@@ -155,6 +173,24 @@
       "side": 1,
       "message": "Yeah, for that one Map it isn\u0027t racy (but it is overkill and extra code that could be skipped). For the running Map between lines 86 and 90 it is racy.",
       "parentUuid": "474c97f6_5ffd0494",
+      "revId": "c8ab51888a3564bb886c3ece3b1c89ff2a1b4d09",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8e34c59_9a2699a4",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueStats.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-21T17:28:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d4fabea4_2b41343e",
       "revId": "c8ab51888a3564bb886c3ece3b1c89ff2a1b4d09",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
