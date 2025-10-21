@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "66541ba4_f7afa97d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueStats.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-21T18:08:53Z",
+      "side": 1,
+      "message": "Seems reasonable.",
+      "parentUuid": "f480c301_857bf455",
+      "revId": "f272d520a2dabbcc32dd1a0101cf631b7324049d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "42a9e7dd_fd1ff197",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueStats.java",
         "patchSetId": 3

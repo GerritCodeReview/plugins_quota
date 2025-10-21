@@ -124,6 +124,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0d2519c_c6353dd7",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueStats.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-21T18:08:53Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b815cecd_668c8eb8",
+      "revId": "c8ab51888a3564bb886c3ece3b1c89ff2a1b4d09",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c8726b9b_d840ea33",
