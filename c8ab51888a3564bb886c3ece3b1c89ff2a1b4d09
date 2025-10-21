@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e681fcad_4076b5e9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-21T14:38:30Z",
+      "side": 1,
+      "message": "I like this new approach!",
+      "revId": "c8ab51888a3564bb886c3ece3b1c89ff2a1b4d09",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "507bd552_5d278a69",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueStats.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-21T14:38:30Z",
+      "side": 1,
+      "message": "ConcurrentHashMap needed?",
+      "revId": "c8ab51888a3564bb886c3ece3b1c89ff2a1b4d09",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8726b9b_d840ea33",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueStats.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-21T14:38:30Z",
+      "side": 1,
+      "message": "These checks are racy, so skip them?",
+      "revId": "c8ab51888a3564bb886c3ece3b1c89ff2a1b4d09",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfb5e416_853e8299",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueStats.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-21T14:38:30Z",
+      "side": 1,
+      "message": "I think this pattern of using an array (while not uncommon), is less obvious and more error prone than using an AtomicBoolean. Did you intend to change this, and if so, can you justify?",
+      "revId": "c8ab51888a3564bb886c3ece3b1c89ff2a1b4d09",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
