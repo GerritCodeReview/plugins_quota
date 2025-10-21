@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52464bd0_18126eb9",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-21T21:22:27Z",
+      "side": 1,
+      "message": "I think you can use ConcurrentMap on the left here?",
+      "revId": "a78ef5bc5d4929faf5bf17c00a34496243df3b28",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
