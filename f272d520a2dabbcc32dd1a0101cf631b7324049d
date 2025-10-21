@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3219c7e2_1a4f1ebb",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueStats.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-21T17:41:48Z",
+      "side": 1,
+      "message": "Why do we need a QueueStats class with static methods? To be honest, the QueueStats class feels like it should be per Queue and store this data. The \"smell\" here is classes named things like ...Stats, ...Info.",
+      "revId": "f272d520a2dabbcc32dd1a0101cf631b7324049d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42a9e7dd_fd1ff197",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueStats.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-21T17:41:48Z",
+      "side": 1,
+      "message": "Should be exposed as a method on info, getRunningCount()? Or, should it go one step further, ```if (info.run(task.getTaskId())) {```?",
+      "range": {
+        "startLine": 75,
+        "startChar": 14,
+        "endLine": 75,
+        "endChar": 40
+      },
+      "revId": "f272d520a2dabbcc32dd1a0101cf631b7324049d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a2b0911_1dc7b776",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueStats.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-21T17:41:48Z",
+      "side": 1,
+      "message": "info.complete(task.getTaskId())",
+      "revId": "f272d520a2dabbcc32dd1a0101cf631b7324049d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6ff6b6d_3aae4329",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueStats.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-21T17:41:48Z",
+      "side": 1,
+      "message": "info.ensureIdle(c)?",
+      "revId": "f272d520a2dabbcc32dd1a0101cf631b7324049d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
