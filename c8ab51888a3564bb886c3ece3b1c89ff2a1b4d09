@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9461d06b_b1027156",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueStats.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-21T15:24:26Z",
+      "side": 1,
+      "message": "Yes. Instead of:\n```\npublic static Map\u003cQueue, Integer\u003e maxThreadsPerQueue \u003d new ConcurrentHashMap\u003c\u003e();\npublic static Map\u003cQueue, Set\u003cInteger\u003e\u003e runningTasksPerQueue \u003d new ConcurrentHashMap\u003c\u003e();\n\nMap\u003cQueue, QueueHolder\u003e \n\nclass QueueHolder {\n   int maxThreads\n   Set\u003cInteger\u003e runningTasks;\n}\n```",
+      "parentUuid": "5162d075_22ef8703",
+      "revId": "c8ab51888a3564bb886c3ece3b1c89ff2a1b4d09",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "507bd552_5d278a69",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueStats.java",
         "patchSetId": 1
