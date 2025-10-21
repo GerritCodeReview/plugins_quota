@@ -105,6 +105,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "83ae5464_378d1a49",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueStats.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-21T20:35:15Z",
+      "side": 1,
+      "message": "Should you return here if it is already running?",
+      "revId": "761c4a75eb283c693d7d85bd59dec9b115d85898",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3c985a11_b5086956",
         "filename": "src/main/resources/Documentation/config.md",
         "patchSetId": 1
