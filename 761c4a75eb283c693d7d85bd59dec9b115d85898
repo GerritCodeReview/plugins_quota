@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9513f9de_0ba50b0f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-21T21:14:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b4330e9_a0c47615",
+      "revId": "761c4a75eb283c693d7d85bd59dec9b115d85898",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e7d20ea_74c26bea",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-10-21T15:15:45Z",
       "side": 1,
       "message": "These parallel data structures are starting to make the code below very complicated.",
+      "revId": "761c4a75eb283c693d7d85bd59dec9b115d85898",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4840317a_2c96c9ef",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueStats.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-21T21:14:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e7d20ea_74c26bea",
       "revId": "761c4a75eb283c693d7d85bd59dec9b115d85898",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -52,6 +88,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b4105ab_580f8ef9",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueStats.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-21T21:14:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "593ac767_f277aeae",
+      "revId": "761c4a75eb283c693d7d85bd59dec9b115d85898",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e6f7dfba_63c89bab",
@@ -65,6 +119,24 @@
       "writtenOn": "2025-10-21T15:15:45Z",
       "side": 1,
       "message": "This line makes things pretty confusing to me, it seems like it would be easier to just the various conditions directly.",
+      "revId": "761c4a75eb283c693d7d85bd59dec9b115d85898",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcfcfafc_4484dbff",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueStats.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-21T21:14:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6f7dfba_63c89bab",
       "revId": "761c4a75eb283c693d7d85bd59dec9b115d85898",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -86,6 +158,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bed3771_665d48d9",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueStats.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-21T21:14:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98246e0b_bcec681f",
+      "revId": "761c4a75eb283c693d7d85bd59dec9b115d85898",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "42854599_424d9c61",
@@ -99,6 +189,24 @@
       "writtenOn": "2025-10-21T15:15:45Z",
       "side": 1,
       "message": "This feels a bit confusing and would be clearer to me as:\n\n```if (reservation.reservedCapacity() \u003e currentSpareCapacity -1) {```\n\nBut I have outlined above an approach which might be even better?",
+      "revId": "761c4a75eb283c693d7d85bd59dec9b115d85898",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe0f2f36_724fdbb2",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueStats.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-21T21:14:57Z",
+      "side": 1,
+      "message": "simplified.",
+      "parentUuid": "42854599_424d9c61",
       "revId": "761c4a75eb283c693d7d85bd59dec9b115d85898",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -122,6 +230,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7f552839_8af03a6f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueStats.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-21T21:14:57Z",
+      "side": 1,
+      "message": "Is this to avoid bugs from core or you see it happening here ?",
+      "parentUuid": "83ae5464_378d1a49",
+      "revId": "761c4a75eb283c693d7d85bd59dec9b115d85898",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3c985a11_b5086956",
         "filename": "src/main/resources/Documentation/config.md",
         "patchSetId": 1
@@ -133,6 +259,24 @@
       "writtenOn": "2025-10-21T15:15:45Z",
       "side": 1,
       "message": "s/certain/a certain/",
+      "revId": "761c4a75eb283c693d7d85bd59dec9b115d85898",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "634ae157_f6839975",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-21T21:14:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c985a11_b5086956",
       "revId": "761c4a75eb283c693d7d85bd59dec9b115d85898",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -150,6 +294,24 @@
       "writtenOn": "2025-10-21T15:15:45Z",
       "side": 1,
       "message": "I am not against have this keyword, but for our use cases, I think we want to try and be more encompassing without limiting it to a specific task type: ```minStartForQueue```",
+      "revId": "761c4a75eb283c693d7d85bd59dec9b115d85898",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c58e6d57_074d9edd",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-21T21:14:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19289220_1459d30b",
       "revId": "761c4a75eb283c693d7d85bd59dec9b115d85898",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
