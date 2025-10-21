@@ -37,6 +37,57 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6e21afe6_3acc757b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-21T21:57:55Z",
+      "side": 1,
+      "message": "final?",
+      "revId": "4c7c3e7d1b79d63157a7b447d31fbe1c7d7f1cae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "081fbffb_b8efb2d6",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-21T21:57:55Z",
+      "side": 1,
+      "message": "final?",
+      "revId": "4c7c3e7d1b79d63157a7b447d31fbe1c7d7f1cae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61e721bb_f7dc288c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-21T21:57:55Z",
+      "side": 1,
+      "message": "Is this constructor needed?",
+      "revId": "4c7c3e7d1b79d63157a7b447d31fbe1c7d7f1cae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "51de6bf4_02011446",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueManager.java",
         "patchSetId": 2
@@ -116,6 +167,23 @@
       "writtenOn": "2025-10-21T21:48:50Z",
       "side": 1,
       "message": "It\u0027s not clear to me why you need the \u0027tasks\u0027 Map? I think it would be easier to modify and use the runningTasks Map for this? Maybe this is a holdover from when you were dealing with per command reservations?",
+      "revId": "4c7c3e7d1b79d63157a7b447d31fbe1c7d7f1cae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "615fb58d_22ecbf7e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-21T21:57:55Z",
+      "side": 1,
+      "message": "Move this up to line 167 at least and use it in line 168? It could potentially be used to even make line 160 clearer?",
       "revId": "4c7c3e7d1b79d63157a7b447d31fbe1c7d7f1cae",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
