@@ -54,6 +54,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2bc71f58_9ea59865",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueStats.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-21T19:19:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f480c301_857bf455",
+      "revId": "f272d520a2dabbcc32dd1a0101cf631b7324049d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "42a9e7dd_fd1ff197",
@@ -67,6 +85,30 @@
       "writtenOn": "2025-10-21T17:41:48Z",
       "side": 1,
       "message": "Should be exposed as a method on info, getRunningCount()? Or, should it go one step further, ```if (info.run(task.getTaskId())) {```?",
+      "range": {
+        "startLine": 75,
+        "startChar": 14,
+        "endLine": 75,
+        "endChar": 40
+      },
+      "revId": "f272d520a2dabbcc32dd1a0101cf631b7324049d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce5794c9_91d1693d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueStats.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-21T19:19:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42a9e7dd_fd1ff197",
       "range": {
         "startLine": 75,
         "startChar": 14,
@@ -94,6 +136,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccd12187_0f7c7a15",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueStats.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-21T19:19:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a2b0911_1dc7b776",
+      "revId": "f272d520a2dabbcc32dd1a0101cf631b7324049d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b6ff6b6d_3aae4329",
@@ -107,6 +167,24 @@
       "writtenOn": "2025-10-21T17:41:48Z",
       "side": 1,
       "message": "info.ensureIdle(c)?",
+      "revId": "f272d520a2dabbcc32dd1a0101cf631b7324049d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce91dc95_f566063d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueStats.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-21T19:19:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6ff6b6d_3aae4329",
       "revId": "f272d520a2dabbcc32dd1a0101cf631b7324049d",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
