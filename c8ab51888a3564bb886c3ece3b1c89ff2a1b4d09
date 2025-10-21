@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5162d075_22ef8703",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueStats.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-21T15:16:45Z",
+      "side": 1,
+      "message": "I\u0027m not entirely sure what you mean. Instead of `Map\u003cQueue, Set\u003cInteger\u003e\u003e` you want to use `Map\u003cQueue, SomeHolder\u003e` ?",
+      "parentUuid": "5a143a2c_9e44d154",
+      "revId": "c8ab51888a3564bb886c3ece3b1c89ff2a1b4d09",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "507bd552_5d278a69",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueStats.java",
         "patchSetId": 1
@@ -48,6 +66,24 @@
       "writtenOn": "2025-10-21T14:38:30Z",
       "side": 1,
       "message": "ConcurrentHashMap needed?",
+      "revId": "c8ab51888a3564bb886c3ece3b1c89ff2a1b4d09",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b815cecd_668c8eb8",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueStats.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-21T15:16:45Z",
+      "side": 1,
+      "message": "not necessarily, we are using the concurrency on the runningTasksPerQueue, so all calls to the set are not parallel.",
+      "parentUuid": "507bd552_5d278a69",
       "revId": "c8ab51888a3564bb886c3ece3b1c89ff2a1b4d09",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -71,6 +107,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "474c97f6_5ffd0494",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueStats.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-21T15:16:45Z",
+      "side": 1,
+      "message": "We only ever populate the queue names at very beginning and don\u0027t change again, so not racy.",
+      "parentUuid": "c8726b9b_d840ea33",
+      "revId": "c8ab51888a3564bb886c3ece3b1c89ff2a1b4d09",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cfb5e416_853e8299",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueStats.java",
         "patchSetId": 1
@@ -82,6 +136,24 @@
       "writtenOn": "2025-10-21T14:38:30Z",
       "side": 1,
       "message": "I think this pattern of using an array (while not uncommon), is less obvious and more error prone than using an AtomicBoolean. Did you intend to change this, and if so, can you justify?",
+      "revId": "c8ab51888a3564bb886c3ece3b1c89ff2a1b4d09",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ecb7c2a_fe734bf8",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueStats.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-21T15:16:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cfb5e416_853e8299",
       "revId": "c8ab51888a3564bb886c3ece3b1c89ff2a1b4d09",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
