@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5a143a2c_9e44d154",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueStats.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-21T14:59:55Z",
+      "side": 1,
+      "message": "This is a parallel data structure, better to create a Queue object to hold this instead, and to put the Queue object into a Map?",
+      "revId": "c8ab51888a3564bb886c3ece3b1c89ff2a1b4d09",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "507bd552_5d278a69",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueStats.java",
         "patchSetId": 1
