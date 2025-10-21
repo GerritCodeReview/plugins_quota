@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "960a998e_eb59c44f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForQueueQuota.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-21T21:48:50Z",
+      "side": 1,
+      "message": "group(2)?",
+      "revId": "4c7c3e7d1b79d63157a7b447d31fbe1c7d7f1cae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "151bab92_39cfeaab",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-21T21:48:50Z",
+      "side": 1,
+      "message": "What are the Integers here? (Use \"By\" notation) is this taskById?\n\nI think you need a ConcurrentHashMap.",
+      "revId": "4c7c3e7d1b79d63157a7b447d31fbe1c7d7f1cae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51de6bf4_02011446",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-21T21:48:50Z",
+      "side": 1,
+      "message": "```\u003e\u003d``` just in case?",
+      "revId": "4c7c3e7d1b79d63157a7b447d31fbe1c7d7f1cae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed43b4f6_7da6d30e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-21T21:48:50Z",
+      "side": 1,
+      "message": "Check that this was actually added and not already there?",
+      "revId": "4c7c3e7d1b79d63157a7b447d31fbe1c7d7f1cae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d01719b_afa27dde",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-21T21:48:50Z",
+      "side": 1,
+      "message": "Move the reservations.isEmpty()",
+      "revId": "4c7c3e7d1b79d63157a7b447d31fbe1c7d7f1cae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f48e7a98_96555007",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-21T21:48:50Z",
+      "side": 1,
+      "message": "allocationsByReservation?",
+      "revId": "4c7c3e7d1b79d63157a7b447d31fbe1c7d7f1cae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7b70350_18c0874c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-21T21:48:50Z",
+      "side": 1,
+      "message": "It\u0027s not clear to me why you need the \u0027tasks\u0027 Map? I think it would be easier to modify and use the runningTasks Map for this? Maybe this is a holdover from when you were dealing with per command reservations?",
+      "revId": "4c7c3e7d1b79d63157a7b447d31fbe1c7d7f1cae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
