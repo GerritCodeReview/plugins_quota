@@ -24,6 +24,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "49d05d2c_24d5eb8c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-22T19:08:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0b46705_7028a969",
+      "range": {
+        "startLine": 39,
+        "startChar": 49,
+        "endLine": 39,
+        "endChar": 61
+      },
+      "revId": "797faf84dbb8019ebe6f026abd3d85cde20e4f4b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6066401a_adf5911f",
@@ -37,6 +61,24 @@
       "writtenOn": "2025-10-22T18:11:05Z",
       "side": 1,
       "message": "Should \u0027normal\u0027 here be replaced with \u0027unreserved\u0027, or \u0027spare\u0027?",
+      "revId": "797faf84dbb8019ebe6f026abd3d85cde20e4f4b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab80be26_5be05bbf",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-22T19:08:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6066401a_adf5911f",
       "revId": "797faf84dbb8019ebe6f026abd3d85cde20e4f4b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -64,6 +106,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a542355_d0849c7d",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-22T19:08:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57221193_d4685105",
+      "range": {
+        "startLine": 304,
+        "startChar": 61,
+        "endLine": 304,
+        "endChar": 79
+      },
+      "revId": "797faf84dbb8019ebe6f026abd3d85cde20e4f4b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6ee4593c_8c74bf93",
@@ -77,6 +143,24 @@
       "writtenOn": "2025-10-22T14:41:48Z",
       "side": 1,
       "message": "Maybe describe some of the limitations on reservations (how they must all add up to less than the number of available threads). Also, should be make this keyword unavailable in the global section?",
+      "revId": "797faf84dbb8019ebe6f026abd3d85cde20e4f4b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9dfbadf7_7bb51004",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-22T19:08:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ee4593c_8c74bf93",
       "revId": "797faf84dbb8019ebe6f026abd3d85cde20e4f4b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }

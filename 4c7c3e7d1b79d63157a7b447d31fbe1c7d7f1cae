@@ -264,6 +264,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "60f43daa_720ed9fe",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-22T19:08:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9e53734_a1fbab5e",
+      "revId": "4c7c3e7d1b79d63157a7b447d31fbe1c7d7f1cae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2d01719b_afa27dde",
@@ -436,6 +454,24 @@
       "side": 1,
       "message": "Why not? The variable name seems very clear to me, how much can still be reserved, and the value is useful to make line 156:\n```if (reservation.reservedCapacity() \u003e capacityToReserve) {```\n\nI think it is even useful to change line 148 to:\n```if (capacityToReserve \u003c 1) {```\n\nBoth of those statements seem to express their intents better than the existing ifs to me.",
       "parentUuid": "95d09d41_f671be41",
+      "revId": "4c7c3e7d1b79d63157a7b447d31fbe1c7d7f1cae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7042424d_ca64fead",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-22T19:08:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1762fa29_f7dee750",
       "revId": "4c7c3e7d1b79d63157a7b447d31fbe1c7d7f1cae",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
