@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57221193_d4685105",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-22T14:41:48Z",
+      "side": 1,
+      "message": "I don\u0027t think the keyword is for specific tasks anymore? Which means one might question what this is useful for then, perhaps which should clarify that this is useful for reserving threads for operations on specific project name spaces?",
+      "range": {
+        "startLine": 304,
+        "startChar": 61,
+        "endLine": 304,
+        "endChar": 79
+      },
+      "revId": "797faf84dbb8019ebe6f026abd3d85cde20e4f4b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ee4593c_8c74bf93",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-22T14:41:48Z",
+      "side": 1,
+      "message": "Maybe describe some of the limitations on reservations (how they must all add up to less than the number of available threads). Also, should be make this keyword unavailable in the global section?",
+      "revId": "797faf84dbb8019ebe6f026abd3d85cde20e4f4b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
