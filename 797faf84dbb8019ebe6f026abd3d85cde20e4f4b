@@ -3,6 +3,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b0b46705_7028a969",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-22T18:11:05Z",
+      "side": 1,
+      "message": "This should probably be singular: runningTaskById, reserve the plurals in the Map names for when the Map contains another collection.",
+      "range": {
+        "startLine": 39,
+        "startChar": 49,
+        "endLine": 39,
+        "endChar": 61
+      },
+      "revId": "797faf84dbb8019ebe6f026abd3d85cde20e4f4b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6066401a_adf5911f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-22T18:11:05Z",
+      "side": 1,
+      "message": "Should \u0027normal\u0027 here be replaced with \u0027unreserved\u0027, or \u0027spare\u0027?",
+      "revId": "797faf84dbb8019ebe6f026abd3d85cde20e4f4b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "57221193_d4685105",
         "filename": "src/main/resources/Documentation/config.md",
         "patchSetId": 3
