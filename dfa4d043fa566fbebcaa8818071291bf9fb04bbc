@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90a15a3b_971d624a",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-22T19:20:06Z",
+      "side": 1,
+      "message": "This needs to come below the public class definitions (the Logger should stay).",
+      "revId": "dfa4d043fa566fbebcaa8818071291bf9fb04bbc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acab4585_7cdd787e",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-22T19:20:06Z",
+      "side": 1,
+      "message": "lowercase to match example?",
+      "revId": "dfa4d043fa566fbebcaa8818071291bf9fb04bbc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
