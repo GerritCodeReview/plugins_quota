@@ -248,6 +248,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a9e53734_a1fbab5e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-22T14:37:34Z",
+      "side": 1,
+      "message": "Yes.",
+      "parentUuid": "60d6d425_b8e13e33",
+      "revId": "4c7c3e7d1b79d63157a7b447d31fbe1c7d7f1cae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2d01719b_afa27dde",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueManager.java",
         "patchSetId": 2
@@ -277,6 +295,24 @@
       "side": 1,
       "message": "to where ?\n\ncanAllocate should only be checked if reservation is not empty.",
       "parentUuid": "2d01719b_afa27dde",
+      "revId": "4c7c3e7d1b79d63157a7b447d31fbe1c7d7f1cae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a2bb5a2_8e07792e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-22T14:37:34Z",
+      "side": 1,
+      "message": "Sorry, I didn\u0027t mean to publish that. I was thinking that it might make the logic cleaner if that were inside canAllocate(), but that isn\u0027t important.",
+      "parentUuid": "5dd44eef_4749735e",
       "revId": "4c7c3e7d1b79d63157a7b447d31fbe1c7d7f1cae",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -382,6 +418,24 @@
       "side": 1,
       "message": "I don\u0027t think `capacityToReserve \u003d queueInfo.spareThreads - 1` reserve makes sense outside of this if block.",
       "parentUuid": "615fb58d_22ecbf7e",
+      "revId": "4c7c3e7d1b79d63157a7b447d31fbe1c7d7f1cae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1762fa29_f7dee750",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-22T14:37:34Z",
+      "side": 1,
+      "message": "Why not? The variable name seems very clear to me, how much can still be reserved, and the value is useful to make line 156:\n```if (reservation.reservedCapacity() \u003e capacityToReserve) {```\n\nI think it is even useful to change line 148 to:\n```if (capacityToReserve \u003c 1) {```\n\nBoth of those statements seem to express their intents better than the existing ifs to me.",
+      "parentUuid": "95d09d41_f671be41",
       "revId": "4c7c3e7d1b79d63157a7b447d31fbe1c7d7f1cae",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
