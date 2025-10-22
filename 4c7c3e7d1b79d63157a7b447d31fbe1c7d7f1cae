@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff65c9a9_b93ad21c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForQueueQuota.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-22T03:49:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "960a998e_eb59c44f",
+      "revId": "4c7c3e7d1b79d63157a7b447d31fbe1c7d7f1cae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "151bab92_39cfeaab",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-10-21T21:48:50Z",
       "side": 1,
       "message": "What are the Integers here? (Use \"By\" notation) is this taskById?\n\nI think you need a ConcurrentHashMap.",
+      "revId": "4c7c3e7d1b79d63157a7b447d31fbe1c7d7f1cae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8eed5ab3_045d357f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-22T03:49:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "151bab92_39cfeaab",
       "revId": "4c7c3e7d1b79d63157a7b447d31fbe1c7d7f1cae",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -52,6 +88,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "734bd904_affb71b5",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-22T03:49:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e21afe6_3acc757b",
+      "revId": "4c7c3e7d1b79d63157a7b447d31fbe1c7d7f1cae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "081fbffb_b8efb2d6",
@@ -65,6 +119,24 @@
       "writtenOn": "2025-10-21T21:57:55Z",
       "side": 1,
       "message": "final?",
+      "revId": "4c7c3e7d1b79d63157a7b447d31fbe1c7d7f1cae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d65a17f_3d2b988d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-22T03:49:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "081fbffb_b8efb2d6",
       "revId": "4c7c3e7d1b79d63157a7b447d31fbe1c7d7f1cae",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -86,6 +158,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f57fd551_b0d1781b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-22T03:49:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61e721bb_f7dc288c",
+      "revId": "4c7c3e7d1b79d63157a7b447d31fbe1c7d7f1cae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "51de6bf4_02011446",
@@ -99,6 +189,24 @@
       "writtenOn": "2025-10-21T21:48:50Z",
       "side": 1,
       "message": "```\u003e\u003d``` just in case?",
+      "revId": "4c7c3e7d1b79d63157a7b447d31fbe1c7d7f1cae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be3cecdd_c0bd4a76",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-22T03:49:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51de6bf4_02011446",
       "revId": "4c7c3e7d1b79d63157a7b447d31fbe1c7d7f1cae",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -190,6 +298,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "467dc45c_594f5b2d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-22T03:49:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f48e7a98_96555007",
+      "revId": "4c7c3e7d1b79d63157a7b447d31fbe1c7d7f1cae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f7b70350_18c0874c",
@@ -203,6 +329,24 @@
       "writtenOn": "2025-10-21T21:48:50Z",
       "side": 1,
       "message": "It\u0027s not clear to me why you need the \u0027tasks\u0027 Map? I think it would be easier to modify and use the runningTasks Map for this? Maybe this is a holdover from when you were dealing with per command reservations?",
+      "revId": "4c7c3e7d1b79d63157a7b447d31fbe1c7d7f1cae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fa815e5_7f342f9c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-22T03:49:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f7b70350_18c0874c",
       "revId": "4c7c3e7d1b79d63157a7b447d31fbe1c7d7f1cae",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
