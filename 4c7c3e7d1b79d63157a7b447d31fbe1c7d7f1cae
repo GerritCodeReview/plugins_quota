@@ -366,6 +366,24 @@
       "message": "Move this up to line 167 at least and use it in line 168? It could potentially be used to even make line 160 clearer?",
       "revId": "4c7c3e7d1b79d63157a7b447d31fbe1c7d7f1cae",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95d09d41_f671be41",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-22T03:54:43Z",
+      "side": 1,
+      "message": "I don\u0027t think `capacityToReserve \u003d queueInfo.spareThreads - 1` reserve makes sense outside of this if block.",
+      "parentUuid": "615fb58d_22ecbf7e",
+      "revId": "4c7c3e7d1b79d63157a7b447d31fbe1c7d7f1cae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
