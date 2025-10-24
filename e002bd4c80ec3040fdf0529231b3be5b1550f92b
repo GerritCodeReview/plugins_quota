@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19c47239_52361de7",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-24T21:39:27Z",
+      "side": 1,
+      "message": "Unused?",
+      "revId": "e002bd4c80ec3040fdf0529231b3be5b1550f92b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c6b3db4_75de5310",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-24T21:39:27Z",
+      "side": 1,
+      "message": "Use PROJECT?",
+      "revId": "e002bd4c80ec3040fdf0529231b3be5b1550f92b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ce71f1a_69c3bfb7",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-24T21:39:27Z",
+      "side": 1,
+      "message": "Also use INTERACTIVE.getName()?",
+      "revId": "e002bd4c80ec3040fdf0529231b3be5b1550f92b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b4de8d6_54c01c3f",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-24T21:39:27Z",
+      "side": 1,
+      "message": "It\u0027s not clear from up1,2,3 what the intended differences are. It would be easier to follow the tests if these included the project name in the name, so something like upX, upY (using project X and Y).",
+      "revId": "e002bd4c80ec3040fdf0529231b3be5b1550f92b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9948110_bad287fc",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-24T21:39:27Z",
+      "side": 1,
+      "message": "This is confusing, it seems like you are trying to codify with a test that (\"/\" + Project) should never be equal to Project, and I don\u0027t really think this primary Test if trying to codify that as opposed to showing that that a different project could run. I think this test case needs some better focus, what is the real intent, to show how MaxStartForTaskForQueue works, or to show how projects are identified? It seems like it should be the first from the name, so I would avoid adding any confusion around project identification into the test, reserve tests related that to tests focused on that.",
+      "revId": "e002bd4c80ec3040fdf0529231b3be5b1550f92b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e0ece9c_cdd8d0f3",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-24T21:39:27Z",
+      "side": 1,
+      "message": "Falses should be followed a call to notReadyToStart()",
+      "revId": "e002bd4c80ec3040fdf0529231b3be5b1550f92b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
