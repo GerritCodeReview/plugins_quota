@@ -14,6 +14,7 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.gerrit.entities.Project;
 import com.google.gerrit.server.project.ProjectCache;
 import com.google.inject.Inject;
@@ -32,8 +33,7 @@ public class QuotaFinder {
   }
 
   public QuotaSection firstMatching(Project.NameKey project) {
-    Config cfg = projectCache.getAllProjects().getConfig("quota.config").get();
-    return firstMatching(cfg, project);
+    return firstMatching(getQuotaConfig(), project);
   }
 
   public QuotaSection firstMatching(Config cfg, Project.NameKey project) {
