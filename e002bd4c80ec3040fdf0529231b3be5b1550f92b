@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4663733b_c0062643",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-24T21:43:09Z",
+      "side": 1,
+      "message": "I wanted to have as a block string for easier readability, if we use `+` gjf will mess up readability. we can use .format() but it would also be hard to focus on the position. what do you think ?",
+      "parentUuid": "9c6b3db4_75de5310",
+      "revId": "e002bd4c80ec3040fdf0529231b3be5b1550f92b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9ce71f1a_69c3bfb7",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
         "patchSetId": 3
