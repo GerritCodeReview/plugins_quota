@@ -14,6 +14,7 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.gerrit.entities.Project;
 import com.google.gerrit.server.config.GerritServerConfig;
 import com.google.gerrit.server.config.ThreadSettingsConfig;
@@ -58,6 +59,17 @@ public class TaskQuotas implements WorkQueue.TaskParker {
     int interactiveThreads = Math.max(1, poolSize - batchThreads);
     QueueManager.initQueueWithCapacity(QueueManager.Queue.INTERACTIVE, interactiveThreads);
     QueueManager.initQueueWithCapacity(QueueManager.Queue.BATCH, batchThreads);
+
+    initQuotas();
+  }
+
+  @VisibleForTesting
+  public TaskQuotas(QuotaFinder quotaFinder, int interactiveThreads, int batchThreads) {
+    this.quotaFinder = quotaFinder;
+    this.quotaConfig = quotaFinder.getQuotaConfig();
+
+    QueueStats.initQueueWithCapacity(QueueStats.Queue.INTERACTIVE, interactiveThreads);
+    QueueStats.initQueueWithCapacity(QueueStats.Queue.BATCH, batchThreads);
 
     initQuotas();
   }
