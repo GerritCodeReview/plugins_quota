@@ -33,6 +33,24 @@
       "message": "I wonder if we should only be reporting idle threads if there are free \"spare\" threads? i.e. if only reserved threads are free, then it seems wrong to claim that there are idle threads? Of course, it does beg the question whether idle threads should be potentially targeted to certain reservation pools?",
       "revId": "e3ed220ef228ea4b52f3de8a231877e3e8a024ce",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e70d4263_3832be9d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-10-28T01:34:12Z",
+      "side": 1,
+      "message": "Since we don\u0027t have a concrete test case for this, should we hold off merging this or is it okay to merge ?",
+      "parentUuid": "3bc4f34f_d28dac28",
+      "revId": "e3ed220ef228ea4b52f3de8a231877e3e8a024ce",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
