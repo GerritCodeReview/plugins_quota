@@ -51,6 +51,24 @@
       "parentUuid": "3bc4f34f_d28dac28",
       "revId": "e3ed220ef228ea4b52f3de8a231877e3e8a024ce",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fa5e3fd_5e94a19b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QueueManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-10-29T23:22:40Z",
+      "side": 1,
+      "message": "I think it\u0027s fine to merge for now.",
+      "parentUuid": "e70d4263_3832be9d",
+      "revId": "e3ed220ef228ea4b52f3de8a231877e3e8a024ce",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
