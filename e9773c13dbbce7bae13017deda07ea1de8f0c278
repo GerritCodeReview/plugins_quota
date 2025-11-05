@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ff449ae6_94167e1c",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-11-05T19:40:15Z",
+      "side": 1,
+      "message": "I don\u0027t see this in PS5. What I meat is that start should be called right away after iReadyToStart in this case. If completion is going to be delayed, it should separate from the act of starting.",
+      "parentUuid": "137bbbd3_4b5741b7",
+      "revId": "e9773c13dbbce7bae13017deda07ea1de8f0c278",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6570c268_2b8ec8e2",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
         "patchSetId": 4
