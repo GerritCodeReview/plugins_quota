@@ -72,6 +72,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "086dd866_04d1a461",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-11-05T22:32:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b3b5ec5_18fa7012",
+      "revId": "e9773c13dbbce7bae13017deda07ea1de8f0c278",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6570c268_2b8ec8e2",
