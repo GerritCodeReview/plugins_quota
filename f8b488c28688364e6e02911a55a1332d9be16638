@@ -1,0 +1,12 @@
+{
+  "checks": {
+    "zuul-check:plugins_quota": {
+      "state": "SCHEDULED",
+      "message": "Change has been enqueued in check",
+      "url": "https://ci.gerritcodereview.com/t/gerrit/status/change/521161,5",
+      "started": "2025-11-05T19:23:03Z",
+      "created": "2025-11-05T19:23:03Z",
+      "updated": "2025-11-05T19:23:03Z"
+    }
+  }
+}
