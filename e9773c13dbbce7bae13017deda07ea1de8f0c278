@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1394181f_178105b1",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-11-05T18:16:11Z",
+      "side": 1,
+      "message": "It would be cleaner if upX2 were also started here (maybe anytime isReadyToStart returns true?)",
+      "revId": "e9773c13dbbce7bae13017deda07ea1de8f0c278",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6570c268_2b8ec8e2",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-11-05T18:16:11Z",
+      "side": 1,
+      "message": "I don\u0027t believe this will get called normally by core after isReadyToStart() returning false (only other plugins which have returned true will have this called). This might be good in an adversarial test, but probably not in the main normal test.",
+      "revId": "e9773c13dbbce7bae13017deda07ea1de8f0c278",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
