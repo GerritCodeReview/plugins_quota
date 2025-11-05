@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8b3b5ec5_18fa7012",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-11-05T19:46:04Z",
+      "side": 1,
+      "message": "Ah okay! tried to address it. It kinda looks disconnected with other starts bcoz others start inside `startAndCompleteTask`",
+      "parentUuid": "ff449ae6_94167e1c",
+      "revId": "e9773c13dbbce7bae13017deda07ea1de8f0c278",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6570c268_2b8ec8e2",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
         "patchSetId": 4
