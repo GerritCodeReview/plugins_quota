@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "137bbbd3_4b5741b7",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-11-05T19:23:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1394181f_178105b1",
+      "revId": "e9773c13dbbce7bae13017deda07ea1de8f0c278",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6570c268_2b8ec8e2",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-11-05T18:16:11Z",
       "side": 1,
       "message": "I don\u0027t believe this will get called normally by core after isReadyToStart() returning false (only other plugins which have returned true will have this called). This might be good in an adversarial test, but probably not in the main normal test.",
+      "revId": "e9773c13dbbce7bae13017deda07ea1de8f0c278",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7514bb13_392a7746",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-11-05T19:23:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6570c268_2b8ec8e2",
       "revId": "e9773c13dbbce7bae13017deda07ea1de8f0c278",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
