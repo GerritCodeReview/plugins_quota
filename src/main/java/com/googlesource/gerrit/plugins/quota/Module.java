@@ -50,6 +50,7 @@ import com.google.inject.name.Named;
 import com.google.inject.name.Names;
 import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.RateLimit;
 import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type;
+
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -96,6 +97,9 @@ class Module extends CacheModule {
     bind(LifecycleListener.class)
         .annotatedWith(UniqueAnnotations.create())
         .to(PublisherScheduler.class);
+    bind(LifecycleListener.class)
+        .annotatedWith(UniqueAnnotations.create())
+        .to(TaskQuotaLogFile.class);
 
     DynamicSet.bind(binder(), UploadValidationListener.class).to(RateLimitUploadListener.class);
     bindConstant()

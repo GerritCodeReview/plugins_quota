@@ -22,10 +22,12 @@ import org.slf4j.LoggerFactory;
 
 public class TaskQuotaPerUserForTaskForQueue extends TaskQuotaForTaskForQueue {
   public static final Logger log = LoggerFactory.getLogger(TaskQuotaPerUserForTaskForQueue.class);
+  public static final String KEY = "maxStartPerUserForTaskForQueue";
   private final PerUserTaskQuota perUserTaskQuota;
 
-  public TaskQuotaPerUserForTaskForQueue(String queue, String taskGroup, int maxStart) {
-    super(queue, taskGroup, maxStart);
+  public TaskQuotaPerUserForTaskForQueue(
+      QuotaSection quotaSection, String queue, String taskGroup, int maxStart) {
+    super(quotaSection, queue, taskGroup, maxStart);
     perUserTaskQuota = new PerUserTaskQuota(maxStart);
   }
 
@@ -44,10 +46,17 @@ public class TaskQuotaPerUserForTaskForQueue extends TaskQuotaForTaskForQueue {
     if (matcher.matches()) {
       return Optional.of(
           new TaskQuotaPerUserForTaskForQueue(
-              matcher.group(3), matcher.group(2), Integer.parseInt(matcher.group(1))));
+              qs, matcher.group(3), matcher.group(2), Integer.parseInt(matcher.group(1))));
     } else {
       log.error("Invalid configuration entry [{}]", cfg);
       return Optional.empty();
     }
+  }
+
+  @Override
+  public String toString() {
+    return KEY
+        + ": task [%s], queue [%s], permits [%d], namespace [%s]"
+            .formatted(taskGroup, queueName, maxPermits, quotaSection.getNamespace());
   }
 }
