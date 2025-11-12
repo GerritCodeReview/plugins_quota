@@ -14,12 +14,13 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import com.google.gerrit.server.git.WorkQueue;
 import com.googlesource.gerrit.plugins.quota.QueueManager.Queue;
 import com.googlesource.gerrit.plugins.quota.QueueManager.QueueInfo;
-import com.google.gerrit.server.git.WorkQueue;
-import org.junit.Before;
-import org.junit.Test;
-
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.CountDownLatch;
@@ -27,10 +28,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
-
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import org.junit.Before;
+import org.junit.Test;
 
 public class QueueManagerTest {
   private static final Queue TEST_QUEUE = Queue.INTERACTIVE;
