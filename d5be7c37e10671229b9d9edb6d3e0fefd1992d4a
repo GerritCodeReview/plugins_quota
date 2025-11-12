@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b7f1b25_f533d34b",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/QueueManagerTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-11-12T22:23:04Z",
+      "side": 1,
+      "message": "Static methods should come above normal imports.",
+      "revId": "d5be7c37e10671229b9d9edb6d3e0fefd1992d4a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
