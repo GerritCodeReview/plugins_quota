@@ -23,13 +23,17 @@ import org.slf4j.LoggerFactory;
 
 public class TaskQuotaForTaskForQueue extends TaskQuotaForTask {
   public static final Logger log = LoggerFactory.getLogger(TaskQuotaForTaskForQueue.class);
+  public static final String KEY = "maxStartForTaskForQueue";
   public static final Pattern CONFIG_PATTERN =
       Pattern.compile(
           "(\\d+)\\s+(" + String.join("|", SUPPORTED_TASKS_BY_GROUP.keySet()) + ")\\s+(.+)");
-  private final String queueName;
+  public final String queueName;
+  protected final QuotaSection quotaSection;
 
-  public TaskQuotaForTaskForQueue(String queueName, String taskGroup, int maxStart) {
+  public TaskQuotaForTaskForQueue(
+      QuotaSection quotaSection, String queueName, String taskGroup, int maxStart) {
     super(taskGroup, maxStart);
+    this.quotaSection = quotaSection;
     this.queueName = queueName;
   }
 
@@ -43,10 +47,17 @@ public class TaskQuotaForTaskForQueue extends TaskQuotaForTask {
     if (matcher.matches()) {
       return Optional.of(
           new TaskQuotaForTaskForQueue(
-              matcher.group(3), matcher.group(2), Integer.parseInt(matcher.group(1))));
+              qs, matcher.group(3), matcher.group(2), Integer.parseInt(matcher.group(1))));
     } else {
       log.error("Invalid configuration entry [{}]", cfg);
       return Optional.empty();
     }
+  }
+
+  @Override
+  public String toString() {
+    return KEY
+        + ": task [%s], queue [%s], permits [%d], namespace [%s]"
+            .formatted(taskGroup, queueName, maxPermits, quotaSection.getNamespace());
   }
 }
