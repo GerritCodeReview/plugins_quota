@@ -24,14 +24,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SoftMaxPerUserForQueue implements TaskQuota {
+  public static final String KEY = "softMaxStartPerUserForQueue";
   public static final Pattern CONFIG_PATTERN =
       Pattern.compile("(\\d+)\\s+(" + String.join("|", QueueManager.Queue.keys()) + ")");
+  private final QuotaSection quotaSection;
   private final int softMax;
   private final QueueManager.Queue queue;
   private final ConcurrentHashMap<String, Integer> taskStartedCountByUser =
       new ConcurrentHashMap<>();
 
-  public SoftMaxPerUserForQueue(int softMax, String queueName) {
+  public SoftMaxPerUserForQueue(QuotaSection quotaSection, int softMax, String queueName) {
+    this.quotaSection = quotaSection;
     this.softMax = softMax;
     this.queue = QueueManager.Queue.fromKey(queueName);
   }
@@ -79,7 +82,14 @@ public class SoftMaxPerUserForQueue implements TaskQuota {
     Matcher matcher = CONFIG_PATTERN.matcher(cfg);
     return matcher.find()
         ? Optional.of(
-            new SoftMaxPerUserForQueue(Integer.parseInt(matcher.group(1)), matcher.group(2)))
+            new SoftMaxPerUserForQueue(qs, Integer.parseInt(matcher.group(1)), matcher.group(2)))
         : Optional.empty();
+  }
+
+  @Override
+  public String toString() {
+    return KEY
+        + ": softMax [%d], queue [%s], namespace [%s]"
+            .formatted(softMax, queue.getName(), quotaSection.getNamespace());
   }
 }

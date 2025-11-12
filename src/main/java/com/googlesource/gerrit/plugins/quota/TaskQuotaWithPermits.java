@@ -5,9 +5,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public abstract class TaskQuotaWithPermits implements TaskQuota {
   protected final AtomicInteger permits;
+  protected final int maxPermits;
 
   public TaskQuotaWithPermits(int maxPermits) {
     this.permits = new AtomicInteger(maxPermits);
+    this.maxPermits = maxPermits;
   }
 
   public boolean isReadyToStart(WorkQueue.Task<?> task) {

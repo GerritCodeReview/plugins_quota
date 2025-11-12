@@ -96,6 +96,9 @@ class Module extends CacheModule {
     bind(LifecycleListener.class)
         .annotatedWith(UniqueAnnotations.create())
         .to(PublisherScheduler.class);
+    bind(LifecycleListener.class)
+        .annotatedWith(UniqueAnnotations.create())
+        .to(TaskQuotaLogFile.class);
 
     DynamicSet.bind(binder(), UploadValidationListener.class).to(RateLimitUploadListener.class);
     bindConstant()
