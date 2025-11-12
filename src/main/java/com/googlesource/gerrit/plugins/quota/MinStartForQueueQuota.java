@@ -23,6 +23,7 @@ import java.util.regex.Pattern;
 
 public class MinStartForQueueQuota {
   public static final Logger log = LoggerFactory.getLogger(MinStartForQueueQuota.class);
+  public static final String KEY = "minStartForQueue";
   // 10 SSH-Interactive-Worker
   public static final Pattern CONFIG_PATTERN = Pattern.compile("(\\d+)\\s+(.+)");
 
@@ -35,12 +36,12 @@ public class MinStartForQueueQuota {
     }
 
     if (matcher.matches()) {
-      int limit = Integer.parseInt(matcher.group(1));
+      int reservation = Integer.parseInt(matcher.group(1));
       String queue = matcher.group(2);
       QueueManager.registerReservation(
           queue,
           new QueueManager.Reservation(
-              limit,
+              reservation,
               task -> {
                 return task.getQueueName().equalsIgnoreCase(queue)
                     && TaskQuotas.estimateProject(task).map(qs::matches).orElse(false);

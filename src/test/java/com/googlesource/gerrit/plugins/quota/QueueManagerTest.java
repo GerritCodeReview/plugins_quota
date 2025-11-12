@@ -32,7 +32,6 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class QueueManagerTest {
   private static final Queue TEST_QUEUE = Queue.INTERACTIVE;
   private static final String TEST_QUEUE_NAME = TEST_QUEUE.getName();
   private static final int MAX_CAPACITY = 3;
