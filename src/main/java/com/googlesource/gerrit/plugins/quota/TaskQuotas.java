@@ -27,13 +27,15 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import javax.inject.Inject;
 import javax.inject.Singleton;
+
+import com.google.gerrit.util.logging.NamedFluentLogger;
 import org.eclipse.jgit.lib.Config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Singleton
 public class TaskQuotas implements WorkQueue.TaskParker {
-  private static final Logger log = LoggerFactory.getLogger(TaskQuotas.class);
+  static final NamedFluentLogger quotaLog = NamedFluentLogger.forName("quota.log");
   private final QuotaFinder quotaFinder;
   private final Map<Integer, List<TaskQuota>> quotasByTask = new ConcurrentHashMap<>();
   private final Map<QuotaSection, List<TaskQuota>> quotasByNamespace = new HashMap<>();
@@ -83,7 +85,6 @@ public class TaskQuotas implements WorkQueue.TaskParker {
 
   @Override
   public boolean isReadyToStart(WorkQueue.Task<?> task) {
-    QueueManager.Queue queue = QueueManager.Queue.fromKey(task.getQueueName());
     if (!QueueManager.acquire(task)) {
       return false;
     }
@@ -105,7 +106,7 @@ public class TaskQuotas implements WorkQueue.TaskParker {
     for (TaskQuota quota : applicableQuotas) {
       if (quota.isApplicable(task)) {
         if (!quota.isReadyToStart(task)) {
-          log.debug("Task [{}] will be parked due task quota rules", task);
+          quotaLog.atInfo().log("Task [%s] will be parked due to quota rule [%s]", task, quota);
           QueueManager.release(task);
           acquiredQuotas.forEach(q -> q.onStop(task));
           return false;

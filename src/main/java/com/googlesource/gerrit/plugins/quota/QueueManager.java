@@ -15,8 +15,6 @@
 package com.googlesource.gerrit.plugins.quota;
 
 import com.google.gerrit.server.git.WorkQueue;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,9 +27,9 @@ import java.util.*;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class QueueManager {
-  public static final Logger log = LoggerFactory.getLogger(QueueManager.class);
+import static com.googlesource.gerrit.plugins.quota.TaskQuotas.quotaLog;
 
+public class QueueManager {
   public static class QueueInfo {
     public final int maxThreads;
     public int spareThreads;
@@ -55,6 +53,7 @@ public class QueueManager {
       }
 
       if (!reservations.isEmpty() && !canAllocate()) {
+        quotaLog.atInfo().log("Task [%s] will be parked due to reservations", task);
         runningTaskById.remove((task.getTaskId()));
         return false;
       }
@@ -151,7 +150,7 @@ public class QueueManager {
     QueueInfo queueInfo = infoByQueue.get(q);
     int capacityToReserve = queueInfo.spareThreads - 1;
     if (capacityToReserve < 1) {
-      log.error(
+      quotaLog.atSevere().log(
           "Cannot enforce reservation for queue '{}' Requested: {} threads. No threads reserved.",
           qName,
           reservation.reservedCapacity());
@@ -159,7 +158,7 @@ public class QueueManager {
     }
 
     if (reservation.reservedCapacity() > capacityToReserve) {
-      log.warn(
+      quotaLog.atWarning().log(
           "Partial reservation enforced for queue '{}'. Requested: {}, Actual reserved: {}",
           qName,
           reservation.reservedCapacity(),
