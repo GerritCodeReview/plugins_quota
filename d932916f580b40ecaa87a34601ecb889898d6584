@@ -69,6 +69,24 @@
       "parentUuid": "c530f76d_c8595cc8",
       "revId": "d932916f580b40ecaa87a34601ecb889898d6584",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d34d48df_74e66985",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-11-12T20:45:33Z",
+      "side": 1,
+      "message": "Yeah, it is tricky, but perhaps it means that there is no availability in ANY of the reservations it could apply to, so it means ALL of them are the problem, and all of the applicable ones should be listed as not having availability?",
+      "parentUuid": "f60e62f6_895b4a9f",
+      "revId": "d932916f580b40ecaa87a34601ecb889898d6584",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
