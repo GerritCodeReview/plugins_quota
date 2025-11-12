@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "84ee3b1f_e039eb1f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ParkedQuotaTransitionLogger.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-11-12T20:43:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ad65dbf_b2948e95",
+      "revId": "d932916f580b40ecaa87a34601ecb889898d6584",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c530f76d_c8595cc8",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-11-12T20:39:49Z",
       "side": 1,
       "message": "Maybe we can improve this to be more informative in a future change?",
+      "revId": "d932916f580b40ecaa87a34601ecb889898d6584",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f60e62f6_895b4a9f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-11-12T20:43:12Z",
+      "side": 1,
+      "message": "Not sure, because we cannot say a specific reservation is the problematic one because we try to satisfy all at once.",
+      "parentUuid": "c530f76d_c8595cc8",
       "revId": "d932916f580b40ecaa87a34601ecb889898d6584",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
