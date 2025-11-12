@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8ab3cf6_1710ec94",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ParkedQuotaTransitionLogger.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-11-12T21:29:06Z",
+      "side": 1,
+      "message": "Is the static really needed for Classes?",
+      "revId": "591343668964789221eda592675f0519e989c5f0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e62221d2_179e1ae3",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ParkedQuotaTransitionLogger.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-11-12T21:29:06Z",
+      "side": 1,
+      "message": "I think we only want to log the applicable (to the task) reservations, this is all of them for the queue (even if not applicable)?",
+      "revId": "591343668964789221eda592675f0519e989c5f0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e07f3592_6cedf4f6",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ParkedQuotaTransitionLogger.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-11-12T21:29:06Z",
+      "side": 1,
+      "message": "Combine two lines into a single shorter line?",
+      "revId": "591343668964789221eda592675f0519e989c5f0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b457a6c_f3e6cc0e",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/QueueManagerTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-11-12T21:29:06Z",
+      "side": 1,
+      "message": "* is frowned upon.",
+      "revId": "591343668964789221eda592675f0519e989c5f0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
