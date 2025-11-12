@@ -15,19 +15,18 @@
 package com.googlesource.gerrit.plugins.quota;
 
 import com.google.gerrit.server.git.WorkQueue;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import java.util.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.function.Predicate;
-
-import java.util.*;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class QueueManager {
   public static final Logger log = LoggerFactory.getLogger(QueueManager.class);
@@ -101,7 +100,8 @@ public class QueueManager {
     }
   }
 
-  public record Reservation(int reservedCapacity, Predicate<WorkQueue.Task<?>> taskMatcher) {
+  public record Reservation(
+      int reservedCapacity, Predicate<WorkQueue.Task<?>> taskMatcher, String namespace) {
     public boolean matches(WorkQueue.Task<?> task) {
       return taskMatcher.test(task);
     }
@@ -164,7 +164,8 @@ public class QueueManager {
           qName,
           reservation.reservedCapacity(),
           capacityToReserve);
-      queueInfo.addReservation(new Reservation(capacityToReserve, reservation.taskMatcher));
+      queueInfo.addReservation(
+          new Reservation(capacityToReserve, reservation.taskMatcher, reservation.namespace()));
       return;
     }
 

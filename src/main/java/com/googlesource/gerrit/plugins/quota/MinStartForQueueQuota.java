@@ -14,15 +14,15 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MinStartForQueueQuota {
   public static final Logger log = LoggerFactory.getLogger(MinStartForQueueQuota.class);
+  public static final String KEY = "minStartForQueue";
   // 10 SSH-Interactive-Worker
   public static final Pattern CONFIG_PATTERN = Pattern.compile("(\\d+)\\s+(.+)");
 
@@ -35,16 +35,17 @@ public class MinStartForQueueQuota {
     }
 
     if (matcher.matches()) {
-      int limit = Integer.parseInt(matcher.group(1));
+      int reservation = Integer.parseInt(matcher.group(1));
       String queue = matcher.group(2);
       QueueManager.registerReservation(
           queue,
           new QueueManager.Reservation(
-              limit,
+              reservation,
               task -> {
                 return task.getQueueName().equalsIgnoreCase(queue)
                     && TaskQuotas.estimateProject(task).map(qs::matches).orElse(false);
-              }));
+              },
+              qs.getNamespace()));
     } else {
       log.error("Invalid configuration entry [{}]", cfg);
     }
