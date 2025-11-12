@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf5ccd3e_3509fe11",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ParkedQuotaTransitionLogger.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-11-12T20:18:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16dd1b7b_41c297b6",
+      "revId": "26a8da7584838a056b755751ed3a14ea3f795302",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "718b3a98_e6df5f23",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-11-12T20:12:07Z",
       "side": 1,
       "message": "This is racy in a threaded env. Don\u0027t use \u003d\u003d for Integers.",
+      "revId": "26a8da7584838a056b755751ed3a14ea3f795302",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5342f6e2_61887029",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ParkedQuotaTransitionLogger.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-11-12T20:18:38Z",
+      "side": 1,
+      "message": "Done, `\u003d\u003d` is used on objects here, hope thats okay ?",
+      "parentUuid": "718b3a98_e6df5f23",
       "revId": "26a8da7584838a056b755751ed3a14ea3f795302",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
