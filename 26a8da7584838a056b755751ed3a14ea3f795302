@@ -69,6 +69,24 @@
       "parentUuid": "718b3a98_e6df5f23",
       "revId": "26a8da7584838a056b755751ed3a14ea3f795302",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08f378e7_111cf492",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ParkedQuotaTransitionLogger.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-11-12T20:39:49Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5342f6e2_61887029",
+      "revId": "26a8da7584838a056b755751ed3a14ea3f795302",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
