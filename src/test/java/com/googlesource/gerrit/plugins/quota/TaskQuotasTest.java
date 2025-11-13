@@ -14,10 +14,12 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
-import static com.googlesource.gerrit.plugins.quota.QueueManager.Queue.*;
+import static com.googlesource.gerrit.plugins.quota.QueueManager.Queue.INTERACTIVE;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.when;
 
 import com.google.gerrit.server.git.WorkQueue.Task;
 import java.util.Random;
@@ -39,7 +41,7 @@ public class TaskQuotasTest {
         taskQuotas(
             2,
             2,
-"""
+            """
 [quota "%s"]
   maxStartForTaskForQueue = 1 uploadpack %s
 """

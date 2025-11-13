@@ -19,7 +19,11 @@ import com.google.gerrit.entities.Project;
 import com.google.gerrit.server.config.GerritServerConfig;
 import com.google.gerrit.server.config.ThreadSettingsConfig;
 import com.google.gerrit.server.git.WorkQueue;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 import java.util.regex.Matcher;
@@ -114,6 +118,7 @@ public class TaskQuotas implements WorkQueue.TaskParker {
     if (!acquiredQuotas.isEmpty()) {
       quotasByTask.put(task.getTaskId(), acquiredQuotas);
     }
+
     return true;
   }
 

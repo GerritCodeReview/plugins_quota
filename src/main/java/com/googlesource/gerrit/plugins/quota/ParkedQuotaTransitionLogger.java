@@ -17,14 +17,10 @@ package com.googlesource.gerrit.plugins.quota;
 import static com.google.gerrit.server.git.WorkQueue.Task;
 import static com.googlesource.gerrit.plugins.quota.QueueManager.Queue;
 import static com.googlesource.gerrit.plugins.quota.QueueManager.QueueInfo;
-import static com.googlesource.gerrit.plugins.quota.QueueManager.Reservation;
 
 import com.google.gerrit.util.logging.NamedFluentLogger;
 import java.util.Map;
-import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 public class ParkedQuotaTransitionLogger {
   protected static final NamedFluentLogger quotaLog =
