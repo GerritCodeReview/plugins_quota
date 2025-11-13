@@ -119,6 +119,7 @@ public class TaskQuotas implements WorkQueue.TaskParker {
       quotasByTask.put(task.getTaskId(), acquiredQuotas);
     }
 
+    ParkedQuotaTransitionLogger.logOnTaskStartIfParked(task);
     return true;
   }
 

@@ -18,6 +18,7 @@ import static com.google.gerrit.server.git.WorkQueue.Task;
 import static com.googlesource.gerrit.plugins.quota.QueueManager.Queue;
 import static com.googlesource.gerrit.plugins.quota.QueueManager.QueueInfo;
 
+import com.google.gerrit.server.ioutil.HexFormat;
 import com.google.gerrit.util.logging.NamedFluentLogger;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -48,7 +49,7 @@ public class ParkedQuotaTransitionLogger {
   /** Logs only if the reason for parked changes from the previous parking event. */
   public static void logTaskWithEnforcedQuota(Task<?> t, TaskQuota q) {
     if (shouldLog(t, q)) {
-      quotaLog.atInfo().log("Task [%s] parked due to quota rule [%s]", t, q);
+      quotaLog.atInfo().log("Task [%s] parked due to quota rule [%s]", formatTask(t), q);
     }
   }
 
@@ -67,14 +68,23 @@ public class ParkedQuotaTransitionLogger {
                 quotaLog.atInfo().log(
                     "Task [%s] parked because there are no spare unreserved threads in queue [%s], "
                         + "and there are insufficient reserved threads for the %s namespace",
-                    t, t.getQueueName(), reservation.namespace());
+                    formatTask(t), t.getQueueName(), reservation.namespace());
               },
               () -> {
                 quotaLog.atInfo().log(
                     "Task [%s] parked because there are no spare unreserved threads in queue [%s]",
-                    t, t.getQueueName());
+                    formatTask(t), t.getQueueName());
               });
     }
+  }
+
+  public static void logOnTaskStartIfParked(Task<?> t) {
+    if (!prevParkingQuotaByTaskId.containsKey(t.getTaskId())) {
+      return;
+    }
+
+    quotaLog.atInfo().log("Task %s is now unparked", formatTask(t));
+    clear(t);
   }
 
   public static boolean shouldLog(Task<?> t, TaskQuota q) {
@@ -83,5 +93,9 @@ public class ParkedQuotaTransitionLogger {
 
   public static void clear(Task<?> t) {
     prevParkingQuotaByTaskId.remove(t.getTaskId());
+  }
+
+  public static String formatTask(Task<?> t) {
+    return "%s: [%s]".formatted(HexFormat.fromInt(t.getTaskId()), t);
   }
 }
