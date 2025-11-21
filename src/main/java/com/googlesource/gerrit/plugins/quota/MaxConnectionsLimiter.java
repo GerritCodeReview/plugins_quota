@@ -69,9 +69,11 @@ public class MaxConnectionsLimiter extends AllRequestFilter {
     Config cfg = projectCache.getAllProjects().getConfig("quota.config").get();
     for (String group : cfg.getSubsections(AccountLimitsConfig.GROUP_SECTION)) {
       String val = cfg.getString(AccountLimitsConfig.GROUP_SECTION, group, CONFIG_KEY);
-      Matcher matcher = REST_API_REGEX.matcher(val);
-      if (matcher.matches()) {
-        limits.add(new Limit(group, Integer.parseInt(matcher.group(1))));
+      if (val != null) {
+        Matcher matcher = REST_API_REGEX.matcher(val);
+        if (matcher.matches()) {
+          limits.add(new Limit(group, Integer.parseInt(matcher.group(1))));
+        }
       }
     }
 
