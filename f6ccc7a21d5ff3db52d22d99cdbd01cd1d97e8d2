@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa13f332_c97820d9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1162586
+      },
+      "writtenOn": "2025-11-21T22:52:30Z",
+      "side": 1,
+      "message": "(ai generated) suggestion:\n\nFix NullPointerException in MaxConnectionsLimiter when config is missing\n\n  MaxConnectionsLimiter crashes when a group exists in quota.config but\n  does not have maxConnectionsPerUserForTask configured. The init() method\n  attempts to match a null config value against a regex pattern, causing:\n\n    NullPointerException at MaxConnectionsLimiter.init(MaxConnectionsLimiter.java:56)\n\n  Add null check before attempting regex matching on the config value.\n  Groups without maxConnectionsPerUserForTask configured will no longer crash the plugin.",
+      "revId": "f6ccc7a21d5ff3db52d22d99cdbd01cd1d97e8d2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
