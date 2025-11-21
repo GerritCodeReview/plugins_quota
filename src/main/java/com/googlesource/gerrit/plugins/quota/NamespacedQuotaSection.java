@@ -47,9 +47,4 @@ public record NamespacedQuotaSection(
   public String subSection() {
     return namespace();
   }
-
-  @Override
-  public boolean isFallbackQuota() {
-    return isFallBack;
-  }
 }
