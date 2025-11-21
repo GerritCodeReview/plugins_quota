@@ -26,7 +26,7 @@ public record NamespacedQuotaSection(
     this(cfg, namespace, false);
   }
 
-  public NamespacedQuotaSection(Config cfg, String namespace, boolean isFallBack) {
+  public src/main/java/com/googlesource/gerrit/plugins/quota/NamespacedQuotaSection.javaNamespacedQuotaSection(Config cfg, String namespace, boolean isFallBack) {
     this(cfg, namespace, namespace, isFallBack);
   }
 
@@ -46,10 +46,5 @@ public record NamespacedQuotaSection(
   @Override
   public String subSection() {
     return namespace();
-  }
-
-  @Override
-  public boolean isFallbackQuota() {
-    return isFallBack;
   }
 }

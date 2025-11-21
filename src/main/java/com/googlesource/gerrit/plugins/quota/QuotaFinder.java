@@ -69,7 +69,7 @@ public class QuotaFinder {
   }
 
   public QuotaSection getFallbackNamespacedQuota(Config cfg) {
-    return new NamespacedQuotaSection(cfg, "*", true);
+    return new NamespacedQuotaSection(cfg, "*");
   }
 
   public List<NamespacedQuotaSection> getQuotaNamespaces(Config cfg) {
