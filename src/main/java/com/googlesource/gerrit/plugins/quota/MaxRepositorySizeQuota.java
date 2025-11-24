@@ -47,6 +47,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
@@ -92,13 +93,13 @@ public class MaxRepositorySizeQuota implements QuotaEnforcer, RepoSizeCache {
     this.projectCache = projectCache;
   }
 
-  protected Optional<Long> getMaxPackSize(Project.NameKey project) {
+  protected Optional<AvailableSizeResponse> getMaxPackSize(Project.NameKey project) {
     return getMaxPackSize(project, true);
   }
 
-  protected Optional<Long> getMaxPackSize(
+  protected Optional<AvailableSizeResponse> getMaxPackSize(
       Project.NameKey project, boolean requireProjectExistence) {
-    List<Long> maxPackCandidates = new ArrayList<>();
+    List<AvailableSizeResponse> maxPackCandidates = new ArrayList<>();
     getMaxPackSize(quotaFinder.firstMatching(project), project, requireProjectExistence)
         .ifPresent(maxPackCandidates::add);
     getMaxPackSize(quotaFinder.getGlobalNamespacedQuota(), project, requireProjectExistence)
@@ -106,10 +107,12 @@ public class MaxRepositorySizeQuota implements QuotaEnforcer, RepoSizeCache {
 
     return maxPackCandidates.isEmpty()
         ? Optional.empty()
-        : Optional.of(Collections.min(maxPackCandidates));
+        : Optional.of(
+            Collections.min(
+                maxPackCandidates, Comparator.comparingLong(AvailableSizeResponse::availableSize)));
   }
 
-  protected Optional<Long> getMaxPackSize(
+  protected Optional<AvailableSizeResponse> getMaxPackSize(
       QuotaSection quotaSection, Project.NameKey project, boolean requireProjectExistence) {
     if (quotaSection == null) {
       return Optional.empty();
@@ -142,8 +145,22 @@ public class MaxRepositorySizeQuota implements QuotaEnforcer, RepoSizeCache {
         maxPackSize2 = Math.max(0, maxTotalSize - totalSize);
       }
 
-      return Optional.ofNullable(
-          Ordering.<Long>natural().nullsLast().min(maxPackSize1, maxPackSize2));
+      Long chosenAvailable = Ordering.<Long>natural().nullsLast().min(maxPackSize1, maxPackSize2);
+
+      if (chosenAvailable == null) {
+        return Optional.empty();
+      }
+
+      Long maximumSize;
+      if (chosenAvailable.equals(maxPackSize1)) {
+        maximumSize = maxRepoSize;
+      } else {
+        maximumSize = maxTotalSize;
+      }
+
+      return Optional.of(
+          new AvailableSizeResponse(quotaSection, project, chosenAvailable, maximumSize));
+
     } catch (ExecutionException e) {
       log.warn("Couldn't calculate maxPackSize for {}", project, e);
       return Optional.empty();
@@ -261,7 +278,7 @@ public class MaxRepositorySizeQuota implements QuotaEnforcer, RepoSizeCache {
 
     return ctx.project()
         .flatMap(p -> getMaxPackSize(p, false))
-        .map(v -> requestQuota(ctx, numTokens, v, false))
+        .map(v -> requestQuota(numTokens, v, false))
         .orElse(noOp());
   }
 
@@ -289,8 +306,8 @@ public class MaxRepositorySizeQuota implements QuotaEnforcer, RepoSizeCache {
     }
 
     return ctx.project()
-        .flatMap(p -> getMaxPackSize(p))
-        .map(v -> requestQuota(ctx, numTokens, v, true))
+        .flatMap(this::getMaxPackSize)
+        .map(v -> requestQuota(numTokens, v, true))
         .orElse(noOp());
   }
 
@@ -299,13 +316,16 @@ public class MaxRepositorySizeQuota implements QuotaEnforcer, RepoSizeCache {
     if (!REPOSITORY_SIZE_GROUP.equals(quotaGroup)) {
       return noOp();
     }
-    return ctx.project().flatMap(p -> getMaxPackSize(p)).map(v -> ok(v)).orElse(noOp());
+    return ctx.project()
+        .flatMap(this::getMaxPackSize)
+        .map(v -> ok(v.availableSize(), v.exceededSizeMessage()))
+        .orElse(noOp());
   }
 
   private QuotaResponse requestQuota(
-      QuotaRequestContext ctx, long requested, Long availableSpace, boolean deduct) {
-    Project.NameKey r = ctx.project().get();
-    if (availableSpace >= requested) {
+      long requested, AvailableSizeResponse availableSizeResponse, boolean deduct) {
+    Project.NameKey r = availableSizeResponse.project();
+    if (availableSizeResponse.availableSize() >= requested) {
       if (deduct) {
         try {
           cache.get(r).getAndAdd(requested);
@@ -318,9 +338,29 @@ public class MaxRepositorySizeQuota implements QuotaEnforcer, RepoSizeCache {
       return ok();
     }
 
-    return error(
-        String.format(
-            "Requested space [%d] is bigger then available [%d] for repository %s",
-            requested, availableSpace, r));
+    return error(availableSizeResponse.withRequested(requested).exceededSizeMessage());
+  }
+
+  protected record AvailableSizeResponse(
+      QuotaSection quotaSection,
+      Project.NameKey project,
+      long availableSize,
+      long maximumSize,
+      Optional<Long> requested) {
+
+    public AvailableSizeResponse(
+        QuotaSection quotaSection, Project.NameKey project, long availableSize, long maximumSize) {
+      this(quotaSection, project, availableSize, maximumSize, Optional.empty());
+    }
+
+    public AvailableSizeResponse withRequested(long newRequested) {
+      return new AvailableSizeResponse(
+          quotaSection, project, availableSize, maximumSize, Optional.of(newRequested));
+    }
+
+    public String exceededSizeMessage() {
+      return quotaSection()
+          .quotaSizeExceededMessage(project, availableSize, maximumSize, requested);
+    }
   }
 }
