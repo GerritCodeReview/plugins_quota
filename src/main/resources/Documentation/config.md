@@ -22,6 +22,22 @@ the `quota.config` file locally and pushing back the changes. The
     maxTotalSize = 200 m
 ```
 
+<a id="quotaSizeExceededMessage" />
+`quota.<namespace>.quotaSizeExceededMessage`
+: Optional custom message returned when a size quota in this namespace is exceeded.
+
+The message may contain the following placeholders, which will be replaced at
+runtime when constructing the client-facing error message:
+
+* `${project}` — the name of the affected project
+* `${available}` — remaining quota (in bytes) available before exceeding the limit
+* `${maximum}` — the configured maximum size (in bytes) enforced by the quota
+
+Unknown placeholders are left unchanged. If no message is configured, a
+default message is used. When multiple quota enforcers contribute to a quota
+calculation, the message from the most restrictive enforcer (the one with the
+lowest remaining quota) is selected.
+
 <a id="maxProjects" />
 `quota.<namespace>.maxProjects`
 : The maximum number of projects that can be created in this namespace.

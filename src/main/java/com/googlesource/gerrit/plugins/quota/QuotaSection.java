@@ -24,6 +24,10 @@ public interface QuotaSection {
   String KEY_MAX_PROJECTS = "maxProjects";
   String KEY_MAX_REPO_SIZE = "maxRepoSize";
   String KEY_MAX_TOTAL_SIZE = "maxTotalSize";
+  String KEY_QUOTA_SIZE_EXCEEDED_MESSAGE = "quotaSizeExceededMessage";
+
+  String DEFAULT_QUOTA_SIZE_MESSAGE_TEMPLATE =
+      "Project ${project} exceeds quota: max=${maximum} bytes, available=${available} bytes.";
 
   String getNamespace();
 
@@ -58,6 +62,20 @@ public interface QuotaSection {
                     .map(cfg -> type.processor.apply(this, cfg))
                     .flatMap(Optional::stream))
         .toList();
+  }
+
+  default String quotaSizeExceededMessage(
+      Project.NameKey project, long availableSize, long maximumSize) {
+    return QuotaSizeMessageInterpolator.interpolate(
+        getQuotaSizeExceededMessageTemplate(), project, availableSize, maximumSize);
+  }
+
+  private String getQuotaSizeExceededMessageTemplate() {
+    String tpl = cfg().getString(section(), subSection(), KEY_QUOTA_SIZE_EXCEEDED_MESSAGE);
+    if (tpl == null || tpl.trim().isEmpty()) {
+      return DEFAULT_QUOTA_SIZE_MESSAGE_TEMPLATE;
+    }
+    return tpl;
   }
 
   default boolean isFallbackQuota() {
