@@ -22,6 +22,35 @@ the `quota.config` file locally and pushing back the changes. The
     maxTotalSize = 200 m
 ```
 
+<a id="sizeLimitExceededUnknownRequestedMsg" />
+`quota.<namespace>.sizeLimitExceededUnknownRequestedMsg`
+: Optional custom message returned when a size quota in this namespace is exceeded **and the
+requested size is not known in advance**.
+This situation occurs when the quota is used as a *pre-flight* check, but the exact number
+of bytes to be written is not yet available.
+For example, when Gerrit receives a commit, its size cannot be determined until the transfer
+completes.
+
+<a id="sizeLimitExceededKnownRequestedMsg" />
+`quota.<namespace>.sizeLimitExceededKnownRequestedMsg`
+: Optional custom message returned when a size quota in this namespace is exceeded **and the
+requested size is known upfront**.
+This applies when the quota is evaluated after the size is already determined, such as during
+a post-receive hook or when creating a repository.
+
+The message may contain the following placeholders, which will be replaced at
+runtime when constructing the client-facing error message:
+
+* `${project}` — the name of the affected project
+* `${available}` — remaining quota (in bytes) available before exceeding the limit
+* `${maximum}` — the configured maximum size (in bytes) enforced by the quota
+* `${requested}` — The requested size (in bytes), if known.
+
+Unknown placeholders are left unchanged. If no message is configured, a
+default message is used. When multiple quota enforcers contribute to a quota
+calculation, the message from the most restrictive enforcer (the one with the
+lowest remaining quota) is selected.
+
 <a id="maxProjects" />
 `quota.<namespace>.maxProjects`
 : The maximum number of projects that can be created in this namespace.
