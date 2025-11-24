@@ -47,6 +47,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
@@ -92,13 +93,13 @@ public class MaxRepositorySizeQuota implements QuotaEnforcer, RepoSizeCache {
     this.projectCache = projectCache;
   }
 
-  protected Optional<Long> getMaxPackSize(Project.NameKey project) {
+  protected Optional<AvailableSizeResponse> getMaxPackSize(Project.NameKey project) {
     return getMaxPackSize(project, true);
   }
 
-  protected Optional<Long> getMaxPackSize(
+  protected Optional<AvailableSizeResponse> getMaxPackSize(
       Project.NameKey project, boolean requireProjectExistence) {
-    List<Long> maxPackCandidates = new ArrayList<>();
+    List<AvailableSizeResponse> maxPackCandidates = new ArrayList<>();
     getMaxPackSize(quotaFinder.firstMatching(project), project, requireProjectExistence)
         .ifPresent(maxPackCandidates::add);
     getMaxPackSize(quotaFinder.getGlobalNamespacedQuota(), project, requireProjectExistence)
@@ -106,10 +107,12 @@ public class MaxRepositorySizeQuota implements QuotaEnforcer, RepoSizeCache {
 
     return maxPackCandidates.isEmpty()
         ? Optional.empty()
-        : Optional.of(Collections.min(maxPackCandidates));
+        : Optional.of(
+            Collections.min(
+                maxPackCandidates, Comparator.comparing(AvailableSizeResponse::availableSize)));
   }
 
-  protected Optional<Long> getMaxPackSize(
+  protected Optional<AvailableSizeResponse> getMaxPackSize(
       QuotaSection quotaSection, Project.NameKey project, boolean requireProjectExistence) {
     if (quotaSection == null) {
       return Optional.empty();
@@ -128,22 +131,36 @@ public class MaxRepositorySizeQuota implements QuotaEnforcer, RepoSizeCache {
             requireProjectExistence
                 ? currentSizeStrict(project)
                 : currentSizeOrZeroIfMissing(project);
-        maxPackSize1 = Math.max(0, maxRepoSize - currentSize);
+        maxPackSize1 = Math.max(0L, maxRepoSize - currentSize);
       }
 
       Long maxPackSize2 = null;
       if (maxTotalSize != null) {
-        long totalSize = 0;
+        long totalSize = 0L;
         for (Project.NameKey p : projectCache.all()) {
           if (quotaSection.matches(p)) {
             totalSize += cache.get(p).get();
           }
         }
-        maxPackSize2 = Math.max(0, maxTotalSize - totalSize);
+        maxPackSize2 = Math.max(0L, maxTotalSize - totalSize);
       }
 
-      return Optional.ofNullable(
-          Ordering.<Long>natural().nullsLast().min(maxPackSize1, maxPackSize2));
+      Long chosenAvailable = Ordering.<Long>natural().nullsLast().min(maxPackSize1, maxPackSize2);
+
+      if (chosenAvailable == null) {
+        return Optional.empty();
+      }
+
+      Long maximumSize;
+      if (chosenAvailable.equals(maxPackSize1)) {
+        maximumSize = maxRepoSize;
+      } else {
+        maximumSize = maxTotalSize;
+      }
+
+      return Optional.of(
+          new AvailableSizeResponse(quotaSection, project, chosenAvailable, maximumSize));
+
     } catch (ExecutionException e) {
       log.warn("Couldn't calculate maxPackSize for {}", project, e);
       return Optional.empty();
@@ -261,7 +278,7 @@ public class MaxRepositorySizeQuota implements QuotaEnforcer, RepoSizeCache {
 
     return ctx.project()
         .flatMap(p -> getMaxPackSize(p, false))
-        .map(v -> requestQuota(ctx, numTokens, v, false))
+        .map(v -> requestQuota(ctx, numTokens, v.availableSize(), false))
         .orElse(noOp());
   }
 
@@ -290,7 +307,7 @@ public class MaxRepositorySizeQuota implements QuotaEnforcer, RepoSizeCache {
 
     return ctx.project()
         .flatMap(p -> getMaxPackSize(p))
-        .map(v -> requestQuota(ctx, numTokens, v, true))
+        .map(v -> requestQuota(ctx, numTokens, v.availableSize(), true))
         .orElse(noOp());
   }
 
@@ -299,7 +316,10 @@ public class MaxRepositorySizeQuota implements QuotaEnforcer, RepoSizeCache {
     if (!REPOSITORY_SIZE_GROUP.equals(quotaGroup)) {
       return noOp();
     }
-    return ctx.project().flatMap(p -> getMaxPackSize(p)).map(v -> ok(v)).orElse(noOp());
+    return ctx.project()
+        .flatMap(this::getMaxPackSize)
+        .map(v -> ok(v.availableSize(), v.exceededSizeMessage()))
+        .orElse(noOp());
   }
 
   private QuotaResponse requestQuota(
@@ -322,5 +342,13 @@ public class MaxRepositorySizeQuota implements QuotaEnforcer, RepoSizeCache {
         String.format(
             "Requested space [%d] is bigger then available [%d] for repository %s",
             requested, availableSpace, r));
+  }
+
+  protected record AvailableSizeResponse(
+      QuotaSection quotaSection, Project.NameKey project, Long availableSize, Long maximumSize) {
+
+    public String exceededSizeMessage() {
+      return quotaSection().quotaExceededMessage(project, availableSize, maximumSize);
+    }
   }
 }
