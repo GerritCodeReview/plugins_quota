@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81e00223_762b3387",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ParkedQuotaTransitionLogger.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-11-25T04:48:17Z",
+      "side": 1,
+      "message": "Is this format okay or should I change to below ?\n\n```suggestion\n        \"Task %s is now unparked after %d seconds\",\n        formatTask(t), Duration.between(parkedSince.get(t.getTaskId()), Instant.now()).toSeconds());\n```",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 88
+      },
+      "revId": "1bf23f7086ea720ea3afa6718a28a6855d567bd7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
