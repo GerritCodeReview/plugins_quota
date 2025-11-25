@@ -22,6 +22,30 @@
       },
       "revId": "1bf23f7086ea720ea3afa6718a28a6855d567bd7",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b4b1cd4_9523d077",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ParkedQuotaTransitionLogger.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2025-11-25T18:09:15Z",
+      "side": 1,
+      "message": "I don\u0027t know what this output will look like before your suggestion?\n\nI would simplify the message to: \"Task %s unparked after...\"",
+      "parentUuid": "81e00223_762b3387",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 88
+      },
+      "revId": "1bf23f7086ea720ea3afa6718a28a6855d567bd7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
