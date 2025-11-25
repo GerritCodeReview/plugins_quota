@@ -46,6 +46,30 @@
       },
       "revId": "1bf23f7086ea720ea3afa6718a28a6855d567bd7",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df90eb4e_16f269a3",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ParkedQuotaTransitionLogger.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1126221
+      },
+      "writtenOn": "2025-11-25T19:13:21Z",
+      "side": 1,
+      "message": "From Google:\n\nHere are some common ISO 8601 duration examples:\n•\tP3Y6M4DT12H30M5S → 3 years, 6 months, 4 days, 12 hours, 30 minutes, 5 seconds.\n•\tP1Y2M3D → 1 year, 2 months, 3 days.\n•\tP6M → 6 months.\n•\tP4W → 4 weeks.\n•\tP2DT3H4M5S → 2 days, 3 hours, 4 minutes, 5 seconds.\n•\tPT3H15M30S → 3 hours, 15 minutes, 30 seconds.\n•\tPT45S → 45 seconds.\n•\tP0D or PT0S → zero duration (0 days or 0 seconds).\n•\tP1M → 1 month (note: calendar month, length depends on context).\n•\tPT1M → 1 minute (time “M” after T).",
+      "parentUuid": "6b4b1cd4_9523d077",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 88
+      },
+      "revId": "1bf23f7086ea720ea3afa6718a28a6855d567bd7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
