@@ -20,6 +20,8 @@ import static com.googlesource.gerrit.plugins.quota.QueueManager.QueueInfo;
 
 import com.google.gerrit.server.ioutil.HexFormat;
 import com.google.gerrit.util.logging.NamedFluentLogger;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -28,6 +30,7 @@ public class ParkedQuotaTransitionLogger {
       NamedFluentLogger.forName(TaskQuotaLogFile.NAME);
   protected static final Map<Integer, TaskQuota> prevParkingQuotaByTaskId =
       new ConcurrentHashMap<>();
+  protected static final Map<Integer, Instant> parkedSince = new ConcurrentHashMap<>();
   protected static final TaskQuota CANNOT_SATISFY_RESERVATIONS_QUOTA =
       new TaskQuota() {
         @Override
@@ -48,12 +51,14 @@ public class ParkedQuotaTransitionLogger {
 
   /** Logs only if the reason for parked changes from the previous parking event. */
   public static void logTaskWithEnforcedQuota(Task<?> t, TaskQuota q) {
+    parkedSince.putIfAbsent(t.getTaskId(), Instant.now());
     if (shouldLog(t, q)) {
       quotaLog.atInfo().log("Task [%s] parked due to quota rule [%s]", formatTask(t), q);
     }
   }
 
   public static void logTaskWithNoSatisfyingReservation(Task<?> t) {
+    parkedSince.putIfAbsent(t.getTaskId(), Instant.now());
     if (!shouldLog(t, CANNOT_SATISFY_RESERVATIONS_QUOTA)) {
       return;
     }
@@ -83,7 +88,9 @@ public class ParkedQuotaTransitionLogger {
       return;
     }
 
-    quotaLog.atInfo().log("Task %s is now unparked", formatTask(t));
+    quotaLog.atInfo().log(
+        "Task [%s] unparked after %d seconds",
+        formatTask(t), Duration.between(parkedSince.get(t.getTaskId()), Instant.now()).toSeconds());
     clear(t);
   }
 
@@ -93,6 +100,7 @@ public class ParkedQuotaTransitionLogger {
 
   public static void clear(Task<?> t) {
     prevParkingQuotaByTaskId.remove(t.getTaskId());
+    parkedSince.remove(t.getTaskId());
   }
 
   public static String formatTask(Task<?> t) {
