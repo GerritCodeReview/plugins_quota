@@ -24,6 +24,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e45cf72a_919870f3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2025-11-27T17:54:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "031b9be6_ff7b3971",
+      "range": {
+        "startLine": 21,
+        "startChar": 28,
+        "endLine": 21,
+        "endChar": 34
+      },
+      "revId": "10766ff50f9bc5116244574ca2bd6c3fb9b55b6d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "82be3807_ddf3a4de",
@@ -47,6 +71,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0000e634_1457667c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2025-11-27T17:54:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82be3807_ddf3a4de",
+      "range": {
+        "startLine": 22,
+        "startChar": 41,
+        "endLine": 22,
+        "endChar": 54
+      },
+      "revId": "10766ff50f9bc5116244574ca2bd6c3fb9b55b6d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "35ef3a53_bae31528",
@@ -60,6 +108,30 @@
       "writtenOn": "2025-11-27T08:58:59Z",
       "side": 1,
       "message": "Can you specify which one it is? Is it the same as it was before this change?",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 26
+      },
+      "revId": "10766ff50f9bc5116244574ca2bd6c3fb9b55b6d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a1e201c_7d4ad3ba",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2025-11-27T17:54:48Z",
+      "side": 1,
+      "message": "You\u0027re right the default message was not the same as before of this change.\n\nThe message before was:\n```\nRequested space [%d] is bigger then available [%d] for repository %s\n```\n\nTo allow the default message to be explicative as before, I have added support for the parsing of the `${requested}` space.\n\nSince this is not available for all pre-flight checks, I have provided two different templates that **can** be overridden.\n\nWorks fine E2E.",
+      "parentUuid": "35ef3a53_bae31528",
       "range": {
         "startLine": 25,
         "startChar": 0,
