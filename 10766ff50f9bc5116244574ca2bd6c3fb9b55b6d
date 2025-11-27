@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "031b9be6_ff7b3971",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2025-11-27T08:58:59Z",
+      "side": 1,
+      "message": "```suggestion\nThe most restrictive quota (the smallest available size) is selected, and its\n```",
+      "range": {
+        "startLine": 21,
+        "startChar": 28,
+        "endLine": 21,
+        "endChar": 34
+      },
+      "revId": "10766ff50f9bc5116244574ca2bd6c3fb9b55b6d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82be3807_ddf3a4de",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2025-11-27T08:58:59Z",
+      "side": 1,
+      "message": "```suggestion\ncustom message is used when constructing a client-facing QuotaResponse\n```",
+      "range": {
+        "startLine": 22,
+        "startChar": 41,
+        "endLine": 22,
+        "endChar": 54
+      },
+      "revId": "10766ff50f9bc5116244574ca2bd6c3fb9b55b6d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35ef3a53_bae31528",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2025-11-27T08:58:59Z",
+      "side": 1,
+      "message": "Can you specify which one it is? Is it the same as it was before this change?",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 26
+      },
+      "revId": "10766ff50f9bc5116244574ca2bd6c3fb9b55b6d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
