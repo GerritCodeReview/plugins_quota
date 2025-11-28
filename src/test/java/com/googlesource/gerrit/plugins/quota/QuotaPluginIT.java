@@ -15,18 +15,29 @@
 package com.googlesource.gerrit.plugins.quota;
 
 import static com.google.common.truth.Truth.assertThat;
+import static com.google.gerrit.server.quota.QuotaGroupDefinitions.REPOSITORY_SIZE_GROUP;
+import static com.googlesource.gerrit.plugins.quota.MaxRepositorySizeQuota.REPO_SIZE_CACHE;
+import static org.junit.Assert.fail;
 
+import com.google.common.cache.Cache;
 import com.google.gerrit.acceptance.GitUtil;
 import com.google.gerrit.acceptance.LightweightPluginDaemonTest;
 import com.google.gerrit.acceptance.TestAccount;
 import com.google.gerrit.acceptance.TestPlugin;
+import com.google.gerrit.acceptance.UseLocalDisk;
+import com.google.gerrit.acceptance.WaitUtil;
+import com.google.gerrit.entities.Project;
 import com.google.gerrit.entities.RefNames;
 import com.google.gerrit.extensions.api.groups.GroupApi;
+import com.google.gerrit.extensions.registration.DynamicMap;
 import com.google.gerrit.extensions.restapi.RestApiException;
 import com.google.gerrit.server.IdentifiedUser;
+import com.google.gerrit.server.cache.PersistentCache;
+import com.google.gerrit.server.quota.QuotaBackend;
 import com.google.gerrit.truth.OptionalSubject;
 import com.google.inject.Inject;
 import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type;
+import java.time.Duration;
 import java.util.Optional;
 import org.eclipse.jgit.internal.storage.dfs.InMemoryRepository;
 import org.eclipse.jgit.junit.TestRepository;
@@ -42,8 +53,11 @@ public class QuotaPluginIT extends LightweightPluginDaemonTest {
   private static final int UPLOADPACK_BURST = 1;
   private static final int RESTAPI_LIMIT = 200;
   private static final int RESTAPI_BURST = 2;
+  private static final Duration REPO_SIZE_CACHE_PERSIST_TIMEOUT = Duration.ofMillis(500);
 
   @Inject private IdentifiedUser.GenericFactory userFactory;
+  @Inject private QuotaBackend quotaBackend;
+  @Inject private DynamicMap<Cache<?, ?>> cacheMap;
 
   @Before
   public void setup() throws Exception {
@@ -60,7 +74,9 @@ public class QuotaPluginIT extends LightweightPluginDaemonTest {
               allProjectsRepo,
               "Set quota",
               "quota.config",
-              "[group \""
+              "[quota \"?/*\"]\n"
+                  + " maxRepoSize = 1m\n"
+                  + "[group \""
                   + GROUP_LIMITED_ON_UPLOADPACK
                   + "\"]\n"
                   + "uploadpack = "
@@ -78,6 +94,27 @@ public class QuotaPluginIT extends LightweightPluginDaemonTest {
                   + "\n")
           .to(RefNames.REFS_CONFIG)
           .assertOkStatus();
+    }
+  }
+
+  @Test
+  @UseLocalDisk
+  public void requestTokenPersistsRepoSizeCache() throws Exception {
+    Project.NameKey foo = createProjectOverAPI("foo/bar", null, true, null);
+    QuotaBackend.WithResource quota =
+        quotaBackend.user(userFactory.create(admin.id())).project(foo);
+
+    if (cacheMap.get("quota", REPO_SIZE_CACHE) instanceof PersistentCache repoSizeCache) {
+      long baseDiskSize = repoSizeCache.diskStats().size();
+
+      assertThat(quota.requestToken(REPOSITORY_SIZE_GROUP).hasError()).isFalse();
+
+      WaitUtil.waitUntil(
+          () -> repoSizeCache.diskStats().size() == baseDiskSize + 1,
+          REPO_SIZE_CACHE_PERSIST_TIMEOUT);
+
+    } else {
+      fail("unexpected: repo_size cache is not a persistent cache");
     }
   }
 
