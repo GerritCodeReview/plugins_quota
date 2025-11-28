@@ -264,7 +264,9 @@ public class MaxRepositorySizeQuota implements QuotaEnforcer, RepoSizeCache {
   @Override
   public void set(Project.NameKey p, long size) {
     try {
-      cache.get(p).set(size);
+      AtomicLong currentSize = cache.get(p);
+      currentSize.set(size);
+      cache.put(p, currentSize);
     } catch (ExecutionException e) {
       log.warn("Error setting the size of project {}", p, e);
     }
@@ -292,7 +294,9 @@ public class MaxRepositorySizeQuota implements QuotaEnforcer, RepoSizeCache {
         .ifPresent(
             p -> {
               try {
-                cache.get(p).getAndUpdate(current -> current > numTokens ? current - numTokens : 0);
+                AtomicLong currentSize = cache.get(p);
+                currentSize.getAndUpdate(current -> current > numTokens ? current - numTokens : 0);
+                cache.put(p, currentSize);
               } catch (ExecutionException e) {
                 log.warn("Refilling [{}] bytes for repository {} failed", numTokens, p, e);
               }
@@ -328,7 +332,9 @@ public class MaxRepositorySizeQuota implements QuotaEnforcer, RepoSizeCache {
     if (availableSizeResponse.availableSize() >= requested) {
       if (deduct) {
         try {
-          cache.get(r).getAndAdd(requested);
+          AtomicLong currentSize = cache.get(r);
+          currentSize.getAndAdd(requested);
+          cache.put(r, currentSize);
         } catch (ExecutionException e) {
           String msg = String.format("Quota request [%d] failed for repository %s", requested, r);
           log.warn(msg, e);
