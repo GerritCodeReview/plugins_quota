@@ -36,5 +36,6 @@ java_library(
     visibility = ["//visibility:public"],
     exports = PLUGIN_DEPS + PLUGIN_TEST_DEPS + [
         ":quota__plugin",
+        "//java/com/google/gerrit/server/cache/h2",
     ],
 )
