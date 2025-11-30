@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0be7051_84a0c5df",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2025-11-30T09:44:11Z",
+      "side": 1,
+      "message": "That is true for 1 day only: all the entries automatically expire after 1 day as per cache definition:\n\n```\n        persist(CACHE_NAME, Project.NameKey.class, AtomicLong.class)\n            .loader(Loader.class)\n            .expireAfterWrite(1, TimeUnit.DAYS);\n```",
+      "range": {
+        "startLine": 15,
+        "startChar": 62,
+        "endLine": 16,
+        "endChar": 48
+      },
+      "revId": "251d949682bef66d4334918729acf9006bb9731f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "285c5329_81333a40",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2025-11-30T09:44:11Z",
+      "side": 1,
+      "message": "Are we missing a test to ensure that updates are persisted?",
+      "revId": "251d949682bef66d4334918729acf9006bb9731f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
