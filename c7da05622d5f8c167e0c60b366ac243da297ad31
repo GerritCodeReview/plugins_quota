@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86f605d2_a08c2005",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2025-12-03T10:31:58Z",
+      "side": 1,
+      "message": "```suggestion\nthis bug only affected restarts that occurred before the TTL\n```",
+      "range": {
+        "startLine": 19,
+        "startChar": 9,
+        "endLine": 19,
+        "endChar": 18
+      },
+      "revId": "c7da05622d5f8c167e0c60b366ac243da297ad31",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc9cc25b_1e33e78a",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/QuotaPluginIT.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2025-12-03T10:31:58Z",
+      "side": 1,
+      "message": "You can use the JUnit `assume()` statement here.\nSee https://www.geeksforgeeks.org/advance-java/junit-org-junit-assume/.\n\nIf the cache isn\u0027t H2, then this test won\u0027t make sense, isn\u0027t it?",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 5
+      },
+      "revId": "c7da05622d5f8c167e0c60b366ac243da297ad31",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
