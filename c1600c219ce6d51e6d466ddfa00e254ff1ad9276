@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05d1e953_7b5c3bee",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QuotaSection.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2025-12-03T08:54:08Z",
+      "side": 1,
+      "message": "Passing an `Optional\u003c\u003e` as a parameter is an anti-pattern in Java, see https://medium.com/@arun.narayan/java-optional-anti-patterns-avoid-these-traps-for-cleaner-code-37cea5945265.",
+      "range": {
+        "startLine": 71,
+        "startChar": 69,
+        "endLine": 71,
+        "endChar": 93
+      },
+      "revId": "c1600c219ce6d51e6d466ddfa00e254ff1ad9276",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71e42e10_653c5b0a",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QuotaSection.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2025-12-03T08:54:08Z",
+      "side": 1,
+      "message": "Passing an `Optional\u003c\u003e` as a parameter is an anti-pattern in Java, see https://medium.com/@arun.narayan/java-optional-anti-patterns-avoid-these-traps-for-cleaner-code-37cea5945265.",
+      "range": {
+        "startLine": 81,
+        "startChar": 53,
+        "endLine": 81,
+        "endChar": 77
+      },
+      "revId": "c1600c219ce6d51e6d466ddfa00e254ff1ad9276",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
