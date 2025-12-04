@@ -93,6 +93,30 @@
       },
       "revId": "c7da05622d5f8c167e0c60b366ac243da297ad31",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6135b22_b31ff62e",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/QuotaPluginIT.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2025-12-04T15:29:39Z",
+      "side": 1,
+      "message": "\u003e I\u0027m not convinced that using assume is appropriate here.\n\u003e In this test environment, the cache should always be an H2CacheImpl, correct?\n\nThis test is validating the quota plugin, not H2 Cache IMHO.\nHowever, if you assume this test is coupled with H2, it should assert that the cache is actually H2.\n\n\u003e Encountering a different implementation would be unexpected, and the test should fail.\n\nThe quota plugin does not require to have H2 as cache persistent backend, therefore this test should not fail. Skipping it would be the less of the evils, but I see your point.\n\nCan we instead assert the persistence without having to cast to an H2 implementation instead?\n\n\n\u003e Is there any scenario where this cache is legitimately expected not to be H2CacheImpl, in which case skipping the test (rather than failing it) would be acceptable?\n\n\nWell, it could be if you use the quota plugin with another non-H2 implementation.",
+      "parentUuid": "aad6cb18_cc5b72ce",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 5
+      },
+      "revId": "c7da05622d5f8c167e0c60b366ac243da297ad31",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
