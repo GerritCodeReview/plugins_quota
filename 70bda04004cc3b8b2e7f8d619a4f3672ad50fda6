@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6162ce70_36892b6b",
+        "filename": "BUILD",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2025-12-04T17:38:11Z",
+      "side": 1,
+      "message": "this can now be removed",
+      "range": {
+        "startLine": 39,
+        "startChar": 9,
+        "endLine": 39,
+        "endChar": 49
+      },
+      "revId": "70bda04004cc3b8b2e7f8d619a4f3672ad50fda6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
