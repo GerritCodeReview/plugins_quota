@@ -117,6 +117,30 @@
       },
       "revId": "c7da05622d5f8c167e0c60b366ac243da297ad31",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e60f0c1e_aee0aae0",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/QuotaPluginIT.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2025-12-04T17:35:12Z",
+      "side": 1,
+      "message": "\u003e Can we instead assert the persistence without having to cast to an H2 implementation instead?\n\nYes. The only reason we are casting the cache is to have access to the disk stats, but any **persistent** cache will do.\n\nWe can drop the **H2CacheImpl** and assert on any **PersistentCache** instead.",
+      "parentUuid": "d6135b22_b31ff62e",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 5
+      },
+      "revId": "c7da05622d5f8c167e0c60b366ac243da297ad31",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
