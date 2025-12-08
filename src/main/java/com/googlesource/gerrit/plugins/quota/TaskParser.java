@@ -20,7 +20,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TaskParser {
-  public static final Pattern USER_EXTRACT_PATTERN = Pattern.compile("\\(([a-z0-9]+)\\)$");
+  public static final Pattern USER_EXTRACT_PATTERN = Pattern.compile("\\(([\\-_A-Za-z0-9]+)\\)$");
 
   public static Optional<String> user(WorkQueue.Task<?> task) {
     Matcher matcher = USER_EXTRACT_PATTERN.matcher(task.toString());

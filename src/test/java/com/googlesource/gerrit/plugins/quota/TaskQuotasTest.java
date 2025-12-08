@@ -34,6 +34,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 public class TaskQuotasTest {
   private static final String PROJECT_X = "project-x";
   private static final String USER_A = "USER_A";
+  private static final String USER_B = "USER_B";
 
   @Test
   public void testMaxStartForTaskForQueue() throws ConfigInvalidException {
@@ -74,6 +75,61 @@ public class TaskQuotasTest {
 
     assertTrue(taskQuotas.isReadyToStart(u_x_3));
     startAndCompleteTask(taskQuotas, u_x_3);
+  }
+
+  @Test
+  public void testSoftMaxPerUserForQueue() throws ConfigInvalidException {
+    TaskQuotas taskQuotas =
+        taskQuotas(
+            5,
+            5,
+            """
+[quota "%s"]
+  softMaxStartPerUserForQueue = 2 %s
+"""
+                .formatted(PROJECT_X, INTERACTIVE.getName()));
+
+    // running: user_a: 1 user_b: 0
+    Task<?> u_x_a_1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(u_x_a_1));
+    taskQuotas.onStart(u_x_a_1);
+
+    // running: user_a: 2 user_b: 0 (user_a is at the softMax)
+    Task<?> u_x_a_2 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(u_x_a_2));
+    taskQuotas.onStart(u_x_a_2);
+
+    // running: user_a: 3 user_b: 0 (user_a able to start new task exceeding soft max)
+    Task<?> u_x_a_3 = task(INTERACTIVE.getName(), receivePackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(u_x_a_3));
+    taskQuotas.onStart(u_x_a_3);
+
+    // running: user_a: 3 user_b: 1
+    Task<?> u_x_b_1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_B));
+    assertTrue(taskQuotas.isReadyToStart(u_x_b_1));
+    taskQuotas.onStart(u_x_b_1);
+
+    // running: user_a: 3 user_b: 2
+    Task<?> u_x_b_2 = task(INTERACTIVE.getName(), receivePackTask(PROJECT_X, USER_B));
+    assertTrue(taskQuotas.isReadyToStart(u_x_b_2));
+    taskQuotas.onStart(u_x_b_2);
+
+    // running: user_a: 2 user_b: 2
+    taskQuotas.onStop(u_x_a_1);
+    Task<?> u_x_a_4 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertFalse(taskQuotas.isReadyToStart(u_x_a_4));
+
+    // running: user_a: 2 user_b: 1
+    taskQuotas.onStop(u_x_b_1);
+
+    // running: user_a: 3 user_b: 1
+    assertTrue(taskQuotas.isReadyToStart(u_x_a_4));
+    taskQuotas.onStart(u_x_a_4);
+
+    taskQuotas.onStop(u_x_a_2);
+    taskQuotas.onStop(u_x_a_3);
+    taskQuotas.onStop(u_x_a_4);
+    taskQuotas.onStop(u_x_b_2);
   }
 
   private Task<?> task(String queueName, String taskString) {
