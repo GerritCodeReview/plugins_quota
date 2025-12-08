@@ -16,6 +16,24 @@
       "message": "Anyway to use a pattern from Gerrit core for this?",
       "revId": "48b81abe4bf64aafd6d1dbd93661f7a0fef852d2",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e36a7e56_078d8162",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskParser.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2025-12-08T15:40:19Z",
+      "side": 1,
+      "message": "They seem to be private fields in ExternalId. Are you okay with making a core change to make it public and then use it here ?",
+      "parentUuid": "b481b6e2_55fbc89c",
+      "revId": "48b81abe4bf64aafd6d1dbd93661f7a0fef852d2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
