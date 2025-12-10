@@ -14,6 +14,7 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
+import com.google.gerrit.common.Nullable;
 import com.google.gerrit.entities.Project;
 import java.util.Arrays;
 import java.util.List;
@@ -24,6 +25,13 @@ public interface QuotaSection {
   String KEY_MAX_PROJECTS = "maxProjects";
   String KEY_MAX_REPO_SIZE = "maxRepoSize";
   String KEY_MAX_TOTAL_SIZE = "maxTotalSize";
+  String KEY_SIZE_EXCEEDED_KNOWN_REQUEST_SIZE_MSG = "sizeLimitExceededKnownRequestSizeMsg";
+  String DEFAULT_SIZE_MSG_KNOWN_REQUEST_SIZE_TEMPLATE =
+      "Requested space [${requested}] is bigger then available [${available}] for repository"
+          + " ${project}";
+  String KEY_SIZE_EXCEEDED_UNKNOWN_REQUEST_SIZE_MSG = "sizeLimitExceededUnknownRequestSizeMsg";
+  String DEFAULT_SIZE_MSG_UNKNOWN_REQUEST_SIZE_TEMPLATE =
+      "Project ${project} exceeds quota: max=${maximum} bytes, available=${available} bytes.";
 
   String getNamespace();
 
@@ -58,6 +66,34 @@ public interface QuotaSection {
                     .map(cfg -> type.processor.apply(this, cfg))
                     .flatMap(Optional::stream))
         .toList();
+  }
+
+  default String quotaSizeExceededMessage(
+      Project.NameKey project, long availableSize, long maximumSize, @Nullable Long requested) {
+
+    return QuotaSizeMessageInterpolator.interpolate(
+        getQuotaSizeExceededMessageTemplate(requested),
+        project,
+        availableSize,
+        maximumSize,
+        requested);
+  }
+
+  private String getQuotaSizeExceededMessageTemplate(@Nullable Long requested) {
+    boolean unknown = (requested == null);
+    String msgTemplate =
+        unknown
+            ? KEY_SIZE_EXCEEDED_UNKNOWN_REQUEST_SIZE_MSG
+            : KEY_SIZE_EXCEEDED_KNOWN_REQUEST_SIZE_MSG;
+    String defaultMsgTemplate =
+        unknown
+            ? DEFAULT_SIZE_MSG_UNKNOWN_REQUEST_SIZE_TEMPLATE
+            : DEFAULT_SIZE_MSG_KNOWN_REQUEST_SIZE_TEMPLATE;
+    String tpl = cfg().getString(section(), subSection(), msgTemplate);
+    if (tpl == null || tpl.trim().isEmpty()) {
+      return defaultMsgTemplate;
+    }
+    return tpl;
   }
 
   default boolean isFallbackQuota() {
