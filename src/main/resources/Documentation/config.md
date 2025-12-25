@@ -22,7 +22,7 @@ the `quota.config` file locally and pushing back the changes. The
     maxTotalSize = 200 m
 ```
 
-<a id="sizeLimitExceededUnknownRequestSizeMsg" />
+<a id="sizeLimitExceededUnknownRequestSizeMsg" > </a>
 `quota.<namespace>.sizeLimitExceededUnknownRequestSizeMsg`
 : Optional custom message returned when a size quota in this namespace is exceeded **and the
 requested size is not known in advance**.
@@ -31,7 +31,7 @@ of bytes to be written is not yet available.
 For example, when Gerrit receives a commit, its size cannot be determined until the transfer
 completes.
 
-<a id="sizeLimitExceededKnownRequestSizeMsg" />
+<a id="sizeLimitExceededKnownRequestSizeMsg" > </a>
 `quota.<namespace>.sizeLimitExceededKnownRequestSizeMsg`
 : Optional custom message returned when a size quota in this namespace is exceeded **and the
 requested size is known upfront**.
@@ -51,11 +51,11 @@ default message is used. When multiple quota enforcers contribute to a quota
 calculation, the message from the most restrictive enforcer (the one with the
 lowest remaining quota) is selected.
 
-<a id="maxProjects" />
+<a id="maxProjects" > </a>
 `quota.<namespace>.maxProjects`
 : The maximum number of projects that can be created in this namespace.
 
-<a id="maxRepoSize" />
+<a id="maxRepoSize" > </a>
 `quota.<namespace>.maxRepoSize`
 : The maximum total file size of a repository in this namespace. This is
 the sum of sizes of all files in a Git repository where the size is
@@ -63,7 +63,7 @@ taken using the File.length() method. This means that, for example, a
 reference file is counted as 41 bytes although it typically occupies a
 block of 4K in the file system.
 
-<a id="maxTotalSize" />
+<a id="maxTotalSize" > </a>
 `quota.<namespace>.maxTotalSize`
 : The maximum total file size of all repositories in this namespace.
 This is the sum of sizes of all files in all Git repositories in this
@@ -165,7 +165,7 @@ the following section should be added into the `gerrit.config` file:
     useGitObjectCount = true
 ```
 
-<a id="useGitObjectCount" />
+<a id="useGitObjectCount" > </a>
 `plugin.quota.useGitObjectCount`
 : Use git object count. If true, *repoSize = looseObjectsSize +
 packedObjectsSize*, where *looseObjectsSize* and *packedObjectsSize* are given
@@ -223,7 +223,7 @@ Format of the rate limit entries in `quota.config`:
 
 The group can be defined by its name or UUID.
 
-<a id="rateLimitType" />
+<a id="rateLimitType" > </a>
 `group.<groupName>.<rateLimitType>`
 : identifies which request type is limited by this configuration.
 The following rate limit types are supported:
@@ -231,11 +231,11 @@ The following rate limit types are supported:
 for the given group
 * `restapi`: rate limit for REST API requests
 
-<a id="rateLimit" />
+<a id="rateLimit" > </a>
 `group.<groupName>.<rateLimit>`
 : The rate limit (first parameter) defines the maximum allowed request rate.
 
-<a id="rateUnit" />
+<a id="rateUnit" > </a>
 `group.<groupName>.<rateUnit>`
 : Rate limits can be defined using the following rate units:<br />
 `/s`, `/sec`, `/second`: requests per second<br />
@@ -243,7 +243,7 @@ for the given group
 `/h`, `/hr`, `/hour`: requests per hour<br />
 `/d`, `/day`: requests per day<br />
 
-<a id="burst" />
+<a id="burst" > </a>
 `group.<groupName>.<storedRequests>`
 : The `burst` parameter allows to define how many unused requests can be
 stored for later use during idle times. This allows clients to send
@@ -284,7 +284,7 @@ The default message reads:
 `Exceeded rate limit of ${rateLimit} REST API requests/hour (or idle `
 `time used up in bursts of max ${burstsLimit} requests)` .
 
-<a id="maxConnectionsPerUserForTask" />
+<a id="maxConnectionsPerUserForTask" > </a>
 `maxConnectionsPerUserForTask`
 : Even though we have ratelimiting over a window of period, costly restapis
 run concurrently by users can still bring down the server. Using the
@@ -366,7 +366,7 @@ Example:
 
 ```
  [quota "*"]
-   softMaxStartPerUserForQueue = 3 SSH-Interavtive-Users
+   softMaxStartPerUserForQueue = 3 SSH-Interactive-Works
 ```
 
 This config make sures that as soon as a specific user has 3 tasks running, it ensures
