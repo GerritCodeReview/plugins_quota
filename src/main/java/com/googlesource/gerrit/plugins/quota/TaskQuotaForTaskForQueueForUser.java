@@ -28,9 +28,9 @@ public class TaskQuotaForTaskForQueueForUser extends TaskQuotaForTaskForQueue {
       Pattern.compile(
           "(\\d+)\\s+("
               + String.join("|", SUPPORTED_TASKS_BY_GROUP.keySet())
-              + ")\\s+([a-zA-Z0-9]+)"
+              + ")\\s+"
+              + TaskParser.USER_PATTERN
               + "\\s+(.+)");
-  public static final Pattern USER_EXTRACT_PATTERN = Pattern.compile("\\(([a-z0-9]+)\\)$");
   private final String user;
 
   public TaskQuotaForTaskForQueueForUser(
@@ -41,8 +41,7 @@ public class TaskQuotaForTaskForQueueForUser extends TaskQuotaForTaskForQueue {
 
   @Override
   public boolean isApplicable(WorkQueue.Task<?> task) {
-    Matcher taskUser = USER_EXTRACT_PATTERN.matcher(task.toString());
-    return taskUser.find() && user.equals(taskUser.group(1)) && super.isApplicable(task);
+    return TaskParser.user(task).map(user::equals).orElse(false) && super.isApplicable(task);
   }
 
   public static Optional<TaskQuota> build(QuotaSection qs, String config) {
