@@ -33,7 +33,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.class)
 public class TaskQuotasTest {
   private static final String PROJECT_X = "project-x";
-  private static final String USER_A = "USER_A";
+  private static final String USER_A = "USER-A";
   private static final String USER_B = "USER_B";
 
   @Test
@@ -42,7 +42,7 @@ public class TaskQuotasTest {
         taskQuotas(
             2,
             2,
-            """
+"""
 [quota "%s"]
   maxStartForTaskForQueue = 1 uploadpack %s
 """
@@ -78,12 +78,44 @@ public class TaskQuotasTest {
   }
 
   @Test
+  public void testMaxStartForTaskForUserForQueue() throws ConfigInvalidException {
+    TaskQuotas taskQuotas =
+        taskQuotas(
+            2,
+            2,
+"""
+[quota "%s"]
+  maxStartForTaskForUserForQueue = 1 uploadpack %s %s
+"""
+                .formatted(PROJECT_X, USER_A, INTERACTIVE.getName()));
+
+    Task<?> u_x_a_1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(u_x_a_1));
+    startAndCompleteTask(taskQuotas, u_x_a_1);
+
+    Task<?> u_x_a_2 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(u_x_a_2));
+    taskQuotas.onStart(u_x_a_2);
+
+    Task<?> u_x_a_3 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertFalse(taskQuotas.isReadyToStart(u_x_a_3));
+
+    Task<?> u_x_b_1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_B));
+    assertTrue(taskQuotas.isReadyToStart(u_x_b_1));
+    startAndCompleteTask(taskQuotas, u_x_b_1);
+
+    taskQuotas.onStop(u_x_a_2);
+    assertTrue(taskQuotas.isReadyToStart(u_x_a_3));
+    startAndCompleteTask(taskQuotas, u_x_a_3);
+  }
+
+  @Test
   public void testSoftMaxPerUserForQueue() throws ConfigInvalidException {
     TaskQuotas taskQuotas =
         taskQuotas(
             5,
             5,
-            """
+"""
 [quota "%s"]
   softMaxStartPerUserForQueue = 2 %s
 """
