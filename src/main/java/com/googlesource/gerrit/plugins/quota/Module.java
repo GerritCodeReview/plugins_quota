@@ -14,6 +14,7 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
+import static com.google.gerrit.server.cache.CacheKeyType.registerKeyType;
 import static com.google.gerrit.server.config.ConfigResource.CONFIG_KIND;
 import static com.google.gerrit.server.project.ProjectResource.PROJECT_KIND;
 import static com.googlesource.gerrit.plugins.quota.QuotaResource.QUOTA_KIND;
@@ -23,6 +24,7 @@ import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.google.common.util.concurrent.RateLimiter;
 import com.google.gerrit.entities.Account;
+import com.google.gerrit.entities.GeneralProjectName;
 import com.google.gerrit.extensions.annotations.Exports;
 import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gerrit.extensions.events.GarbageCollectorListener;
@@ -54,6 +56,7 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
 class Module extends CacheModule {
+  static final String CACHE_KEY_NAME = "repo-size-cache";
   static final String CACHE_NAME_ACCOUNTID = "rate_limits_by_account";
   static final String CACHE_NAME_GLOBAL = "rate_limits_global";
   static final String CACHE_NAME_REMOTEHOST = "rate_limits_by_ip";
@@ -104,6 +107,7 @@ class Module extends CacheModule {
     bindConstant()
         .annotatedWith(Names.named(RateMsgHelper.UPLOADPACK_CONFIGURABLE_MSG_ANNOTATION))
         .to(uploadpackLimitExceededMsg);
+    registerKeyType(CACHE_KEY_NAME, GeneralProjectName.class);
   }
 
   static class Holder {
