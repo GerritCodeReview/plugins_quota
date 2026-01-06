@@ -14,6 +14,7 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
+import static com.google.gerrit.server.cache.CacheKeyType.registerKeyType;
 import static com.google.gerrit.server.config.ConfigResource.CONFIG_KIND;
 import static com.google.gerrit.server.project.ProjectResource.PROJECT_KIND;
 import static com.googlesource.gerrit.plugins.quota.QuotaResource.QUOTA_KIND;
@@ -23,6 +24,8 @@ import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.google.common.util.concurrent.RateLimiter;
 import com.google.gerrit.entities.Account;
+import com.google.gerrit.entities.GeneralProjectName;
+import com.google.gerrit.entities.Project;
 import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gerrit.extensions.events.GarbageCollectorListener;
 import com.google.gerrit.extensions.events.LifecycleListener;
@@ -95,6 +98,7 @@ class Module extends CacheModule {
     bindConstant()
         .annotatedWith(Names.named(RateMsgHelper.UPLOADPACK_CONFIGURABLE_MSG_ANNOTATION))
         .to(uploadpackLimitExceededMsg);
+    registerKeyType("repo-size-cache", GeneralProjectName.class);
   }
 
   static class Holder {
