@@ -34,6 +34,24 @@
       "parentUuid": "12d59789_4e953bc6",
       "revId": "80e774ae968915d7becd10794eaaf2d67fe68e22",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75b6d36c_0cdad6bd",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-01-23T23:00:47Z",
+      "side": 1,
+      "message": "It does display when plugin is installed. But the text is all underlined starting from line 198. As if hyperlink is broken somehow.",
+      "parentUuid": "59179655_4e305ccd",
+      "revId": "80e774ae968915d7becd10794eaaf2d67fe68e22",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ],
   "submitRequirementResults": [
