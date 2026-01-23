@@ -52,6 +52,24 @@
       "parentUuid": "59179655_4e305ccd",
       "revId": "80e774ae968915d7becd10794eaaf2d67fe68e22",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b803b6f3_7fa5dbb0",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2026-01-23T23:32:15Z",
+      "side": 1,
+      "message": "Does it look like that in the base version? Or only after this change is applied?",
+      "parentUuid": "75b6d36c_0cdad6bd",
+      "revId": "80e774ae968915d7becd10794eaaf2d67fe68e22",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ],
   "submitRequirementResults": [
