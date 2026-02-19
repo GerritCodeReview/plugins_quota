@@ -28,9 +28,9 @@ public class TaskQuotaForTaskForQueueForUser extends TaskQuotaForTaskForQueue {
       Pattern.compile(
           "(\\d+)\\s+("
               + String.join("|", SUPPORTED_TASKS_BY_GROUP.keySet())
-              + ")\\s+"
-              + TaskParser.USER_PATTERN
-              + "\\s+(.+)");
+              + ")\\s+("
+              + TaskParser.USERNAME_CHARS
+              + ")\\s+(.+)");
   private final String user;
 
   public TaskQuotaForTaskForQueueForUser(
