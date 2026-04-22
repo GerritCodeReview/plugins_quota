@@ -315,6 +315,15 @@ not exceed the queue's capacity. If this limit is surpassed, some of the configu
 minStarts will not be enforced and will be logged. Additionally, note that
 `minStartForQueue` cannot be defined in the global or fallback quota sections.
 
+Additionally, `minStartForTaskForQueue` provides granular reservations based on
+specific task types or regex patterns ensuring that specific operations (like
+`receivepack`) are protected even if the rest of the queue is saturated.
+
+```
+  [quota "android/*"]
+    minStartForTaskForQueue = 2 receivepack SSH-Interactive-Worker
+```
+
 Currently supported tasks:
 
 * `uploadpack`: Maps directly to git-upload-pack operations (used during Git
@@ -322,7 +331,7 @@ Currently supported tasks:
 * `receivepack`: Maps directly to git-receive-pack operations (used during Git
   pushes).
 * `Regex`: Any string wrapped in `^...$` (e.g., `^gerrit.*$`) to match the task's
-    string representation.
+  string representation.
 
 All task-based quotas (such as `maxStartForTaskForQueue` and `minStartForTaskForQueue`)
 support arbitrary matching using regular expressions. To use a regex, wrap
@@ -331,9 +340,10 @@ argument is treated as a Java regular expression against the task's string
 representation (`Task.toString()`).
 
 ```
-  [global]
-    maxStartForTaskForQueue = 5 ^gerrit[ ]+query.*status:open.*$ SSH-Batch-Worker
+  [quota "*"]
+    maxStartForTaskForQueue = 5 ^gerrit[ ]+query[ ]+.status:open.$ SSH-Batch-Worker
 ```
+
 Note:
 * Regular expressions match against the task's full string representation. Broad
   patterns (like the status:open query above) apply to the entire server and are
