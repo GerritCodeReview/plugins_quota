@@ -25,10 +25,12 @@ import javax.inject.Singleton;
 @Singleton
 public class TaskQuotaKeys {
   private final MinStartForQueueQuota minStartForQueueQuota;
+  private final MinStartForTaskForQueueQuota minStartForTaskForQueueQuota;
 
   @Inject
-  public TaskQuotaKeys(MinStartForQueueQuota minStartForQueueQuota) {
+  public TaskQuotaKeys(MinStartForQueueQuota minStartForQueueQuota, MinStartForTaskForQueueQuota minStartForTaskForQueueQuota) {
     this.minStartForQueueQuota = minStartForQueueQuota;
+    this.minStartForTaskForQueueQuota = minStartForTaskForQueueQuota;
   }
 
   public List<TaskQuota> buildQuotas(QuotaSection qs) {
@@ -39,7 +41,8 @@ public class TaskQuotaKeys {
             process(
                 qs, TaskQuotaPerUserForTaskForQueue.KEY, TaskQuotaPerUserForTaskForQueue::build),
             process(qs, SoftMaxPerUserForQueue.KEY, SoftMaxPerUserForQueue::build),
-            process(qs, MinStartForQueueQuota.KEY, minStartForQueueQuota::build))
+            process(qs, MinStartForQueueQuota.KEY, minStartForQueueQuota::build),
+            process(qs, MinStartForTaskForQueueQuota.KEY, minStartForTaskForQueueQuota::build))
         .flatMap(List::stream)
         .toList();
   }
