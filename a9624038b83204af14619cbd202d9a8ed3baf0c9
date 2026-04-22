@@ -84,6 +84,40 @@
       "message": "config specifies quotas on `receivepack` but we are creating `uploadpack` tasks",
       "revId": "a9624038b83204af14619cbd202d9a8ed3baf0c9",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c966d7a_64bcb7bd",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-04-22T17:10:38Z",
+      "side": 1,
+      "message": "You need to run the java formatter on all your changes.",
+      "revId": "a9624038b83204af14619cbd202d9a8ed3baf0c9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3895fa91_a523f33e",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TestNamespaceMatching.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-04-22T17:10:38Z",
+      "side": 1,
+      "message": "This is not the global names space is it? I think that is the \"default\" namespace?\n\nDefine this in a CONSTANT outside of the methods?",
+      "revId": "a9624038b83204af14619cbd202d9a8ed3baf0c9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
