@@ -343,6 +343,32 @@ Example:
 This config make sures that as soon as a specific user has 3 tasks running, it ensures
 that there is still at least one idle thread remaining after the task is started.
 
+Task Matching with Regex
+--------------------
+
+All task-based quotas (such as `maxStartForTaskForQueue` and `minStartForTaskForQueue`)
+now support arbitrary matching using regular expressions. To use a regex, wrap
+the pattern with `^` and `$`. When these delimiters are detected, the task
+argument is treated as a Java regular expression against the task's string
+representation (`Task.toString()`).
+
+To use a regex, wrap the pattern with `^` and `$`. When these delimiters are detected, the task argument is treated as a Java regular expression against the task's string representation (`Task.toString()`).
+
+```
+  [quota "*"]
+    maxStartForTaskForQueue = 5 ^gerrit[ ]+query[ ]+.*status:open.*$ SSH-Batch-Worker
+```
+
+This allows administrators to target and limit specific costly commands on the fly 
+during production incidents without requiring plugin code changes.
+
+Currently supported task identifiers:
+
+* `uploadpack`: Shortcut for `git-upload-pack`.
+* `receivepack`: Shortcut for `git-receive-pack`.
+* **Regex**: Any string wrapped in `^...$` (e.g., `^gerrit.*$`) to match the task's 
+  string representation.
+
 Publication Schedule
 --------------------
 
