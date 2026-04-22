@@ -193,4 +193,37 @@ public class TaskQuotasTest {
     quotas.onStart(task);
     quotas.onStop(task);
   }
+
+  @Test
+  public void testMaxStartWithRegexTaskGroup() throws ConfigInvalidException {
+    TaskQuotas taskQuotas =
+        taskQuotas(
+            2,
+            2,
+"""
+[global]
+  # Limiting gerrit query tasks specifically using a regex
+  maxStartForTaskForQueue = 1 ^gerrit[ ]+query.*$ %s
+"""
+                .formatted(INTERACTIVE.getName()));
+
+    Task<?> queryTask = task(INTERACTIVE.getName(), "gerrit query status:open (user-a)");
+    assertTrue("First query should be allowed", taskQuotas.isReadyToStart(queryTask));
+    taskQuotas.onStart(queryTask);
+
+    Task<?> secondQuery = task(INTERACTIVE.getName(), "gerrit query status:merged (user-a)");
+    assertFalse(
+        "Second query should be blocked by regex quota", taskQuotas.isReadyToStart(secondQuery));
+
+    Task<?> otherTask = task(INTERACTIVE.getName(), "gerrit ls-projects (user-a)");
+    assertTrue(
+        "Unrelated task should not be limited by the regex", taskQuotas.isReadyToStart(otherTask));
+    startAndCompleteTask(taskQuotas, otherTask);
+
+    taskQuotas.onStop(queryTask);
+    assertTrue(
+        "Second query should be allowed after first one stops",
+        taskQuotas.isReadyToStart(secondQuery));
+    startAndCompleteTask(taskQuotas, secondQuery);
+  }
 }
