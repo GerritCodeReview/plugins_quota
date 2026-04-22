@@ -143,6 +143,9 @@ public class TaskQuotas implements WorkQueue.TaskParker {
   }
 
   public static Optional<Project.NameKey> estimateProject(WorkQueue.Task<?> task) {
+    if (task.toString().startsWith("gerrit query")) {
+      return Optional.empty();
+    }
     Matcher matcher = PROJECT_PATTERN.matcher(task.toString());
 
     return matcher.find() ? Optional.of(Project.NameKey.parse(matcher.group(1))) : Optional.empty();
