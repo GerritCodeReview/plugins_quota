@@ -42,7 +42,7 @@ public class TaskQuotasTest {
         taskQuotas(
             2,
             2,
-"""
+            """
 [quota "%s"]
   maxStartForTaskForQueue = 1 uploadpack %s
 """
@@ -83,7 +83,7 @@ public class TaskQuotasTest {
         taskQuotas(
             2,
             2,
-"""
+            """
 [quota "%s"]
   maxStartForTaskForUserForQueue = 1 uploadpack %s %s
 """
@@ -115,7 +115,7 @@ public class TaskQuotasTest {
         taskQuotas(
             5,
             5,
-"""
+            """
 [quota "%s"]
   softMaxStartPerUserForQueue = 2 %s
 """
