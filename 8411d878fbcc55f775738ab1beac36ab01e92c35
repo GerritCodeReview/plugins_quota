@@ -16,6 +16,23 @@
       "message": "- needs modification to `TaskQuotaPerUserForTaskForQueue`\n- add docs in src/main/resources\n- add test cases",
       "revId": "8411d878fbcc55f775738ab1beac36ab01e92c35",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a7d399a_79b0fefd",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaForTaskForQueue.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-04-22T14:49:25Z",
+      "side": 1,
+      "message": "This is ignoring SUPPORTED_TASKS_BY_GROUP.keySet() altogether ?",
+      "revId": "8411d878fbcc55f775738ab1beac36ab01e92c35",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
