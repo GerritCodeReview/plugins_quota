@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ca1d54a_1d636150",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-04-22T14:43:06Z",
+      "side": 1,
+      "message": "not done ? (or, is this talking about other changes ?)",
+      "revId": "be34992f3ea0406d6b22120f0f38dba4e811cb3c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e19a7ed4_2dfb8d72",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForQueueQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-04-22T14:43:06Z",
+      "side": 1,
+      "message": "We don\u0027t want to replace `minStartForQueue`. Instead we want to add additional `minStartForTaskForQueue`. If you meant that `minStartForQueue` could still be achieved in someway with this specify that in docs.",
+      "revId": "be34992f3ea0406d6b22120f0f38dba4e811cb3c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
