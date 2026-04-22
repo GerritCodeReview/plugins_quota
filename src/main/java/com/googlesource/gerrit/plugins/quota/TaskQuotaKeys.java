@@ -39,7 +39,8 @@ public class TaskQuotaKeys {
             process(
                 qs, TaskQuotaPerUserForTaskForQueue.KEY, TaskQuotaPerUserForTaskForQueue::build),
             process(qs, SoftMaxPerUserForQueue.KEY, SoftMaxPerUserForQueue::build),
-            process(qs, MinStartForQueueQuota.KEY, minStartForQueueQuota::build))
+            process(qs, MinStartForQueueQuota.KEY, minStartForQueueQuota::build)),
+            process(qs, MinStartForTaskForQueueQuota.KEY, MinStartForTaskForQueueQuota::build)
         .flatMap(List::stream)
         .toList();
   }

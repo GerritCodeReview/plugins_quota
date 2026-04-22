@@ -315,32 +315,42 @@ not exceed the queue's capacity. If this limit is surpassed, some of the configu
 minStarts will not be enforced and will be logged. Additionally, note that
 `minStartForQueue` cannot be defined in the global or fallback quota sections.
 
+Additionally, `minStartForTaskForQueue` provides granular reservations based on
+specific task types or regex patterns. While `minStartForQueue` reserves capacity
+for any task in a queue, `minStartForTaskForQueue` ensures that specific
+operations (like `receivepack`) are protected even if the rest of the queue
+is saturated.
+
+```
+  [quota "android/*"]
+    minStartForTaskForQueue = 2 receivepack SSH-Interactive-Worker
+```
+
+#### Task Matching with Regex
+Task-based quotas (such as `maxStartForTaskForQueue` and `minStartForTaskForQueue`)
+now support arbitrary matching using regular expressions. To use a regex, wrap
+the pattern with `^` and `$`. When these delimiters are detected, the task
+argument is treated as a Java regular expression against the task's string
+representation (`Task.toString()`).
+
+Example: Limit specific Gerrit queries
+
+```
+  [quota "*"]
+    maxStartForTaskForQueue = 5 ^gerrit[ ]+query[ ]+.status:open.$ SSH-Batch-Worker
+```
+
+This allows targeting and limiting specific costly commands identified during
+production incidents without requiring plugin code changes.
+
 Currently supported tasks:
 
 * `uploadpack`: Maps directly to git-upload-pack operations (used during Git
   fetches or clones).
 * `receivepack`: Maps directly to git-receive-pack operations (used during Git
   pushes).
-* `Regex`: Any string wrapped in `^...$` (e.g., `^gerrit.*$`) to match the task's
-    string representation.
-
-All task-based quotas (such as `maxStartForTaskForQueue` and `minStartForTaskForQueue`)
-support arbitrary matching using regular expressions. To use a regex, wrap
-the pattern with `^` and `$`. When these delimiters are detected, the task
-argument is treated as a Java regular expression against the task's string
-representation (`Task.toString()`).
-
-```
-  [global]
-    maxStartForTaskForQueue = 5 ^gerrit[ ]+query.*status:open.*$ SSH-Batch-Worker
-```
-Note:
-* Regular expressions match against the task's full string representation. Broad
-  patterns (like the status:open query above) apply to the entire server and are
-  not scoped to a specific project.
-* Project-level enforcement (sections other than [global] or [quota "*"]) only works
-  for upload-pack and receive-pack tasks. Quotas for any other commands defined in a
-  project-specific section will be ignored.
+* `Regex patterns`: ny string wrapped in `^...$` (e.g., `^gerrit.*$)` to match the
+  task's string representation.
 
 The `softMaxStartPerUserForQueue` setting defines a soft maximum number of threads
 per user that should be started for a specific task and queue combination. Unlike
