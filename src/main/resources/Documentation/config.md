@@ -315,25 +315,42 @@ not exceed the queue's capacity. If this limit is surpassed, some of the configu
 minStarts will not be enforced and will be logged. Additionally, note that
 `minStartForQueue` cannot be defined in the global or fallback quota sections.
 
+Additionally, `minStartForTaskForQueue` provides granular reservations based on
+specific task types or regex patterns. While `minStartForQueue` reserves capacity
+for any task in a queue, `minStartForTaskForQueue` ensures that specific
+operations (like `receivepack`) are protected even if the rest of the queue
+is saturated.
+
+```
+  [quota "android/*"]
+    minStartForTaskForQueue = 2 receivepack SSH-Interactive-Worker
+```
+
 Currently supported tasks:
 
 * `uploadpack`: Maps directly to git-upload-pack operations (used during Git
   fetches or clones).
 * `receivepack`: Maps directly to git-receive-pack operations (used during Git
   pushes).
-* `Regex`: Any string wrapped in `^...$` (e.g., `^gerrit.*$`) to match the task's
-    string representation.
+* `Regex patterns`: Any string wrapped in `^...$` (e.g., `^gerrit.*$)` to match the
+  task's string representation.
 
+#### Task Matching with Regex
 All task-based quotas (such as `maxStartForTaskForQueue` and `minStartForTaskForQueue`)
-support arbitrary matching using regular expressions. To use a regex, wrap
+now support arbitrary matching using regular expressions. To use a regex, wrap
 the pattern with `^` and `$`. When these delimiters are detected, the task
 argument is treated as a Java regular expression against the task's string
 representation (`Task.toString()`).
 
+Example: Limit specific Gerrit queries
+
 ```
-  [global]
-    maxStartForTaskForQueue = 5 ^gerrit[ ]+query.*status:open.*$ SSH-Batch-Worker
+  [quota "*"]
+    maxStartForTaskForQueue = 5 ^gerrit[ ]+query[ ]+.status:open.$ SSH-Batch-Worker
 ```
+
+This allows targeting and limiting specific costly commands.
+
 Note:
 * Regular expressions match against the task's full string representation. Broad
   patterns (like the status:open query above) apply to the entire server and are
