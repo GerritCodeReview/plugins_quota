@@ -26,11 +26,15 @@ public class TaskQuotaForTaskForQueueForUser extends TaskQuotaForTaskForQueue {
   public static final String KEY = "maxStartForTaskForUserForQueue";
   public static final Pattern CONFIG_PATTERN =
       Pattern.compile(
-          "(\\d+)\\s+("
-              + String.join("|", SUPPORTED_TASKS_BY_GROUP.keySet())
-              + ")\\s+"
+          "(\\d+)\\s+(\\^.*\\$|\\S+)\\s+"
               + TaskParser.USER_PATTERN
               + "\\s+(.+)");
+      // Pattern.compile(
+      //     "(\\d+)\\s+("
+      //         + String.join("|", SUPPORTED_TASKS_BY_GROUP.keySet())
+      //         + ")\\s+"
+      //         + TaskParser.USER_PATTERN
+      //         + "\\s+(.+)");
   private final String user;
 
   public TaskQuotaForTaskForQueueForUser(
