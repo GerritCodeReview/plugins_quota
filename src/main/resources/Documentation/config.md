@@ -321,6 +321,26 @@ Currently supported tasks:
   fetches or clones).
 * `receivepack`: Maps directly to git-receive-pack operations (used during Git
   pushes).
+* `Regex`: Any string wrapped in `^...$` (e.g., `^gerrit.*$`) to match the task's
+    string representation.
+
+All task-based quotas (such as `maxStartForTaskForQueue` and `minStartForTaskForQueue`)
+support arbitrary matching using regular expressions. To use a regex, wrap
+the pattern with `^` and `$`. When these delimiters are detected, the task
+argument is treated as a Java regular expression against the task's string
+representation (`Task.toString()`).
+
+```
+  [global]
+    maxStartForTaskForQueue = 5 ^gerrit[ ]+query.*status:open.*$ SSH-Batch-Worker
+```
+Note:
+* Regular expressions match against the task's full string representation. Broad
+  patterns (like the status:open query above) apply to the entire server and are
+  not scoped to a specific project.
+* Project-level enforcement (sections other than [global] or [quota "*"]) only works
+  for upload-pack and receive-pack tasks. Quotas for any other commands defined in a
+  project-specific section will be ignored.
 
 The `softMaxStartPerUserForQueue` setting defines a soft maximum number of threads
 per user that should be started for a specific task and queue combination. Unlike
