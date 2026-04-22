@@ -21,14 +21,20 @@ import java.util.function.BiFunction;
 import java.util.stream.Stream;
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Singleton
 public class TaskQuotaKeys {
   private final MinStartForQueueQuota minStartForQueueQuota;
+  private final MinStartForTaskForQueueQuota minStartForTaskForQueueQuota;
+  public static final Logger log = LoggerFactory.getLogger(TaskQuotaKeys.class);
+
 
   @Inject
-  public TaskQuotaKeys(MinStartForQueueQuota minStartForQueueQuota) {
+  public TaskQuotaKeys(MinStartForQueueQuota minStartForQueueQuota, MinStartForTaskForQueueQuota minStartForTaskForQueueQuota) {
     this.minStartForQueueQuota = minStartForQueueQuota;
+    this.minStartForTaskForQueueQuota = minStartForTaskForQueueQuota;
   }
 
   public List<TaskQuota> buildQuotas(QuotaSection qs) {
@@ -39,7 +45,8 @@ public class TaskQuotaKeys {
             process(
                 qs, TaskQuotaPerUserForTaskForQueue.KEY, TaskQuotaPerUserForTaskForQueue::build),
             process(qs, SoftMaxPerUserForQueue.KEY, SoftMaxPerUserForQueue::build),
-            process(qs, MinStartForQueueQuota.KEY, minStartForQueueQuota::build))
+            process(qs, MinStartForQueueQuota.KEY, minStartForQueueQuota::build),
+            process(qs, MinStartForTaskForQueueQuota.KEY, minStartForTaskForQueueQuota::build))
         .flatMap(List::stream)
         .toList();
   }
