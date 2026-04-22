@@ -24,9 +24,10 @@ import org.slf4j.LoggerFactory;
 public class TaskQuotaForTaskForQueue extends TaskQuotaForTask {
   public static final Logger log = LoggerFactory.getLogger(TaskQuotaForTaskForQueue.class);
   public static final String KEY = "maxStartForTaskForQueue";
-  public static final Pattern CONFIG_PATTERN =
-      Pattern.compile(
-          "(\\d+)\\s+(" + String.join("|", SUPPORTED_TASKS_BY_GROUP.keySet()) + ")\\s+(.+)");
+  public static final Pattern CONFIG_PATTERN = Pattern.compile("(\\d+)\\s+(\\^.*\\$|\\S+)\\s+(.+)");
+  // Pattern.compile(
+  //     "(\\d+)\\s+(" + String.join("|", SUPPORTED_TASKS_BY_GROUP.keySet()) + ")\\s+(.+)");
+
   public final String queueName;
   protected final QuotaSection quotaSection;
 
