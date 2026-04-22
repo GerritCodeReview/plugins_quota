@@ -315,12 +315,25 @@ not exceed the queue's capacity. If this limit is surpassed, some of the configu
 minStarts will not be enforced and will be logged. Additionally, note that
 `minStartForQueue` cannot be defined in the global or fallback quota sections.
 
+All task-based quotas (such as `maxStartForTaskForQueue` and `minStartForTaskForQueue`)
+support arbitrary matching using regular expressions. To use a regex, wrap
+the pattern with `^` and `$`. When these delimiters are detected, the task
+argument is treated as a Java regular expression against the task's string
+representation (`Task.toString()`).
+
+```
+  [quota "*"]
+    maxStartForTaskForQueue = 5 ^gerrit[ ]+query[ ]+.*status:open.*$ SSH-Batch-Worker
+```
+
 Currently supported tasks:
 
 * `uploadpack`: Maps directly to git-upload-pack operations (used during Git
   fetches or clones).
 * `receivepack`: Maps directly to git-receive-pack operations (used during Git
   pushes).
+* **Regex**: Any string wrapped in `^...$` (e.g., `^gerrit.*$`) to match the task's
+    string representation.
 
 The `softMaxStartPerUserForQueue` setting defines a soft maximum number of threads
 per user that should be started for a specific task and queue combination. Unlike
