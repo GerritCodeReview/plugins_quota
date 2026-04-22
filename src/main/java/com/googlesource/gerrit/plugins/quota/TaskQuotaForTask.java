@@ -15,22 +15,33 @@
 package com.googlesource.gerrit.plugins.quota;
 
 import com.google.gerrit.server.git.WorkQueue;
-import java.util.Map;
-import java.util.Set;
+import java.util.regex.Pattern;
 
 public abstract class TaskQuotaForTask extends TaskQuotaWithPermits {
-  protected static final Map<String, Set<String>> SUPPORTED_TASKS_BY_GROUP =
-      Map.of("uploadpack", Set.of("git-upload-pack"), "receivepack", Set.of("git-receive-pack"));
   public final String taskGroup;
+  protected final Pattern taskRegex;
 
   public TaskQuotaForTask(String taskGroup, int permits) {
     super(permits);
     this.taskGroup = taskGroup;
+
+    if (taskGroup.startsWith("^") && taskGroup.endsWith("$")) {
+      this.taskRegex = Pattern.compile(taskGroup);
+    } else {
+      this.taskRegex = null;
+    }
   }
 
   @Override
   public boolean isApplicable(WorkQueue.Task<?> task) {
-    return SUPPORTED_TASKS_BY_GROUP.get(taskGroup).stream()
-        .anyMatch(t -> task.toString().startsWith(t));
+    if (taskRegex != null) {
+      return taskRegex.matcher(task.toString()).find();
+    }
+
+    Set<String> supported = TaskParser.SUPPORTED_TASKS_BY_GROUP.get(taskGroup);
+    if (supported != null) {
+      return supported.stream().anyMatch(t -> task.toString().startsWith(t));
+    }
+    return false;
   }
 }
