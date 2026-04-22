@@ -164,6 +164,52 @@ public class TaskQuotasTest {
     taskQuotas.onStop(u_x_b_2);
   }
 
+  @Test
+  public void testMinStartForTaskForQueue() throws ConfigInvalidException {
+    TaskQuotas taskQuotas =
+        taskQuotas(
+            4,
+            4,
+"""
+[quota "%s"]
+  minStartForTaskForQueue = 2 receivepack %s
+"""
+                .formatted(PROJECT_X, INTERACTIVE.getName()));
+
+    // 1. Fill the 'General' capacity (4 total - 2 reserved = 2 general slots)
+    Task<?> u_1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    Task<?> u_2 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_B));
+    
+    assertTrue(taskQuotas.isReadyToStart(u_1));
+    taskQuotas.onStart(u_1);
+    assertTrue(taskQuotas.isReadyToStart(u_2));
+    taskQuotas.onStart(u_2);
+
+    // 2. Attempt a 3rd 'uploadpack' (General Task)
+    // This should be BLOCKED because the last 2 seats are reserved for 'receivepack'
+    Task<?> u_3 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertFalse("General task should be blocked; remaining slots are reserved for receivepack", 
+                taskQuotas.isReadyToStart(u_3));
+
+    // 3. Attempt a 'receivepack' (The Reserved Task)
+    // This should be ALLOWED because it matches the reservation criteria
+    Task<?> r_1 = task(INTERACTIVE.getName(), receivePackTask(PROJECT_X, USER_A));
+    assertTrue("Reserved task type should be allowed to use reserved slots", 
+               taskQuotas.isReadyToStart(r_1));
+    taskQuotas.onStart(r_1);
+
+    // 4. Verify the absolute ceiling still works
+    // We have 3 tasks running (u_1, u_2, r_1). 1 slot left (reserved for receivepack).
+    Task<?> r_2 = task(INTERACTIVE.getName(), receivePackTask(PROJECT_X, USER_B));
+    assertTrue(taskQuotas.isReadyToStart(r_2));
+    taskQuotas.onStart(r_2);
+
+    // Now 4/4 are used. Even a reserved task should be blocked now.
+    Task<?> r_3 = task(INTERACTIVE.getName(), receivePackTask(PROJECT_X, USER_A));
+    assertFalse("Absolute ceiling (maxStart) should still block even reserved tasks", 
+                taskQuotas.isReadyToStart(r_3));
+  }
+
   private Task<?> task(String queueName, String taskString) {
     Task<?> task = Mockito.mock(Task.class);
     when(task.getTaskId()).thenReturn(new Random().nextInt());
