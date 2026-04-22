@@ -224,6 +224,44 @@ public class TaskQuotasTest {
     taskQuotas.onStop(u_x_1);
   }
 
+  @Test
+  public void testMinStartForTaskForQueue() throws ConfigInvalidException {
+    TaskQuotas taskQuotas =
+        taskQuotas(
+            4,
+            4,
+            """
+            [quota "%s"]
+              minStartForTaskForQueue = 2 receivepack %s
+            """
+                .formatted(PROJECT_X, INTERACTIVE.getName()));
+
+    Task<?> u_1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    Task<?> u_2 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_B));
+
+    assertTrue(taskQuotas.isReadyToStart(u_1));
+    taskQuotas.onStart(u_1);
+    assertTrue(taskQuotas.isReadyToStart(u_2));
+    taskQuotas.onStart(u_2);
+
+    Task<?> u_3 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertFalse("General task should be blocked; remaining slots are reserved for receivepack",
+        taskQuotas.isReadyToStart(u_3));
+
+    Task<?> r_1 = task(INTERACTIVE.getName(), receivePackTask(PROJECT_X, USER_A));
+    assertTrue("Reserved task type should be allowed to use reserved slots",
+        taskQuotas.isReadyToStart(r_1));
+    taskQuotas.onStart(r_1);
+
+    Task<?> r_2 = task(INTERACTIVE.getName(), receivePackTask(PROJECT_X, USER_B));
+    assertTrue(taskQuotas.isReadyToStart(r_2));
+    taskQuotas.onStart(r_2);
+
+    Task<?> r_3 = task(INTERACTIVE.getName(), receivePackTask(PROJECT_X, USER_A));
+    assertFalse("Absolute ceiling (maxStart) should still block even reserved tasks",
+        taskQuotas.isReadyToStart(r_3));
+  }
+
   private Task<?> task(String queueName, String taskString) {
     Task<?> task = Mockito.mock(Task.class);
     when(task.getTaskId()).thenReturn(new Random().nextInt());
@@ -242,7 +280,7 @@ public class TaskQuotasTest {
     return new TaskQuotas(
         finder,
         projectResolver,
-        new TaskQuotaKeys(new MinStartForQueueQuota(projectResolver)),
+        new TaskQuotaKeys(new MinStartForQueueQuota(projectResolver), new MinStartForTaskForQueueQuota(projectResolver)),
         interactiveThreads,
         batchThreads);
   }
