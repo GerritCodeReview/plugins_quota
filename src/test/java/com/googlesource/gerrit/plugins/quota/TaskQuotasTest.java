@@ -193,4 +193,35 @@ public class TaskQuotasTest {
     quotas.onStart(task);
     quotas.onStop(task);
   }
+
+  @Test
+  public void testMaxStartWithRegexTaskGroup() throws ConfigInvalidException {
+    TaskQuotas taskQuotas =
+        taskQuotas(
+            2,
+            2,
+  """
+  [quota "%s"]
+    maxStartForTaskForQueue = 1 ^git-upload-.* %s
+  """
+                .formatted(PROJECT_X, INTERACTIVE.getName()));
+
+    String queryTaskStr = "gerrit query status:open (user-a)";
+    String otherTaskStr = "gerrit ls-projects (user-a)";
+
+    Task<?> q1 = task(INTERACTIVE.getName(), queryTaskStr);
+    assertTrue("First query should be allowed", taskQuotas.isReadyToStart(q1));
+    taskQuotas.onStart(q1);
+
+    Task<?> q2 = task(INTERACTIVE.getName(), queryTaskStr);
+    assertFalse("Second query should be blocked by regex quota", taskQuotas.isReadyToStart(q2));
+
+    Task<?> other = task(INTERACTIVE.getName(), otherTaskStr);
+    assertTrue("Unrelated task should not be throttled", taskQuotas.isReadyToStart(other));
+    startAndCompleteTask(taskQuotas, other);
+
+    taskQuotas.onStop(q1);
+    assertTrue("Second query should be allowed after release", taskQuotas.isReadyToStart(q2));
+    startAndCompleteTask(taskQuotas, q2);
+  }
 }
