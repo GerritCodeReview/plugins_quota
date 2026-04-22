@@ -24,9 +24,8 @@ import org.slf4j.LoggerFactory;
 public class TaskQuotaForTaskForQueue extends TaskQuotaForTask {
   public static final Logger log = LoggerFactory.getLogger(TaskQuotaForTaskForQueue.class);
   public static final String KEY = "maxStartForTaskForQueue";
-  public static final Pattern CONFIG_PATTERN =
-      Pattern.compile(
-          "(\\d+)\\s+(" + String.join("|", SUPPORTED_TASKS_BY_GROUP.keySet()) + ")\\s+(.+)");
+  public static final Pattern CONFIG_PATTERN = Pattern.compile("(\\d+)\\s+(\\^[^$]*\\$|\\S+)\\s+(.+)");
+
   public final String queueName;
   protected final QuotaSection quotaSection;
 
@@ -45,6 +44,13 @@ public class TaskQuotaForTaskForQueue extends TaskQuotaForTask {
   public static Optional<TaskQuota> build(QuotaSection qs, String cfg) {
     Matcher matcher = CONFIG_PATTERN.matcher(cfg);
     if (matcher.matches()) {
+      String taskGroup = matcher.group(2);
+
+      if (!taskGroup.startsWith("^") && !SUPPORTED_TASKS_BY_GROUP.containsKey(taskGroup)) {
+        log.error("Unknown task group [{}] in configuration entry [{}]", taskGroup, cfg);
+        return Optional.empty();
+      }
+
       return Optional.of(
           new TaskQuotaForTaskForQueue(
               qs, matcher.group(3), matcher.group(2), Integer.parseInt(matcher.group(1))));

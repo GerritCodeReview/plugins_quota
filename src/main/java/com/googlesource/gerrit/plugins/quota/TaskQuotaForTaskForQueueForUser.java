@@ -25,12 +25,7 @@ public class TaskQuotaForTaskForQueueForUser extends TaskQuotaForTaskForQueue {
   public static final Logger log = LoggerFactory.getLogger(TaskQuotaForTaskForQueueForUser.class);
   public static final String KEY = "maxStartForTaskForUserForQueue";
   public static final Pattern CONFIG_PATTERN =
-      Pattern.compile(
-          "(\\d+)\\s+("
-              + String.join("|", SUPPORTED_TASKS_BY_GROUP.keySet())
-              + ")\\s+"
-              + TaskParser.USER_PATTERN
-              + "\\s+(.+)");
+      Pattern.compile("(\\d+)\\s+(\\^.*\\$|\\S+)\\s+" + TaskParser.USER_PATTERN + "\\s+(.+)");
   private final String user;
 
   public TaskQuotaForTaskForQueueForUser(
@@ -47,6 +42,13 @@ public class TaskQuotaForTaskForQueueForUser extends TaskQuotaForTaskForQueue {
   public static Optional<TaskQuota> build(QuotaSection qs, String config) {
     Matcher matcher = CONFIG_PATTERN.matcher(config);
     if (matcher.matches()) {
+      String taskGroup = matcher.group(2);
+
+      if (!taskGroup.startsWith("^") && !SUPPORTED_TASKS_BY_GROUP.containsKey(taskGroup)) {
+        log.error("Unknown task group [{}] in configuration entry [{}]", taskGroup, cfg);
+        return Optional.empty();
+      }
+
       return Optional.of(
           new TaskQuotaForTaskForQueueForUser(
               qs,
