@@ -143,8 +143,14 @@ public class TaskQuotas implements WorkQueue.TaskParker {
   }
 
   public static Optional<Project.NameKey> estimateProject(WorkQueue.Task<?> task) {
-    Matcher matcher = PROJECT_PATTERN.matcher(task.toString());
+    if (task.toString().startsWith("git-upload-pack")
+        || task.toString().startsWith("git-receive-pack")) {
+      Matcher matcher = PROJECT_PATTERN.matcher(task.toString());
+      if (matcher.find()) {
+        return Optional.of(Project.NameKey.parse(matcher.group(1)));
+      }
+    }
 
-    return matcher.find() ? Optional.of(Project.NameKey.parse(matcher.group(1))) : Optional.empty();
+    return Optional.empty();
   }
 }

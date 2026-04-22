@@ -25,8 +25,7 @@ public class TaskQuotaForTaskForQueue extends TaskQuotaForTask {
   public static final Logger log = LoggerFactory.getLogger(TaskQuotaForTaskForQueue.class);
   public static final String KEY = "maxStartForTaskForQueue";
   public static final Pattern CONFIG_PATTERN =
-      Pattern.compile(
-          "(\\d+)\\s+(" + String.join("|", SUPPORTED_TASKS_BY_GROUP.keySet()) + ")\\s+(.+)");
+      Pattern.compile("(\\d+)\\s+" + TaskParser.TASK_GROUP_PATTERN + "\\s+(.+)");
   public final String queueName;
   protected final QuotaSection quotaSection;
 
