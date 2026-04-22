@@ -19,7 +19,8 @@ import java.util.function.BiFunction;
 
 public enum TaskQuotaKeys {
   MAX_START_FOR_TASK_FOR_QUEUE(TaskQuotaForTaskForQueue.KEY, TaskQuotaForTaskForQueue::build),
-  MIN_START_FOR_TASK_FOR_QUEUE(MinStartForQueueQuota.KEY, MinStartForQueueQuota::build),
+  MIN_START_FOR_TASK_FOR_QUEUE(MinStartForTaskForQueueQuota.KEY, MinStartForTaskForTaskForQueueQuota::build),
+  MIN_START_FOR_QUEUE(MinStartForQueueQuota.KEY, MinStartForQueueQuota::build),
   MAX_START_FOR_TASK_FOR_USER_FOR_QUEUE(
       TaskQuotaForTaskForQueueForUser.KEY, TaskQuotaForTaskForQueueForUser::build),
   MAX_START_PER_USER_FOR_TASK_FOR_QUEUE(

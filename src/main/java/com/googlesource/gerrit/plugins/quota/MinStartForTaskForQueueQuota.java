@@ -20,10 +20,11 @@ import java.util.regex.Pattern;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class MinStartForQueueQuota {
-  public static final Logger log = LoggerFactory.getLogger(MinStartForQueueQuota.class);
-  public static final String KEY = "minStartForTaskForQueue"; 
+public class MinStartForTaskForQueueQuota {
+  public static final Logger log = LoggerFactory.getLogger(MinStartForTaskForQueueQuota.class);
+  public static final String KEY = "minStartForTaskForQueue";
 
+  // Pattern captures: 1. Count, 2. Task (word or ^regex$), 3. Queue Name
   public static final Pattern CONFIG_PATTERN = Pattern.compile("(\\d+)\\s+(\\^.*\\$|\\S+)\\s+(.+)");
 
   public static Optional<TaskQuota> build(QuotaSection qs, String cfg) {
@@ -36,24 +37,32 @@ public class MinStartForQueueQuota {
 
     if (matcher.matches()) {
       int reservation = Integer.parseInt(matcher.group(1));
-      String taskType = matcher.group(2); // e.g., "receivepack"
-      String queue = matcher.group(3);    // e.g., "Interactive-Worker"
+      String taskMatchCriteria = matcher.group(2);
+      String queue = matcher.group(3);
+
+      // Pre-compile regex if the task criteria is a pattern
+      final Pattern taskPattern = (taskMatchCriteria.startsWith("^") && taskMatchCriteria.endsWith("$"))
+          ? Pattern.compile(taskMatchCriteria) : null;
 
       QueueManager.registerReservation(
           queue,
           new QueueManager.Reservation(
               reservation,
               task -> {
+                // 1. Check Queue Match
                 if (!task.getQueueName().equalsIgnoreCase(queue)) {
                   return false;
                 }
 
-                String taskString = task.toString().toLowerCase();
-                String normalizedTaskType = taskType.toLowerCase();
-                
-                boolean taskMatch = taskString.contains(normalizedTaskType) 
-                                 || taskString.replace("-", "").contains(normalizedTaskType);
+                // 2. Check Task Match (Regex or Prefix)
+                boolean taskMatch;
+                if (taskPattern != null) {
+                  taskMatch = taskPattern.matcher(task.toString()).find();
+                } else {
+                  taskMatch = task.toString().toLowerCase().contains(taskMatchCriteria.toLowerCase());
+                }
 
+                // 3. Check Project Match
                 boolean projectMatch = TaskQuotas.estimateProject(task)
                                        .map(qs::matches).orElse(false);
 
