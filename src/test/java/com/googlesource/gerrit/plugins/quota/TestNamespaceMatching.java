@@ -20,6 +20,8 @@ import static org.junit.Assert.assertTrue;
 import com.google.gerrit.entities.Project;
 import org.junit.Test;
 
+private static final String CATCH_ALL_PATTERN = "^.*";
+
 public class TestNamespaceMatching {
 
   @Test
@@ -42,5 +44,35 @@ public class TestNamespaceMatching {
     assertTrue(new Namespace(pattern).matches(Project.nameKey("test/a/myProject")));
     assertTrue(new Namespace(pattern).matches(Project.nameKey("test/b/myOtherProject")));
     assertFalse(new Namespace(pattern).matches(Project.nameKey("other/otherProject")));
+  }
+
+  @Test
+  public void catchAllNamespace() {
+    assertTrue(new Namespace(CATCH_ALL_PATTERN).matches(Project.nameKey("any/project")));
+    assertTrue(new Namespace(CATCH_ALL_PATTERN).matches(Project.nameKey("completely/different/repo")));
+  }
+
+@Test
+  public void combinationOverlap() {
+    String projectName = "test/team-alpha/web-app";
+    Project.NameKey project = Project.nameKey(projectName);
+    assertTrue(new Namespace("test/team-alpha/web-app").matches(project));
+    assertTrue(new Namespace("test/team-alpha/*").matches(project));
+    assertTrue(new Namespace("^test/.*/web-.*").matches(project));
+    assertTrue(new Namespace("^.*").matches(project));
+  }
+
+  @Test
+  public void fallbackAndNegativeMatching() {
+    Namespace fallback = new Namespace("internal/*");
+    assertTrue(fallback.matches(Project.nameKey("internal/tool-a")));
+    assertFalse(fallback.matches(Project.nameKey("public/common-library")));
+    assertFalse(fallback.matches(Project.nameKey("external/client-repo")));
+  }
+
+  @Test
+  public void edgeCaseMatching() {
+    assertTrue(new Namespace(CATCH_ALL_PATTERN).matches(Project.nameKey("root-project")));
+    assertTrue(new Namespace("a/b/*").matches(Project.nameKey("a/b/c/d/e")));
   }
 }
