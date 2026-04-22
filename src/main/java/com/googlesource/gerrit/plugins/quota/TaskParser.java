@@ -20,6 +20,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TaskParser {
+  public static final String TASK_GROUP_PATTERN =
+      "(\\^[^$]*\\$|" + String.join("|", SUPPORTED_TASKS_BY_GROUP.keySet()) + ")";
   public static final String USER_PATTERN = "([\\-_A-Za-z0-9]+)";
   public static final Pattern USER_EXTRACT_PATTERN_FROM_TASK_STRING =
       Pattern.compile("\\(" + USER_PATTERN + "\\)$");
