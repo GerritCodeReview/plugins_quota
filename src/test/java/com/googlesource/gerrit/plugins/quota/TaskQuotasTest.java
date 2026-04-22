@@ -193,4 +193,36 @@ public class TaskQuotasTest {
     quotas.onStart(task);
     quotas.onStop(task);
   }
+  @Test
+  public void testMaxStartWithRegexTaskGroup() throws ConfigInvalidException {
+    // Configured using a regex match group format instead of a hardcoded map key string
+    TaskQuotas taskQuotas =
+        taskQuotas(
+            2,
+            2,
+            """
+            [quota "%s"]
+              maxStartForTaskForQueue = 1 ^git-upload-.*$ %s
+            """
+                .formatted(PROJECT_X, INTERACTIVE.getName()));
+
+    // Task matching the regex evaluation should trigger the limit restriction
+    Task<?> u_x_1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(u_x_1));
+    taskQuotas.onStart(u_x_1);
+
+    // A second matching task should be blocked because limit is 1
+    Task<?> u_x_2 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertFalse(taskQuotas.isReadyToStart(u_x_2));
+
+    // A non-matching task (git-receive-pack) should bypass this quota limitation cleanly
+    Task<?> r_x_1 = task(INTERACTIVE.getName(), receivePackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(r_x_1));
+    startAndCompleteTask(taskQuotas, r_x_1);
+
+    // Releasing the first task should unlock the matching queue boundary limits
+    taskQuotas.onStop(u_x_1);
+    assertTrue(taskQuotas.isReadyToStart(u_x_2));
+    startAndCompleteTask(taskQuotas, u_x_2);
+  }
 }
