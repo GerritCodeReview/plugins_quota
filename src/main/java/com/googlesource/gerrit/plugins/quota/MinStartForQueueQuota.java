@@ -22,32 +22,46 @@ import org.slf4j.LoggerFactory;
 
 public class MinStartForQueueQuota {
   public static final Logger log = LoggerFactory.getLogger(MinStartForQueueQuota.class);
-  public static final String KEY = "minStartForQueue";
-  // 10 SSH-Interactive-Worker
-  public static final Pattern CONFIG_PATTERN = Pattern.compile("(\\d+)\\s+(.+)");
+  public static final String KEY = "minStartForTaskForQueue"; 
+
+  public static final Pattern CONFIG_PATTERN = Pattern.compile("(\\d+)\\s+(\\^.*\\$|\\S+)\\s+(.+)");
 
   public static Optional<TaskQuota> build(QuotaSection qs, String cfg) {
     Matcher matcher = CONFIG_PATTERN.matcher(cfg);
 
     if (qs instanceof GlobalQuotaSection || qs.isFallbackQuota()) {
-      log.warn("minStartForQueueQuota is not applicable in global and fallback quota sections");
+      log.warn("minStartForTaskForQueue is not applicable in global and fallback quota sections");
       return Optional.empty();
     }
 
     if (matcher.matches()) {
       int reservation = Integer.parseInt(matcher.group(1));
-      String queue = matcher.group(2);
+      String taskType = matcher.group(2); // e.g., "receivepack"
+      String queue = matcher.group(3);    // e.g., "Interactive-Worker"
+
       QueueManager.registerReservation(
           queue,
           new QueueManager.Reservation(
               reservation,
               task -> {
-                return task.getQueueName().equalsIgnoreCase(queue)
-                    && TaskQuotas.estimateProject(task).map(qs::matches).orElse(false);
+                if (!task.getQueueName().equalsIgnoreCase(queue)) {
+                  return false;
+                }
+
+                String taskString = task.toString().toLowerCase();
+                String normalizedTaskType = taskType.toLowerCase();
+                
+                boolean taskMatch = taskString.contains(normalizedTaskType) 
+                                 || taskString.replace("-", "").contains(normalizedTaskType);
+
+                boolean projectMatch = TaskQuotas.estimateProject(task)
+                                       .map(qs::matches).orElse(false);
+
+                return taskMatch && projectMatch;
               },
               qs.getNamespace()));
     } else {
-      log.error("Invalid configuration entry [{}]", cfg);
+      log.error("Invalid configuration entry for minStartForTaskForQueue: [{}]", cfg);
     }
 
     return Optional.empty();
