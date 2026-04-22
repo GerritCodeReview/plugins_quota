@@ -268,6 +268,20 @@ operations by other users from being processed.
     maxConnectionsPerUserForTask = 20 rest-api
 ```
 
+Task Matching with Regex
+--------------------
+
+All task-based quotas (such as `maxStartForTaskForQueue` and `minStartForTaskForQueue`)
+support arbitrary matching using regular expressions. To use a regex, wrap
+the pattern with `^` and `$`. When these delimiters are detected, the task
+argument is treated as a Java regular expression against the task's string
+representation (`Task.toString()`).
+
+```
+  [quota "*"]
+    maxStartForTaskForQueue = 5 ^gerrit[ ]+query[ ]+.*status:open.*$ SSH-Batch-Worker
+```
+
 Task Quota
 -----------
 
@@ -321,6 +335,8 @@ Currently supported tasks:
   fetches or clones).
 * `receivepack`: Maps directly to git-receive-pack operations (used during Git
   pushes).
+* **Regex**: Any string wrapped in `^...$` (e.g., `^gerrit.*$`) to match the task's
+    string representation.
 
 The `softMaxStartPerUserForQueue` setting defines a soft maximum number of threads
 per user that should be started for a specific task and queue combination. Unlike
