@@ -16,6 +16,24 @@
       "message": "I believe this use to log a bad config entry if the specified task string was unknown, and I think this change now no longer does this? We probably still want this to be the case if there is no regex specified?",
       "revId": "0400837414f50e207db81a2d4cf770e7932b67b2",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "687ac7aa_4dcf19d0",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaForTaskForQueue.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-04-27T18:50:29Z",
+      "side": 1,
+      "message": "A validation check to the build method to ensure non-regex task identifiers can be added. This will restore the behavior of logging errors for unknown task types instead of failing silently.\n\nCode snippet to add inside the `if (matcher.matches())`: \n```\nString taskGroup \u003d matcher.group(2);\n\nif (!taskGroup.startsWith(\"^\") \u0026\u0026 !SUPPORTED_TASKS_BY_GROUP.containsKey(taskGroup)) {\n  log.error(\"Unknown task group [{}] in configuration entry [{}]\", taskGroup, cfg);\n  return Optional.empty();\n}\n```",
+      "parentUuid": "14872422_c8fae5f2",
+      "revId": "0400837414f50e207db81a2d4cf770e7932b67b2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
