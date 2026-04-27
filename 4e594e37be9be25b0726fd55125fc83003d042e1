@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b13c2788_145d0f48",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaForTask.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-04-27T18:29:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a25155f5_acb96876",
+      "revId": "4e594e37be9be25b0726fd55125fc83003d042e1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "07a64082_90cd7a12",
@@ -35,6 +53,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "75cc156e_b7e55544",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaForTaskForQueue.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-04-27T18:29:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07a64082_90cd7a12",
+      "revId": "4e594e37be9be25b0726fd55125fc83003d042e1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eef19158_bf4ddc6e",
@@ -48,6 +84,24 @@
       "writtenOn": "2026-04-23T20:47:52Z",
       "side": 1,
       "message": "We don\u0027t want to leave old code in here, we use git for that. :)",
+      "revId": "4e594e37be9be25b0726fd55125fc83003d042e1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0a8ff8f_1cf53b46",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaForTaskForQueue.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-04-27T18:29:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eef19158_bf4ddc6e",
       "revId": "4e594e37be9be25b0726fd55125fc83003d042e1",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -71,6 +125,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "66544506_6591b8ff",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaForTaskForQueueForUser.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-04-27T18:29:15Z",
+      "side": 1,
+      "message": "I did consider inheriting the pattern but the standalone way would ensure specific capture group indices for User and Queue remains explicit and easier to verify in isolation. Tracing constants back through a class hierarchy would also increase load on debugging.",
+      "parentUuid": "c7f0fa81_736cfefc",
+      "revId": "4e594e37be9be25b0726fd55125fc83003d042e1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4c317861_3848b553",
         "filename": "src/main/resources/Documentation/config.md",
         "patchSetId": 1
@@ -82,6 +154,24 @@
       "writtenOn": "2026-04-23T20:47:52Z",
       "side": 1,
       "message": "d/now/",
+      "revId": "4e594e37be9be25b0726fd55125fc83003d042e1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26c083c6_4eacfa2a",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-04-27T18:29:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c317861_3848b553",
       "revId": "4e594e37be9be25b0726fd55125fc83003d042e1",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -103,6 +193,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6aeb395f_5db33e24",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-04-27T18:29:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e95d4f07_723dc25c",
+      "revId": "4e594e37be9be25b0726fd55125fc83003d042e1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1fb75435_b39ce0e5",
@@ -120,6 +228,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "80593375_488f2e39",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-04-27T18:29:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1fb75435_b39ce0e5",
+      "revId": "4e594e37be9be25b0726fd55125fc83003d042e1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d33108c2_e57b60b2",
@@ -133,6 +259,24 @@
       "writtenOn": "2026-04-23T20:47:52Z",
       "side": 1,
       "message": "This feels like the intro to a section about task identifiers, that should then have the regexp section under it?",
+      "revId": "4e594e37be9be25b0726fd55125fc83003d042e1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba4f67e3_be56f3f0",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-04-27T18:29:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d33108c2_e57b60b2",
       "revId": "4e594e37be9be25b0726fd55125fc83003d042e1",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
