@@ -141,6 +141,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af10c1cb_c89d9473",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaForTaskForQueueForUser.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-04-27T18:32:08Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "66544506_6591b8ff",
+      "revId": "4e594e37be9be25b0726fd55125fc83003d042e1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c317861_3848b553",

@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c621eba_e2bac3bc",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaForTaskForQueueForUser.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-04-27T18:32:08Z",
+      "side": 1,
+      "message": "Use git for old code...",
+      "revId": "083961d6d390d2c93a8dffbbffa98c4742e28895",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f995af67_2bf9e071",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaForTaskForQueueForUser.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-04-27T18:32:08Z",
+      "side": 1,
+      "message": "Same concerns as previous class.",
+      "revId": "083961d6d390d2c93a8dffbbffa98c4742e28895",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
