@@ -33,6 +33,57 @@
       "message": "Looks like you need to run the code formatter.",
       "revId": "ac901385784d284bd3fc674643e7de071b51195a",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac02e893_6cccb410",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TestNamespaceMatching.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-04-28T19:03:05Z",
+      "side": 1,
+      "message": "already covered on L50 L51 ?",
+      "revId": "ac901385784d284bd3fc674643e7de071b51195a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9807737_4f2ca92c",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TestNamespaceMatching.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-04-28T19:03:05Z",
+      "side": 1,
+      "message": "Already covered on L35 ?",
+      "revId": "ac901385784d284bd3fc674643e7de071b51195a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7638ec18_8a891252",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TestNamespaceMatching.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-04-28T19:03:05Z",
+      "side": 1,
+      "message": "These are already covered as part of `globalNamespace()` ?",
+      "revId": "ac901385784d284bd3fc674643e7de071b51195a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
