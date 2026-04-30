@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc99ca02_a8bf0617",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-04-30T17:39:10Z",
+      "side": 1,
+      "message": "This is getting better, but this section still feels a bit disjoint with the section right below it \"Currently supported tasks\", can you join them somehow?",
+      "revId": "0b4255164616fd51708345e19c81af7bda132317",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
