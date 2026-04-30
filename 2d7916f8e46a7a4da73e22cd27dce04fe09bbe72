@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a66d445_1f6c1932",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-04-30T13:13:08Z",
+      "side": 1,
+      "message": "This feels a bit early in the docs now, i.e. it probably should be inside the Task Quota section since I think it only applies to task quotas?",
+      "revId": "2d7916f8e46a7a4da73e22cd27dce04fe09bbe72",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
