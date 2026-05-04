@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1443f400_72017bbd",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaForTaskForQueue.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-05-04T04:16:12Z",
+      "side": 1,
+      "message": "We aren\u0027t actually removing the support for those specific task groups; we are replacing a hardcoded list with a more flexible pattern to allow for regular expressions.",
+      "parentUuid": "ad58bd11_d9c41909",
+      "revId": "0b4255164616fd51708345e19c81af7bda132317",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cc99ca02_a8bf0617",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-04-30T17:39:10Z",
       "side": 1,
       "message": "This is getting better, but this section still feels a bit disjoint with the section right below it \"Currently supported tasks\", can you join them somehow?",
+      "revId": "0b4255164616fd51708345e19c81af7bda132317",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6dd8ae62_18805a03",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-05-04T04:16:12Z",
+      "side": 1,
+      "message": "I\u0027ve merged the sections by nesting the detailed regex explanation and example directly under the \u0027Regex\u0027 bullet point within \u0027Currently supported tasks\u0027. This provides a single, unified reference for how tasks can be identified.",
+      "parentUuid": "cc99ca02_a8bf0617",
       "revId": "0b4255164616fd51708345e19c81af7bda132317",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
