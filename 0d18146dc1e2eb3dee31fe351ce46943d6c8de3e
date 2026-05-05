@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6429c0e1_2e63e569",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaForTaskForQueue.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-05-05T22:11:10Z",
+      "side": 1,
+      "message": "This syntax appears broken.",
+      "revId": "0d18146dc1e2eb3dee31fe351ce46943d6c8de3e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
