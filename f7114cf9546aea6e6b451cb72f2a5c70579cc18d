@@ -16,6 +16,23 @@
       "message": "Include all the checks in the regex, so we don\u0027t have extra conditional branches.\n\nRight now error logging is duplicated on L50 and L58.",
       "revId": "f7114cf9546aea6e6b451cb72f2a5c70579cc18d",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b609d61_7d1218e9",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaForTaskForQueueForUser.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-05-07T23:37:16Z",
+      "side": 1,
+      "message": "Avoid duplicating the regex and declare it as part of TaskParser like how we did it for `TaskParser.USER_PATTERN`.",
+      "revId": "f7114cf9546aea6e6b451cb72f2a5c70579cc18d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
