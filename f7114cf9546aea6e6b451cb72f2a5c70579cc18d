@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad86e934_1110ff30",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaForTaskForQueue.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-05-07T23:35:35Z",
+      "side": 1,
+      "message": "Include all the checks in the regex, so we don\u0027t have extra conditional branches.\n\nRight now error logging is duplicated on L50 and L58.",
+      "revId": "f7114cf9546aea6e6b451cb72f2a5c70579cc18d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
