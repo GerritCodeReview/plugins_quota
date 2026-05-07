@@ -34,6 +34,24 @@
       "parentUuid": "6429c0e1_2e63e569",
       "revId": "0d18146dc1e2eb3dee31fe351ce46943d6c8de3e",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e68a8781_8ff20bb7",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaForTaskForQueue.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-05-07T23:32:08Z",
+      "side": 1,
+      "message": "ci is failing because of `s/cfg/config/`",
+      "parentUuid": "57f55876_01b987fb",
+      "revId": "0d18146dc1e2eb3dee31fe351ce46943d6c8de3e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
