@@ -16,6 +16,24 @@
       "message": "This syntax appears broken.",
       "revId": "0d18146dc1e2eb3dee31fe351ce46943d6c8de3e",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57f55876_01b987fb",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaForTaskForQueue.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-05-07T05:34:04Z",
+      "side": 1,
+      "message": "Unable to figure out. It seems to be fine. Can you please help to point out?",
+      "parentUuid": "6429c0e1_2e63e569",
+      "revId": "0d18146dc1e2eb3dee31fe351ce46943d6c8de3e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
