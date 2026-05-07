@@ -33,6 +33,23 @@
       "message": "Avoid duplicating the regex and declare it as part of TaskParser like how we did it for `TaskParser.USER_PATTERN`.",
       "revId": "f7114cf9546aea6e6b451cb72f2a5c70579cc18d",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66e1364c_fe14f193",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-05-07T23:40:08Z",
+      "side": 1,
+      "message": "Fix to match formatting.\n```\ns/**Regex**/``Regex``/\n```",
+      "revId": "f7114cf9546aea6e6b451cb72f2a5c70579cc18d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
