@@ -52,6 +52,24 @@
       "parentUuid": "57f55876_01b987fb",
       "revId": "0d18146dc1e2eb3dee31fe351ce46943d6c8de3e",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b578627_75c02d1d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaForTaskForQueue.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-05-08T04:19:21Z",
+      "side": 1,
+      "message": "but in different class. `TaskQuotaForTaskForQueueForUser`",
+      "parentUuid": "e68a8781_8ff20bb7",
+      "revId": "0d18146dc1e2eb3dee31fe351ce46943d6c8de3e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
