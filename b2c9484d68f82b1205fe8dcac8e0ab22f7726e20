@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e9555fc_45f9edb8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-05-08T16:25:15Z",
+      "side": 1,
+      "message": "Please add test cases.",
+      "revId": "b2c9484d68f82b1205fe8dcac8e0ab22f7726e20",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "371bde91_f6949822",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskParser.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-05-08T16:25:15Z",
+      "side": 1,
+      "message": "import SUPPORTED_TASKS_BY_GROUP",
+      "revId": "b2c9484d68f82b1205fe8dcac8e0ab22f7726e20",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ec56491_7b05985e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaForTask.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-05-08T16:25:15Z",
+      "side": 1,
+      "message": "supported should never be null now ? (since regex matcher is updated.)",
+      "revId": "b2c9484d68f82b1205fe8dcac8e0ab22f7726e20",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
