@@ -70,6 +70,24 @@
       "parentUuid": "e68a8781_8ff20bb7",
       "revId": "0d18146dc1e2eb3dee31fe351ce46943d6c8de3e",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee5e8f82_485b4793",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaForTaskForQueue.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-05-08T06:31:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b578627_75c02d1d",
+      "revId": "0d18146dc1e2eb3dee31fe351ce46943d6c8de3e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

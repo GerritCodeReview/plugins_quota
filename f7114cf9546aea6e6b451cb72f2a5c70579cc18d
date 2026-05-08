@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15ae9535_76de8e62",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaForTaskForQueue.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-05-08T06:31:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad86e934_1110ff30",
+      "revId": "f7114cf9546aea6e6b451cb72f2a5c70579cc18d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3b609d61_7d1218e9",
@@ -35,6 +53,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "379bd469_d698039b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaForTaskForQueueForUser.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-05-08T06:31:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b609d61_7d1218e9",
+      "revId": "f7114cf9546aea6e6b451cb72f2a5c70579cc18d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66e1364c_fe14f193",
@@ -48,6 +84,24 @@
       "writtenOn": "2026-05-07T23:40:08Z",
       "side": 1,
       "message": "Fix to match formatting.\n```\ns/**Regex**/``Regex``/\n```",
+      "revId": "f7114cf9546aea6e6b451cb72f2a5c70579cc18d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c4c65bf_f41670d6",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-05-08T06:31:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66e1364c_fe14f193",
       "revId": "f7114cf9546aea6e6b451cb72f2a5c70579cc18d",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
