@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fe801a3_8438525e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-05-11T16:44:48Z",
+      "side": 1,
+      "message": "Needs test cases.",
+      "revId": "e7bfe2d8fecc114be67f846341427f35895fc5a5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53169d3b_07195842",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskParser.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-05-11T16:44:48Z",
+      "side": 1,
+      "message": "import Map and Set. Please compile your changes for sanity to avoid these missing imports. Logs from CI:\n\n```\nERROR: /home/zuul/src/gerrit.googlesource.com/gerrit/plugins/quota/BUILD:10:14: Building plugins/quota/libquota__plugin-class.jar (44 source files) and running annotation processors (AutoAnnotationProcessor, AutoBuilderProcessor, AutoValueProcessor, AutoOneOfProcessor, AutoValueGsonAdapterFactoryProcessor) failed: (Exit 1): java failed: error executing Javac command (from target //plugins/quota:quota__plugin) external/remotejdk21_linux/bin/java \u0027--add-exports\u003djdk.compiler/com.sun.tools.javac.api\u003dALL-UNNAMED\u0027 \u0027--add-exports\u003djdk.compiler/com.sun.tools.javac.main\u003dALL-UNNAMED\u0027 ... (remaining 19 arguments skipped)\nplugins/quota/src/main/java/com/googlesource/gerrit/plugins/quota/TaskParser.java:23: error: cannot find symbol\n  public static final Map\u003cString, Set\u003cString\u003e\u003e SUPPORTED_TASKS_BY_GROUP \u003d\n                      ^\n  symbol:   class Map\n  location: class TaskParser\nplugins/quota/src/main/java/com/googlesource/gerrit/plugins/quota/TaskParser.java:23: error: cannot find symbol\n  public static final Map\u003cString, Set\u003cString\u003e\u003e SUPPORTED_TASKS_BY_GROUP \u003d\n                                  ^\n  symbol:   class Set\n  location: class TaskParser\nTarget //plugins/quota:quota failed to build\n```",
+      "revId": "e7bfe2d8fecc114be67f846341427f35895fc5a5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9896f4fa_c76b84c4",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaForTask.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-05-11T16:44:48Z",
+      "side": 1,
+      "message": "No need for this variable now ?",
+      "revId": "e7bfe2d8fecc114be67f846341427f35895fc5a5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
