@@ -35,6 +35,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c747b10_135fd47f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskParser.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-05-11T05:17:50Z",
+      "side": 1,
+      "message": "I centralized the map in TaskParser to create a single source of truth, ensuring the validation regex and the actual enforcement logic always stay in sync. This prevents circular dependencies and follows DRY principles, so any future task group updates only need to be made in one place to apply across the entire plugin.",
+      "parentUuid": "371bde91_f6949822",
+      "revId": "b2c9484d68f82b1205fe8dcac8e0ab22f7726e20",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0ec56491_7b05985e",
@@ -48,6 +66,24 @@
       "writtenOn": "2026-05-08T16:25:15Z",
       "side": 1,
       "message": "supported should never be null now ? (since regex matcher is updated.)",
+      "revId": "b2c9484d68f82b1205fe8dcac8e0ab22f7726e20",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88664eb6_58afb78a",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaForTask.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-05-11T05:17:50Z",
+      "side": 1,
+      "message": "The null check should remain primarily as a defensive programming measure to ensure the stability of Gerrit\u0027s critical `WorkQueue`",
+      "parentUuid": "0ec56491_7b05985e",
       "revId": "b2c9484d68f82b1205fe8dcac8e0ab22f7726e20",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
