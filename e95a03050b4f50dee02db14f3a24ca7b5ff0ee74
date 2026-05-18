@@ -3,7 +3,7 @@
     "zuul-check:plugins_quota": {
       "state": "NOT_STARTED",
       "created": "2026-05-18T09:03:57Z",
-      "updated": "2026-05-18T09:14:41Z"
+      "updated": "2026-05-18T09:14:42Z"
     }
   }
 }
