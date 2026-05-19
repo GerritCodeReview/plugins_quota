@@ -1,5 +1,57 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a479cdc_aa7ae082",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-05-19T20:43:53Z",
+      "side": 1,
+      "message": "These two descriptions don\u0027t really help me understand the new feature. I would suggest not bothering to mention the existing feature if you aren\u0027t altering it, unless you are going to describe how the new feature interacts with the old feature. Some things to consider, what happens in your example below if those two items are defined under the same project section, and what happens if they are defined in different project sections? I think we definitely want test cases to cover both those situations. I suspect currently if they are defined in the same project section, that this will reserve a total of 7 slots, but I am not sure that is what it should do? Should it instead reserve 5 for the project as a whole, and within those 5, should 2 be reserved for receivepacks leaving only 3 reserved for all other operations for that project? @achakilam@nvidia.com any recommendations here?",
+      "revId": "42c392a91d78347ece1e0e9849b13d2c6df16001",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91a88507_234ff47a",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-05-19T20:43:53Z",
+      "side": 1,
+      "message": "Since this uses RE tasks, make it dependent on the change which introduces task REs?",
+      "revId": "42c392a91d78347ece1e0e9849b13d2c6df16001",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fe17558_28e29ac5",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-05-19T20:43:53Z",
+      "side": 1,
+      "message": "Adjust these docs to avoid duplicating task RE explanations once dependent on the change with task REs.",
+      "revId": "42c392a91d78347ece1e0e9849b13d2c6df16001",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
