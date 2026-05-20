@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9efb90d0_1326af6b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-05-20T23:40:56Z",
+      "side": 1,
+      "message": "I think about each quota individually. There shouldn\u0027t be a relation between them (at least not documented behaviour). Considering the existing max starts:\n\n```\n[quota project]\n  maxStartForTaskForQueue \u003d 5 receivepack SSH-Interactive-Worker\n  maxStartForTaskForUserForQueue \u003d 2 receivepack user SSH-Interactive-Worker\n```\n\nWe do have a hard max of 5 not 7 here. The maxStart makes it look as if we are following some hierarchy between those quota rules but we are still treating each quota individually.\n\nTo remove such confusion for minStart, I think we should just migrate the existing `minStartForQueue` to `minStartForTaskForQueue`. We could still achieve it by doing the following:\n\n```\n[quota project]\n  minStartForTaskForQueue \u003d 3 ^.*$ SSH-Interactive-Worker\n  minStartForTaskForQueue \u003d 2 receivepack SSH-Interactive-Worker\n```",
+      "parentUuid": "3a479cdc_aa7ae082",
+      "revId": "42c392a91d78347ece1e0e9849b13d2c6df16001",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "91a88507_234ff47a",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
         "patchSetId": 1
