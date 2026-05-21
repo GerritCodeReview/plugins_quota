@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "05fa8eb9_b997d2a8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-05-21T14:12:51Z",
+      "side": 1,
+      "message": "I agree that they should be independent. I don\u0027t see a need to migrate the minStartForTaskQueue, as I think keeping them independent will work without much confusion. I think I was overthinking it (as I often do). But I do think we should consider adding this type of example to the docs to ensure that it is \"answered\" for anyone else questioning it.",
+      "parentUuid": "9efb90d0_1326af6b",
+      "revId": "42c392a91d78347ece1e0e9849b13d2c6df16001",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "91a88507_234ff47a",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
         "patchSetId": 1
