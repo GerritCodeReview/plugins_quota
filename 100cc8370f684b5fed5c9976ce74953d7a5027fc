@@ -16,6 +16,23 @@
       "message": "apply formatter.",
       "revId": "100cc8370f684b5fed5c9976ce74953d7a5027fc",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6380d11_2e3c37bc",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-06-01T21:46:33Z",
+      "side": 1,
+      "message": "The test assertion describes the test enough. The comments in this test feel redundant.",
+      "revId": "100cc8370f684b5fed5c9976ce74953d7a5027fc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
