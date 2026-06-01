@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a07a0ec6_02180b8d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-06-01T21:47:55Z",
+      "side": 1,
+      "message": "May be we want to inverse this and say if it starts with upload/receive pack then try to estimate project name else return empty.",
+      "revId": "100cc8370f684b5fed5c9976ce74953d7a5027fc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8ac8671d_a96b4266",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
         "patchSetId": 24
