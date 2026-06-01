@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d51e430_9ff13cd9",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaForTask.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-06-01T17:34:07Z",
+      "side": 1,
+      "message": "the google-java-format did not remove it though. I have removed Map import manually but Set is needed.",
+      "parentUuid": "8c52cc78_c8a0f4a3",
+      "revId": "4772cf22864d51cb607e73c6191b801b0372cbed",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a24a9e7d_b7769584",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-05-25T12:15:52Z",
       "side": 1,
       "message": "I think we want to show that we can do something other than upload-pack, maybe a query? Same in other test file.",
+      "revId": "4772cf22864d51cb607e73c6191b801b0372cbed",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82dbc715_c6b7dd83",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-06-01T17:34:07Z",
+      "side": 1,
+      "message": "Acknowledged and test updated",
+      "parentUuid": "a24a9e7d_b7769584",
       "revId": "4772cf22864d51cb607e73c6191b801b0372cbed",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
