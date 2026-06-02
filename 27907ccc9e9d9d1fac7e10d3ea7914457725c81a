@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22c40575_fec867de",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 25
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-06-02T11:29:09Z",
+      "side": 1,
+      "message": "This is an interesting point, and makes sense. Given this limitation, should we design this feature so that RE matching is only supported in the global section? Should we consider a different keyword to make it less likely to be miss used?",
+      "revId": "27907ccc9e9d9d1fac7e10d3ea7914457725c81a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
