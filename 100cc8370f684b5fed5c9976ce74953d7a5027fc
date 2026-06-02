@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6428254_9ac8f6d7",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-06-02T08:31:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a07a0ec6_02180b8d",
+      "revId": "100cc8370f684b5fed5c9976ce74953d7a5027fc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8ac8671d_a96b4266",
@@ -35,6 +53,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e56d035_7b260ed4",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-06-02T08:31:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ac8671d_a96b4266",
+      "revId": "100cc8370f684b5fed5c9976ce74953d7a5027fc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c6380d11_2e3c37bc",
@@ -48,6 +84,24 @@
       "writtenOn": "2026-06-01T21:46:33Z",
       "side": 1,
       "message": "The test assertion describes the test enough. The comments in this test feel redundant.",
+      "revId": "100cc8370f684b5fed5c9976ce74953d7a5027fc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4850ad98_5d6e128e",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-06-02T08:31:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6380d11_2e3c37bc",
       "revId": "100cc8370f684b5fed5c9976ce74953d7a5027fc",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
