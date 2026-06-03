@@ -72,6 +72,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "69672094_db18fcdf",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 25
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-06-03T19:47:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea105295_c5f379c3",
+      "revId": "27907ccc9e9d9d1fac7e10d3ea7914457725c81a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a299fa0f_bd99e8dc",
@@ -85,6 +103,24 @@
       "writtenOn": "2026-06-03T14:07:47Z",
       "side": 1,
       "message": "Remove trailing space",
+      "revId": "27907ccc9e9d9d1fac7e10d3ea7914457725c81a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9dc9bcb9_e81bfc08",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 25
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-06-03T19:47:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a299fa0f_bd99e8dc",
       "revId": "27907ccc9e9d9d1fac7e10d3ea7914457725c81a",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
