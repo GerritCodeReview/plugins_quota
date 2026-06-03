@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d2245e3_cd8e8a23",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 27
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-06-03T19:55:07Z",
+      "side": 1,
+      "message": "I think the second sentence is trying to say the same thing as the \"project-level enforcement\" section below, but not as well, or am I miss-understanding what the message is here?",
+      "revId": "40cfe453b8d272ce4ddafec86847ea0ad301a36f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
