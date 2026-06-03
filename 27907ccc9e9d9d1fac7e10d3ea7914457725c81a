@@ -52,6 +52,41 @@
       "parentUuid": "a6c36fd6_1cd91cba",
       "revId": "27907ccc9e9d9d1fac7e10d3ea7914457725c81a",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea105295_c5f379c3",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 25
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-06-03T14:07:47Z",
+      "side": 1,
+      "message": "I don\u0027t see any updates to the docs or the code about this, were you intending to? \n\nMaybe use something like:\n\nNote: Regular expressions match against the task\u0027s string representation.\n\nNote2: Project level enforcement can only be applied to upload-pack and receive-pack tasks, whether they are defined using the uploadpack/receivepack task shortcuts, or via a Regex. Thus, defining any Task quotas for any other commands in a project specific section (anywhere besides the [global] or [quota\"*\"] sections), will effectively be ignored.",
+      "parentUuid": "4eecbc52_7888214f",
+      "revId": "27907ccc9e9d9d1fac7e10d3ea7914457725c81a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a299fa0f_bd99e8dc",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 25
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-06-03T14:07:47Z",
+      "side": 1,
+      "message": "Remove trailing space",
+      "revId": "27907ccc9e9d9d1fac7e10d3ea7914457725c81a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
