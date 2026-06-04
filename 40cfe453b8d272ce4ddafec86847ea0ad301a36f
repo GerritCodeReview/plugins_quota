@@ -16,6 +16,24 @@
       "message": "I think the second sentence is trying to say the same thing as the \"project-level enforcement\" section below, but not as well, or am I miss-understanding what the message is here?",
       "revId": "40cfe453b8d272ce4ddafec86847ea0ad301a36f",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b235a35_9031da02",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 27
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-06-04T07:11:02Z",
+      "side": 1,
+      "message": "While the project-level enforcement section below covers general rules, the use of arbitrary Regex patterns makes it much easier for an administrator to accidentally write a \u0027global\u0027 rule (like status:open) while thinking they are limiting a specific project. I believe having this specific warning here prevents misconfiguration for this new feature without forcing the admin to cross-reference multiple sections of the file.",
+      "parentUuid": "8d2245e3_cd8e8a23",
+      "revId": "40cfe453b8d272ce4ddafec86847ea0ad301a36f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
