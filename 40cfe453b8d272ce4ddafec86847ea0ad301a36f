@@ -34,6 +34,24 @@
       "parentUuid": "8d2245e3_cd8e8a23",
       "revId": "40cfe453b8d272ce4ddafec86847ea0ad301a36f",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "553c70fc_c4150ef2",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 27
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-06-04T14:55:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5b235a35_9031da02",
+      "revId": "40cfe453b8d272ce4ddafec86847ea0ad301a36f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
