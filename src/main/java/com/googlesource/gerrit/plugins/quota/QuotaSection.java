@@ -15,9 +15,6 @@
 package com.googlesource.gerrit.plugins.quota;
 
 import com.google.gerrit.entities.Project;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
 import org.eclipse.jgit.lib.Config;
 
 public interface QuotaSection {
@@ -48,16 +45,6 @@ public interface QuotaSection {
       return null;
     }
     return cfg().getLong(section(), subSection(), KEY_MAX_TOTAL_SIZE, Long.MAX_VALUE);
-  }
-
-  default List<TaskQuota> getAllQuotas() {
-    return Arrays.stream(TaskQuotaKeys.values())
-        .flatMap(
-            type ->
-                Arrays.stream(cfg().getStringList(section(), subSection(), type.key))
-                    .map(cfg -> type.processor.apply(this, cfg))
-                    .flatMap(Optional::stream))
-        .toList();
   }
 
   default boolean isFallbackQuota() {
