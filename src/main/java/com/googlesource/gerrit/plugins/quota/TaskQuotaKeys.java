@@ -14,23 +14,43 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.BiFunction;
+import java.util.stream.Stream;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
-public enum TaskQuotaKeys {
-  MAX_START_FOR_TASK_FOR_QUEUE(TaskQuotaForTaskForQueue.KEY, TaskQuotaForTaskForQueue::build),
-  MIN_START_FOR_TASK_FOR_QUEUE(MinStartForQueueQuota.KEY, MinStartForQueueQuota::build),
-  MAX_START_FOR_TASK_FOR_USER_FOR_QUEUE(
-      TaskQuotaForTaskForQueueForUser.KEY, TaskQuotaForTaskForQueueForUser::build),
-  MAX_START_PER_USER_FOR_TASK_FOR_QUEUE(
-      TaskQuotaPerUserForTaskForQueue.KEY, TaskQuotaPerUserForTaskForQueue::build),
-  SOFT_MAX_START_FOR_QUEUE_PER_USER(SoftMaxPerUserForQueue.KEY, SoftMaxPerUserForQueue::build);
+@Singleton
+public class TaskQuotaKeys {
+  private final MinStartForQueueQuota minStartForQueueQuota;
 
-  public final String key;
-  public final BiFunction<QuotaSection, String, Optional<TaskQuota>> processor;
+  @Inject
+  public TaskQuotaKeys(MinStartForQueueQuota minStartForQueueQuota) {
+    this.minStartForQueueQuota = minStartForQueueQuota;
+  }
 
-  TaskQuotaKeys(String key, BiFunction<QuotaSection, String, Optional<TaskQuota>> processor) {
-    this.key = key;
-    this.processor = processor;
+  public List<TaskQuota> buildQuotas(QuotaSection qs) {
+    return Stream.of(
+            process(qs, TaskQuotaForTaskForQueue.KEY, TaskQuotaForTaskForQueue::build),
+            process(
+                qs, TaskQuotaForTaskForQueueForUser.KEY, TaskQuotaForTaskForQueueForUser::build),
+            process(
+                qs, TaskQuotaPerUserForTaskForQueue.KEY, TaskQuotaPerUserForTaskForQueue::build),
+            process(qs, SoftMaxPerUserForQueue.KEY, SoftMaxPerUserForQueue::build),
+            process(qs, MinStartForQueueQuota.KEY, minStartForQueueQuota::build))
+        .flatMap(List::stream)
+        .toList();
+  }
+
+  private List<TaskQuota> process(
+      QuotaSection qs,
+      String key,
+      BiFunction<QuotaSection, String, Optional<TaskQuota>> processor) {
+    return Arrays.stream(qs.cfg().getStringList(qs.section(), qs.subSection(), key))
+        .map(cfg -> processor.apply(qs, cfg))
+        .flatMap(Optional::stream)
+        .toList();
   }
 }
