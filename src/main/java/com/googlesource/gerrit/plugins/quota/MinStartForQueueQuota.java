@@ -17,16 +17,26 @@ package com.googlesource.gerrit.plugins.quota;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@Singleton
 public class MinStartForQueueQuota {
   public static final Logger log = LoggerFactory.getLogger(MinStartForQueueQuota.class);
   public static final String KEY = "minStartForQueue";
   // 10 SSH-Interactive-Worker
   public static final Pattern CONFIG_PATTERN = Pattern.compile("(\\d+)\\s+(.+)");
 
-  public static Optional<TaskQuota> build(QuotaSection qs, String cfg) {
+  private final ProjectResolver projectResolver;
+
+  @Inject
+  public MinStartForQueueQuota(ProjectResolver projectResolver) {
+    this.projectResolver = projectResolver;
+  }
+
+  public Optional<TaskQuota> build(QuotaSection qs, String cfg) {
     Matcher matcher = CONFIG_PATTERN.matcher(cfg);
 
     if (qs instanceof GlobalQuotaSection || qs.isFallbackQuota()) {
@@ -41,10 +51,9 @@ public class MinStartForQueueQuota {
           queue,
           new QueueManager.Reservation(
               reservation,
-              task -> {
-                return task.getQueueName().equalsIgnoreCase(queue)
-                    && TaskQuotas.estimateProject(task).map(qs::matches).orElse(false);
-              },
+              task ->
+                  task.getQueueName().equalsIgnoreCase(queue)
+                      && projectResolver.estimateProject(task).map(qs::matches).orElse(false),
               qs.getNamespace()));
     } else {
       log.error("Invalid configuration entry [{}]", cfg);

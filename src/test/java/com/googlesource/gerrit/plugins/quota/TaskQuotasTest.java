@@ -21,12 +21,17 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
 
+import com.google.gerrit.entities.Project;
 import com.google.gerrit.server.git.WorkQueue.Task;
+import com.google.gerrit.server.project.ProjectCache;
+import com.google.gerrit.server.project.ProjectState;
+import java.util.Optional;
 import java.util.Random;
 import org.eclipse.jgit.errors.ConfigInvalidException;
 import org.eclipse.jgit.lib.Config;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
@@ -35,6 +40,8 @@ public class TaskQuotasTest {
   private static final String PROJECT_X = "project-x";
   private static final String USER_A = "USER-A";
   private static final String USER_B = "USER_B";
+  @Mock ProjectCache projectCache;
+  @Mock ProjectState projectState;
 
   @Test
   public void testMaxStartForTaskForQueue() throws ConfigInvalidException {
@@ -42,7 +49,7 @@ public class TaskQuotasTest {
         taskQuotas(
             2,
             2,
-"""
+            """
 [quota "%s"]
   maxStartForTaskForQueue = 1 uploadpack %s
 """
@@ -83,7 +90,7 @@ public class TaskQuotasTest {
         taskQuotas(
             2,
             2,
-"""
+            """
 [quota "%s"]
   maxStartForTaskForUserForQueue = 1 uploadpack %s %s
 """
@@ -115,7 +122,7 @@ public class TaskQuotasTest {
         taskQuotas(
             5,
             5,
-"""
+            """
 [quota "%s"]
   softMaxStartPerUserForQueue = 2 %s
 """
@@ -164,6 +171,59 @@ public class TaskQuotasTest {
     taskQuotas.onStop(u_x_b_2);
   }
 
+  @Test
+  public void testHttpGitTaskMatchesProjectQuotaWhenPrefixedProjectAbsent()
+      throws ConfigInvalidException {
+    when(projectCache.get(Project.NameKey.parse("a/" + PROJECT_X))).thenReturn(Optional.empty());
+    TaskQuotas taskQuotas =
+        taskQuotas(
+            2,
+            2,
+            """
+[quota "%s"]
+  maxStartForTaskForQueue = 1 uploadpack %s
+"""
+                .formatted(PROJECT_X, INTERACTIVE.getName()));
+
+    Task<?> u_x_1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(u_x_1));
+    taskQuotas.onStart(u_x_1);
+
+    Task<?> u_x_2 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A, true));
+    assertFalse(taskQuotas.isReadyToStart(u_x_2));
+
+    taskQuotas.onStop(u_x_1);
+    assertTrue(taskQuotas.isReadyToStart(u_x_2));
+    startAndCompleteTask(taskQuotas, u_x_2);
+  }
+
+  @Test
+  public void testHttpGitTaskBypassesProjectQuotaWhenPrefixedProjectPresent()
+      throws ConfigInvalidException {
+    when(projectCache.get(Project.NameKey.parse("a/" + PROJECT_X)))
+        .thenReturn(Optional.of(projectState));
+    TaskQuotas taskQuotas =
+        taskQuotas(
+            2,
+            2,
+            """
+[quota "%s"]
+  maxStartForTaskForQueue = 1 uploadpack %s
+"""
+                .formatted(PROJECT_X, INTERACTIVE.getName()));
+
+    Task<?> u_x_1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(u_x_1));
+    taskQuotas.onStart(u_x_1);
+
+    // project-x is at its limit, but "a/project-x" is a distinct project — not limited
+    Task<?> u_ax_1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A, true));
+    assertTrue(taskQuotas.isReadyToStart(u_ax_1));
+    startAndCompleteTask(taskQuotas, u_ax_1);
+
+    taskQuotas.onStop(u_x_1);
+  }
+
   private Task<?> task(String queueName, String taskString) {
     Task<?> task = Mockito.mock(Task.class);
     when(task.getTaskId()).thenReturn(new Random().nextInt());
@@ -178,11 +238,21 @@ public class TaskQuotasTest {
     quotaConfig.fromText(cfg);
     QuotaFinder finder = spy(new QuotaFinder(null));
     doReturn(quotaConfig).when(finder).getQuotaConfig();
-    return new TaskQuotas(finder, interactiveThreads, batchThreads);
+    ProjectResolver projectResolver = new ProjectResolver(projectCache);
+    return new TaskQuotas(
+        finder,
+        projectResolver,
+        new TaskQuotaKeys(new MinStartForQueueQuota(projectResolver)),
+        interactiveThreads,
+        batchThreads);
   }
 
   private String uploadPackTask(String project, String user) {
-    return "git-upload-pack %s (%s)".formatted(project, user);
+    return uploadPackTask(project, user, false);
+  }
+
+  private String uploadPackTask(String project, String user, boolean isHttp) {
+    return "git-upload-pack %s%s (%s)".formatted(isHttp ? "a/" : "", project, user);
   }
 
   private String receivePackTask(String project, String user) {

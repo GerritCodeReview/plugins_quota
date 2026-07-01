@@ -26,8 +26,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -36,18 +34,23 @@ import org.eclipse.jgit.lib.Config;
 @Singleton
 public class TaskQuotas implements WorkQueue.TaskParker {
   private final QuotaFinder quotaFinder;
+  private final ProjectResolver projectResolver;
+  private final TaskQuotaKeys taskQuotaKeys;
   private final Map<Integer, List<TaskQuota>> quotasByTask = new ConcurrentHashMap<>();
   private final Map<QuotaSection, List<TaskQuota>> quotasByNamespace = new HashMap<>();
   private final List<TaskQuota> globalQuotas = new ArrayList<>();
-  private static final Pattern PROJECT_PATTERN = Pattern.compile("\\s+/?(.*)\\s+(\\(\\S+\\))$");
   private final Config quotaConfig;
 
   @Inject
   public TaskQuotas(
       QuotaFinder quotaFinder,
+      ProjectResolver projectResolver,
+      TaskQuotaKeys taskQuotaKeys,
       @GerritServerConfig Config serverCfg,
       ThreadSettingsConfig threadSettingsConfig) {
     this.quotaFinder = quotaFinder;
+    this.projectResolver = projectResolver;
+    this.taskQuotaKeys = taskQuotaKeys;
     this.quotaConfig = quotaFinder.getQuotaConfig();
 
     // Replicating this logic from the core
@@ -65,8 +68,15 @@ public class TaskQuotas implements WorkQueue.TaskParker {
   }
 
   @VisibleForTesting
-  public TaskQuotas(QuotaFinder quotaFinder, int interactiveThreads, int batchThreads) {
+  public TaskQuotas(
+      QuotaFinder quotaFinder,
+      ProjectResolver projectResolver,
+      TaskQuotaKeys taskQuotaKeys,
+      int interactiveThreads,
+      int batchThreads) {
     this.quotaFinder = quotaFinder;
+    this.projectResolver = projectResolver;
+    this.taskQuotaKeys = taskQuotaKeys;
     this.quotaConfig = quotaFinder.getQuotaConfig();
 
     QueueManager.initQueueWithCapacity(QueueManager.Queue.INTERACTIVE, interactiveThreads);
@@ -78,8 +88,9 @@ public class TaskQuotas implements WorkQueue.TaskParker {
   private void initQuotas() {
     quotasByNamespace.putAll(
         quotaFinder.getQuotaNamespaces(quotaConfig).stream()
-            .collect(Collectors.toMap(Function.identity(), QuotaSection::getAllQuotas)));
-    globalQuotas.addAll(quotaFinder.getGlobalNamespacedQuota(quotaConfig).getAllQuotas());
+            .collect(Collectors.toMap(Function.identity(), taskQuotaKeys::buildQuotas)));
+    globalQuotas.addAll(
+        taskQuotaKeys.buildQuotas(quotaFinder.getGlobalNamespacedQuota(quotaConfig)));
   }
 
   @Override
@@ -89,7 +100,7 @@ public class TaskQuotas implements WorkQueue.TaskParker {
       return false;
     }
 
-    Optional<Project.NameKey> estimatedProject = estimateProject(task);
+    Optional<Project.NameKey> estimatedProject = projectResolver.estimateProject(task);
     List<TaskQuota> applicableQuotas = new ArrayList<>(globalQuotas);
     applicableQuotas.addAll(
         estimatedProject
@@ -140,11 +151,5 @@ public class TaskQuotas implements WorkQueue.TaskParker {
     ParkedQuotaTransitionLogger.clear(task);
     Optional.ofNullable(quotasByTask.remove(task.getTaskId()))
         .ifPresent(quotas -> quotas.forEach(q -> q.onStop(task)));
-  }
-
-  public static Optional<Project.NameKey> estimateProject(WorkQueue.Task<?> task) {
-    Matcher matcher = PROJECT_PATTERN.matcher(task.toString());
-
-    return matcher.find() ? Optional.of(Project.NameKey.parse(matcher.group(1))) : Optional.empty();
   }
 }
