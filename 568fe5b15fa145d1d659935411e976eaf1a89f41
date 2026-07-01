@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "663b3734_53459d53",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ProjectResolver.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-07-01T22:31:42Z",
+      "side": 1,
+      "message": "Probably worth adding a comment here with example inputs and maybe expected matches?",
+      "revId": "568fe5b15fa145d1d659935411e976eaf1a89f41",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d1a33b4_b59a34d5",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ProjectResolver.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-07-01T22:31:42Z",
+      "side": 1,
+      "message": "Avoid potentially double parsing the name here and line 53?",
+      "revId": "568fe5b15fa145d1d659935411e976eaf1a89f41",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
