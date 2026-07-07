@@ -62,6 +62,30 @@
       },
       "revId": "754d18a833aa0c44f4a1136e65ee0967bcf30770",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95bbb69a_0fab45f4",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ProjectResolver.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-07-07T18:34:17Z",
+      "side": 1,
+      "message": "Its a RuntimeException for reason, Even if we let it continue I\u0027m certainly sure that there are many places that would fail. (ReceiveCommits itself has some uses.)",
+      "parentUuid": "2f9d4ee3_da50d191",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 34
+      },
+      "revId": "754d18a833aa0c44f4a1136e65ee0967bcf30770",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
