@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32092df6_25b539db",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ProjectResolver.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 4665459
+      },
+      "writtenOn": "2026-07-07T18:28:50Z",
+      "side": 1,
+      "message": "Why do we need projectCache null check?",
+      "range": {
+        "startLine": 56,
+        "startChar": 34,
+        "endLine": 56,
+        "endChar": 54
+      },
+      "revId": "754d18a833aa0c44f4a1136e65ee0967bcf30770",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9386d1f0_c5fae937",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ProjectResolver.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 4665459
+      },
+      "writtenOn": "2026-07-07T18:28:50Z",
+      "side": 1,
+      "message": "Eventhough we\u0027d reach L61, if project name begins with `/a`, it will be readable to have a constant for `/a` and explicitly use it?\n\n\n```\nif (!name.startsWith(PREFIX) || projectCache \u003d\u003d null) {\n  return ...\n}\nif (projectCache.get(candidate).isEmpty()) {\n  return Optional.of(Project.NameKey.parse(name.substring(PREFIX.length())));\n}\n```",
+      "revId": "754d18a833aa0c44f4a1136e65ee0967bcf30770",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f9d4ee3_da50d191",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ProjectResolver.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 4665459
+      },
+      "writtenOn": "2026-07-07T18:28:50Z",
+      "side": 1,
+      "message": "Dont let the StorageException that projectCache.get can throw propagate? \n```suggestion\n    try {\n      if (projectCache.get(candidate).isEmpty()) {\n        return Optional.of(Project.NameKey.parse(name.substring(2)));\n      }\n    } catch (StorageException e) {\n      // add a warn log\n    }\n    return Optional.of(candidate);\n```",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 34
+      },
+      "revId": "754d18a833aa0c44f4a1136e65ee0967bcf30770",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
