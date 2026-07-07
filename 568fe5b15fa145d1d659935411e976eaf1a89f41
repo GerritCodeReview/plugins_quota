@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcd758a4_b66417b3",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ProjectResolver.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-07-07T17:58:50Z",
+      "side": 1,
+      "message": "Done., Also, as FYI, this is just moved from other class not introduced here.",
+      "parentUuid": "663b3734_53459d53",
+      "revId": "568fe5b15fa145d1d659935411e976eaf1a89f41",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2d1a33b4_b59a34d5",
@@ -49,6 +67,24 @@
       "side": 1,
       "message": "If projectCache.get(...)returns anOptional, calling .isEmpty()here checks if the projecta/name**does not** exist. If it doesn\u0027t exist, we strip the prefix to fall back toname`.\n\nHowever, what happens if projectCache.get(...) returns null or throws an exception for a non-existent project instead of returning an empty Optional? If Gerrit\u0027s ProjectCache.get() returns a nullable object or a structure where presence is checked differently, this could throw a NullPointerException. Let\u0027s verify that projectCache.get(...) is guaranteed to return a non-null Optional for missing keys?",
       "parentUuid": "2d1a33b4_b59a34d5",
+      "revId": "568fe5b15fa145d1d659935411e976eaf1a89f41",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5a47db1_76200009",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ProjectResolver.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-07-07T17:58:50Z",
+      "side": 1,
+      "message": "\u003e Avoid potentially double parsing the name here and line 53?\n\nDone.\n\n\u003e what happens if projectCache.get(...) returns null or throws an exception\n\nI think its okay to skip null checks for Optional objects and it does throw runtime storage exception when there is an error which is okay to bubble up too.",
+      "parentUuid": "4d41bd29_5f29c7a3",
       "revId": "568fe5b15fa145d1d659935411e976eaf1a89f41",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
