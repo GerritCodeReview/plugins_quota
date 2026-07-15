@@ -224,6 +224,35 @@ public class TaskQuotasTest {
     taskQuotas.onStop(u_x_1);
   }
 
+  @Test
+  public void testPathPrefixesShareSameProjectQuota() throws ConfigInvalidException {
+    when(projectCache.get(Project.NameKey.parse("a/" + PROJECT_X))).thenReturn(Optional.empty());
+    TaskQuotas taskQuotas =
+        taskQuotas(
+            5,
+            5,
+            """
+[quota "%s"]
+  maxStartForTaskForQueue = 1 uploadpack %s
+"""
+                .formatted(PROJECT_X, INTERACTIVE.getName()));
+
+    Task<?> bare =
+        task(INTERACTIVE.getName(), "git-upload-pack %s (%s)".formatted(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(bare));
+    taskQuotas.onStart(bare);
+
+    for (String path : new String[] {"/" + PROJECT_X, "/./" + PROJECT_X, "a/" + PROJECT_X}) {
+      Task<?> variant =
+          task(INTERACTIVE.getName(), "git-upload-pack %s (%s)".formatted(path, USER_A));
+      assertFalse(
+          "path [" + path + "] should share the " + PROJECT_X + " quota",
+          taskQuotas.isReadyToStart(variant));
+    }
+
+    taskQuotas.onStop(bare);
+  }
+
   private Task<?> task(String queueName, String taskString) {
     Task<?> task = Mockito.mock(Task.class);
     when(task.getTaskId()).thenReturn(new Random().nextInt());
