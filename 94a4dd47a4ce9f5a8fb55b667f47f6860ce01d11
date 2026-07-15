@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "959e9e71_350c0b72",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 4665459
+      },
+      "writtenOn": "2026-07-15T21:16:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8830cbda_3542e5a8",
+      "revId": "94a4dd47a4ce9f5a8fb55b667f47f6860ce01d11",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d571041d_ad5e87ae",
@@ -35,6 +53,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4ff47af_ece168a3",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 4665459
+      },
+      "writtenOn": "2026-07-15T21:16:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d571041d_ad5e87ae",
+      "revId": "94a4dd47a4ce9f5a8fb55b667f47f6860ce01d11",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "61a60ae8_ec51923a",
@@ -48,6 +84,24 @@
       "writtenOn": "2026-07-15T18:05:53Z",
       "side": 1,
       "message": "```suggestion\n    startAndCompleteTask(bare);\n```",
+      "revId": "94a4dd47a4ce9f5a8fb55b667f47f6860ce01d11",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71a1d9b4_4987506f",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 4665459
+      },
+      "writtenOn": "2026-07-15T21:16:04Z",
+      "side": 1,
+      "message": "onStop should suffice.",
+      "parentUuid": "61a60ae8_ec51923a",
       "revId": "94a4dd47a4ce9f5a8fb55b667f47f6860ce01d11",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
