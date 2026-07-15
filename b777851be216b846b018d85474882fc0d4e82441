@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26034355_a3264ffe",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ProjectResolver.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-07-15T22:51:22Z",
+      "side": 1,
+      "message": "This should probably be use java Paths or other java framework classes instead of doing this ourselves.",
+      "revId": "b777851be216b846b018d85474882fc0d4e82441",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
