@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46e160b3_5a2e93a1",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ProjectResolver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-07-15T23:21:30Z",
+      "side": 1,
+      "message": "Since this did more than normalize a path, maybe call it normalizeRepoName() to make it clear it is NOT generic.",
+      "revId": "c036b75ae9351a9574421ded5076b6cd611cd208",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d63eb378_98ebe30f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ProjectResolver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-07-15T23:21:30Z",
+      "side": 1,
+      "message": "I don\u0027t think a loop is needed here after normalizing",
+      "revId": "c036b75ae9351a9574421ded5076b6cd611cd208",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
