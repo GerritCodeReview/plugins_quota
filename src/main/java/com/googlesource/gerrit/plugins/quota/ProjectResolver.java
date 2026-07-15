@@ -18,6 +18,10 @@ import com.google.gerrit.entities.Project;
 import com.google.gerrit.exceptions.StorageException;
 import com.google.gerrit.server.git.WorkQueue;
 import com.google.gerrit.server.project.ProjectCache;
+
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -36,6 +40,8 @@ public class ProjectResolver {
    * <p>git-upload-pack example.git (admin)
    *
    * <p>git-receive-pack /example.git (admin)
+   *
+   * <p>git-upload-pack /./example.git (admin)
    */
   private static final Pattern PROJECT_PATTERN = Pattern.compile("\\s+/?(.*)\\s+(\\(\\S+\\))$");
 
@@ -58,7 +64,8 @@ public class ProjectResolver {
     if (!matcher.find()) {
       return Optional.empty();
     }
-    String name = matcher.group(1);
+    String name = normalizePath(matcher.group(1));
+
     Project.NameKey candidate = Project.NameKey.parse(name);
     if (!name.startsWith(HTTP_PREFIX)) {
       return Optional.of(candidate);
@@ -73,6 +80,18 @@ public class ProjectResolver {
     }
 
     return Optional.of(candidate);
+  }
+
+  /**
+   * Drops leading slashes, duplicate slashes, and "." segments. For example: "/./foo//bar/"
+   * normalizes to "foo/bar".
+   */
+  private static String normalizePath(String name) {
+    String normalized = Paths.get(name).normalize().toString();
+    while (normalized.startsWith("/")) {
+      normalized = normalized.substring(1);
+    }
+    return normalized;
   }
 
   static boolean isGitCommand(String taskStr) {
