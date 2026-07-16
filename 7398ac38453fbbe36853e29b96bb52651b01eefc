@@ -1,0 +1,192 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7b4c5ba_ac21ab75",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-07-16T15:37:36Z",
+      "side": 1,
+      "message": "2026",
+      "range": {
+        "startLine": 1,
+        "startChar": 17,
+        "endLine": 1,
+        "endChar": 21
+      },
+      "revId": "7398ac38453fbbe36853e29b96bb52651b01eefc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8924b8ff_3f1ead7b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-07-16T15:37:36Z",
+      "side": 1,
+      "message": "This is defined elsewhere in the codebase already ? If so, can we avoid duplication ?",
+      "revId": "7398ac38453fbbe36853e29b96bb52651b01eefc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17dce489_0fc07a51",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-07-16T15:37:36Z",
+      "side": 1,
+      "message": "remove ?",
+      "revId": "7398ac38453fbbe36853e29b96bb52651b01eefc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a686b8f_169aaa3e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-07-16T15:37:36Z",
+      "side": 1,
+      "message": "remove.",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 108
+      },
+      "revId": "7398ac38453fbbe36853e29b96bb52651b01eefc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ba6cf49_20922428",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-07-16T15:37:36Z",
+      "side": 1,
+      "message": "return early if failing match.",
+      "revId": "7398ac38453fbbe36853e29b96bb52651b01eefc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b2c7223_8ddc4262",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskGroup.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-07-16T15:37:36Z",
+      "side": 1,
+      "message": "add license.",
+      "revId": "7398ac38453fbbe36853e29b96bb52651b01eefc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef2c2db6_5f331e61",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskGroup.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-07-16T15:37:36Z",
+      "side": 1,
+      "message": "move to a function isRegex()",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 63
+      },
+      "revId": "7398ac38453fbbe36853e29b96bb52651b01eefc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27d180c2_51478573",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaKeys.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-07-16T15:37:36Z",
+      "side": 1,
+      "message": "apply formatter.",
+      "revId": "7398ac38453fbbe36853e29b96bb52651b01eefc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e46dd79_a18b32cc",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-07-16T15:37:36Z",
+      "side": 1,
+      "message": "diff not needed here and on line 235 ?",
+      "revId": "7398ac38453fbbe36853e29b96bb52651b01eefc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5b26c16_1cb345a1",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-07-16T15:37:36Z",
+      "side": 1,
+      "message": "apply formatter.",
+      "revId": "7398ac38453fbbe36853e29b96bb52651b01eefc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
