@@ -72,6 +72,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cbba612_6a6ba1fd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-16T06:07:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "05fa8eb9_b997d2a8",
+      "revId": "42c392a91d78347ece1e0e9849b13d2c6df16001",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "91a88507_234ff47a",
@@ -89,6 +107,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "146c4796_3ab1683e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-16T06:07:59Z",
+      "side": 1,
+      "message": "It has already been merged.",
+      "parentUuid": "91a88507_234ff47a",
+      "revId": "42c392a91d78347ece1e0e9849b13d2c6df16001",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8fe17558_28e29ac5",
@@ -102,6 +138,24 @@
       "writtenOn": "2026-05-19T20:43:53Z",
       "side": 1,
       "message": "Adjust these docs to avoid duplicating task RE explanations once dependent on the change with task REs.",
+      "revId": "42c392a91d78347ece1e0e9849b13d2c6df16001",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5416669_20de9a67",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-16T06:07:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8fe17558_28e29ac5",
       "revId": "42c392a91d78347ece1e0e9849b13d2c6df16001",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
