@@ -157,6 +157,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3eda5a4d_4d49303b",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-07-16T15:39:58Z",
+      "side": 1,
+      "message": "I think the previous place for it was just fine. ANy reason to move up here ?",
+      "revId": "7398ac38453fbbe36853e29b96bb52651b01eefc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8e46dd79_a18b32cc",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
         "patchSetId": 6
