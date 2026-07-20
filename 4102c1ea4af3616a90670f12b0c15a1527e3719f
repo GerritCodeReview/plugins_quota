@@ -1,0 +1,191 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59c8c1bc_9267e395",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-07-20T12:50:06Z",
+      "side": 1,
+      "message": "Logger should always be Private (it is tied to the class name)",
+      "revId": "4102c1ea4af3616a90670f12b0c15a1527e3719f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6d6ce73_c484bc86",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-07-20T12:50:06Z",
+      "side": 1,
+      "message": "Design for overridability (unless there is a good reason not to), use protected instead of private.",
+      "revId": "4102c1ea4af3616a90670f12b0c15a1527e3719f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a98c461_c2129dc4",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-07-20T12:50:06Z",
+      "side": 1,
+      "message": "Define variables as close to their first use as possible, I.e. move this to right before line 42",
+      "revId": "4102c1ea4af3616a90670f12b0c15a1527e3719f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec7d4365_c2e5cc43",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-07-20T12:50:06Z",
+      "side": 1,
+      "message": "If you reverse this \u0027if\u0027 statement, and return for the error case, it will more closely match the pattern you stated above, and it will avoid having to indent the large positive case block. Following this pattern can avoid most \u0027else\u0027s which also generally improves readability.",
+      "revId": "4102c1ea4af3616a90670f12b0c15a1527e3719f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f52559e_285fe2f0",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-07-20T12:50:06Z",
+      "side": 1,
+      "message": "Avoid single use variables, combine with line 44?",
+      "revId": "4102c1ea4af3616a90670f12b0c15a1527e3719f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20f4f7a7_c84e70ec",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-07-20T12:50:06Z",
+      "side": 1,
+      "message": "Move content of line 43 to here.",
+      "revId": "4102c1ea4af3616a90670f12b0c15a1527e3719f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73915ce4_3f2fa9c3",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-07-20T12:50:06Z",
+      "side": 1,
+      "message": "Combine the 2 lines above. Maybe even combine with line 53 to reduce the if block count?",
+      "revId": "4102c1ea4af3616a90670f12b0c15a1527e3719f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de48e5e9_c85b9d86",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskGroup.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-07-20T12:50:06Z",
+      "side": 1,
+      "message": "This feels like a good place for a ternary operator.",
+      "revId": "4102c1ea4af3616a90670f12b0c15a1527e3719f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf3d981f_719e5020",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskGroup.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-07-20T12:50:06Z",
+      "side": 1,
+      "message": "Make static, (or don\u0027t bother passing in the variable, but then you would need to improve the method name)?",
+      "revId": "4102c1ea4af3616a90670f12b0c15a1527e3719f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98c1a99e_f7a95433",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-07-20T12:50:06Z",
+      "side": 1,
+      "message": "I think the text in this sentence after \u0027costly commands\u0027 is not needed, and feels more limiting than needed.",
+      "revId": "4102c1ea4af3616a90670f12b0c15a1527e3719f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2cd4ef4_8ea9f887",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-07-20T12:50:06Z",
+      "side": 1,
+      "message": "\u0027A\u0027 in \u0027Any\u0027 missing.",
+      "revId": "4102c1ea4af3616a90670f12b0c15a1527e3719f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

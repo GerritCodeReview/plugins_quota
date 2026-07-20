@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ecf90c6_03580651",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-07-20T12:50:06Z",
+      "side": 0,
+      "message": "Missing now?",
+      "revId": "9d82c692ab41a69c40fd85e56d38cd7d6a621228",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d369884e_8930fd4c",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-07-20T12:50:06Z",
+      "side": 0,
+      "message": "Missing now?",
+      "revId": "9d82c692ab41a69c40fd85e56d38cd7d6a621228",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
