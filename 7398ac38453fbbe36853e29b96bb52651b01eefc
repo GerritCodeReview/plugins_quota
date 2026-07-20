@@ -24,6 +24,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3026bf9b_f6712b52",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-20T05:39:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7b4c5ba_ac21ab75",
+      "range": {
+        "startLine": 1,
+        "startChar": 17,
+        "endLine": 1,
+        "endChar": 21
+      },
+      "revId": "7398ac38453fbbe36853e29b96bb52651b01eefc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8924b8ff_3f1ead7b",
@@ -41,6 +65,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bbde73e_c622966d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-20T05:39:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8924b8ff_3f1ead7b",
+      "revId": "7398ac38453fbbe36853e29b96bb52651b01eefc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "17dce489_0fc07a51",
@@ -54,6 +96,24 @@
       "writtenOn": "2026-07-16T15:37:36Z",
       "side": 1,
       "message": "remove ?",
+      "revId": "7398ac38453fbbe36853e29b96bb52651b01eefc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af9f32c6_9ad3795f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-20T05:39:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "17dce489_0fc07a51",
       "revId": "7398ac38453fbbe36853e29b96bb52651b01eefc",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -81,6 +141,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "47fc8a5b_e00be8b4",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-20T05:39:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a686b8f_169aaa3e",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 108
+      },
+      "revId": "7398ac38453fbbe36853e29b96bb52651b01eefc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ba6cf49_20922428",
@@ -98,6 +182,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b19e8448_8375bd59",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-20T05:39:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ba6cf49_20922428",
+      "revId": "7398ac38453fbbe36853e29b96bb52651b01eefc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0b2c7223_8ddc4262",
@@ -111,6 +213,24 @@
       "writtenOn": "2026-07-16T15:37:36Z",
       "side": 1,
       "message": "add license.",
+      "revId": "7398ac38453fbbe36853e29b96bb52651b01eefc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b117f2c8_d90fe81b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskGroup.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-20T05:39:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b2c7223_8ddc4262",
       "revId": "7398ac38453fbbe36853e29b96bb52651b01eefc",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -138,6 +258,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a8c1e61_9d980330",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskGroup.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-20T05:39:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef2c2db6_5f331e61",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 63
+      },
+      "revId": "7398ac38453fbbe36853e29b96bb52651b01eefc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "27d180c2_51478573",
@@ -151,6 +295,24 @@
       "writtenOn": "2026-07-16T15:37:36Z",
       "side": 1,
       "message": "apply formatter.",
+      "revId": "7398ac38453fbbe36853e29b96bb52651b01eefc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2fe0c69_e3e71188",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaKeys.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-20T05:39:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "27d180c2_51478573",
       "revId": "7398ac38453fbbe36853e29b96bb52651b01eefc",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -172,6 +334,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cad0ae5a_c2cd8d7d",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-20T05:39:14Z",
+      "side": 1,
+      "message": "It was at first defined in both places which became redundant. Felt more better to have before the supported tasks section.",
+      "parentUuid": "3eda5a4d_4d49303b",
+      "revId": "7398ac38453fbbe36853e29b96bb52651b01eefc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8e46dd79_a18b32cc",
@@ -189,6 +369,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "12db559e_188ed8a6",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-20T05:39:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e46dd79_a18b32cc",
+      "revId": "7398ac38453fbbe36853e29b96bb52651b01eefc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a5b26c16_1cb345a1",
@@ -202,6 +400,24 @@
       "writtenOn": "2026-07-16T15:37:36Z",
       "side": 1,
       "message": "apply formatter.",
+      "revId": "7398ac38453fbbe36853e29b96bb52651b01eefc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a303fcb_239750f4",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-20T05:39:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5b26c16_1cb345a1",
       "revId": "7398ac38453fbbe36853e29b96bb52651b01eefc",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
