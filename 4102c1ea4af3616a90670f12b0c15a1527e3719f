@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fa12006_26ab512e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-21T15:34:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "59c8c1bc_9267e395",
+      "revId": "4102c1ea4af3616a90670f12b0c15a1527e3719f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a6d6ce73_c484bc86",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-07-20T12:50:06Z",
       "side": 1,
       "message": "Design for overridability (unless there is a good reason not to), use protected instead of private.",
+      "revId": "4102c1ea4af3616a90670f12b0c15a1527e3719f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbeda1c0_969ec0af",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-21T15:34:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6d6ce73_c484bc86",
       "revId": "4102c1ea4af3616a90670f12b0c15a1527e3719f",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -52,6 +88,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dabefb2a_dfc70f6a",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-21T15:34:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a98c461_c2129dc4",
+      "revId": "4102c1ea4af3616a90670f12b0c15a1527e3719f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec7d4365_c2e5cc43",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-07-20T12:50:06Z",
       "side": 1,
       "message": "If you reverse this \u0027if\u0027 statement, and return for the error case, it will more closely match the pattern you stated above, and it will avoid having to indent the large positive case block. Following this pattern can avoid most \u0027else\u0027s which also generally improves readability.",
+      "revId": "4102c1ea4af3616a90670f12b0c15a1527e3719f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c5789b0_746ae8d0",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-21T15:34:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec7d4365_c2e5cc43",
       "revId": "4102c1ea4af3616a90670f12b0c15a1527e3719f",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -86,6 +158,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "55dc1c25_94137721",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-21T15:34:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f52559e_285fe2f0",
+      "revId": "4102c1ea4af3616a90670f12b0c15a1527e3719f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "20f4f7a7_c84e70ec",
@@ -99,6 +189,24 @@
       "writtenOn": "2026-07-20T12:50:06Z",
       "side": 1,
       "message": "Move content of line 43 to here.",
+      "revId": "4102c1ea4af3616a90670f12b0c15a1527e3719f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "085c4da3_4af4da2f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-21T15:34:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20f4f7a7_c84e70ec",
       "revId": "4102c1ea4af3616a90670f12b0c15a1527e3719f",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -120,6 +228,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "69091fb7_6a06b228",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-21T15:34:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73915ce4_3f2fa9c3",
+      "revId": "4102c1ea4af3616a90670f12b0c15a1527e3719f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "de48e5e9_c85b9d86",
@@ -133,6 +259,24 @@
       "writtenOn": "2026-07-20T12:50:06Z",
       "side": 1,
       "message": "This feels like a good place for a ternary operator.",
+      "revId": "4102c1ea4af3616a90670f12b0c15a1527e3719f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b623b0e0_775cfc11",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskGroup.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-21T15:34:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de48e5e9_c85b9d86",
       "revId": "4102c1ea4af3616a90670f12b0c15a1527e3719f",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -154,6 +298,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c21d1470_df3244db",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskGroup.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-21T15:34:19Z",
+      "side": 1,
+      "message": "I think making it static is better as it preserves the generic helper design.",
+      "parentUuid": "cf3d981f_719e5020",
+      "revId": "4102c1ea4af3616a90670f12b0c15a1527e3719f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "98c1a99e_f7a95433",
@@ -171,6 +333,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1574d2c_0697600e",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-21T15:34:19Z",
+      "side": 1,
+      "message": "Agreed. Done.",
+      "parentUuid": "98c1a99e_f7a95433",
+      "revId": "4102c1ea4af3616a90670f12b0c15a1527e3719f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f2cd4ef4_8ea9f887",
@@ -184,6 +364,24 @@
       "writtenOn": "2026-07-20T12:50:06Z",
       "side": 1,
       "message": "\u0027A\u0027 in \u0027Any\u0027 missing.",
+      "revId": "4102c1ea4af3616a90670f12b0c15a1527e3719f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73855b4d_6e48e623",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-21T15:34:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f2cd4ef4_8ea9f887",
       "revId": "4102c1ea4af3616a90670f12b0c15a1527e3719f",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
