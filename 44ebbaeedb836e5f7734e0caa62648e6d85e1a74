@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4114cc2_5ec2b6d9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-07-22T23:48:04Z",
+      "side": 1,
+      "message": "```suggestion\nIntroduce minStartForTaskForQueue quota to allow thread reservations\n```",
+      "range": {
+        "startLine": 9,
+        "startChar": 10,
+        "endLine": 9,
+        "endChar": 38
+      },
+      "revId": "44ebbaeedb836e5f7734e0caa62648e6d85e1a74",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13767ac9_0077d2ca",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-07-22T23:48:04Z",
+      "side": 1,
+      "message": "This seems incorrect. `minStartForQueue` is actually not allowed in global section. We used it for reservations for specific/subset projects.",
+      "revId": "44ebbaeedb836e5f7734e0caa62648e6d85e1a74",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "491885a8_d0bd088f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-07-22T23:48:04Z",
+      "side": 1,
+      "message": "```suggestion\n  minStartForTaskForQueue \u003d 2 receivepack SSH-Interactive-Users\n```",
+      "revId": "44ebbaeedb836e5f7734e0caa62648e6d85e1a74",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
