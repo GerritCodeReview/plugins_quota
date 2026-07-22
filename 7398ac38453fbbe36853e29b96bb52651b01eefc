@@ -390,6 +390,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7bcdba6c_0d734ff2",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-07-22T23:43:56Z",
+      "side": 1,
+      "message": "One thing to consider is the scope of this change. Its main focus is `minStartForTaskForQueue` and it would support regex like any other task based quota (so no changes to the concept of task regex). If you think this rearrangement is needed and helpful suggest it in a seperate change.",
+      "parentUuid": "e06499d0_1ac4b5b5",
+      "revId": "7398ac38453fbbe36853e29b96bb52651b01eefc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8e46dd79_a18b32cc",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
         "patchSetId": 6
