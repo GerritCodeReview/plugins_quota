@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f04b81cc_4d13b3c2",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-07-24T22:39:24Z",
+      "side": 1,
+      "message": "This reads weird to me now. It seems important to have the \"Currently supported tasks:\" section, which introduces the idea of task matching, before we introduce the idea of more precise task matching with regexs.",
+      "revId": "0ec9a5a902de81437090d573c7624b07a05c5fcf",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

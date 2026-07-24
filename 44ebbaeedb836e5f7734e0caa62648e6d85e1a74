@@ -116,6 +116,40 @@
       "parentUuid": "491885a8_d0bd088f",
       "revId": "44ebbaeedb836e5f7734e0caa62648e6d85e1a74",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4618d80c_823d3689",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-07-24T22:39:24Z",
+      "side": 1,
+      "message": "nit: I would get rid of the blank line here to show that the if below is error checking for it.",
+      "revId": "44ebbaeedb836e5f7734e0caa62648e6d85e1a74",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a62b2b2_2d3b1a58",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-07-24T22:39:24Z",
+      "side": 1,
+      "message": "nit: I would get rid of the blank line here to show that the variable assignments are being defined right before their use.",
+      "revId": "44ebbaeedb836e5f7734e0caa62648e6d85e1a74",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
