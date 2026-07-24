@@ -24,6 +24,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "27182f82_3702ebaa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-24T06:54:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4114cc2_5ec2b6d9",
+      "range": {
+        "startLine": 9,
+        "startChar": 10,
+        "endLine": 9,
+        "endChar": 38
+      },
+      "revId": "44ebbaeedb836e5f7734e0caa62648e6d85e1a74",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "13767ac9_0077d2ca",
@@ -41,6 +65,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "401e5031_801446da",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-24T06:54:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13767ac9_0077d2ca",
+      "revId": "44ebbaeedb836e5f7734e0caa62648e6d85e1a74",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "491885a8_d0bd088f",
@@ -54,6 +96,24 @@
       "writtenOn": "2026-07-22T23:48:04Z",
       "side": 1,
       "message": "```suggestion\n  minStartForTaskForQueue \u003d 2 receivepack SSH-Interactive-Users\n```",
+      "revId": "44ebbaeedb836e5f7734e0caa62648e6d85e1a74",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff696e7c_1b612ffa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-24T06:54:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "491885a8_d0bd088f",
       "revId": "44ebbaeedb836e5f7734e0caa62648e6d85e1a74",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }

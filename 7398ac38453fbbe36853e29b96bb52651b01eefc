@@ -406,6 +406,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b3410e9_e062f633",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-24T06:54:53Z",
+      "side": 1,
+      "message": "Restructured it a to maintain the content. Do we really need a separate change for this?",
+      "parentUuid": "7bcdba6c_0d734ff2",
+      "revId": "7398ac38453fbbe36853e29b96bb52651b01eefc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8e46dd79_a18b32cc",
