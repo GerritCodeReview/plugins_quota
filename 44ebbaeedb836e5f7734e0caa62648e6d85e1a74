@@ -135,6 +135,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b3b7efe_575900a3",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-28T08:12:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4618d80c_823d3689",
+      "revId": "44ebbaeedb836e5f7734e0caa62648e6d85e1a74",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3a62b2b2_2d3b1a58",
@@ -148,6 +166,24 @@
       "writtenOn": "2026-07-24T22:39:24Z",
       "side": 1,
       "message": "nit: I would get rid of the blank line here to show that the variable assignments are being defined right before their use.",
+      "revId": "44ebbaeedb836e5f7734e0caa62648e6d85e1a74",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a8532fa_be8a20a7",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-28T08:12:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a62b2b2_2d3b1a58",
       "revId": "44ebbaeedb836e5f7734e0caa62648e6d85e1a74",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
