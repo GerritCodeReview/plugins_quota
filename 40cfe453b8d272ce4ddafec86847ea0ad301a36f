@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0532d718_d6dea24f",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 27
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-07-28T18:35:37Z",
+      "side": 1,
+      "message": "This (so far) non-existent keyword should not have slipped into this change.",
+      "range": {
+        "startLine": 327,
+        "startChar": 62,
+        "endLine": 327,
+        "endChar": 85
+      },
+      "revId": "40cfe453b8d272ce4ddafec86847ea0ad301a36f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8d2245e3_cd8e8a23",
         "filename": "src/main/resources/Documentation/config.md",
         "patchSetId": 27
