@@ -56,6 +56,24 @@
       "message": "file is not formatted ? If so, Can you create seperate change for this ?",
       "revId": "db76c7e671ca0caf2832e6bc9ea5b9fce8d6b9a1",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "470f357a_aa690a52",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 4665459
+      },
+      "writtenOn": "2026-07-29T21:14:39Z",
+      "side": 1,
+      "message": "Should we update CI so that it fails if files are not formatted?",
+      "parentUuid": "684f5b43_3ad4505c",
+      "revId": "db76c7e671ca0caf2832e6bc9ea5b9fce8d6b9a1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ],
   "submitRequirementResults": [
