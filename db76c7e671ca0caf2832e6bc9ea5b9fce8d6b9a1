@@ -16,6 +16,46 @@
       "message": "small fix",
       "revId": "db76c7e671ca0caf2832e6bc9ea5b9fce8d6b9a1",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47fd3b4e_9f5470cc",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-07-29T17:41:20Z",
+      "side": 1,
+      "message": "This check only applies to `minStartForQueue` ..? Can you make a fixup for it ?",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 5
+      },
+      "revId": "db76c7e671ca0caf2832e6bc9ea5b9fce8d6b9a1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "684f5b43_3ad4505c",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-07-29T17:41:20Z",
+      "side": 1,
+      "message": "file is not formatted ? If so, Can you create seperate change for this ?",
+      "revId": "db76c7e671ca0caf2832e6bc9ea5b9fce8d6b9a1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ],
   "submitRequirementResults": [
