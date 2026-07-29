@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "be3fa266_1ce3ac76",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-29T17:20:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9030a8f3_93490c6c",
+      "revId": "3fdbc4371aa7498e1bf24f3d6d0a12cb9a980689",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8611062d_141ab295",
@@ -41,6 +59,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b4919eb_8d8a2a7e",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-29T17:20:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8611062d_141ab295",
+      "range": {
+        "startLine": 319,
+        "startChar": 39,
+        "endLine": 320,
+        "endChar": 25
+      },
+      "revId": "3fdbc4371aa7498e1bf24f3d6d0a12cb9a980689",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04780912_900e8fcd",
@@ -54,6 +96,24 @@
       "writtenOn": "2026-07-28T21:28:04Z",
       "side": 1,
       "message": "Everything altered in this change from this line down feels out of scope for this change. Keeping scopes clearly defined and sticking to them will help us reviewers a lot, and will generally get your change approved quicker.\n\nI suggest getting very familiar with this doc: https://gerrit-review.googlesource.com/Documentation/dev-crafting-changes.html#change-size\n\nOne thing it says is:\n\n\"Do only what the commit message describes. In other words, things which are not strictly related to the commit message shouldn’t be part of a change, even trivial things like externalizing a string somewhere or fixing a typo. This helps keep git blame more useful in the future and it also makes git revert more useful.\"",
+      "revId": "3fdbc4371aa7498e1bf24f3d6d0a12cb9a980689",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1397be5f_c02c3384",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-29T17:20:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04780912_900e8fcd",
       "revId": "3fdbc4371aa7498e1bf24f3d6d0a12cb9a980689",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
