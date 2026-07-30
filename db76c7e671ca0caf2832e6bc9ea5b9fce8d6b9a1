@@ -41,6 +41,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8aee02cc_0402754c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-30T07:19:33Z",
+      "side": 1,
+      "message": "This check is required for minStartForTaskForQueue as well because task-specific queue quotas only apply to specific project/queue sections, not to global or fallback quota sections.\nCorrect me if I am wrong.",
+      "parentUuid": "47fd3b4e_9f5470cc",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 5
+      },
+      "revId": "db76c7e671ca0caf2832e6bc9ea5b9fce8d6b9a1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "684f5b43_3ad4505c",
@@ -72,6 +96,24 @@
       "side": 1,
       "message": "Should we update CI so that it fails if files are not formatted?",
       "parentUuid": "684f5b43_3ad4505c",
+      "revId": "db76c7e671ca0caf2832e6bc9ea5b9fce8d6b9a1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d65d1fab_258c6fd0",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-30T07:19:33Z",
+      "side": 1,
+      "message": "google-java-format was applied on this and I did not see it correcting this part. I thought there already was a CI in place for this?",
+      "parentUuid": "470f357a_aa690a52",
       "revId": "db76c7e671ca0caf2832e6bc9ea5b9fce8d6b9a1",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
