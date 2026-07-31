@@ -116,6 +116,24 @@
       "parentUuid": "470f357a_aa690a52",
       "revId": "db76c7e671ca0caf2832e6bc9ea5b9fce8d6b9a1",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d997154_299e193b",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-07-31T07:58:45Z",
+      "side": 1,
+      "message": "Marked as resolved.",
+      "parentUuid": "d65d1fab_258c6fd0",
+      "revId": "db76c7e671ca0caf2832e6bc9ea5b9fce8d6b9a1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ],
   "submitRequirementResults": [
