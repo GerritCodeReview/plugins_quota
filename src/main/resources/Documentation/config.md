@@ -317,7 +317,8 @@ minStarts will not be enforced and will be logged. Additionally, note that
 
 Additionally, `minStartForTaskForQueue` provides granular reservations based on
 specific task types or regex patterns ensuring that specific operations (like
-`receivepack`) are protected even if the rest of the queue is saturated.
+`receivepack`) are protected even if the rest of the queue is saturated. This
+quota could not be defined in fallback quota section.
 
 ```
   [quota "android/*"]
