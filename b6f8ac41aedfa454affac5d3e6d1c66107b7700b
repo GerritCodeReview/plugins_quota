@@ -16,6 +16,24 @@
       "message": "Justification? Docs need an update?",
       "revId": "b6f8ac41aedfa454affac5d3e6d1c66107b7700b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "637a9ce5_09ef2f04",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-08-03T23:36:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "839563af_a495922b",
+      "revId": "b6f8ac41aedfa454affac5d3e6d1c66107b7700b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
