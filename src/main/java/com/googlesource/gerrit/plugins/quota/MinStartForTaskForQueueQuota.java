@@ -32,8 +32,8 @@ public class MinStartForTaskForQueueQuota {
   }
 
   public Optional<TaskQuota> build(QuotaSection qs, String cfg) {
-    if (qs instanceof GlobalQuotaSection || qs.isFallbackQuota()) {
-      log.warn("minStartForTaskForQueue is not applicable in global and fallback quota sections");
+    if (qs.isFallbackQuota()) {
+      log.warn("minStartForTaskForQueue is not applicable in fallback quota section");
       return Optional.empty();
     }
 
