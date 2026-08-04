@@ -172,6 +172,70 @@ public class TaskQuotasTest {
   }
 
   @Test
+  public void testMaxStartPerUserForTaskForQueue() throws ConfigInvalidException {
+    TaskQuotas taskQuotas =
+        taskQuotas(
+            5,
+            5,
+            """
+[quota "%s"]
+  maxStartPerUserForTaskForQueue = 1 uploadpack %s
+"""
+                .formatted(PROJECT_X, INTERACTIVE.getName()));
+
+    // user_a starts one uploadpack — allowed
+    Task<?> u_x_a_1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(u_x_a_1));
+    taskQuotas.onStart(u_x_a_1);
+
+    // user_a at limit — second uploadpack denied
+    Task<?> u_x_a_2 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertFalse(taskQuotas.isReadyToStart(u_x_a_2));
+
+    // user_a not limited for non-uploadpack tasks
+    Task<?> r_x_a_1 = task(INTERACTIVE.getName(), receivePackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(r_x_a_1));
+    startAndCompleteTask(taskQuotas, r_x_a_1);
+
+    // user_b not limited for uploadpack on same project
+    Task<?> u_x_b_1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_B));
+    assertTrue(taskQuotas.isReadyToStart(u_x_b_1));
+    startAndCompleteTask(taskQuotas, u_x_b_1);
+
+    // user_a's running task stops — slot freed
+    taskQuotas.onStop(u_x_a_1);
+    assertTrue(taskQuotas.isReadyToStart(u_x_a_2));
+    startAndCompleteTask(taskQuotas, u_x_a_2);
+  }
+
+  @Test
+  public void testMaxStartPerUserForTaskForQueue_cancelledTaskDoesNotFreeSlot()
+      throws ConfigInvalidException {
+    TaskQuotas taskQuotas =
+        taskQuotas(
+            5,
+            5,
+            """
+[quota "%s"]
+  maxStartPerUserForTaskForQueue = 1 uploadpack %s
+"""
+                .formatted(PROJECT_X, INTERACTIVE.getName()));
+
+    Task<?> u_x_a_1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(u_x_a_1));
+    taskQuotas.onStart(u_x_a_1);
+
+    Task<?> u_x_a_2 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertFalse(taskQuotas.isReadyToStart(u_x_a_2));
+
+    // onStop for a denied (cancelled) task must not free user_a's occupied slot
+    taskQuotas.onStop(u_x_a_2);
+    assertFalse(taskQuotas.isReadyToStart(u_x_a_2));
+
+    taskQuotas.onStop(u_x_a_1);
+  }
+
+  @Test
   public void testHttpGitTaskMatchesProjectQuotaWhenPrefixedProjectAbsent()
       throws ConfigInvalidException {
     when(projectCache.get(Project.NameKey.parse("a/" + PROJECT_X))).thenReturn(Optional.empty());

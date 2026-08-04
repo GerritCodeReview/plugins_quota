@@ -17,16 +17,17 @@ package com.googlesource.gerrit.plugins.quota;
 import static com.googlesource.gerrit.plugins.quota.TaskParser.user;
 
 import com.google.gerrit.server.git.WorkQueue;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.BiPredicate;
 
 public class PerUserTaskQuota {
-  private final ConcurrentHashMap<String, Semaphore> quotaByUser = new ConcurrentHashMap<>();
-  private final int maxPermits;
+  private final ConcurrentHashMap<String, Set<Integer>> taskIdsByUser = new ConcurrentHashMap<>();
+  private final BiPredicate<Set<Integer>, WorkQueue.Task<?>> conditionChecker;
 
-  public PerUserTaskQuota(int maxPermits) {
-    this.maxPermits = maxPermits;
+  public PerUserTaskQuota(BiPredicate<Set<Integer>, WorkQueue.Task<?>> conditionChecker) {
+    this.conditionChecker = conditionChecker;
   }
 
   public boolean tryAcquire(WorkQueue.Task<?> task) {
@@ -34,18 +35,19 @@ public class PerUserTaskQuota {
         .map(
             user -> {
               AtomicBoolean acquired = new AtomicBoolean(false);
-              quotaByUser.compute(
+              taskIdsByUser.compute(
                   user,
-                  (key, semaphore) -> {
-                    if (semaphore == null) {
-                      semaphore = new Semaphore(maxPermits);
+                  (key, ids) -> {
+                    if (ids == null) {
+                      ids = ConcurrentHashMap.newKeySet();
                     }
-                    if (semaphore.tryAcquire()) {
-                      acquired.setPlain(true);
+                    if (conditionChecker.test(ids, task)) {
+                      ids.add(task.getTaskId());
+                      acquired.set(true);
                     }
-                    return semaphore;
+                    return ids;
                   });
-              return acquired.getPlain();
+              return acquired.get();
             })
         .orElse(true);
   }
@@ -54,11 +56,11 @@ public class PerUserTaskQuota {
     user(task)
         .ifPresent(
             user ->
-                quotaByUser.computeIfPresent(
+                taskIdsByUser.computeIfPresent(
                     user,
-                    (u, quota) -> {
-                      quota.release();
-                      return quota.availablePermits() == maxPermits ? null : quota;
+                    (u, ids) -> {
+                      ids.remove(task.getTaskId());
+                      return ids.isEmpty() ? null : ids;
                     }));
   }
 }
