@@ -284,6 +284,22 @@ that can be started for a specific task and queue combination. Example:
     maxStartForTaskForQueue = 10 uploadpack SSH-Batch-Worker
 ```
 
+The `softMaxStartForTaskForQueue` setting is the soft-cap counterpart of
+`maxStartForTaskForQueue`. It uses the same `limit task queue` syntax, but
+once the configured number of matching tasks is running, additional matching
+tasks are still allowed if at least one thread would remain idle after the
+new task starts. This keeps capacity available for other work (for example
+interactive queries) instead of letting one task type saturate the queue.
+
+```
+  [quota "*"]
+    softMaxStartForTaskForQueue = 20 uploadpack SSH-Interactive-Worker
+    softMaxStartForTaskForQueue = 10 uploadpack SSH-Batch-Worker
+```
+
+In this example, after 20 uploadpack tasks are running on the interactive
+queue, further uploadpack tasks start only while one idle thread would remain.
+
 Queue names can be found at `GET /config/server/tasks/ HTTP/1.0`
 
 Additionally, to scope the user use `maxStartForTaskForUserForQueue`
@@ -317,7 +333,8 @@ minStarts will not be enforced and will be logged. Additionally, note that
 
 Additionally, `minStartForTaskForQueue` provides granular reservations based on
 specific task types or regex patterns ensuring that specific operations (like
-`receivepack`) are protected even if the rest of the queue is saturated.
+`receivepack`) are protected even if the rest of the queue is saturated. This
+quota cannot be defined in fallback quota section.
 
 ```
   [quota "android/*"]
@@ -333,7 +350,8 @@ Currently supported tasks:
 * `Regex`: Any string wrapped in `^...$` (e.g., `^gerrit.*$`) to match the task's
     string representation.
 
-All task-based quotas (such as `maxStartForTaskForQueue` and `minStartForTaskForQueue`)
+All task-based quotas (such as `maxStartForTaskForQueue`,
+`softMaxStartForTaskForQueue` and `minStartForTaskForQueue`)
 support arbitrary matching using regular expressions. To use a regex, wrap
 the pattern with `^` and `$`. When these delimiters are detected, the task
 argument is treated as a Java regular expression against the task's string
