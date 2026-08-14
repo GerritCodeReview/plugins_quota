@@ -272,16 +272,25 @@ Task Quota
 -----------
 
 Task quotas provide fine-grained control over queues for administrators.
-Once the defined limit is reached, any additional tasks are parked, preventing
-them from consuming threads and allowing other tasks to continue execution.
+Hard limits (`maxStart*`) park additional matching tasks once the configured
+count is reached, so they do not consume threads. Soft limits (`softMaxStart*`)
+also cap how many matching tasks should run, but still allow more to start if
+at least one thread would remain idle afterwards. Soft limits help keep
+interactive responsiveness without dedicating threads that would sit idle
+under a small hard max, and are recommended to protect the server against
+users (and automation systems) running the repo tool with high sync (-j)
+counts.
 
-The `maxStartForTaskForQueue` setting defines the maximum number of threads
-that can be started for a specific task and queue combination. Example:
+The `maxStartForTaskForQueue` and `softMaxStartForTaskForQueue` settings
+define the hard or soft maximum number of threads that can be started for a
+specific task and queue combination. Example:
 
 ```
   [quota "*"]
     maxStartForTaskForQueue = 20 uploadpack SSH-Interactive-Worker
+    softMaxStartForTaskForQueue = 10 uploadpack SSH-Interactive-Worker
     maxStartForTaskForQueue = 10 uploadpack SSH-Batch-Worker
+    softMaxStartForTaskForQueue = 5 uploadpack SSH-Batch-Worker
 ```
 
 Queue names can be found at `GET /config/server/tasks/ HTTP/1.0`
@@ -333,7 +342,7 @@ Currently supported tasks:
 * `Regex`: Any string wrapped in `^...$` (e.g., `^gerrit.*$`) to match the task's
     string representation.
 
-All task-based quotas (such as `maxStartForTaskForQueue` and `minStartForTaskForQueue`)
+All task-based quotas (those with `ForTask` in the keyword name)
 support arbitrary matching using regular expressions. To use a regex, wrap
 the pattern with `^` and `$`. When these delimiters are detected, the task
 argument is treated as a Java regular expression against the task's string
@@ -352,26 +361,19 @@ Note:
   for upload-pack and receive-pack tasks. Quotas for any other commands defined in a
   project-specific section will be ignored.
 
-The `softMaxStartPerUserForQueue` setting defines a soft maximum number of threads
-per user that should be started for a specific task and queue combination. Unlike
-the `maxStartPerUserForTaskForQueue`, a softMax will allow a user to start more tasks
-if the server has more than one idle thread. This helps maintain a high level of
-interactive responsiveness without dedicating too many threads which would likely
-stay idle when using a small `maxStartPerUserForTaskForQueue` setting. This setting
-helps to maintain a good balance between bulk throughput and low latency for
-interactive operations. This setting is recommended to help protect the server
-against users (and automation systems) which may be running the repo tool with high
-sync (-j) counts.
+The `softMaxStartPerUserForQueue` setting applies a per-user soft maximum on a
+queue (any task type). Unlike `maxStartPerUserForTaskForQueue`, extra tasks
+from that user may still start while an idle thread would remain.
 
 Example:
 
 ```
  [quota "*"]
-   softMaxStartPerUserForQueue = 3 SSH-Interavtive-Users
+   softMaxStartPerUserForQueue = 3 SSH-Interactive-Worker
 ```
 
-This config make sures that as soon as a specific user has 3 tasks running, it ensures
-that there is still at least one idle thread remaining after the task is started.
+Once a user has 3 tasks running, further tasks from that user start only
+while at least one idle thread would remain.
 
 Publication Schedule
 --------------------
