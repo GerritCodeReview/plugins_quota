@@ -53,13 +53,8 @@ public class SoftMaxPerUserForQueue implements TaskQuota {
               taskStartedCountByUser.compute(
                   user,
                   (key, val) -> {
-                    int runningTasks = (val != null) ? val : 0;
-
-                    if (runningTasks < softMax || QueueManager.ensureIdle(queue, 1)) {
-                      acquired.setPlain(true);
-                      ++runningTasks;
-                    }
-                    return runningTasks;
+                    int runningCount = (val != null) ? val : 0;
+                    return QueueManager.acquireSoftMax(runningCount, softMax, queue, acquired);
                   });
               return acquired.getPlain();
             })
