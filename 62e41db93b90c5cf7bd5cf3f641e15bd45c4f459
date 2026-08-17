@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9c1d7533_ae3725c3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-08-17T22:24:30Z",
+      "side": 1,
+      "message": "This sentence feels like it should have been part of the previous pararagph?",
+      "revId": "62e41db93b90c5cf7bd5cf3f641e15bd45c4f459",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e3971b45_49352d4a",
         "filename": "src/main/resources/Documentation/config.md",
         "patchSetId": 3
