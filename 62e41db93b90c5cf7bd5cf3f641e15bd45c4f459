@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3971b45_49352d4a",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-08-17T18:33:13Z",
+      "side": 1,
+      "message": "Instead of changing this line, let\u0027s make this example closer to what we actually do. We set the hardMax at a number that will protect the server from heap overload (so the 20/10 here), and we then set a softMax lower, here, maybe half makes sense (10/5), or even really low like 1/1?",
+      "revId": "62e41db93b90c5cf7bd5cf3f641e15bd45c4f459",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa65344f_57b198a0",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-08-17T18:33:13Z",
+      "side": 1,
+      "message": "Was this intentionally added (seems out of scope)?",
+      "revId": "62e41db93b90c5cf7bd5cf3f641e15bd45c4f459",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1770656_4e81c7c2",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-08-17T18:33:13Z",
+      "side": 1,
+      "message": "I\u0027m not sure we want to keep expanding this list, would it make more sense to highlight the naming convention of keywords where this applies?",
+      "revId": "62e41db93b90c5cf7bd5cf3f641e15bd45c4f459",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
