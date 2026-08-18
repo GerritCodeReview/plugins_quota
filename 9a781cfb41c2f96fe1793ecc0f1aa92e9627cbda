@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "801c9d72_cfc06c42",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-08-18T17:46:28Z",
+      "side": 1,
+      "message": "My original request was actually to make sure that the summary here makes it clear what it is fixing.",
+      "revId": "9a781cfb41c2f96fe1793ecc0f1aa92e9627cbda",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "879a4dff_1157bed9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-08-18T17:46:28Z",
+      "side": 1,
+      "message": "Can you spell out more what this means? Imagine someone knows nothing about the code, only what quotas are supposed to do, what will this break?",
+      "revId": "9a781cfb41c2f96fe1793ecc0f1aa92e9627cbda",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
