@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c71d7dbb_043161b0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-08-18T17:59:24Z",
+      "side": 1,
+      "message": "Ack (I think breaking change makes review simple too.), is the summary clear now ?",
+      "parentUuid": "801c9d72_cfc06c42",
+      "revId": "9a781cfb41c2f96fe1793ecc0f1aa92e9627cbda",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "879a4dff_1157bed9",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
