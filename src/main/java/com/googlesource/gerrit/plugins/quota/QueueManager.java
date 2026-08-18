@@ -206,4 +206,13 @@ public class QueueManager {
 
     return info.ensureIdle(c);
   }
+
+  public static int acquireSoftMax(
+      int runningCount, int softMax, Queue queue, AtomicBoolean acquired) {
+    if (runningCount >= softMax && !ensureIdle(queue, 1)) {
+      return runningCount;
+    }
+    acquired.setPlain(true);
+    return runningCount + 1;
+  }
 }

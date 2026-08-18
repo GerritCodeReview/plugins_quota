@@ -172,6 +172,44 @@ public class TaskQuotasTest {
   }
 
   @Test
+  public void testSoftMaxStartForTaskForQueue() throws ConfigInvalidException {
+    TaskQuotas taskQuotas =
+        taskQuotas(
+            4,
+            4,
+            """
+[quota "%s"]
+  softMaxStartForTaskForQueue = 1 uploadpack %s
+"""
+                .formatted(PROJECT_X, INTERACTIVE.getName()));
+
+    Task<?> u_1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(u_1));
+    taskQuotas.onStart(u_1);
+
+    Task<?> u_2 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_B));
+    assertTrue(
+        "Over-cap start is allowed while idle capacity remains", taskQuotas.isReadyToStart(u_2));
+    taskQuotas.onStart(u_2);
+
+    Task<?> u_3 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(
+        "Over-cap start is allowed when one idle thread would remain",
+        taskQuotas.isReadyToStart(u_3));
+    taskQuotas.onStart(u_3);
+
+    Task<?> u_4 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_B));
+    assertFalse(
+        "Over-cap start must leave at least one idle thread", taskQuotas.isReadyToStart(u_4));
+
+    taskQuotas.onStop(u_1);
+    assertTrue(taskQuotas.isReadyToStart(u_4));
+
+    taskQuotas.onStop(u_2);
+    taskQuotas.onStop(u_3);
+  }
+
+  @Test
   public void testHttpGitTaskMatchesProjectQuotaWhenPrefixedProjectAbsent()
       throws ConfigInvalidException {
     when(projectCache.get(Project.NameKey.parse("a/" + PROJECT_X))).thenReturn(Optional.empty());
