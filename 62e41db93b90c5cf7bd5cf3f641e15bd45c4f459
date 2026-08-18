@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ff3fe84_f14d9545",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-08-18T06:08:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c1d7533_ae3725c3",
+      "revId": "62e41db93b90c5cf7bd5cf3f641e15bd45c4f459",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3971b45_49352d4a",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-08-17T18:33:13Z",
       "side": 1,
       "message": "Instead of changing this line, let\u0027s make this example closer to what we actually do. We set the hardMax at a number that will protect the server from heap overload (so the 20/10 here), and we then set a softMax lower, here, maybe half makes sense (10/5), or even really low like 1/1?",
+      "revId": "62e41db93b90c5cf7bd5cf3f641e15bd45c4f459",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44fd18ed_6d554c5a",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-08-18T06:08:26Z",
+      "side": 1,
+      "message": "Reverted as suggested.\n\nOn 1/1: I\u0027m fine with that too, and it does illustrate the keyword better, since acquireSoftMax still lets a task start whenever one thread would remain idle, a soft max of 1 costs nothing on an unloaded queue and only degrades to one-at-a-time once the queue is saturated. My only hesitation is that 1/1 in the example might read as the recommended value rather than as an illustration of how low a soft max can safely go. If that\u0027s what you actually run, I\u0027d rather match reality, so say the word and I\u0027ll change it to 1/1, or keep 10/5 and note that a soft max can be set as low as 1.",
+      "parentUuid": "e3971b45_49352d4a",
       "revId": "62e41db93b90c5cf7bd5cf3f641e15bd45c4f459",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -52,6 +88,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "64e1ae35_a05398bf",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-08-18T06:08:26Z",
+      "side": 1,
+      "message": "not intentional. removed",
+      "parentUuid": "fa65344f_57b198a0",
+      "revId": "62e41db93b90c5cf7bd5cf3f641e15bd45c4f459",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b1770656_4e81c7c2",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-08-17T18:33:13Z",
       "side": 1,
       "message": "I\u0027m not sure we want to keep expanding this list, would it make more sense to highlight the naming convention of keywords where this applies?",
+      "revId": "62e41db93b90c5cf7bd5cf3f641e15bd45c4f459",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69a0685b_d0a49797",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-08-18T06:08:26Z",
+      "side": 1,
+      "message": "Agreed and changed",
+      "parentUuid": "b1770656_4e81c7c2",
       "revId": "62e41db93b90c5cf7bd5cf3f641e15bd45c4f459",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
