@@ -71,6 +71,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b58523a_efba7b45",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-08-18T14:46:50Z",
+      "side": 1,
+      "message": "We don\u0027t actually have this keyword yet, so I can\u0027t tell you what we have set it to. I can say that we have set softMaxStartPerUserForQueue only to 1s and 3s I think. For this new keyword, I do envision that somewhere between those 1s and 3s to around half of the hard max, so I think 5 is fine here.",
+      "parentUuid": "44fd18ed_6d554c5a",
+      "revId": "62e41db93b90c5cf7bd5cf3f641e15bd45c4f459",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fa65344f_57b198a0",
