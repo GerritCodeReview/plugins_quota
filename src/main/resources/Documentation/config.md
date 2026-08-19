@@ -308,7 +308,13 @@ or to make it applicable for every user:
 ```
   [quota "*"]
     maxStartPerUserForTaskForQueue = 20 uploadpack SSH-Interactive-Worker
+    softMaxStartPerUserForTaskForQueue = 10 uploadpack SSH-Interactive-Worker
 ```
+
+Here `maxStartPerUserForTaskForQueue` parks every user past 20 concurrent
+uploadpacks, while `softMaxStartPerUserForTaskForQueue` lets a user exceed 10 only
+while at least one thread would remain idle. Tasks outside the configured task
+group are not counted against either limit.
 
 We can also reserve a certain amount of the queue's capacity for specific project
 namespaces using `minStartForQueue`.
