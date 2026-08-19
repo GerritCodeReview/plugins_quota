@@ -14,6 +14,7 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
+import static com.googlesource.gerrit.plugins.quota.QueueManager.Queue.BATCH;
 import static com.googlesource.gerrit.plugins.quota.QueueManager.Queue.INTERACTIVE;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -207,6 +208,130 @@ public class TaskQuotasTest {
 
     taskQuotas.onStop(u_2);
     taskQuotas.onStop(u_3);
+  }
+
+  @Test
+  public void testSoftMaxStartForTaskForUserForQueue() throws ConfigInvalidException {
+    TaskQuotas taskQuotas =
+        taskQuotas(
+            4,
+            4,
+            """
+[quota "%s"]
+  softMaxStartForTaskForUserForQueue = 1 uploadpack %s %s
+"""
+                .formatted(PROJECT_X, USER_A, INTERACTIVE.getName()));
+
+    // running interactive: 1 of 4; user_a uploadpack is at the softMax
+    Task<?> u_a_1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(u_a_1));
+    taskQuotas.onStart(u_a_1);
+
+    // receivepack is a different task group and is not limited by this soft max
+    Task<?> r_a_1 = task(INTERACTIVE.getName(), receivePackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(r_a_1));
+    taskQuotas.onStart(r_a_1);
+
+    // running interactive: 3 of 4
+    Task<?> u_b_1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_B));
+    assertTrue("Soft max applies only to the configured user", taskQuotas.isReadyToStart(u_b_1));
+    taskQuotas.onStart(u_b_1);
+
+    Task<?> u_a_2 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertFalse(
+        "Over-cap start must leave at least one idle thread", taskQuotas.isReadyToStart(u_a_2));
+
+    Task<?> u_a_batch = task(BATCH.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(
+        "Soft max applies only to the configured queue", taskQuotas.isReadyToStart(u_a_batch));
+    startAndCompleteTask(taskQuotas, u_a_batch);
+
+    // free a thread so idle capacity remains; user_a may then exceed the softMax again
+    taskQuotas.onStop(u_b_1);
+    assertTrue(taskQuotas.isReadyToStart(u_a_2));
+    taskQuotas.onStart(u_a_2);
+
+    // running interactive: 3 of 4; user_a uploadpack is already over the softMax
+    Task<?> u_a_3 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertFalse(taskQuotas.isReadyToStart(u_a_3));
+
+    taskQuotas.onStop(u_a_1);
+    assertTrue(taskQuotas.isReadyToStart(u_a_3));
+
+    taskQuotas.onStop(u_a_2);
+    taskQuotas.onStop(u_a_3);
+    taskQuotas.onStop(r_a_1);
+  }
+
+  @Test
+  public void testSoftMaxStartForTaskForUserForQueue_cancelledTaskDoesNotFreeSlot()
+      throws ConfigInvalidException {
+    TaskQuotas taskQuotas =
+        taskQuotas(
+            3,
+            3,
+            """
+[quota "%s"]
+  softMaxStartForTaskForUserForQueue = 1 uploadpack %s %s
+"""
+                .formatted(PROJECT_X, USER_A, INTERACTIVE.getName()));
+
+    Task<?> u_a_1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(u_a_1));
+    taskQuotas.onStart(u_a_1);
+
+    // Occupy another slot with a non-matching task so over-cap uploadpack has no idle thread
+    Task<?> r_1 = task(INTERACTIVE.getName(), receivePackTask(PROJECT_X, USER_B));
+    assertTrue(taskQuotas.isReadyToStart(r_1));
+    taskQuotas.onStart(r_1);
+
+    Task<?> u_a_2 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertFalse(taskQuotas.isReadyToStart(u_a_2));
+
+    // onStop for a denied (cancelled) task must not free user_a's occupied slot
+    taskQuotas.onStop(u_a_2);
+    assertFalse(taskQuotas.isReadyToStart(u_a_2));
+
+    taskQuotas.onStop(u_a_1);
+    taskQuotas.onStop(r_1);
+  }
+
+  @Test
+  public void testSoftMaxStartForTaskForUserForQueueWithRegexTaskGroup()
+      throws ConfigInvalidException {
+    TaskQuotas taskQuotas =
+        taskQuotas(
+            3,
+            3,
+            """
+[global]
+  softMaxStartForTaskForUserForQueue = 1 ^gerrit[ ]+query.*$ %s %s
+"""
+                .formatted(USER_A, INTERACTIVE.getName()));
+
+    Task<?> q_a_1 = task(INTERACTIVE.getName(), "gerrit query status:open (%s)".formatted(USER_A));
+    assertTrue(taskQuotas.isReadyToStart(q_a_1));
+    taskQuotas.onStart(q_a_1);
+
+    Task<?> other = task(INTERACTIVE.getName(), "gerrit ls-projects (%s)".formatted(USER_A));
+    assertTrue(
+        "Unrelated task should not be limited by the regex", taskQuotas.isReadyToStart(other));
+    taskQuotas.onStart(other);
+
+    Task<?> q_a_2 =
+        task(INTERACTIVE.getName(), "gerrit query status:merged (%s)".formatted(USER_A));
+    assertFalse(
+        "Over-cap start must leave at least one idle thread", taskQuotas.isReadyToStart(q_a_2));
+
+    Task<?> q_b_1 = task(INTERACTIVE.getName(), "gerrit query status:open (%s)".formatted(USER_B));
+    assertTrue("Soft max applies only to the configured user", taskQuotas.isReadyToStart(q_b_1));
+    startAndCompleteTask(taskQuotas, q_b_1);
+
+    taskQuotas.onStop(other);
+    assertTrue(taskQuotas.isReadyToStart(q_a_2));
+
+    taskQuotas.onStop(q_a_1);
+    taskQuotas.onStop(q_a_2);
   }
 
   @Test
