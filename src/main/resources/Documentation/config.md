@@ -295,13 +295,20 @@ specific task and queue combination. Example:
 
 Queue names can be found at `GET /config/server/tasks/ HTTP/1.0`
 
-Additionally, to scope the user use `maxStartForTaskForUserForQueue`
+Additionally, to scope the user use `maxStartForTaskForUserForQueue` or
+`softMaxStartForTaskForUserForQueue`
 
 ```
   [quota "*"]
     maxStartForTaskForUserForQueue = 20 uploadpack userA SSH-Interactive-Worker
+    softMaxStartForTaskForUserForQueue = 10 uploadpack userA SSH-Interactive-Worker
     maxStartForTaskForUserForQueue = 10 uploadpack userB SSH-Batch-Worker
+    softMaxStartForTaskForUserForQueue = 5 uploadpack userB SSH-Batch-Worker
 ```
+
+Here `userA` is parked past 20 concurrent interactive uploadpacks, and may only
+exceed 10 while at least one thread would remain idle. Both keys apply solely to
+the named user, task group and queue; every other user is unaffected.
 
 or to make it applicable for every user:
 

@@ -39,11 +39,12 @@ public class TaskQuotaKeys {
     return Stream.of(
             process(qs, TaskQuotaForTaskForQueue.KEY, TaskQuotaForTaskForQueue::build),
             process(
-                qs, TaskQuotaForTaskForQueueForUser.KEY, TaskQuotaForTaskForQueueForUser::build),
+                qs, TaskQuotaForTaskForUserForQueue.KEY, TaskQuotaForTaskForUserForQueue::build),
             process(
                 qs, TaskQuotaPerUserForTaskForQueue.KEY, TaskQuotaPerUserForTaskForQueue::build),
             process(qs, SoftMaxPerUserForQueue.KEY, SoftMaxPerUserForQueue::build),
             process(qs, SoftMaxForTaskForQueue.KEY, SoftMaxForTaskForQueue::build),
+            process(qs, SoftMaxForTaskForUserForQueue.KEY, SoftMaxForTaskForUserForQueue::build),
             process(qs, SoftMaxPerUserForTaskForQueue.KEY, SoftMaxPerUserForTaskForQueue::build),
             process(qs, MinStartForQueueQuota.KEY, minStartForQueueQuota::build),
             process(qs, MinStartForTaskForQueueQuota.KEY, minStartForTaskForQueueQuota::build))
