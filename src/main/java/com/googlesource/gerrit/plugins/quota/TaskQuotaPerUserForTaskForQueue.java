@@ -28,7 +28,7 @@ public class TaskQuotaPerUserForTaskForQueue extends TaskQuotaForTaskForQueue {
   public TaskQuotaPerUserForTaskForQueue(
       QuotaSection quotaSection, String queue, String taskGroup, int maxStart) {
     super(quotaSection, queue, taskGroup, maxStart);
-    perUserTaskQuota = new PerUserTaskQuota(maxStart);
+    perUserTaskQuota = new PerUserTaskQuota((ids, task) -> ids.size() < maxStart);
   }
 
   @Override

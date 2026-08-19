@@ -14,12 +14,10 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
-import static com.googlesource.gerrit.plugins.quota.TaskParser.user;
 
 import com.google.gerrit.server.git.WorkQueue;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -32,11 +30,15 @@ public class SoftMaxPerUserForQueue implements TaskQuota {
   private final QueueManager.Queue queue;
   private final ConcurrentHashMap<String, Integer> taskStartedCountByUser =
       new ConcurrentHashMap<>();
+  private final PerUserTaskQuota perUserTaskQuota;
 
   public SoftMaxPerUserForQueue(QuotaSection quotaSection, int softMax, String queueName) {
     this.quotaSection = quotaSection;
     this.softMax = softMax;
     this.queue = QueueManager.Queue.fromKey(queueName);
+    this.perUserTaskQuota =
+        new PerUserTaskQuota(
+            (ids, task) -> ids.size() < softMax || QueueManager.ensureIdle(queue, 1));
   }
 
   @Override
@@ -46,31 +48,12 @@ public class SoftMaxPerUserForQueue implements TaskQuota {
 
   @Override
   public boolean isReadyToStart(WorkQueue.Task<?> task) {
-    return user(task)
-        .map(
-            user -> {
-              AtomicBoolean acquired = new AtomicBoolean(false);
-              taskStartedCountByUser.compute(
-                  user,
-                  (key, val) -> {
-                    int runningCount = (val != null) ? val : 0;
-                    return QueueManager.acquireSoftMax(runningCount, softMax, queue, acquired);
-                  });
-              return acquired.getPlain();
-            })
-        .orElse(true);
+    return perUserTaskQuota.tryAcquire(task);
   }
 
   @Override
   public void onStop(WorkQueue.Task<?> task) {
-    user(task)
-        .ifPresent(
-            user ->
-                taskStartedCountByUser.computeIfPresent(
-                    user,
-                    (u, tasks) -> {
-                      return tasks == 1 ? null : --tasks;
-                    }));
+    perUserTaskQuota.release(task);
   }
 
   public static Optional<TaskQuota> build(QuotaSection qs, String cfg) {

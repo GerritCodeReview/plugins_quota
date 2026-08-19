@@ -17,16 +17,18 @@ package com.googlesource.gerrit.plugins.quota;
 import static com.googlesource.gerrit.plugins.quota.TaskParser.user;
 
 import com.google.gerrit.server.git.WorkQueue;
+import com.google.gerrit.server.git.WorkQueue.Task;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.BiPredicate;
 
 public class PerUserTaskQuota {
   private final ConcurrentHashMap<String, Set<Integer>> taskIdsByUser = new ConcurrentHashMap<>();
-  private final int maxPermits;
+  private final BiPredicate<Set<Integer>, Task<?>> conditionChecker;
 
-  public PerUserTaskQuota(int maxPermits) {
-    this.maxPermits = maxPermits;
+  public PerUserTaskQuota(BiPredicate<Set<Integer>, WorkQueue.Task<?>> conditionChecker) {
+    this.conditionChecker = conditionChecker;
   }
 
   public boolean tryAcquire(WorkQueue.Task<?> task) {
@@ -40,7 +42,7 @@ public class PerUserTaskQuota {
                     if (ids == null) {
                       ids = ConcurrentHashMap.newKeySet();
                     }
-                    if (ids.size() < maxPermits) {
+                    if (conditionChecker.test(ids, task)) {
                       ids.add(task.getTaskId());
                       acquired.setPlain(true);
                     }
