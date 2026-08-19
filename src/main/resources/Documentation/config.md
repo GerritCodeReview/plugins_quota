@@ -308,6 +308,7 @@ or to make it applicable for every user:
 ```
   [quota "*"]
     maxStartPerUserForTaskForQueue = 20 uploadpack SSH-Interactive-Worker
+    softMaxStartPerUserForTaskForQueue = 10 uploadpack SSH-Interactive-Worker
 ```
 
 We can also reserve a certain amount of the queue's capacity for specific project

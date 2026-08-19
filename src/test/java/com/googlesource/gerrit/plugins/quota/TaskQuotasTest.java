@@ -210,6 +210,93 @@ public class TaskQuotasTest {
   }
 
   @Test
+  public void testSoftMaxStartPerUserForTaskForQueue() throws ConfigInvalidException {
+    TaskQuotas taskQuotas =
+        taskQuotas(
+            5,
+            5,
+            """
+[quota "%s"]
+  softMaxStartPerUserForTaskForQueue = 2 uploadpack %s
+"""
+                .formatted(PROJECT_X, INTERACTIVE.getName()));
+
+    // running uploadpack: user_a: 1
+    Task<?> u_a_1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(u_a_1));
+    taskQuotas.onStart(u_a_1);
+
+    // running uploadpack: user_a: 2 (at softMax)
+    Task<?> u_a_2 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(u_a_2));
+    taskQuotas.onStart(u_a_2);
+
+    // running uploadpack: user_a: 3 (may exceed softMax while idle remains)
+    Task<?> u_a_3 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(u_a_3));
+    taskQuotas.onStart(u_a_3);
+
+    // running uploadpack: user_a: 3 user_b: 1
+    Task<?> u_b_1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_B));
+    assertTrue(taskQuotas.isReadyToStart(u_b_1));
+    taskQuotas.onStart(u_b_1);
+
+    // receivepack is a different task group and is not limited by this soft max
+    Task<?> r_a_1 = task(INTERACTIVE.getName(), receivePackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(r_a_1));
+    taskQuotas.onStart(r_a_1);
+
+    // running: uploadpack a:2 b:1, receivepack a:1 → 4 of 5 used; user_a at softMax
+    taskQuotas.onStop(u_a_1);
+    Task<?> u_a_4 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertFalse(
+        "Over-cap start must leave at least one idle thread", taskQuotas.isReadyToStart(u_a_4));
+
+    // free a thread so idle capacity remains; user_a may then exceed softMax again
+    taskQuotas.onStop(u_b_1);
+    assertTrue(taskQuotas.isReadyToStart(u_a_4));
+    taskQuotas.onStart(u_a_4);
+
+    taskQuotas.onStop(u_a_2);
+    taskQuotas.onStop(u_a_3);
+    taskQuotas.onStop(u_a_4);
+    taskQuotas.onStop(r_a_1);
+  }
+
+  @Test
+  public void testSoftMaxStartPerUserForTaskForQueue_cancelledTaskDoesNotFreeSlot()
+      throws ConfigInvalidException {
+    TaskQuotas taskQuotas =
+        taskQuotas(
+            3,
+            3,
+            """
+[quota "%s"]
+  softMaxStartPerUserForTaskForQueue = 1 uploadpack %s
+"""
+                .formatted(PROJECT_X, INTERACTIVE.getName()));
+
+    Task<?> u_a_1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(u_a_1));
+    taskQuotas.onStart(u_a_1);
+
+    // Occupy another slot with a non-matching task so over-cap uploadpack has no idle thread
+    Task<?> r_1 = task(INTERACTIVE.getName(), receivePackTask(PROJECT_X, USER_B));
+    assertTrue(taskQuotas.isReadyToStart(r_1));
+    taskQuotas.onStart(r_1);
+
+    Task<?> u_a_2 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertFalse(taskQuotas.isReadyToStart(u_a_2));
+
+    // onStop for a denied (cancelled) task must not free user_a's occupied slot
+    taskQuotas.onStop(u_a_2);
+    assertFalse(taskQuotas.isReadyToStart(u_a_2));
+
+    taskQuotas.onStop(u_a_1);
+    taskQuotas.onStop(r_1);
+  }
+
+  @Test
   public void testHttpGitTaskMatchesProjectQuotaWhenPrefixedProjectAbsent()
       throws ConfigInvalidException {
     when(projectCache.get(Project.NameKey.parse("a/" + PROJECT_X))).thenReturn(Optional.empty());
