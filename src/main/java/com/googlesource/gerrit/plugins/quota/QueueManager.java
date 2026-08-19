@@ -20,6 +20,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -207,12 +208,18 @@ public class QueueManager {
     return info.ensureIdle(c);
   }
 
-  public static int acquireSoftMax(
-      int runningCount, int softMax, Queue queue, AtomicBoolean acquired) {
-    if (runningCount >= softMax && !ensureIdle(queue, 1)) {
-      return runningCount;
+  public static boolean canStartWithinSoftMax(int runningCount, int softMax, Queue queue) {
+    return runningCount < softMax || ensureIdle(queue, 1);
+  }
+
+  public static boolean acquireSoftMax(
+      Set<Integer> runningTaskIds, int softMax, Queue queue, WorkQueue.Task<?> task) {
+    synchronized (runningTaskIds) {
+      if (!canStartWithinSoftMax(runningTaskIds.size(), softMax, queue)) {
+        return false;
+      }
+      runningTaskIds.add(task.getTaskId());
+      return true;
     }
-    acquired.setPlain(true);
-    return runningCount + 1;
   }
 }
