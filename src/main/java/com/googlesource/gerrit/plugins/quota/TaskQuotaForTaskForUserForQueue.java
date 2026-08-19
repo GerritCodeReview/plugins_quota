@@ -16,24 +16,13 @@ package com.googlesource.gerrit.plugins.quota;
 
 import com.google.gerrit.server.git.WorkQueue;
 import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class TaskQuotaForTaskForQueueForUser extends TaskQuotaForTaskForQueue {
-  public static final Logger log = LoggerFactory.getLogger(TaskQuotaForTaskForQueueForUser.class);
+public class TaskQuotaForTaskForUserForQueue extends TaskQuotaForTaskForQueue {
   public static final String KEY = "maxStartForTaskForUserForQueue";
-  public static final Pattern CONFIG_PATTERN =
-      Pattern.compile(
-          "(\\d+)\\s+"
-              + TaskParser.TASK_GROUP_PATTERN
-              + "\\s+"
-              + TaskParser.USER_PATTERN
-              + "\\s+(.+)");
+
   private final String user;
 
-  public TaskQuotaForTaskForQueueForUser(
+  public TaskQuotaForTaskForUserForQueue(
       QuotaSection quotaSection, String queueName, String user, String taskGroup, int maxStart) {
     super(quotaSection, queueName, taskGroup, maxStart);
     this.user = user;
@@ -41,23 +30,11 @@ public class TaskQuotaForTaskForQueueForUser extends TaskQuotaForTaskForQueue {
 
   @Override
   public boolean isApplicable(WorkQueue.Task<?> task) {
-    return TaskParser.user(task).map(user::equals).orElse(false) && super.isApplicable(task);
+    return TaskParser.isUser(task, user) && super.isApplicable(task);
   }
 
-  public static Optional<TaskQuota> build(QuotaSection qs, String config) {
-    Matcher matcher = CONFIG_PATTERN.matcher(config);
-    if (matcher.matches()) {
-      return Optional.of(
-          new TaskQuotaForTaskForQueueForUser(
-              qs,
-              matcher.group(4),
-              matcher.group(3),
-              matcher.group(2),
-              Integer.parseInt(matcher.group(1))));
-    } else {
-      log.error("Invalid configuration entry [{}]", config);
-      return Optional.empty();
-    }
+  public static Optional<TaskQuota> build(QuotaSection qs, String cfg) {
+    return TaskForUserForQueueConfig.build(qs, cfg, KEY, TaskQuotaForTaskForUserForQueue::new);
   }
 
   @Override
