@@ -20,44 +20,23 @@ import java.util.regex.Matcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class SoftMaxPerUserForTaskForQueue implements TaskQuota {
+public class SoftMaxPerUserForTaskForQueue extends SoftMaxPerUserForQueue {
   public static final Logger log = LoggerFactory.getLogger(SoftMaxPerUserForTaskForQueue.class);
   public static final String KEY = "softMaxStartPerUserForTaskForQueue";
 
-  private final QuotaSection quotaSection;
   private final String taskGroup;
-  private final String queueName;
-  private final int softMax;
   private final TaskGroup group;
-  private final QueueManager.Queue queue;
-  private final PerUserTaskQuota perUserTaskQuota;
 
   public SoftMaxPerUserForTaskForQueue(
       QuotaSection quotaSection, String queueName, String taskGroup, int softMax) {
-    this.quotaSection = quotaSection;
-    this.queueName = queueName;
+    super(quotaSection, softMax, queueName);
     this.taskGroup = taskGroup;
-    this.softMax = softMax;
     this.group = new TaskGroup(taskGroup);
-    this.queue = QueueManager.Queue.fromKey(queueName);
-    this.perUserTaskQuota =
-        new PerUserTaskQuota(
-            (ids, task) -> ids.size() < softMax || QueueManager.ensureIdle(queue, 1));
   }
 
   @Override
   public boolean isApplicable(WorkQueue.Task<?> task) {
-    return group.isApplicable(task) && task.getQueueName().equals(queueName);
-  }
-
-  @Override
-  public boolean isReadyToStart(WorkQueue.Task<?> task) {
-    return perUserTaskQuota.tryAcquire(task);
-  }
-
-  @Override
-  public void onStop(WorkQueue.Task<?> task) {
-    perUserTaskQuota.release(task);
+    return super.isApplicable(task) && group.isApplicable(task);
   }
 
   public static Optional<TaskQuota> build(QuotaSection qs, String cfg) {
@@ -76,6 +55,6 @@ public class SoftMaxPerUserForTaskForQueue implements TaskQuota {
   public String toString() {
     return KEY
         + ": softMax [%d], task [%s], queue [%s], namespace [%s]"
-            .formatted(softMax, taskGroup, queueName, quotaSection.getNamespace());
+            .formatted(softMax, taskGroup, queue.getName(), quotaSection.getNamespace());
   }
 }

@@ -16,8 +16,8 @@ package com.googlesource.gerrit.plugins.quota;
 
 import com.google.gerrit.server.git.WorkQueue;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +32,7 @@ public class SoftMaxForTaskForQueue implements TaskQuota {
   private final int softMax;
   private final TaskGroup group;
   private final QueueManager.Queue queue;
-  private final AtomicInteger runningTasks = new AtomicInteger(0);
+  private final Set<Integer> runningTaskIds = ConcurrentHashMap.newKeySet();
 
   public SoftMaxForTaskForQueue(
       QuotaSection quotaSection, String queueName, String taskGroup, int softMax) {
@@ -51,15 +51,18 @@ public class SoftMaxForTaskForQueue implements TaskQuota {
 
   @Override
   public boolean isReadyToStart(WorkQueue.Task<?> task) {
-    AtomicBoolean acquired = new AtomicBoolean(false);
-    runningTasks.updateAndGet(
-        runningCount -> QueueManager.acquireSoftMax(runningCount, softMax, queue, acquired));
-    return acquired.getPlain();
+    synchronized (runningTaskIds) {
+      if (runningTaskIds.size() >= softMax && !QueueManager.ensureIdle(queue, 1)) {
+        return false;
+      }
+      runningTaskIds.add(task.getTaskId());
+      return true;
+    }
   }
 
   @Override
   public void onStop(WorkQueue.Task<?> task) {
-    runningTasks.updateAndGet(runningCount -> Math.max(0, runningCount - 1));
+    runningTaskIds.remove(task.getTaskId());
   }
 
   public static Optional<TaskQuota> build(QuotaSection qs, String cfg) {
