@@ -44,6 +44,7 @@ public class TaskQuotaKeys {
                 qs, TaskQuotaPerUserForTaskForQueue.KEY, TaskQuotaPerUserForTaskForQueue::build),
             process(qs, SoftMaxPerUserForQueue.KEY, SoftMaxPerUserForQueue::build),
             process(qs, SoftMaxForTaskForQueue.KEY, SoftMaxForTaskForQueue::build),
+            process(qs, SoftMaxForTaskForQueueForUser.KEY, SoftMaxForTaskForQueueForUser::build),
             process(qs, SoftMaxPerUserForTaskForQueue.KEY, SoftMaxPerUserForTaskForQueue::build),
             process(qs, MinStartForQueueQuota.KEY, minStartForQueueQuota::build),
             process(qs, MinStartForTaskForQueueQuota.KEY, minStartForTaskForQueueQuota::build))

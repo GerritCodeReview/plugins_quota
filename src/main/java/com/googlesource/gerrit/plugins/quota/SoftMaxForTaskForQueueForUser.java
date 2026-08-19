@@ -20,33 +20,35 @@ import java.util.regex.Matcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class SoftMaxPerUserForTaskForQueue extends SoftMaxPerUserForQueue {
-  public static final Logger log = LoggerFactory.getLogger(SoftMaxPerUserForTaskForQueue.class);
-  public static final String KEY = "softMaxStartPerUserForTaskForQueue";
+public class SoftMaxForTaskForQueueForUser extends SoftMaxForTaskForQueue {
+  public static final Logger log = LoggerFactory.getLogger(SoftMaxForTaskForQueueForUser.class);
+  public static final String KEY = "softMaxStartForTaskForUserForQueue";
 
-  private final String taskGroup;
-  private final TaskGroup group;
+  private final String user;
 
-  public SoftMaxPerUserForTaskForQueue(
-      QuotaSection quotaSection, String queueName, String taskGroup, int softMax) {
-    super(quotaSection, softMax, queueName);
-    this.taskGroup = taskGroup;
-    this.group = new TaskGroup(taskGroup);
+  public SoftMaxForTaskForQueueForUser(
+      QuotaSection quotaSection, String queueName, String user, String taskGroup, int softMax) {
+    super(quotaSection, queueName, taskGroup, softMax);
+    this.user = user;
   }
 
   @Override
   public boolean isApplicable(WorkQueue.Task<?> task) {
-    return group.isApplicable(task) && super.isApplicable(task);
+    return TaskParser.user(task).map(user::equals).orElse(false) && super.isApplicable(task);
   }
 
   public static Optional<TaskQuota> build(QuotaSection qs, String cfg) {
-    Matcher matcher = TaskQuotaForTaskForQueue.CONFIG_PATTERN.matcher(cfg);
+    Matcher matcher = TaskQuotaForTaskForQueueForUser.CONFIG_PATTERN.matcher(cfg);
     if (matcher.matches()) {
       return Optional.of(
-          new SoftMaxPerUserForTaskForQueue(
-              qs, matcher.group(3), matcher.group(2), Integer.parseInt(matcher.group(1))));
+          new SoftMaxForTaskForQueueForUser(
+              qs,
+              matcher.group(4),
+              matcher.group(3),
+              matcher.group(2),
+              Integer.parseInt(matcher.group(1))));
     } else {
-      log.error("Invalid configuration entry for softMaxStartPerUserForTaskForQueue [{}]", cfg);
+      log.error("Invalid configuration entry for softMaxStartForTaskForUserForQueue [{}]", cfg);
       return Optional.empty();
     }
   }
@@ -54,7 +56,7 @@ public class SoftMaxPerUserForTaskForQueue extends SoftMaxPerUserForQueue {
   @Override
   public String toString() {
     return KEY
-        + ": softMax [%d], task [%s], queue [%s], namespace [%s]"
-            .formatted(softMax, taskGroup, queue.getName(), quotaSection.getNamespace());
+        + ": softMax [%d], task [%s], user [%s], queue [%s], namespace [%s]"
+            .formatted(softMax, taskGroup, user, queueName, quotaSection.getNamespace());
   }
 }

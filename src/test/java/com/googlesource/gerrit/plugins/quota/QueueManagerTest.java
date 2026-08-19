@@ -30,7 +30,6 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.IntStream;
 import org.junit.Before;
 import org.junit.Test;
@@ -174,39 +173,55 @@ public class QueueManagerTest {
   }
 
   @Test
-  public void testAcquireSoftMax_UnderCap_Increments() {
+  public void testAcquireSoftMax_UnderCap_Acquires() {
     QueueManager.initQueueWithCapacity(TEST_QUEUE, 1);
     QueueManager.acquire(createTask(601, TEST_QUEUE_NAME));
-    AtomicBoolean acquired = new AtomicBoolean(false);
+    Set<Integer> runningTaskIds = new HashSet<>();
 
-    int next = QueueManager.acquireSoftMax(0, 1, TEST_QUEUE, acquired);
-
-    assertTrue("Under the soft cap should acquire.", acquired.getPlain());
-    assertEquals(1, next);
+    assertTrue(
+        "Under the soft cap should acquire.",
+        QueueManager.acquireSoftMax(
+            runningTaskIds, 1, TEST_QUEUE, createTask(611, TEST_QUEUE_NAME)));
+    assertEquals(Set.of(611), runningTaskIds);
   }
 
   @Test
-  public void testAcquireSoftMax_OverCapWithIdle_Increments() {
+  public void testAcquireSoftMax_OverCapWithIdle_Acquires() {
     QueueManager.initQueueWithCapacity(TEST_QUEUE, 2);
     QueueManager.acquire(createTask(602, TEST_QUEUE_NAME));
-    AtomicBoolean acquired = new AtomicBoolean(false);
+    Set<Integer> runningTaskIds = new HashSet<>(Set.of(602));
 
-    int next = QueueManager.acquireSoftMax(1, 1, TEST_QUEUE, acquired);
-
-    assertTrue("Over the soft cap should acquire while idle remains.", acquired.getPlain());
-    assertEquals(2, next);
+    assertTrue(
+        "Over the soft cap should acquire while idle remains.",
+        QueueManager.acquireSoftMax(
+            runningTaskIds, 1, TEST_QUEUE, createTask(612, TEST_QUEUE_NAME)));
+    assertEquals(Set.of(602, 612), runningTaskIds);
   }
 
   @Test
   public void testAcquireSoftMax_OverCapWithoutIdle_Unchanged() {
     QueueManager.initQueueWithCapacity(TEST_QUEUE, 1);
     QueueManager.acquire(createTask(603, TEST_QUEUE_NAME));
-    AtomicBoolean acquired = new AtomicBoolean(false);
+    Set<Integer> runningTaskIds = new HashSet<>(Set.of(603));
 
-    int next = QueueManager.acquireSoftMax(1, 1, TEST_QUEUE, acquired);
+    assertFalse(
+        "Over the soft cap should not acquire when no idle remains.",
+        QueueManager.acquireSoftMax(
+            runningTaskIds, 1, TEST_QUEUE, createTask(613, TEST_QUEUE_NAME)));
+    assertEquals(Set.of(603), runningTaskIds);
+  }
 
-    assertFalse("Over the soft cap should not acquire when no idle remains.", acquired.getPlain());
-    assertEquals(1, next);
+  @Test
+  public void testAcquireSoftMax_SameTaskTwice_IsIdempotent() {
+    QueueManager.initQueueWithCapacity(TEST_QUEUE, 1);
+    QueueManager.acquire(createTask(604, TEST_QUEUE_NAME));
+    Set<Integer> runningTaskIds = new HashSet<>();
+    WorkQueue.Task<?> task = createTask(614, TEST_QUEUE_NAME);
+
+    assertTrue(QueueManager.acquireSoftMax(runningTaskIds, 2, TEST_QUEUE, task));
+    assertTrue(QueueManager.acquireSoftMax(runningTaskIds, 2, TEST_QUEUE, task));
+    assertEquals(
+        "Re-admitting the same task must not consume a second slot.", 1, runningTaskIds.size());
   }
 
   @Test

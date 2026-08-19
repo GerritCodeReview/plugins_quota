@@ -23,9 +23,9 @@ public class SoftMaxPerUserForQueue implements TaskQuota {
   public static final String KEY = "softMaxStartPerUserForQueue";
   public static final Pattern CONFIG_PATTERN =
       Pattern.compile("(\\d+)\\s+(" + String.join("|", QueueManager.Queue.keys()) + ")");
-  private final QuotaSection quotaSection;
-  private final int softMax;
-  private final QueueManager.Queue queue;
+  protected final QuotaSection quotaSection;
+  protected final int softMax;
+  protected final QueueManager.Queue queue;
   private final PerUserTaskQuota perUserTaskQuota;
 
   public SoftMaxPerUserForQueue(QuotaSection quotaSection, int softMax, String queueName) {
@@ -34,7 +34,7 @@ public class SoftMaxPerUserForQueue implements TaskQuota {
     this.queue = QueueManager.Queue.fromKey(queueName);
     this.perUserTaskQuota =
         new PerUserTaskQuota(
-            (ids, task) -> ids.size() < softMax || QueueManager.ensureIdle(queue, 1));
+            (ids, task) -> QueueManager.canStartWithinSoftMax(ids.size(), softMax, queue));
   }
 
   @Override
