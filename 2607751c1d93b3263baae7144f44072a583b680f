@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "51aa1615_6c631aa6",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/SoftMaxPerUserForTaskForQueue.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-08-19T20:40:57Z",
+      "side": 1,
+      "message": "Maintaining just a count without the tasks is buggy.\n\nonStop could be called for a task without calling isReadyToStart. In those cases, count turns to negative and we could not limit tasks correctly.",
+      "revId": "2607751c1d93b3263baae7144f44072a583b680f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "64e7dc49_572e2961",
         "filename": "src/main/resources/Documentation/config.md",
         "patchSetId": 1
