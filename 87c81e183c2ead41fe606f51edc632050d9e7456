@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "82794f58_7e52a81b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-08-19T21:39:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05b21391_d9449028",
+      "revId": "87c81e183c2ead41fe606f51edc632050d9e7456",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "24a2e0fa_122ba8e0",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-08-19T21:27:43Z",
       "side": 1,
       "message": "Unused now?",
+      "revId": "87c81e183c2ead41fe606f51edc632050d9e7456",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a025f449_34f3c521",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/SoftMaxPerUserForQueue.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-08-19T21:39:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24a2e0fa_122ba8e0",
       "revId": "87c81e183c2ead41fe606f51edc632050d9e7456",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
