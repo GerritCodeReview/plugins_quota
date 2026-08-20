@@ -1,5 +1,40 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e5ee7df_fe939542",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/SoftMaxPerUserForTaskForQueue.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-08-20T16:40:45Z",
+      "side": 1,
+      "message": "This should have ideally extended the `SoftMaxPerUserForQueue`.",
+      "revId": "cff379ee0f0a7f79ff0959882485919d2fcc6ca6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c8d9606_7a63adda",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/SoftMaxPerUserForTaskForQueue.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-08-20T16:40:45Z",
+      "side": 1,
+      "message": "Above suggestion would then change this to:\n```\ntask.getQueueName().equals(queueName) \u0026\u0026 super.isApplicable();\n```",
+      "revId": "cff379ee0f0a7f79ff0959882485919d2fcc6ca6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
