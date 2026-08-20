@@ -36,6 +36,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "291b38c2_e05852c0",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/SoftMaxPerUserForTaskForQueue.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-08-20T07:18:32Z",
+      "side": 1,
+      "message": "Done. Rebased onto stable-3.13, which now carries PerUserTaskQuota from 615062, and reworked this quota to use it.\nThat also fixes the bug you pointed out: the state is a set of admitted task IDs rather than a count, and release() is ids.remove(task.getTaskId()), so an onStop for a task that never acquired is a no-op and can no longer drive the value negative. Added testSoftMaxStartPerUserForTaskForQueue_cancelledTaskDoesNotFreeSlot to cover that case.",
+      "parentUuid": "77b368b3_ca9d25e7",
+      "revId": "2607751c1d93b3263baae7144f44072a583b680f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "64e7dc49_572e2961",
@@ -49,6 +67,24 @@
       "writtenOn": "2026-08-19T18:46:52Z",
       "side": 1,
       "message": "Seems like the docs should have more than just this example?",
+      "revId": "2607751c1d93b3263baae7144f44072a583b680f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04629c6f_1d1d155b",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-08-20T07:18:32Z",
+      "side": 1,
+      "message": "Agreed. Added a short paragraph under the example.",
+      "parentUuid": "64e7dc49_572e2961",
       "revId": "2607751c1d93b3263baae7144f44072a583b680f",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
