@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3195f52e_c9168536",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-08-21T18:39:59Z",
+      "side": 1,
+      "message": "Noted. Added a blank line.",
+      "parentUuid": "d9dd8782_d8a99985",
+      "revId": "adb55c97a335cd4110c5869244bb397d3f3bd222",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4029bd9e_acad3563",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-08-21T14:51:30Z",
       "side": 1,
       "message": "This appears to be both a bug fix change, and a new feature? If so, please separate the two as per https://gerrit-review.googlesource.com/Documentation/dev-crafting-changes.html#opportunistic-refactoring \"Separate bug fixes from feature improvements. The bug fix may be an easy candidate for approval and should not need to wait for new features to be approved. Also, combining the two makes reviewing harder since then there is no clear line between the fix and the feature.\"",
+      "revId": "adb55c97a335cd4110c5869244bb397d3f3bd222",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de102125_28a4a9f6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-08-21T18:39:59Z",
+      "side": 1,
+      "message": "Had not rebased it properly in the first patchset which caused a merge conflict and wrong changes to be shown.\nPatchset 2 contains the updated changed only for the fixes made as per Adithya\u0027s suggestion in previous Gerrit changes.",
+      "parentUuid": "4029bd9e_acad3563",
       "revId": "adb55c97a335cd4110c5869244bb397d3f3bd222",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
