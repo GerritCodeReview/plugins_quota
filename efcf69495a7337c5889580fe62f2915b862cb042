@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "611ba1af_3c75deff",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/SoftMaxForTaskForQueue.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-08-21T19:34:45Z",
+      "side": 1,
+      "message": "Can you encapsulate these 6 lines into a method in QueueManager so that it gets shared?",
+      "revId": "efcf69495a7337c5889580fe62f2915b862cb042",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28c8d775_4875099d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/SoftMaxPerUserForTaskForQueue.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-08-21T19:34:45Z",
+      "side": 1,
+      "message": "Reverse this to keep it consistent?",
+      "revId": "efcf69495a7337c5889580fe62f2915b862cb042",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
