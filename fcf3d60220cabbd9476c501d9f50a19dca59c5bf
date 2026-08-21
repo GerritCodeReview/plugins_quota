@@ -16,6 +16,24 @@
       "message": "Having just count without taskIds is buggy. @bhoomikas@nvidia.com Can you update to maintain taskIds instead ?",
       "revId": "fcf3d60220cabbd9476c501d9f50a19dca59c5bf",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7cf5843_74ef8f85",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/SoftMaxForTaskForQueue.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-08-21T18:42:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67fcab2a_9807623b",
+      "revId": "fcf3d60220cabbd9476c501d9f50a19dca59c5bf",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ],
   "submitRequirementResults": [
