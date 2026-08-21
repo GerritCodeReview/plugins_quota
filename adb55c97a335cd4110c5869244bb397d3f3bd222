@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9dd8782_d8a99985",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-08-21T14:51:30Z",
+      "side": 1,
+      "message": "nit: formatting off here, either start the next sentence after this one, or add a blank line to start a new paragraph.",
+      "revId": "adb55c97a335cd4110c5869244bb397d3f3bd222",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4029bd9e_acad3563",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-08-21T14:51:30Z",
+      "side": 1,
+      "message": "This appears to be both a bug fix change, and a new feature? If so, please separate the two as per https://gerrit-review.googlesource.com/Documentation/dev-crafting-changes.html#opportunistic-refactoring \"Separate bug fixes from feature improvements. The bug fix may be an easy candidate for approval and should not need to wait for new features to be approved. Also, combining the two makes reviewing harder since then there is no clear line between the fix and the feature.\"",
+      "revId": "adb55c97a335cd4110c5869244bb397d3f3bd222",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
