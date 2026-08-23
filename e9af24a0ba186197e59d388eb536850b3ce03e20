@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8b1b68e_6875f4b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-08-23T17:20:32Z",
+      "side": 1,
+      "message": "Can you also check if  https://gerrit.googlesource.com/plugins/quota/+/e9af24a0ba186197e59d388eb536850b3ce03e20/src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaWithPermits.java is still used anywhere now? If not, remove it, if so, then this probably highlights another bug?",
+      "revId": "e9af24a0ba186197e59d388eb536850b3ce03e20",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
