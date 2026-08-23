@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f32ec822_adbdca6d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/SoftMaxForTaskForQueue.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-08-23T15:37:22Z",
+      "side": 1,
+      "message": "Done. Moved into QueueManager.acquireSoftMax(runningTaskIds, softMax, queue, task), and split the condition out as canStartWithinSoftMax so the per-user quotas share it too — they go through PerUserTaskQuota, which does its own insert, so they can only reuse the predicate. Replaces the old count-based acquireSoftMax, which had no callers left after the switch to task ids; its tests are updated.",
+      "parentUuid": "611ba1af_3c75deff",
+      "revId": "efcf69495a7337c5889580fe62f2915b862cb042",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "28c8d775_4875099d",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-08-21T19:34:45Z",
       "side": 1,
       "message": "Reverse this to keep it consistent?",
+      "revId": "efcf69495a7337c5889580fe62f2915b862cb042",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54d49c33_59ade8bd",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/SoftMaxPerUserForTaskForQueue.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-08-23T15:37:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28c8d775_4875099d",
       "revId": "efcf69495a7337c5889580fe62f2915b862cb042",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
