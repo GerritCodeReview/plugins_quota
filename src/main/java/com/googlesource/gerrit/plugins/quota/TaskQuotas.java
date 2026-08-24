@@ -40,6 +40,8 @@ public class TaskQuotas implements WorkQueue.TaskParker {
   private final Map<QuotaSection, List<TaskQuota>> quotasByNamespace = new HashMap<>();
   private final List<TaskQuota> globalQuotas = new ArrayList<>();
   private final Config quotaConfig;
+  private final WorkQueue workQueue;
+  private final int maxParked;
 
   @Inject
   public TaskQuotas(
@@ -47,11 +49,14 @@ public class TaskQuotas implements WorkQueue.TaskParker {
       ProjectResolver projectResolver,
       TaskQuotaKeys taskQuotaKeys,
       @GerritServerConfig Config serverCfg,
-      ThreadSettingsConfig threadSettingsConfig) {
+      ThreadSettingsConfig threadSettingsConfig,
+      WorkQueue workQueue) {
     this.quotaFinder = quotaFinder;
     this.projectResolver = projectResolver;
     this.taskQuotaKeys = taskQuotaKeys;
     this.quotaConfig = quotaFinder.getQuotaConfig();
+    this.workQueue = workQueue;
+    this.maxParked = quotaConfig.getInt("global", null, "maxParked", 0);
 
     // Replicating this logic from the core
     int poolSize = threadSettingsConfig.getSshdThreads();
@@ -73,11 +78,14 @@ public class TaskQuotas implements WorkQueue.TaskParker {
       ProjectResolver projectResolver,
       TaskQuotaKeys taskQuotaKeys,
       int interactiveThreads,
-      int batchThreads) {
+      int batchThreads,
+      WorkQueue workQueue) {
     this.quotaFinder = quotaFinder;
     this.projectResolver = projectResolver;
     this.taskQuotaKeys = taskQuotaKeys;
     this.quotaConfig = quotaFinder.getQuotaConfig();
+    this.workQueue = workQueue;
+    this.maxParked = quotaConfig.getInt("global", null, "maxParked", 0);
 
     QueueManager.initQueueWithCapacity(QueueManager.Queue.INTERACTIVE, interactiveThreads);
     QueueManager.initQueueWithCapacity(QueueManager.Queue.BATCH, batchThreads);
@@ -96,6 +104,11 @@ public class TaskQuotas implements WorkQueue.TaskParker {
   @Override
   public boolean isReadyToStart(WorkQueue.Task<?> task) {
     if (!QueueManager.acquire(task)) {
+      if (shouldInterruptInsteadOfPark()) {
+        ParkedQuotaTransitionLogger.logTaskInterruptedForMaxParked(task, maxParked);
+        task.cancel(true);
+        return true;
+      }
       ParkedQuotaTransitionLogger.logTaskWithNoSatisfyingReservation(task);
       return false;
     }
@@ -117,9 +130,14 @@ public class TaskQuotas implements WorkQueue.TaskParker {
     for (TaskQuota quota : applicableQuotas) {
       if (quota.isApplicable(task)) {
         if (!quota.isReadyToStart(task)) {
-          ParkedQuotaTransitionLogger.logTaskWithEnforcedQuota(task, quota);
           QueueManager.release(task);
           acquiredQuotas.forEach(q -> q.onStop(task));
+          if (shouldInterruptInsteadOfPark()) {
+            ParkedQuotaTransitionLogger.logTaskInterruptedForMaxParked(task, maxParked);
+            task.cancel(true);
+            return true;
+          }
+          ParkedQuotaTransitionLogger.logTaskWithEnforcedQuota(task, quota);
           return false;
         }
         acquiredQuotas.add(quota);
@@ -132,6 +150,17 @@ public class TaskQuotas implements WorkQueue.TaskParker {
 
     ParkedQuotaTransitionLogger.logOnTaskStartIfParked(task);
     return true;
+  }
+
+  private boolean shouldInterruptInsteadOfPark() {
+    return maxParked > 0 && parkedCount() >= maxParked;
+  }
+
+  private int parkedCount() {
+    return (int)
+        workQueue.getTasks().stream()
+            .filter(t -> t.getState() == WorkQueue.Task.State.PARKED)
+            .count();
   }
 
   @Override

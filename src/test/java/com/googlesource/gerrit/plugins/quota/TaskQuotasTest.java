@@ -19,12 +19,16 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.google.gerrit.entities.Project;
+import com.google.gerrit.server.git.WorkQueue;
 import com.google.gerrit.server.git.WorkQueue.Task;
 import com.google.gerrit.server.project.ProjectCache;
 import com.google.gerrit.server.project.ProjectState;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import org.eclipse.jgit.errors.ConfigInvalidException;
@@ -42,6 +46,7 @@ public class TaskQuotasTest {
   private static final String USER_B = "USER_B";
   @Mock ProjectCache projectCache;
   @Mock ProjectState projectState;
+  @Mock WorkQueue workQueue;
 
   @Test
   public void testMaxStartForTaskForQueue() throws ConfigInvalidException {
@@ -439,7 +444,8 @@ public class TaskQuotasTest {
             new MinStartForQueueQuota(projectResolver),
             new MinStartForTaskForQueueQuota(projectResolver)),
         interactiveThreads,
-        batchThreads);
+        batchThreads,
+        workQueue);
   }
 
   private String uploadPackTask(String project, String user) {
@@ -490,5 +496,39 @@ public class TaskQuotasTest {
         "Second query should be allowed after first one stops",
         taskQuotas.isReadyToStart(secondQuery));
     startAndCompleteTask(taskQuotas, secondQuery);
+  }
+
+  @Test
+  public void testMaxParkedInterruptsInsteadOfParking() throws ConfigInvalidException {
+    TaskQuotas taskQuotas =
+        taskQuotas(
+            1,
+            1,
+            """
+[global]
+  maxStartForTaskForQueue = 1 uploadpack %s
+  maxParked = 1
+"""
+                .formatted(INTERACTIVE.getName()));
+
+    Task<?> u_1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(u_1));
+    taskQuotas.onStart(u_1);
+
+    // No tasks parked yet, so u_2 is parked normally rather than interrupted.
+    Task<?> u_2 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertFalse(taskQuotas.isReadyToStart(u_2));
+    verify(u_2, Mockito.never()).cancel(true);
+
+    // Simulate u_2 now sitting parked in the core work queue.
+    when(u_2.getState()).thenReturn(Task.State.PARKED);
+    List<Task<?>> tasks = new ArrayList<>();
+    tasks.add(u_2);
+    when(workQueue.getTasks()).thenReturn(tasks);
+
+    // maxParked (1) is already reached, so u_3 is canceled and let run.
+    Task<?> u_3 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(u_3));
+    verify(u_3).cancel(true);
   }
 }

@@ -83,6 +83,12 @@ public class ParkedQuotaTransitionLogger {
     }
   }
 
+  public static void logTaskInterruptedForMaxParked(Task<?> t, int maxParked) {
+    quotaLog.atInfo().log(
+        "Task [%s] interrupted instead of parked because the maxParked limit of %d was reached",
+        formatTask(t), maxParked);
+  }
+
   public static void logOnTaskStartIfParked(Task<?> t) {
     if (!prevParkingQuotaByTaskId.containsKey(t.getTaskId())) {
       return;

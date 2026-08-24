@@ -340,6 +340,18 @@ quota cannot be defined in fallback quota section.
     minStartForTaskForQueue = 2 receivepack SSH-Interactive-Worker
 ```
 
+We can also cap how many tasks are allowed to sit parked (waiting on any of
+the above limits) across the whole server at once, using `maxParked`. Once
+that many tasks are parked, any additional task that would otherwise be
+parked is interrupted instead, so it never runs and does not keep waiting.
+This can only be defined in the global section, and counts parked tasks
+across all queues combined.
+
+```
+  [global]
+    maxParked = 200
+```
+
 Currently supported tasks:
 
 * `uploadpack`: Maps directly to git-upload-pack operations (used during Git
