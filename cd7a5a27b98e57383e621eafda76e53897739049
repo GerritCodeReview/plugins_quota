@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2f2bdbc5_115b82c2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 4665459
+      },
+      "writtenOn": "2026-08-24T21:32:14Z",
+      "side": 1,
+      "message": "It will be nice to expose some metrics when tasks are cancelled this way.",
+      "range": {
+        "startLine": 17,
+        "startChar": 58,
+        "endLine": 18,
+        "endChar": 68
+      },
+      "revId": "cd7a5a27b98e57383e621eafda76e53897739049",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5b1b2374_d218bc86",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotas.java",
         "patchSetId": 1
