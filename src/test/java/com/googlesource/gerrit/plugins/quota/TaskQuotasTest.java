@@ -19,6 +19,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.google.gerrit.entities.Project;
@@ -490,5 +491,35 @@ public class TaskQuotasTest {
         "Second query should be allowed after first one stops",
         taskQuotas.isReadyToStart(secondQuery));
     startAndCompleteTask(taskQuotas, secondQuery);
+  }
+
+  @Test
+  public void testMaxParkedInterruptsInsteadOfParking() throws ConfigInvalidException {
+    TaskQuotas taskQuotas =
+        taskQuotas(
+            1,
+            1,
+            """
+[global]
+  maxStartForTaskForQueue = 1 uploadpack %s
+  maxParked = 1
+"""
+                .formatted(INTERACTIVE.getName()));
+
+    Task<?> u_1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(u_1));
+    taskQuotas.onStart(u_1);
+
+    // No tasks parked yet, so u_2 is parked normally rather than interrupted.
+    Task<?> u_2 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertFalse(taskQuotas.isReadyToStart(u_2));
+    verify(u_2, Mockito.never()).cancel(true);
+
+    // maxParked (1) is already reached (u_2 is parked), so u_3 is interrupted instead.
+    Task<?> u_3 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(u_3));
+    verify(u_3).cancel(true);
+
+    taskQuotas.onStop(u_2);
   }
 }
