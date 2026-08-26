@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ffecf88_27d4de97",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-08-26T15:34:13Z",
+      "side": 1,
+      "message": "Why is this needed? This feels like it could cover up potential accounting bugs?",
+      "revId": "66485b1f78617842fd141f4eec30009227f2b39b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
