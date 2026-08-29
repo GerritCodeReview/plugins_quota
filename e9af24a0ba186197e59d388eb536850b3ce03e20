@@ -16,6 +16,24 @@
       "message": "Can you also check if  https://gerrit.googlesource.com/plugins/quota/+/e9af24a0ba186197e59d388eb536850b3ce03e20/src/main/java/com/googlesource/gerrit/plugins/quota/TaskQuotaWithPermits.java is still used anywhere now? If not, remove it, if so, then this probably highlights another bug?",
       "revId": "e9af24a0ba186197e59d388eb536850b3ce03e20",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39e4807b_2c34ffc0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-08-29T08:20:40Z",
+      "side": 1,
+      "message": "Still used: TaskQuotaForTask extends it, so it backs\nmaxStartForTaskForQueue and maxStartForTaskForUserForQueue. Keeping it\nhere.\n\nYou\u0027re right that it\u0027s stale, though: onStop increments unconditionally\nand isReadyToStart isn\u0027t idempotent — both defects we fixed in\nI6d4a59610. They reproduce against the quota object directly, but aren\u0027t\nreachable via TaskQuotas, since quotasByTask only calls onStop on quotas\nthat actually acquired. So it\u0027s a latent gap rather than a live bug.\n\nI can work to migrate the hard limits to task-id tracking in a follow-up, which\nshould let TaskQuotaWithPermits go away.",
+      "parentUuid": "b8b1b68e_6875f4b7",
+      "revId": "e9af24a0ba186197e59d388eb536850b3ce03e20",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ],
   "submitRequirementResults": [
