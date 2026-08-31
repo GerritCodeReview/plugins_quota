@@ -34,4 +34,8 @@ public class TaskParser {
     Matcher matcher = USER_EXTRACT_PATTERN_FROM_TASK_STRING.matcher(task.toString());
     return matcher.find() ? Optional.of(matcher.group(1)) : Optional.empty();
   }
+
+  public static boolean isUser(WorkQueue.Task<?> task, String user) {
+    return user(task).map(user::equals).orElse(false);
+  }
 }

@@ -26,10 +26,10 @@ public class SoftMaxForTaskForQueue implements TaskQuota {
   public static final Logger log = LoggerFactory.getLogger(SoftMaxForTaskForQueue.class);
   public static final String KEY = "softMaxStartForTaskForQueue";
 
-  private final QuotaSection quotaSection;
-  private final String taskGroup;
-  private final String queueName;
-  private final int softMax;
+  protected final QuotaSection quotaSection;
+  protected final String taskGroup;
+  protected final String queueName;
+  protected final int softMax;
   private final TaskGroup group;
   private final QueueManager.Queue queue;
   private final Set<Integer> runningTaskIds = ConcurrentHashMap.newKeySet();

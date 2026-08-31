@@ -66,7 +66,7 @@ public class TestNamespaceMatching {
     assertTrue(queuePattern.matcher("5 ^gerrit.query.status:open.*$ operational-queue").matches());
     assertFalse(queuePattern.matcher("10 unknownpack queue-name").matches());
 
-    Pattern userPattern = TaskQuotaForTaskForQueueForUser.CONFIG_PATTERN;
+    Pattern userPattern = TaskForUserForQueueConfig.CONFIG_PATTERN;
     assertTrue(userPattern.matcher("10 uploadpack some-user queue-name").matches());
     assertTrue(userPattern.matcher("5 ^gerrit.ls-members.*$ user_123 batch-queue").matches());
     assertFalse(userPattern.matcher("10 unknownpack some-user queue-name").matches());
