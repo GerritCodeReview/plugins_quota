@@ -268,6 +268,29 @@ operations by other users from being processed.
     maxConnectionsPerUserForTask = 20 rest-api
 ```
 
+<a id="maxRestApiConnectionsForEndpoint" />
+`maxRestApiConnectionsForEndpoint`
+: Limits the number of concurrent REST API requests matching a given URL
+path pattern, across all users combined. Unlike `maxConnectionsPerUserForTask`,
+this limit is global and keyed by endpoint rather than by user, and is useful
+for capping concurrency on a specific costly endpoint regardless of who is
+calling it.
+
+Configure it in the `global` section of `quota.config`. The key may be
+repeated to configure limits for multiple endpoint patterns. Each value has
+the format `<limit> <regex>`, where `<regex>` is matched against the request's
+servlet path.
+
+```
+  [global]
+    maxRestApiConnectionsForEndpoint = 10 ^/changes/.*/revisions/.*/review$
+    maxRestApiConnectionsForEndpoint = 5 ^/projects/.*/branches$
+```
+
+A request matching multiple configured patterns must acquire a permit from
+each matching limit; if any of them is exhausted, the request is rejected
+with `429 Too Many Requests`.
+
 Task Quota
 -----------
 

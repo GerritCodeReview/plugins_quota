@@ -52,6 +52,7 @@ class HttpModule extends CacheModule {
   protected void configure() {
     DynamicSet.bind(binder(), AllRequestFilter.class).to(RestApiRateLimiter.class);
     DynamicSet.bind(binder(), AllRequestFilter.class).to(MaxConnectionsLimiter.class);
+    DynamicSet.bind(binder(), AllRequestFilter.class).to(MaxEndpointConnectionsLimiter.class);
     bindConstant()
         .annotatedWith(Names.named(RateMsgHelper.RESTAPI_CONFIGURABLE_MSG_ANNOTATION))
         .to(restapiLimitExceededMsg);
