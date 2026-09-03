@@ -288,6 +288,52 @@ operations by other users from being processed.
     maxConnectionsPerUserForTask = 20 rest-api
 ```
 
+<a id="maxConnectionsForEndpoint" />
+`maxConnectionsForEndpoint`
+: Limits the number of concurrent REST API requests matching a given URL
+path pattern, across users. Configure it in the `global` section of `quota.config`,
+or per group. The key may be repeated to configure limits for multiple endpoint
+patterns within a section.
+
+```
+  [global]
+    maxConnectionsForEndpoint = 10 ^/(?:a/)?changes/.*/revisions/.*/review$
+    maxConnectionsForEndpoint = 5 ^/(?:a/)?projects/.*/branches$
+
+  [group "batch-users"]
+    maxConnectionsForEndpoint = 3 ^/(?:a/)?changes/.*/revisions/.*/review$
+```
+
+A `global` limit is a single bucket shared by all callers of the matching
+endpoint. A `group` limit is a separate bucket that only counts requests
+from members of that group, in addition to any matching `global` bucket; a
+request from a group member must acquire a permit from both. If a user
+belongs to more than one group, only the first matching group (in
+configuration order) applies.
+
+A request must acquire a permit from every applicable limit; if any of them
+is exhausted, the request is rejected with `429 Too Many Requests`.
+
+The regex is matched against the REST API path starting immediately after the
+Gerrit context path. The path starts with `/` and does not include the scheme,
+hostname, port, or Gerrit context path.
+
+For example, for a request to:
+
+`https://gerrit.example.com/r/changes/123/revisions/current/review`
+
+where `/r` is the Gerrit context path, the path matched by is:
+
+`/changes/123/revisions/current/review`
+
+The /a prefix may be added for authenticated REST API requests, such as when
+using HTTP Basic authentication. To match both authenticated and non
+authenticated forms of an endpoint, make /a optional in the regex.
+
+Therefore, the quota can be configured as:
+
+maxConnectionsForEndpoint = 10 ^/(?:a/)?changes/.*/revisions/.*/review$
+
 Task Quota
 -----------
 
@@ -386,7 +432,7 @@ Currently supported tasks:
 * `receivepack`: Maps directly to git-receive-pack operations (used during Git
   pushes).
 * `Regex`: Any string wrapped in `^...$` (e.g., `^gerrit.*$`) to match the task's
-    string representation.
+  string representation.
 
 All task-based quotas (those with `ForTask` in the keyword name)
 support arbitrary matching using regular expressions. To use a regex, wrap
@@ -400,6 +446,7 @@ representation (`Task.toString()`).
 ```
 
 Note:
+
 * Regular expressions match against the task's full string representation. Broad
   patterns (like the status:open query above) apply to the entire server and are
   not scoped to a specific project.
