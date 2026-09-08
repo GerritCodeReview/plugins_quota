@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52a65e6c_68bfb796",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-09-08T16:04:24Z",
+      "side": 1,
+      "message": "Can you connect the dots on how this solves the problem?",
+      "revId": "09af2863b8f26194d5defb0f65fb5fcbbe88b048",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7381b542_085621a1",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-09-08T16:04:24Z",
+      "side": 1,
+      "message": "Maybe we should limit this to files in the quota/ subdirectory to help avoid name collisions with other plugins?",
+      "revId": "09af2863b8f26194d5defb0f65fb5fcbbe88b048",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
