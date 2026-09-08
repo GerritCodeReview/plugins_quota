@@ -51,6 +51,24 @@
       "parentUuid": "7381b542_085621a1",
       "revId": "09af2863b8f26194d5defb0f65fb5fcbbe88b048",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6922587_b8b1d5d8",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-09-08T18:30:32Z",
+      "side": 1,
+      "message": "Yes",
+      "parentUuid": "26a00116_d1c48d1d",
+      "revId": "09af2863b8f26194d5defb0f65fb5fcbbe88b048",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
