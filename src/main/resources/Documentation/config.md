@@ -10,6 +10,26 @@ Administrators can add and edit quotas by fetching this branch, editing
 the `quota.config` file locally and pushing back the changes. The
 `quota.config` file is a Git config file:
 
+The path of this file, relative to the root of the `refs/meta/config`
+branch, defaults to `quota.config`, but can be overridden by setting
+`configFile` in the `plugin.quota` subsection of the `gerrit.config`
+file. This is useful when running Gerrit in a mirror setup where the
+mirrored instance shares the same `All-Projects` repository as the
+primary instance but needs a different quota configuration. To avoid
+name collisions with other plugins, the override must either be
+`quota.config` or a path under the `quota/` subdirectory.
+
+```
+  [plugin "quota"]
+    configFile = quota/mirror.config
+```
+
+<a id="configFile" />
+`plugin.quota.configFile`
+: Path of the quota config file to read from the `refs/meta/config`
+branch of `All-Projects`, relative to the branch root. Must either be
+`quota.config` or start with `quota/`. Defaults to `quota.config`.
+
 ```
   [quota "sandbox/*"]
     maxProjects = 50
