@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "daa104dd_00178674",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-09-08T18:40:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "52a65e6c_68bfb796",
+      "revId": "09af2863b8f26194d5defb0f65fb5fcbbe88b048",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7381b542_085621a1",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "Yes",
       "parentUuid": "26a00116_d1c48d1d",
+      "revId": "09af2863b8f26194d5defb0f65fb5fcbbe88b048",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69c5c030_68513582",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-09-08T18:40:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6922587_b8b1d5d8",
       "revId": "09af2863b8f26194d5defb0f65fb5fcbbe88b048",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
