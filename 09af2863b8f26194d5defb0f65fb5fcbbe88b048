@@ -33,6 +33,24 @@
       "message": "Maybe we should limit this to files in the quota/ subdirectory to help avoid name collisions with other plugins?",
       "revId": "09af2863b8f26194d5defb0f65fb5fcbbe88b048",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26a00116_d1c48d1d",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-09-08T17:07:40Z",
+      "side": 1,
+      "message": "so it should either be `quota.config` or be under `quota/` ?",
+      "parentUuid": "7381b542_085621a1",
+      "revId": "09af2863b8f26194d5defb0f65fb5fcbbe88b048",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
