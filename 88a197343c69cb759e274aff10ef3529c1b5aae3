@@ -16,6 +16,24 @@
       "message": "Instead of checking to see if the config is under \"quota/\" I would consider it relative to \"quota/\" to the path so it is impossible to miss-configure?",
       "revId": "88a197343c69cb759e274aff10ef3529c1b5aae3",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0c9c15d_b85c464a",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QuotaConfigFileProvider.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-09-08T19:41:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c1cd1b55_ba740182",
+      "revId": "88a197343c69cb759e274aff10ef3529c1b5aae3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
