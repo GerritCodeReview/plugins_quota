@@ -25,10 +25,12 @@ import org.eclipse.jgit.lib.Config;
 
 public class QuotaFinder {
   private final ProjectCache projectCache;
+  private final QuotaConfigFileProvider configPath;
 
   @Inject
-  QuotaFinder(ProjectCache projectCache) {
+  QuotaFinder(ProjectCache projectCache, QuotaConfigFileProvider configPath) {
     this.projectCache = projectCache;
+    this.configPath = configPath;
   }
 
   public QuotaSection firstMatching(Project.NameKey project) {
@@ -79,6 +81,6 @@ public class QuotaFinder {
   }
 
   public Config getQuotaConfig() {
-    return projectCache.getAllProjects().getConfig("quota.config").get();
+    return projectCache.getAllProjects().getConfig(configPath.get()).get();
   }
 }

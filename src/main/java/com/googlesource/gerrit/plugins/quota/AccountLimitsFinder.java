@@ -39,11 +39,16 @@ public class AccountLimitsFinder {
 
   private final ProjectCache projectCache;
   private final GroupsCollection groupsCollection;
+  private final QuotaConfigFileProvider configPath;
 
   @Inject
-  AccountLimitsFinder(ProjectCache projectCache, GroupsCollection groupsCollection) {
+  AccountLimitsFinder(
+      ProjectCache projectCache,
+      GroupsCollection groupsCollection,
+      QuotaConfigFileProvider configPath) {
     this.projectCache = projectCache;
     this.groupsCollection = groupsCollection;
+    this.configPath = configPath;
   }
 
   /**
@@ -110,7 +115,7 @@ public class AccountLimitsFinder {
    * @return map of rate limits per group name
    */
   private Optional<Map<String, RateLimit>> getRatelimits(Type type) {
-    Config cfg = projectCache.getAllProjects().getConfig("quota.config").get();
+    Config cfg = projectCache.getAllProjects().getConfig(configPath.get()).get();
     AccountLimitsConfig limitsCfg = cfg.get(KEY);
     return limitsCfg.getRatelimits(type);
   }
