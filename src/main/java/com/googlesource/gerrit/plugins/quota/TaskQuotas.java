@@ -99,7 +99,7 @@ public class TaskQuotas implements WorkQueue.TaskParker {
   @Override
   public boolean isReadyToStart(WorkQueue.Task<?> task) {
     if (!QueueManager.acquire(task)) {
-      if (maxParkedLimitReached()) {
+      if (maxParkedLimitReached(task)) {
         ParkedQuotaTransitionLogger.logTaskInterruptedForMaxParked(task, maxParked);
         task.cancel(true);
         return true;
@@ -127,7 +127,7 @@ public class TaskQuotas implements WorkQueue.TaskParker {
         if (!quota.isReadyToStart(task)) {
           QueueManager.release(task);
           acquiredQuotas.forEach(q -> q.onStop(task));
-          if (maxParkedLimitReached()) {
+          if (maxParkedLimitReached(task)) {
             ParkedQuotaTransitionLogger.logTaskInterruptedForMaxParked(task, maxParked);
             task.cancel(true);
             return true;
@@ -147,8 +147,10 @@ public class TaskQuotas implements WorkQueue.TaskParker {
     return true;
   }
 
-  private boolean maxParkedLimitReached() {
-    return maxParked > 0 && ParkedQuotaTransitionLogger.parkedCount() >= maxParked;
+  private boolean maxParkedLimitReached(WorkQueue.Task<?> task) {
+    return maxParked > 0
+        && !ParkedQuotaTransitionLogger.isParked(task)
+        && ParkedQuotaTransitionLogger.parkedCount() >= maxParked;
   }
 
   @Override
