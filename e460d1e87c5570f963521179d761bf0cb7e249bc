@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cfb516d_35c2bbc0",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-09-09T16:20:52Z",
+      "side": 1,
+      "message": "I know, unrelated, but this likely should not have used the word \"Task\", as this is not actually looking at Tasks as defined in much of the rest of this plugin.\n\nSomewhat relevant is that we may want to ensure that we introduce terminology in a more consistent way, or possibly even have a table documenting terms. For example, in this change, the term Endpoint is introduced without defining it.",
+      "revId": "e460d1e87c5570f963521179d761bf0cb7e249bc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c02e8c1d_e8b657aa",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-09-09T16:20:52Z",
+      "side": 1,
+      "message": "Why only support the \"global\" section for this keyword and not support the \"group\" sections?",
+      "revId": "e460d1e87c5570f963521179d761bf0cb7e249bc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
