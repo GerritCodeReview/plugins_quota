@@ -33,6 +33,24 @@
       "message": "Why only support the \"global\" section for this keyword and not support the \"group\" sections?",
       "revId": "e460d1e87c5570f963521179d761bf0cb7e249bc",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0784875_e532a2ac",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-09-09T16:29:22Z",
+      "side": 1,
+      "message": "I was thinking we would always want to account at the global level for the `ForEndpoint` and wouldn\u0027t have a valid use case to calculate it per group. Additionally, if a user falls into multiple groups we only take the first matching group for existing keywords. Do you want to continue that behaviour ?",
+      "parentUuid": "c02e8c1d_e8b657aa",
+      "revId": "e460d1e87c5570f963521179d761bf0cb7e249bc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
