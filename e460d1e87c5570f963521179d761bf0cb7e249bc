@@ -51,6 +51,24 @@
       "parentUuid": "c02e8c1d_e8b657aa",
       "revId": "e460d1e87c5570f963521179d761bf0cb7e249bc",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c81099a8_9ca9eae7",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-09-09T16:51:20Z",
+      "side": 1,
+      "message": "I think there are plenty of endpoints which we definitely would love to limit the connections for bots to (mergeability?). Yes, I think we should continue to use the first matching group behavior.",
+      "parentUuid": "f0784875_e532a2ac",
+      "revId": "e460d1e87c5570f963521179d761bf0cb7e249bc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
