@@ -10,6 +10,26 @@ Administrators can add and edit quotas by fetching this branch, editing
 the `quota.config` file locally and pushing back the changes. The
 `quota.config` file is a Git config file:
 
+The path of this file defaults to `quota.config`, but can be overridden by
+setting `configFile` in the `plugin.quota` subsection of the `gerrit.config`
+file. This is useful when running Gerrit in a mirror setup where the
+mirrored instance shares the same `All-Projects` repository as the
+primary instance but needs a different quota configuration. The
+configured path is always resolved relative to the `quota/` subdirectory,
+so it can never collide with another plugin's config file.
+
+```
+  [plugin "quota"]
+    configFile = mirror.config
+```
+
+<a id="configFile" />
+`plugin.quota.configFile`
+: Path of the quota config file to read from the `refs/meta/config`
+branch of `All-Projects`, relative to the `quota/` subdirectory. Not
+set by default, in which case `quota.config` at the branch root is
+used.
+
 ```
   [quota "sandbox/*"]
     maxProjects = 50
@@ -366,7 +386,7 @@ Currently supported tasks:
 * `receivepack`: Maps directly to git-receive-pack operations (used during Git
   pushes).
 * `Regex`: Any string wrapped in `^...$` (e.g., `^gerrit.*$`) to match the task's
-    string representation.
+  string representation.
 
 All task-based quotas (those with `ForTask` in the keyword name)
 support arbitrary matching using regular expressions. To use a regex, wrap
@@ -380,6 +400,7 @@ representation (`Task.toString()`).
 ```
 
 Note:
+
 * Regular expressions match against the task's full string representation. Broad
   patterns (like the status:open query above) apply to the entire server and are
   not scoped to a specific project.

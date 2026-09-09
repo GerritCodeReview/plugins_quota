@@ -562,7 +562,7 @@ public class TaskQuotasTest {
       throws ConfigInvalidException {
     Config quotaConfig = new Config();
     quotaConfig.fromText(cfg);
-    QuotaFinder finder = spy(new QuotaFinder(null));
+    QuotaFinder finder = spy(new QuotaFinder(null, null));
     doReturn(quotaConfig).when(finder).getQuotaConfig();
     ProjectResolver projectResolver = new ProjectResolver(projectCache);
     return new TaskQuotas(
