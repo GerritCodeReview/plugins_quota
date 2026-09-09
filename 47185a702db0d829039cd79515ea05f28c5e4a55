@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39660a89_c82cdc14",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QuotaConfigFileProvider.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-09-09T16:08:39Z",
+      "side": 1,
+      "message": "Outdated?",
+      "range": {
+        "startLine": 23,
+        "startChar": 46,
+        "endLine": 23,
+        "endChar": 69
+      },
+      "revId": "47185a702db0d829039cd79515ea05f28c5e4a55",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34d0870d_a0143c4f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/QuotaConfigFileProvider.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-09-09T16:08:39Z",
+      "side": 1,
+      "message": "OVERRIDE doesn\u0027t quite feel right. Maybe name this something like CONFIG_ROOT_DIR?",
+      "revId": "47185a702db0d829039cd79515ea05f28c5e4a55",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5fb1bb6_90381673",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-09-09T16:08:39Z",
+      "side": 1,
+      "message": "Outdated?",
+      "range": {
+        "startLine": 13,
+        "startChar": 39,
+        "endLine": 13,
+        "endChar": 44
+      },
+      "revId": "47185a702db0d829039cd79515ea05f28c5e4a55",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
