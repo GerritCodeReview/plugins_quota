@@ -32,13 +32,18 @@ public class ProjectResolver {
   public static final Logger log = LoggerFactory.getLogger(ProjectResolver.class);
 
   /**
-   * Example task.toString():
+   * Matched against the task string with the command name already removed, for example:
    *
-   * <p>git-upload-pack example.git (admin)
+   * <p>" example.git (admin)"
    *
-   * <p>git-receive-pack /example.git (admin)
+   * <p>" /example.git (admin)"
    *
-   * <p>git-upload-pack /./example.git (admin)
+   * <p>" /./example.git (admin)"
+   *
+   * <p>The command name must be stripped first because the pattern is only anchored at its end and
+   * so takes the leftmost match. For a command name that contains a space, such as "git
+   * upload-pack", the leftmost match on the full task string starts at the space inside the command
+   * name and captures "upload-pack /example.git" as the project.
    */
   private static final Pattern PROJECT_PATTERN = Pattern.compile("\\s+/?(.*)\\s+(\\(\\S+\\))$");
 
@@ -53,11 +58,12 @@ public class ProjectResolver {
 
   public Optional<Project.NameKey> estimateProject(WorkQueue.Task<?> task) {
     String taskStr = task.toString();
-    if (!isGitCommand(taskStr)) {
+    Optional<String> matchedTask = TaskParser.matchedTask(taskStr);
+    if (matchedTask.isEmpty() || !isGitCommand(matchedTask.get())) {
       return Optional.empty();
     }
 
-    Matcher matcher = PROJECT_PATTERN.matcher(taskStr);
+    Matcher matcher = PROJECT_PATTERN.matcher(taskStr.substring(matchedTask.get().length()));
     if (!matcher.find()) {
       return Optional.empty();
     }
@@ -91,7 +97,11 @@ public class ProjectResolver {
     return normalized;
   }
 
-  static boolean isGitCommand(String taskStr) {
-    return taskStr.startsWith("git-upload-pack") || taskStr.startsWith("git-receive-pack");
+  /**
+   * Only Git commands name a repository, so {@link #PROJECT_PATTERN} must not be applied to the
+   * other task groups {@link TaskParser} may support in future.
+   */
+  static boolean isGitCommand(String taskName) {
+    return TaskParser.GIT_COMMANDS.contains(taskName);
   }
 }

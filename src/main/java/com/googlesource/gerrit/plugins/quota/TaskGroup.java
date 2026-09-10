@@ -15,7 +15,6 @@
 package com.googlesource.gerrit.plugins.quota;
 
 import com.google.gerrit.server.git.WorkQueue;
-import java.util.Set;
 import java.util.regex.Pattern;
 
 public class TaskGroup {
@@ -32,11 +31,7 @@ public class TaskGroup {
       return taskRegex.matcher(task.toString()).find();
     }
 
-    Set<String> supported = TaskParser.SUPPORTED_TASKS_BY_GROUP.get(taskGroup);
-    if (supported != null) {
-      return supported.stream().anyMatch(t -> task.toString().startsWith(t));
-    }
-    return false;
+    return TaskParser.matchesGroup(task.toString(), taskGroup);
   }
 
   private static boolean isRegex(String taskGroup) {
