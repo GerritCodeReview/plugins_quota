@@ -15,6 +15,7 @@
 package com.googlesource.gerrit.plugins.quota;
 
 import com.google.gerrit.server.git.WorkQueue;
+import java.util.Comparator;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -22,8 +23,22 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TaskParser {
+  /**
+   * Task names a group applies to. Gerrit registers each Git command under several names (see
+   * {@code DefaultCommandModule}): the hyphenated top level aliases, and the space separated forms
+   * produced by {@code DispatchCommand} for nested commands. All of them reach the work queue and
+   * must be counted against the same quota.
+   */
   public static final Map<String, Set<String>> SUPPORTED_TASKS_BY_GROUP =
-      Map.of("uploadpack", Set.of("git-upload-pack"), "receivepack", Set.of("git-receive-pack"));
+      Map.of(
+          "uploadpack",
+          Set.of("git-upload-pack", "git upload-pack"),
+          "receivepack",
+          Set.of(
+              "git-receive-pack",
+              "git receive-pack",
+              "gerrit-receive-pack",
+              "gerrit receive-pack"));
   public static final String TASK_GROUP_PATTERN =
       "(\\^[^$]*\\$|" + String.join("|", SUPPORTED_TASKS_BY_GROUP.keySet()) + ")";
   public static final String USER_PATTERN = "([\\-_A-Za-z0-9]+)";
@@ -37,5 +52,21 @@ public class TaskParser {
 
   public static boolean isUser(WorkQueue.Task<?> task, String user) {
     return user(task).map(user::equals).orElse(false);
+  }
+
+  /**
+   * Returns the supported task name that {@code taskStr} starts with. The longest one wins, so the
+   * result stays correct if a task name is ever a prefix of another.
+   */
+  public static Optional<String> matchedTask(String taskStr) {
+    return SUPPORTED_TASKS_BY_GROUP.values().stream()
+        .flatMap(Set::stream)
+        .filter(taskStr::startsWith)
+        .max(Comparator.comparingInt(String::length));
+  }
+
+  public static boolean matchesGroup(String taskStr, String taskGroup) {
+    Set<String> supported = SUPPORTED_TASKS_BY_GROUP.get(taskGroup);
+    return supported != null && supported.stream().anyMatch(taskStr::startsWith);
   }
 }
