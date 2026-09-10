@@ -382,9 +382,11 @@ across all queues combined.
 Currently supported tasks:
 
 * `uploadpack`: Maps directly to git-upload-pack operations (used during Git
-  fetches or clones).
+  fetches or clones). Also covers the alternate command name Gerrit accepts for
+  the same operation: `git upload-pack`.
 * `receivepack`: Maps directly to git-receive-pack operations (used during Git
-  pushes).
+  pushes). Also covers the alternate command names Gerrit accepts for the same
+  operation: `git receive-pack`, `gerrit-receive-pack` and `gerrit receive-pack`.
 * `Regex`: Any string wrapped in `^...$` (e.g., `^gerrit.*$`) to match the task's
     string representation.
 
