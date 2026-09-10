@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8ed079c_f5ab32cd",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxEndpointConnectionsLimiter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-09-10T22:21:48Z",
+      "side": 1,
+      "message": "Its not needed. If user want to limit non rest-api he can.",
+      "parentUuid": "b5758079_6b19f8b4",
+      "revId": "b8c4922336aed85aaf2ed56d31460759ef84d4fb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a79ba040_a9e5ab24",
@@ -41,6 +59,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6093152_bd99d732",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxEndpointConnectionsLimiter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-09-10T22:21:48Z",
+      "side": 1,
+      "message": "that is fine and is the logic we follow for other keyword too. We just consider the first matching group.",
+      "parentUuid": "a79ba040_a9e5ab24",
+      "range": {
+        "startLine": 184,
+        "startChar": 0,
+        "endLine": 184,
+        "endChar": 67
+      },
+      "revId": "b8c4922336aed85aaf2ed56d31460759ef84d4fb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef42ab85_8fe8449d",
@@ -54,6 +96,30 @@
       "writtenOn": "2026-09-10T22:09:42Z",
       "side": 1,
       "message": "We\u0027ll need to account for authenticated requests?\n\n```suggestion\n  [global]\n    maxConnectionsForEndpoint \u003d 10 ^/a/changes/.*/revisions/.*/review$\n    maxConnectionsForEndpoint \u003d 5 ^/a/projects/.*/branches$\n\n  [group \"batch-users\"]\n    maxConnectionsForEndpoint \u003d 3 ^/a/changes/.*/revisions/.*/review$\n```",
+      "range": {
+        "startLine": 299,
+        "startChar": 0,
+        "endLine": 304,
+        "endChar": 67
+      },
+      "revId": "b8c4922336aed85aaf2ed56d31460759ef84d4fb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0756b2f7_0024f30b",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-09-10T22:21:48Z",
+      "side": 1,
+      "message": "I debugged locally, /a didn\u0027t show up.",
+      "parentUuid": "ef42ab85_8fe8449d",
       "range": {
         "startLine": 299,
         "startChar": 0,
