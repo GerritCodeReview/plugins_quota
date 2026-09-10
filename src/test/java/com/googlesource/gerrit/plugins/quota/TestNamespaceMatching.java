@@ -14,14 +14,34 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
+import com.google.common.collect.ImmutableList;
 import com.google.gerrit.entities.Project;
+import com.google.gerrit.server.git.WorkQueue.Task;
+import com.google.gerrit.server.project.ProjectCache;
+import java.util.Optional;
 import java.util.regex.Pattern;
 import org.junit.Test;
 
 public class TestNamespaceMatching {
+
+  private static final ImmutableList<String> UPLOAD_PACK_ALIASES =
+      ImmutableList.of("git-upload-pack", "git upload-pack");
+
+  private static final ImmutableList<String> RECEIVE_PACK_ALIASES =
+      ImmutableList.of(
+          "git-receive-pack", "git receive-pack", "gerrit-receive-pack", "gerrit receive-pack");
+
+  private static final ImmutableList<String> ALL_ALIASES =
+      ImmutableList.<String>builder()
+          .addAll(UPLOAD_PACK_ALIASES)
+          .addAll(RECEIVE_PACK_ALIASES)
+          .build();
 
   @Test
   public void exactNamespace() {
@@ -70,5 +90,46 @@ public class TestNamespaceMatching {
     assertTrue(userPattern.matcher("10 uploadpack some-user queue-name").matches());
     assertTrue(userPattern.matcher("5 ^gerrit.ls-members.*$ user_123 batch-queue").matches());
     assertFalse(userPattern.matcher("10 unknownpack some-user queue-name").matches());
+  }
+
+  @Test
+  public void taskGroupMatchesEveryCommandAlias() {
+    for (String alias : UPLOAD_PACK_ALIASES) {
+      Task<?> task = task(alias + " /example.git (admin)");
+      assertTrue(alias, new TaskGroup("uploadpack").isApplicable(task));
+      assertFalse(alias, new TaskGroup("receivepack").isApplicable(task));
+    }
+
+    for (String alias : RECEIVE_PACK_ALIASES) {
+      Task<?> task = task(alias + " /example.git (admin)");
+      assertTrue(alias, new TaskGroup("receivepack").isApplicable(task));
+      assertFalse(alias, new TaskGroup("uploadpack").isApplicable(task));
+    }
+  }
+
+  @Test
+  public void projectEstimatedFromEveryCommandAlias() {
+    ProjectResolver resolver = new ProjectResolver(mock(ProjectCache.class));
+    Optional<Project.NameKey> expected = Optional.of(Project.nameKey("example"));
+
+    for (String alias : ALL_ALIASES) {
+      assertEquals(alias, expected, resolver.estimateProject(task(alias + " example.git (admin)")));
+      assertEquals(
+          alias, expected, resolver.estimateProject(task(alias + " /example.git (admin)")));
+      assertEquals(
+          alias, expected, resolver.estimateProject(task(alias + " /./example.git (admin)")));
+    }
+  }
+
+  @Test
+  public void unsupportedTaskHasNoEstimatedProject() {
+    ProjectResolver resolver = new ProjectResolver(mock(ProjectCache.class));
+    assertEquals(Optional.empty(), resolver.estimateProject(task("gerrit stream-events (admin)")));
+  }
+
+  private static Task<?> task(String taskString) {
+    Task<?> task = mock(Task.class);
+    when(task.toString()).thenReturn(taskString);
+    return task;
   }
 }

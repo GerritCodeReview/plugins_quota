@@ -32,13 +32,17 @@ public class ProjectResolver {
   public static final Logger log = LoggerFactory.getLogger(ProjectResolver.class);
 
   /**
-   * Example task.toString():
+   * Matched against the task string with the command name already removed, for example:
    *
-   * <p>git-upload-pack example.git (admin)
+   * <p>" example.git (admin)"
    *
-   * <p>git-receive-pack /example.git (admin)
+   * <p>" /example.git (admin)"
    *
-   * <p>git-upload-pack /./example.git (admin)
+   * <p>" /./example.git (admin)"
+   *
+   * <p>The command name must be stripped first because this pattern anchors on the leading
+   * whitespace. Command names such as "git upload-pack" contain a space, so matching against the
+   * full task string would capture "upload-pack /example.git" as the project.
    */
   private static final Pattern PROJECT_PATTERN = Pattern.compile("\\s+/?(.*)\\s+(\\(\\S+\\))$");
 
@@ -53,11 +57,12 @@ public class ProjectResolver {
 
   public Optional<Project.NameKey> estimateProject(WorkQueue.Task<?> task) {
     String taskStr = task.toString();
-    if (!isGitCommand(taskStr)) {
+    Optional<String> matchedTask = TaskParser.matchedTask(taskStr);
+    if (matchedTask.isEmpty()) {
       return Optional.empty();
     }
 
-    Matcher matcher = PROJECT_PATTERN.matcher(taskStr);
+    Matcher matcher = PROJECT_PATTERN.matcher(taskStr.substring(matchedTask.get().length()));
     if (!matcher.find()) {
       return Optional.empty();
     }
@@ -89,9 +94,5 @@ public class ProjectResolver {
       normalized = normalized.substring(1);
     }
     return normalized;
-  }
-
-  static boolean isGitCommand(String taskStr) {
-    return taskStr.startsWith("git-upload-pack") || taskStr.startsWith("git-receive-pack");
   }
 }

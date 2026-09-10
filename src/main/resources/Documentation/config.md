@@ -388,6 +388,12 @@ Currently supported tasks:
 * `Regex`: Any string wrapped in `^...$` (e.g., `^gerrit.*$`) to match the task's
     string representation.
 
+Each group also covers the alternate command names Gerrit accepts for the same
+operation: `uploadpack` additionally matches `git upload-pack`, and
+`receivepack` additionally matches `git receive-pack`, `gerrit-receive-pack`
+and `gerrit receive-pack`. Whichever name the client sends counts against the
+same quota.
+
 All task-based quotas (those with `ForTask` in the keyword name)
 support arbitrary matching using regular expressions. To use a regex, wrap
 the pattern with `^` and `$`. When these delimiters are detected, the task
