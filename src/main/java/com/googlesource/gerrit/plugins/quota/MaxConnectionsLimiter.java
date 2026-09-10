@@ -65,8 +65,8 @@ public class MaxConnectionsLimiter extends AllRequestFilter {
   }
 
   @Inject
-  void init(ProjectCache projectCache) {
-    Config cfg = projectCache.getAllProjects().getConfig("quota.config").get();
+  void init(ProjectCache projectCache, QuotaConfigFileProvider configPath) {
+    Config cfg = projectCache.getAllProjects().getConfig(configPath.get()).get();
     for (String group : cfg.getSubsections(AccountLimitsConfig.GROUP_SECTION)) {
       String val = cfg.getString(AccountLimitsConfig.GROUP_SECTION, group, CONFIG_KEY);
       if (val != null) {
