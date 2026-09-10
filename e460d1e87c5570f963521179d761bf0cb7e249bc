@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "40c3b0cd_3ac56a96",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-09-10T04:35:34Z",
+      "side": 1,
+      "message": "```\n    maxConnectionsPerUserForTask \u003d 20 rest-api\n```\nAgreed, but we came up to specify rest-api as task. Consistency seems to be a hard problem here. Since we are implementing each thing in its own way.\n\nhttps://gerrit-review.googlesource.com/c/plugins/quota/+/512981/comment/6ad04979_7f0282ca/",
+      "parentUuid": "3cfb516d_35c2bbc0",
+      "revId": "e460d1e87c5570f963521179d761bf0cb7e249bc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c02e8c1d_e8b657aa",
         "filename": "src/main/resources/Documentation/config.md",
         "patchSetId": 3
