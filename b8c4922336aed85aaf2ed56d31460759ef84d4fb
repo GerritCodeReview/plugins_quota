@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5758079_6b19f8b4",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxEndpointConnectionsLimiter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 4665459
+      },
+      "writtenOn": "2026-09-10T22:09:42Z",
+      "side": 1,
+      "message": "RestApiRateLimiter has a `isRest()` check, do we need the same here?",
+      "revId": "b8c4922336aed85aaf2ed56d31460759ef84d4fb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a79ba040_a9e5ab24",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxEndpointConnectionsLimiter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 4665459
+      },
+      "writtenOn": "2026-09-10T22:09:42Z",
+      "side": 1,
+      "message": "Should we also check that the matching group has our `maxConnectionsForEndpoint` key? `limitsByGroup` has all the configured groups even ones that dont have our key.",
+      "range": {
+        "startLine": 184,
+        "startChar": 0,
+        "endLine": 184,
+        "endChar": 67
+      },
+      "revId": "b8c4922336aed85aaf2ed56d31460759ef84d4fb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef42ab85_8fe8449d",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 4665459
+      },
+      "writtenOn": "2026-09-10T22:09:42Z",
+      "side": 1,
+      "message": "We\u0027ll need to account for authenticated requests?\n\n```suggestion\n  [global]\n    maxConnectionsForEndpoint \u003d 10 ^/a/changes/.*/revisions/.*/review$\n    maxConnectionsForEndpoint \u003d 5 ^/a/projects/.*/branches$\n\n  [group \"batch-users\"]\n    maxConnectionsForEndpoint \u003d 3 ^/a/changes/.*/revisions/.*/review$\n```",
+      "range": {
+        "startLine": 299,
+        "startChar": 0,
+        "endLine": 304,
+        "endChar": 67
+      },
+      "revId": "b8c4922336aed85aaf2ed56d31460759ef84d4fb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
