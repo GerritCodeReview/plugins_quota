@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "034b193d_363457c3",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ProjectResolver.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-09-11T22:49:48Z",
+      "side": 1,
+      "message": "This explanation seems incorrect ?",
+      "revId": "fbffb52cb5f8c6cac71853480d2b33d3f026a2d3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e70fd835_9663041d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ProjectResolver.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-09-11T22:49:48Z",
+      "side": 1,
+      "message": "Tasks could be grown further in future beyond upload and receive packs. \n`isGitCommand` check should be performed. The pattern defined on line 47 only applies then.",
+      "revId": "fbffb52cb5f8c6cac71853480d2b33d3f026a2d3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56f4f9c4_70eb0f16",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-09-11T22:49:48Z",
+      "side": 1,
+      "message": "please combine with what is already present above.",
+      "revId": "fbffb52cb5f8c6cac71853480d2b33d3f026a2d3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
