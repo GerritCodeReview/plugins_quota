@@ -50,6 +50,23 @@
       "message": "please combine with what is already present above.",
       "revId": "fbffb52cb5f8c6cac71853480d2b33d3f026a2d3",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "224d18e9_5f59a9e3",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TestNamespaceMatching.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-09-11T22:53:06Z",
+      "side": 1,
+      "message": "they are all defined in src already ?",
+      "revId": "fbffb52cb5f8c6cac71853480d2b33d3f026a2d3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
