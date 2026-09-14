@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c4182f9_b8215b28",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ProjectResolver.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-09-14T08:15:36Z",
+      "side": 1,
+      "message": "Right, the pattern is only anchored at the end and takes the leftmost match, not \"anchored on the leading whitespace\" — reworded.",
+      "parentUuid": "034b193d_363457c3",
+      "revId": "fbffb52cb5f8c6cac71853480d2b33d3f026a2d3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e70fd835_9663041d",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-09-11T22:49:48Z",
       "side": 1,
       "message": "Tasks could be grown further in future beyond upload and receive packs. \n`isGitCommand` check should be performed. The pattern defined on line 47 only applies then.",
+      "revId": "fbffb52cb5f8c6cac71853480d2b33d3f026a2d3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1df1ad24_f83cbbfd",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ProjectResolver.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-09-14T08:15:36Z",
+      "side": 1,
+      "message": "You are right, restored isGitCommand (now backed by TaskParser.GIT_COMMANDS) so the project pattern is only applied to Git commands as more task groups get added.",
+      "parentUuid": "e70fd835_9663041d",
       "revId": "fbffb52cb5f8c6cac71853480d2b33d3f026a2d3",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -52,6 +88,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7e2294b_28c95100",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-09-14T08:15:36Z",
+      "side": 1,
+      "message": "Done, folded the alternate command names into the uploadpack/receivepack bullets above.",
+      "parentUuid": "56f4f9c4_70eb0f16",
+      "revId": "fbffb52cb5f8c6cac71853480d2b33d3f026a2d3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "224d18e9_5f59a9e3",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-09-11T22:53:06Z",
       "side": 1,
       "message": "they are all defined in src already ?",
+      "revId": "fbffb52cb5f8c6cac71853480d2b33d3f026a2d3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc4eb3a0_7b96f7ef",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TestNamespaceMatching.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-09-14T08:15:36Z",
+      "side": 1,
+      "message": "Yes, they were duplicated — the test now derives them from TaskParser.SUPPORTED_TASKS_BY_GROUP.",
+      "parentUuid": "224d18e9_5f59a9e3",
       "revId": "fbffb52cb5f8c6cac71853480d2b33d3f026a2d3",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
