@@ -16,6 +16,24 @@
       "message": "This is no longer true, the index tasks now include project names, so instead of adding if the command is s git command, we should be asking hasProjectName()?",
       "revId": "cef5936ec1c7df114e33e93cb02fb27310a0a01e",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1346d0e5_fb46f38e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ProjectResolver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-09-15T09:50:47Z",
+      "side": 1,
+      "message": "The index tasks do name projects — reworded. The real condition is whether the task string ends with the repository name in the form PROJECT_PATTERN parses, so renamed to hasProjectName() (backed by TaskParser.TASKS_WITH_PROJECT_NAME). Behaviour is unchanged.",
+      "parentUuid": "f186b9c3_68224a3b",
+      "revId": "cef5936ec1c7df114e33e93cb02fb27310a0a01e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
