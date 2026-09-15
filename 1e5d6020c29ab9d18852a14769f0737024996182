@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "577a2cb4_db9e494e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskParser.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1010013
+      },
+      "writtenOn": "2026-09-15T16:37:02Z",
+      "side": 1,
+      "message": "Sounds like this is not setup to support change indexing?",
+      "revId": "1e5d6020c29ab9d18852a14769f0737024996182",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
