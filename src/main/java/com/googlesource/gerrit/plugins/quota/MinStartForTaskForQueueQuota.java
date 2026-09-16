@@ -16,7 +16,6 @@ package com.googlesource.gerrit.plugins.quota;
 
 import java.util.Optional;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,7 +46,8 @@ public class MinStartForTaskForQueueQuota {
     TaskGroup taskGroup = new TaskGroup(matcher.group(2));
     QueueManager.registerReservation(
         queue,
-        new QueueManager.Reservation(Integer.parseInt(matcher.group(1)),
+        new QueueManager.Reservation(
+            Integer.parseInt(matcher.group(1)),
             task -> {
               if (!task.getQueueName().equalsIgnoreCase(queue) || !taskGroup.isApplicable(task)) {
                 return false;
@@ -55,15 +55,8 @@ public class MinStartForTaskForQueueQuota {
 
               return projectResolver.estimateProject(task).map(qs::matches).orElse(false);
             },
-            qs.getNamespace())
-    );
-    return Optional.of(
-        new TaskQuotaForTaskForQueue(
-            qs,
-            queue,
-            matcher.group(2),
-            Integer.parseInt(matcher.group(1))
-        )
-    );
+            qs.getNamespace()));
+
+    return Optional.empty();
   }
 }
