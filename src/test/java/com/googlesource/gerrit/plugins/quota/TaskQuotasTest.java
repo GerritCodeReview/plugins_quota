@@ -41,7 +41,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.class)
 public class TaskQuotasTest {
   private static final String PROJECT_X = "project-x";
-  private static final String USER_A = "USER-A";
+  private static final String USER_A = "U.S.E.R-A";
   private static final String USER_B = "USER_B";
   @Mock ProjectCache projectCache;
   @Mock ProjectState projectState;
