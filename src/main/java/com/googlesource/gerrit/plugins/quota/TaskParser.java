@@ -26,7 +26,27 @@ public class TaskParser {
       Map.of("uploadpack", Set.of("git-upload-pack"), "receivepack", Set.of("git-receive-pack"));
   public static final String TASK_GROUP_PATTERN =
       "(\\^[^$]*\\$|" + String.join("|", SUPPORTED_TASKS_BY_GROUP.keySet()) + ")";
-  public static final String USER_PATTERN = "([\\-_A-Za-z0-9]+)";
+
+  // Copied over the logic from core's ExternalId since they are not exposed.
+  private static final String USER_PATTERN_FIRST_REGEX = "[a-zA-Z0-9]";
+  private static final String USER_PATTERN_REST_REGEX = "[a-zA-Z0-9.!#$%&’*+=?^_`\\{|\\}~@-]";
+  private static final String USER_PATTERN_LAST_REGEX = "[a-zA-Z0-9]";
+  public static final String USER_PATTERN =
+      "("
+          + //
+          USER_PATTERN_FIRST_REGEX
+          + //
+          USER_PATTERN_REST_REGEX
+          + "*"
+          + //
+          USER_PATTERN_LAST_REGEX
+          + //
+          "|"
+          + //
+          USER_PATTERN_FIRST_REGEX
+          + //
+          ")";
+
   public static final Pattern USER_EXTRACT_PATTERN_FROM_TASK_STRING =
       Pattern.compile("\\(" + USER_PATTERN + "\\)$");
 
