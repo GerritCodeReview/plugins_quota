@@ -40,18 +40,23 @@ public class TaskForUserForQueueConfig {
         QuotaSection quotaSection, String queueName, String user, String taskGroup, int limit);
   }
 
+  /**
+   * The configured user is resolved to the username stored on the account, which is the form a task
+   * string carries. A username no account has is kept as configured and matches nothing.
+   */
   public static Optional<TaskQuota> build(
-      QuotaSection qs, String cfg, String key, Factory factory) {
+      QuotaSection qs, String cfg, String key, Factory factory, UserResolver userResolver) {
     Matcher matcher = CONFIG_PATTERN.matcher(cfg);
     if (!matcher.matches()) {
       log.error("Invalid configuration entry for {} [{}]", key, cfg);
       return Optional.empty();
     }
+    String user = matcher.group(3);
     return Optional.of(
         factory.create(
             qs,
             matcher.group(4),
-            matcher.group(3),
+            userResolver.storedUsername(user, key).orElse(user),
             matcher.group(2),
             Integer.parseInt(matcher.group(1))));
   }
