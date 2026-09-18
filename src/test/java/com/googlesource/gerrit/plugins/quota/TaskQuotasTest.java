@@ -24,6 +24,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.google.gerrit.entities.Project;
+import com.google.gerrit.server.account.AccountCache;
 import com.google.gerrit.server.git.WorkQueue.Task;
 import com.google.gerrit.server.project.ProjectCache;
 import com.google.gerrit.server.project.ProjectState;
@@ -45,6 +46,7 @@ public class TaskQuotasTest {
   private static final String USER_B = "USER_B";
   @Mock ProjectCache projectCache;
   @Mock ProjectState projectState;
+  @Mock AccountCache accountCache;
 
   @Before
   public void resetParkedQuotaTransitionLoggerState() {
@@ -570,7 +572,8 @@ public class TaskQuotasTest {
         projectResolver,
         new TaskQuotaKeys(
             new MinStartForQueueQuota(projectResolver),
-            new MinStartForTaskForQueueQuota(projectResolver)),
+            new MinStartForTaskForQueueQuota(projectResolver),
+            new UserResolver(accountCache)),
         interactiveThreads,
         batchThreads);
   }
