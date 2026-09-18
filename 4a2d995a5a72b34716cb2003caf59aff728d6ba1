@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9c29d34_bfc9b7f8",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 637,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-09-18T05:53:35Z",
+      "side": 1,
+      "message": "Can you add an IT tests for this instead of an unit test ?",
+      "revId": "4a2d995a5a72b34716cb2003caf59aff728d6ba1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
