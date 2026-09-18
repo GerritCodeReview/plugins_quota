@@ -23,10 +23,16 @@ import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
+import com.google.gerrit.entities.Account;
 import com.google.gerrit.entities.Project;
+import com.google.gerrit.server.account.AccountCache;
+import com.google.gerrit.server.account.AccountState;
 import com.google.gerrit.server.git.WorkQueue.Task;
 import com.google.gerrit.server.project.ProjectCache;
 import com.google.gerrit.server.project.ProjectState;
+import com.google.gerrit.server.util.time.TimeUtil;
 import java.util.Optional;
 import java.util.Random;
 import org.eclipse.jgit.errors.ConfigInvalidException;
@@ -45,6 +51,7 @@ public class TaskQuotasTest {
   private static final String USER_B = "USER_B";
   @Mock ProjectCache projectCache;
   @Mock ProjectState projectState;
+  @Mock AccountCache accountCache;
 
   @Before
   public void resetParkedQuotaTransitionLoggerState() {
@@ -123,6 +130,57 @@ public class TaskQuotasTest {
     taskQuotas.onStop(u_x_a_2);
     assertTrue(taskQuotas.isReadyToStart(u_x_a_3));
     startAndCompleteTask(taskQuotas, u_x_a_3);
+  }
+
+  @Test
+  public void testUserIsMatchedAsStoredOnTheAccount() throws ConfigInvalidException {
+    accountWithUsername("CI-BOT", "ci-bot");
+    TaskQuotas taskQuotas =
+        taskQuotas(
+            2,
+            2,
+            """
+[quota "%s"]
+  maxStartForTaskForUserForQueue = 1 uploadpack CI-BOT %s
+"""
+                .formatted(PROJECT_X, INTERACTIVE.getName()));
+
+    Task<?> u_1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, "ci-bot"));
+    assertTrue(taskQuotas.isReadyToStart(u_1));
+    taskQuotas.onStart(u_1);
+
+    Task<?> u_2 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, "ci-bot"));
+    assertFalse(
+        "Task should be limited even though the configured name is cased differently",
+        taskQuotas.isReadyToStart(u_2));
+
+    taskQuotas.onStop(u_1);
+  }
+
+  @Test
+  public void testUnknownUserIsKeptAsConfigured() throws ConfigInvalidException {
+    TaskQuotas taskQuotas =
+        taskQuotas(
+            2,
+            2,
+            """
+[quota "%s"]
+  maxStartForTaskForUserForQueue = 1 uploadpack %s %s
+"""
+                .formatted(PROJECT_X, USER_A, INTERACTIVE.getName()));
+
+    Task<?> u_x_a_1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(u_x_a_1));
+    taskQuotas.onStart(u_x_a_1);
+
+    Task<?> u_x_a_2 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertFalse(
+        "An unresolved username still limits the name as spelled",
+        taskQuotas.isReadyToStart(u_x_a_2));
+
+    taskQuotas.onStop(u_x_a_1);
+    assertTrue(taskQuotas.isReadyToStart(u_x_a_2));
+    startAndCompleteTask(taskQuotas, u_x_a_2);
   }
 
   @Test
@@ -570,9 +628,23 @@ public class TaskQuotasTest {
         projectResolver,
         new TaskQuotaKeys(
             new MinStartForQueueQuota(projectResolver),
-            new MinStartForTaskForQueueQuota(projectResolver)),
+            new MinStartForTaskForQueueQuota(projectResolver),
+            new UserResolver(accountCache)),
         interactiveThreads,
         batchThreads);
+  }
+
+  private void accountWithUsername(String configured, String stored) {
+    when(accountCache.getByUsername(configured))
+        .thenReturn(
+            Optional.of(
+                AccountState.withState(
+                    Account.builder(Account.id(1), TimeUtil.now()).build(),
+                    ImmutableSet.of(),
+                    Optional.of(stored),
+                    ImmutableMap.of(),
+                    Optional.empty(),
+                    Optional.empty())));
   }
 
   private String uploadPackTask(String project, String user) {
