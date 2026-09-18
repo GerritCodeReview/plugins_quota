@@ -33,8 +33,9 @@ public class TaskQuotaForTaskForUserForQueue extends TaskQuotaForTaskForQueue {
     return TaskParser.isUser(task, user) && super.isApplicable(task);
   }
 
-  public static Optional<TaskQuota> build(QuotaSection qs, String cfg) {
-    return TaskForUserForQueueConfig.build(qs, cfg, KEY, TaskQuotaForTaskForUserForQueue::new);
+  public static Optional<TaskQuota> build(QuotaSection qs, String cfg, UserResolver userResolver) {
+    return TaskForUserForQueueConfig.build(
+        qs, cfg, KEY, TaskQuotaForTaskForUserForQueue::new, userResolver);
   }
 
   @Override
