@@ -376,6 +376,13 @@ Here `userA` is parked past 20 concurrent interactive uploadpacks, and may only
 exceed 10 while at least one thread would remain idle. Both keys apply solely to
 the named user, task group and queue; every other user is unaffected.
 
+The configured name must be the username of an existing account. It is looked up
+once when the configuration is read and matched on the username stored on that
+account, so whether a differently cased spelling is accepted follows
+`auth.userNameCaseInsensitive`, the same as everywhere else in Gerrit. A name no
+account has is skipped, and the key it was configured for is named in a warning
+in the error log.
+
 or to make it applicable for every user:
 
 ```

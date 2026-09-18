@@ -26,25 +26,34 @@ import javax.inject.Singleton;
 public class TaskQuotaKeys {
   private final MinStartForQueueQuota minStartForQueueQuota;
   private final MinStartForTaskForQueueQuota minStartForTaskForQueueQuota;
+  private final UserResolver userResolver;
 
   @Inject
   public TaskQuotaKeys(
       MinStartForQueueQuota minStartForQueueQuota,
-      MinStartForTaskForQueueQuota minStartForTaskForQueueQuota) {
+      MinStartForTaskForQueueQuota minStartForTaskForQueueQuota,
+      UserResolver userResolver) {
     this.minStartForQueueQuota = minStartForQueueQuota;
     this.minStartForTaskForQueueQuota = minStartForTaskForQueueQuota;
+    this.userResolver = userResolver;
   }
 
   public List<TaskQuota> buildQuotas(QuotaSection qs) {
     return Stream.of(
             process(qs, TaskQuotaForTaskForQueue.KEY, TaskQuotaForTaskForQueue::build),
             process(
-                qs, TaskQuotaForTaskForUserForQueue.KEY, TaskQuotaForTaskForUserForQueue::build),
+                qs,
+                TaskQuotaForTaskForUserForQueue.KEY,
+                (section, cfg) ->
+                    TaskQuotaForTaskForUserForQueue.build(section, cfg, userResolver)),
             process(
                 qs, TaskQuotaPerUserForTaskForQueue.KEY, TaskQuotaPerUserForTaskForQueue::build),
             process(qs, SoftMaxPerUserForQueue.KEY, SoftMaxPerUserForQueue::build),
             process(qs, SoftMaxForTaskForQueue.KEY, SoftMaxForTaskForQueue::build),
-            process(qs, SoftMaxForTaskForUserForQueue.KEY, SoftMaxForTaskForUserForQueue::build),
+            process(
+                qs,
+                SoftMaxForTaskForUserForQueue.KEY,
+                (section, cfg) -> SoftMaxForTaskForUserForQueue.build(section, cfg, userResolver)),
             process(qs, SoftMaxPerUserForTaskForQueue.KEY, SoftMaxPerUserForTaskForQueue::build),
             process(qs, MinStartForQueueQuota.KEY, minStartForQueueQuota::build),
             process(qs, MinStartForTaskForQueueQuota.KEY, minStartForTaskForQueueQuota::build))
