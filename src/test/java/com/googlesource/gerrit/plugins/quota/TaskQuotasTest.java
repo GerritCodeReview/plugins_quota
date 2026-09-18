@@ -18,6 +18,7 @@ import static com.googlesource.gerrit.plugins.quota.QueueManager.Queue.BATCH;
 import static com.googlesource.gerrit.plugins.quota.QueueManager.Queue.INTERACTIVE;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
@@ -45,11 +46,20 @@ public class TaskQuotasTest {
   private static final String USER_B = "USER_B";
   @Mock ProjectCache projectCache;
   @Mock ProjectState projectState;
+  @Mock UserResolver userResolver;
 
   @Before
   public void resetParkedQuotaTransitionLoggerState() {
     ParkedQuotaTransitionLogger.parkedSince.clear();
     ParkedQuotaTransitionLogger.prevParkingQuotaByTaskId.clear();
+  }
+
+  /** Which spellings resolve is covered by {@link TaskQuotaUserIT} against real accounts. */
+  @Before
+  public void resolveConfiguredUsersToThemselves() {
+    Mockito.lenient()
+        .when(userResolver.storedUsername(anyString(), anyString()))
+        .thenAnswer(lookup -> Optional.of(lookup.getArgument(0)));
   }
 
   @Test
@@ -596,7 +606,8 @@ public class TaskQuotasTest {
         projectResolver,
         new TaskQuotaKeys(
             new MinStartForQueueQuota(projectResolver),
-            new MinStartForTaskForQueueQuota(projectResolver)),
+            new MinStartForTaskForQueueQuota(projectResolver),
+            userResolver),
         interactiveThreads,
         batchThreads);
   }
