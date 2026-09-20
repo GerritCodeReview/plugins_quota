@@ -35,6 +35,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8b89b23_0d2b1089",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ProjectResolver.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-09-20T15:55:31Z",
+      "side": 1,
+      "message": "The regex literal is unchanged, but what it\u0027s matched against is: estimateProject now strips the command name first and passes taskStr.substring(...), so the old examples (git-upload-pack example.git (admin)) describe an input the pattern no longer sees — updated them to the stripped form.",
+      "parentUuid": "ea789bc0_0e2cd638",
+      "revId": "1e5d6020c29ab9d18852a14769f0737024996182",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "577a2cb4_db9e494e",
