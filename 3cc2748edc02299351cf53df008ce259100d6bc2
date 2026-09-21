@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93f3d78e_4164507e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/SoftMaxForTaskForUserForQueue.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-09-21T14:09:48Z",
+      "side": 1,
+      "message": "Dont you need to update the isApplicable check ?",
+      "revId": "3cc2748edc02299351cf53df008ce259100d6bc2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e82df3d1_c3b08e53",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskForUserForQueueConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-09-21T14:09:48Z",
+      "side": 1,
+      "message": "skip the quota on orElse ?",
+      "revId": "3cc2748edc02299351cf53df008ce259100d6bc2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c639737c_440ffffb",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-09-21T14:09:48Z",
+      "side": 1,
+      "message": "Last sentence needs improvement ?",
+      "revId": "3cc2748edc02299351cf53df008ce259100d6bc2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e808fccf_10e18461",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotaUserIT.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-09-21T14:09:48Z",
+      "side": 1,
+      "message": "This doesn\u0027t really look like an IT test. I would have assumed that a site would be set with userNameCaseInsensitive and then requests would be made with appropriate usernames to show parking.",
+      "revId": "3cc2748edc02299351cf53df008ce259100d6bc2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
