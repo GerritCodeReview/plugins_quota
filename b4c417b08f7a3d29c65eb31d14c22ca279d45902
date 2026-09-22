@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d47e039_00f68ae4",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ProjectResolver.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-09-22T16:38:53Z",
+      "side": 1,
+      "message": "\"must\" is not ture ?",
+      "revId": "b4c417b08f7a3d29c65eb31d14c22ca279d45902",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
