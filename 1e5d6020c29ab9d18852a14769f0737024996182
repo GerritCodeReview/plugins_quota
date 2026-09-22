@@ -70,6 +70,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b4ef135_7124a3f6",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ProjectResolver.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-09-22T11:04:35Z",
+      "side": 1,
+      "message": "You\u0027re right, it ends with the user in parentheses and the repo name comes before that — reworded to \"carries the repository name ... followed by the user in parentheses\".",
+      "parentUuid": "2d76094c_53e03160",
+      "revId": "1e5d6020c29ab9d18852a14769f0737024996182",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e15ea151_e4fba5a2",
@@ -87,6 +105,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "95b9ef7d_2fc9f2d9",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ProjectResolver.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-09-22T11:04:35Z",
+      "side": 1,
+      "message": "Agreed, dropped the index task mention.",
+      "parentUuid": "e15ea151_e4fba5a2",
+      "revId": "1e5d6020c29ab9d18852a14769f0737024996182",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "24e6302f_c83fb800",
@@ -100,6 +136,24 @@
       "writtenOn": "2026-09-21T14:44:11Z",
       "side": 1,
       "message": "they end with user... ?",
+      "revId": "1e5d6020c29ab9d18852a14769f0737024996182",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb573984_5cbca078",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskParser.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-09-22T11:04:35Z",
+      "side": 1,
+      "message": "Same slip here, fixed the same way.",
+      "parentUuid": "24e6302f_c83fb800",
       "revId": "1e5d6020c29ab9d18852a14769f0737024996182",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -153,6 +207,24 @@
       "side": 1,
       "message": "It\u0027s okay to add as follow up but do it on stable-3.13. The core change could be cherry-picked back to support 3.13.",
       "parentUuid": "9da64e0b_cd64a411",
+      "revId": "1e5d6020c29ab9d18852a14769f0737024996182",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "872a5d48_3026e168",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskParser.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-09-22T11:04:35Z",
+      "side": 1,
+      "message": "Works for me — I\u0027ll do the index task follow-up on stable-3.13 once I3004b8c9 is cherry-picked back, since the quota side needs the project name in the task string to be there first.",
+      "parentUuid": "9a3bd98b_598fbbcc",
       "revId": "1e5d6020c29ab9d18852a14769f0737024996182",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
