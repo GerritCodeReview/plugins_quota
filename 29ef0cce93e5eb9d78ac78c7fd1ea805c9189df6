@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdd23910_22d3de89",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotaUserIT.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-09-27T23:25:21Z",
+      "side": 1,
+      "message": "move this after line 90 ?",
+      "revId": "29ef0cce93e5eb9d78ac78c7fd1ea805c9189df6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dbee9ae_21a51631",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotaUserIT.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-09-27T23:25:21Z",
+      "side": 1,
+      "message": "why not just use Interactive queue since that is default instead of this complexity ?",
+      "revId": "29ef0cce93e5eb9d78ac78c7fd1ea805c9189df6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
