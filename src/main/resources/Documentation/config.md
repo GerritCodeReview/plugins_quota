@@ -478,6 +478,52 @@ Example:
 Once a user has 3 tasks running, further tasks from that user start only
 while at least one idle thread would remain.
 
+Multiple `maxStart*` quotas can also share a single counter across queues
+or projects by referencing a named pool instead of a literal number. This
+is useful for capping total concurrency of a task type (e.g. uploadpack)
+across several queues/projects combined, on top of (or instead of) any per-queue
+limit. Pools are declared as top-level `[pool "name"]` sections. `max` is the
+shared limit used by `maxStartForTaskForQueue` and `maxStartForTaskForUserForQueue`,
+and `maxPerUser` is the per-user limit used by `maxStartPerUserForTaskForQueue`.
+A pool may define either or both. Referencing a pool for a limit it does not
+define is logged as an error and the quota is skipped. The keys `min` and
+`maxPerProject` are reserved but not supported yet; they are logged and ignored.
+
+```
+  [pool "uploads"]
+    max = 50
+  [global]
+    maxStartForTaskForQueue = pool:uploads uploadpack SSH-Interactive-Worker
+    maxStartForTaskForQueue = pool:uploads uploadpack SSH-Batch-Worker
+```
+
+Here at most 50 uploadpack tasks may run concurrently across both queues
+combined.
+
+```
+  [pool "uploads"]
+    max = 50
+  [project a]
+    maxStartForTaskForQueue = pool:uploads uploadpack SSH-Interactive-Worker
+  [project b]
+    maxStartForTaskForQueue = pool:uploads uploadpack SSH-Interactive-Worker
+```
+
+Here at most 50 uploadpack tasks may run concurrently across both projects for
+interactive users.
+
+```
+  [pool "uploads"]
+    maxPerUser = 50
+  [project a]
+    maxStartPerUserForTaskForQueue = pool:uploads uploadpack SSH-Interactive-Worker
+  [project b]
+    maxStartPerUserForTaskForQueue = pool:uploads uploadpack SSH-Interactive-Worker
+```
+
+Here at most 50 uploadpack tasks may run concurrently across both projects per each
+interactive user.
+
 Publication Schedule
 --------------------
 
