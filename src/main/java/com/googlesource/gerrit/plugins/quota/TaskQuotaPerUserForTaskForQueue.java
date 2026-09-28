@@ -15,6 +15,7 @@
 package com.googlesource.gerrit.plugins.quota;
 
 import com.google.gerrit.server.git.WorkQueue;
+import java.util.Map;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import org.slf4j.Logger;
@@ -27,8 +28,18 @@ public class TaskQuotaPerUserForTaskForQueue extends TaskQuotaForTaskForQueue {
 
   public TaskQuotaPerUserForTaskForQueue(
       QuotaSection quotaSection, String queue, String taskGroup, int maxStart) {
-    super(quotaSection, queue, taskGroup, maxStart);
-    perUserTaskQuota = new PerUserTaskQuota((ids, task) -> ids.size() < maxStart);
+    this(
+        quotaSection,
+        queue,
+        taskGroup,
+        new PerUserTaskQuota((ids, task) -> ids.size() < maxStart),
+        maxStart);
+  }
+
+  public TaskQuotaPerUserForTaskForQueue(
+      QuotaSection quotaSection, String queue, String taskGroup, PerUserTaskQuota shared, int max) {
+    super(quotaSection, queue, taskGroup, max);
+    this.perUserTaskQuota = shared;
   }
 
   @Override
@@ -41,22 +52,39 @@ public class TaskQuotaPerUserForTaskForQueue extends TaskQuotaForTaskForQueue {
     perUserTaskQuota.release(task);
   }
 
-  public static Optional<TaskQuota> build(QuotaSection qs, String cfg) {
+  public static Optional<TaskQuota> build(QuotaSection qs, String cfg, Map<String, Pool> pools) {
     Matcher matcher = CONFIG_PATTERN.matcher(cfg);
-    if (matcher.matches()) {
-      return Optional.of(
-          new TaskQuotaPerUserForTaskForQueue(
-              qs, matcher.group(3), matcher.group(2), Integer.parseInt(matcher.group(1))));
-    } else {
+    if (!matcher.matches()) {
       log.error("Invalid configuration entry [{}]", cfg);
       return Optional.empty();
     }
+    String token = matcher.group(1);
+    String taskGroup = matcher.group(2);
+    String queueName = matcher.group(3);
+    if (token.startsWith(POOL_PREFIX)) {
+      String poolName = token.substring(POOL_PREFIX.length());
+      Pool pool = pools.get(poolName);
+      if (pool == null) {
+        log.error("Unknown quota pool [{}] referenced in [{}]", poolName, cfg);
+        return Optional.empty();
+      }
+      try {
+        return Optional.of(
+            new TaskQuotaPerUserForTaskForQueue(
+                qs, queueName, taskGroup, pool.perUser(), pool.maxPerUser()));
+      } catch (IllegalStateException e) {
+        log.error("Invalid pool reference in [{}]: {}", cfg, e.getMessage());
+        return Optional.empty();
+      }
+    }
+    return Optional.of(
+        new TaskQuotaPerUserForTaskForQueue(qs, queueName, taskGroup, Integer.parseInt(token)));
   }
 
   @Override
   public String toString() {
     return KEY
         + ": task [%s], queue [%s], permits [%d], namespace [%s]"
-            .formatted(taskGroup, queueName, maxPermits, quotaSection.getNamespace());
+            .formatted(taskGroup, queueName, permits.max(), quotaSection.getNamespace());
   }
 }
