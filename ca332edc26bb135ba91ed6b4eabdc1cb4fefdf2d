@@ -16,6 +16,41 @@
       "message": "I wonder if we should try to avoid the shared name across limit types (mac, min, per user...) pitfall by specifying the limit type in the keyword? Would it also help to avoid adding a new term (pool) to the mix, and convey the limit \u0027sharing\u0027 idea directly in the keywords?\n\nI am imagining:\n\n```\nshareMaxAs \u003d 10 uploads\nshareMaxPerUserAs \u003d 10 uploads\nshareMaxPerProjectAs \u003d 3 pushes\nshareMinAs \u003d 5 hooks\n...\nmax... \u003d shareMax.uploads ...\nmin... \u003d shareMin.hooks ...\nmax...PerUser \u003d shareMaxPerUser.uploads ...\nmax...PerProject \u003d shareMaxPerProject.pushes\n```",
       "revId": "ca332edc26bb135ba91ed6b4eabdc1cb4fefdf2d",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49e4d27e_4fa66a68",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-09-28T18:08:41Z",
+      "side": 1,
+      "message": "```\n[pool \"uploads\"]\n  max \u003d10\n  maxPerUser \u003d 10\n  maxPerProject \u003d ??\n  min \u003d ??\n  softMaxAs (per user/ per project) \u003d ??\n\n[pool \"pushes\"]\n  maxPerProject \u003d ??\n\n[pool \"hooks\"]\n  max \u003d 10\n  min \u003d 5\n```",
+      "parentUuid": "0c154cb4_67a5e842",
+      "revId": "ca332edc26bb135ba91ed6b4eabdc1cb4fefdf2d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84f28d71_3c4a9aaf",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-09-28T18:08:41Z",
+      "side": 1,
+      "message": "```suggestion\n    maxStartForTaskForQueue \u003d pools:uploads uploadpack SSH-Batch-Worker\n```",
+      "revId": "ca332edc26bb135ba91ed6b4eabdc1cb4fefdf2d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
