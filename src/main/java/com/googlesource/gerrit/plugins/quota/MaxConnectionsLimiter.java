@@ -98,6 +98,7 @@ public class MaxConnectionsLimiter extends AllRequestFilter {
 
         if (limit.isPresent()) {
           if (!canPermitCall(userId, limit.get())) {
+
             ((HttpServletResponse) response)
                 .sendError(429, "Too Many Requests: rate limited by " + CONFIG_KEY);
             return;

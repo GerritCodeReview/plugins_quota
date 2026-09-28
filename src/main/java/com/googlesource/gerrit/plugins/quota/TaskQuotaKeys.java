@@ -15,15 +15,25 @@
 package com.googlesource.gerrit.plugins.quota;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.OptionalInt;
 import java.util.function.BiFunction;
 import java.util.stream.Stream;
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import org.eclipse.jgit.lib.Config;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Singleton
 public class TaskQuotaKeys {
+  private static final Logger log = LoggerFactory.getLogger(TaskQuotaKeys.class);
+  private static final String POOL_SECTION = "pool";
+  private static final List<String> UNSUPPORTED_POOL_KEYS = List.of("min", "maxPerProject");
+
   private final MinStartForQueueQuota minStartForQueueQuota;
   private final MinStartForTaskForQueueQuota minStartForTaskForQueueQuota;
 
@@ -35,13 +45,20 @@ public class TaskQuotaKeys {
     this.minStartForTaskForQueueQuota = minStartForTaskForQueueQuota;
   }
 
-  public List<TaskQuota> buildQuotas(QuotaSection qs) {
+  public List<TaskQuota> buildQuotas(QuotaSection qs, Map<String, Pool> pools) {
     return Stream.of(
-            process(qs, TaskQuotaForTaskForQueue.KEY, TaskQuotaForTaskForQueue::build),
             process(
-                qs, TaskQuotaForTaskForUserForQueue.KEY, TaskQuotaForTaskForUserForQueue::build),
+                qs,
+                TaskQuotaForTaskForQueue.KEY,
+                (section, cfg) -> TaskQuotaForTaskForQueue.build(section, cfg, pools)),
             process(
-                qs, TaskQuotaPerUserForTaskForQueue.KEY, TaskQuotaPerUserForTaskForQueue::build),
+                qs,
+                TaskQuotaForTaskForUserForQueue.KEY,
+                (section, cfg) -> TaskQuotaForTaskForUserForQueue.build(section, cfg, pools)),
+            process(
+                qs,
+                TaskQuotaPerUserForTaskForQueue.KEY,
+                (section, cfg) -> TaskQuotaPerUserForTaskForQueue.build(section, cfg, pools)),
             process(qs, SoftMaxPerUserForQueue.KEY, SoftMaxPerUserForQueue::build),
             process(qs, SoftMaxForTaskForQueue.KEY, SoftMaxForTaskForQueue::build),
             process(qs, SoftMaxForTaskForUserForQueue.KEY, SoftMaxForTaskForUserForQueue::build),
@@ -50,6 +67,28 @@ public class TaskQuotaKeys {
             process(qs, MinStartForTaskForQueueQuota.KEY, minStartForTaskForQueueQuota::build))
         .flatMap(List::stream)
         .toList();
+  }
+
+  /** Pools are declared as top-level {@code [pool "name"]} sections and referenced as pool:name. */
+  public Map<String, Pool> buildPools(Config cfg) {
+    Map<String, Pool> pools = new HashMap<>();
+    for (String name : cfg.getSubsections(POOL_SECTION)) {
+      for (String key : UNSUPPORTED_POOL_KEYS) {
+        if (cfg.getString(POOL_SECTION, name, key) != null) {
+          log.warn("Pool [{}]: {} is not supported yet and is ignored", name, key);
+        }
+      }
+      pools.put(
+          name,
+          new Pool(name, poolLimit(cfg, name, "max"), poolLimit(cfg, name, "maxPerUser")));
+    }
+    return pools;
+  }
+
+  private static OptionalInt poolLimit(Config cfg, String name, String key) {
+    return cfg.getString(POOL_SECTION, name, key) == null
+        ? OptionalInt.empty()
+        : OptionalInt.of(cfg.getInt(POOL_SECTION, name, key, 0));
   }
 
   private List<TaskQuota> process(
