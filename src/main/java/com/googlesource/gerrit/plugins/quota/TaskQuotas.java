@@ -89,11 +89,13 @@ public class TaskQuotas implements WorkQueue.TaskParker {
   }
 
   private void initQuotas() {
+    QuotaSection globalSection = quotaFinder.getGlobalNamespacedQuota(quotaConfig);
+    Map<String, Pool> pools = taskQuotaKeys.buildGlobalPools(globalSection);
     quotasByNamespace.putAll(
         quotaFinder.getQuotaNamespaces(quotaConfig).stream()
-            .collect(Collectors.toMap(Function.identity(), taskQuotaKeys::buildQuotas)));
-    globalQuotas.addAll(
-        taskQuotaKeys.buildQuotas(quotaFinder.getGlobalNamespacedQuota(quotaConfig)));
+            .collect(
+                Collectors.toMap(Function.identity(), qs -> taskQuotaKeys.buildQuotas(qs, pools))));
+    globalQuotas.addAll(taskQuotaKeys.buildQuotas(globalSection, pools));
   }
 
   @Override

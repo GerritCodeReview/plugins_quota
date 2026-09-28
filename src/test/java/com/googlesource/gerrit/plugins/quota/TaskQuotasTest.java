@@ -58,7 +58,7 @@ public class TaskQuotasTest {
         taskQuotas(
             2,
             2,
-            """
+"""
 [quota "%s"]
   maxStartForTaskForQueue = 1 uploadpack %s
 """
@@ -99,7 +99,7 @@ public class TaskQuotasTest {
         taskQuotas(
             2,
             2,
-            """
+"""
 [quota "%s"]
   maxStartForTaskForUserForQueue = 1 uploadpack %s %s
 """
@@ -131,7 +131,7 @@ public class TaskQuotasTest {
         taskQuotas(
             5,
             5,
-            """
+"""
 [quota "%s"]
   softMaxStartPerUserForQueue = 2 %s
 """
@@ -186,7 +186,7 @@ public class TaskQuotasTest {
         taskQuotas(
             4,
             4,
-            """
+"""
 [quota "%s"]
   softMaxStartForTaskForQueue = 1 uploadpack %s
 """
@@ -224,7 +224,7 @@ public class TaskQuotasTest {
         taskQuotas(
             4,
             4,
-            """
+"""
 [quota "%s"]
   softMaxStartForTaskForUserForQueue = 1 uploadpack %s %s
 """
@@ -278,7 +278,7 @@ public class TaskQuotasTest {
         taskQuotas(
             3,
             3,
-            """
+"""
 [quota "%s"]
   softMaxStartForTaskForUserForQueue = 1 uploadpack %s %s
 """
@@ -311,7 +311,7 @@ public class TaskQuotasTest {
         taskQuotas(
             3,
             3,
-            """
+"""
 [global]
   softMaxStartForTaskForUserForQueue = 1 ^gerrit[ ]+query.*$ %s %s
 """
@@ -348,7 +348,7 @@ public class TaskQuotasTest {
         taskQuotas(
             5,
             5,
-            """
+"""
 [quota "%s"]
   softMaxStartPerUserForTaskForQueue = 2 uploadpack %s
 """
@@ -403,7 +403,7 @@ public class TaskQuotasTest {
         taskQuotas(
             3,
             3,
-            """
+"""
 [quota "%s"]
   softMaxStartPerUserForTaskForQueue = 1 uploadpack %s
 """
@@ -437,7 +437,7 @@ public class TaskQuotasTest {
         taskQuotas(
             2,
             2,
-            """
+"""
 [quota "%s"]
   maxStartForTaskForQueue = 1 uploadpack %s
 """
@@ -464,7 +464,7 @@ public class TaskQuotasTest {
         taskQuotas(
             2,
             2,
-            """
+"""
 [quota "%s"]
   maxStartForTaskForQueue = 1 uploadpack %s
 """
@@ -489,7 +489,7 @@ public class TaskQuotasTest {
         taskQuotas(
             5,
             5,
-            """
+"""
 [quota "%s"]
   maxStartForTaskForQueue = 1 uploadpack %s
 """
@@ -550,6 +550,140 @@ public class TaskQuotasTest {
         taskQuotas.isReadyToStart(r_3));
   }
 
+  @Test
+  public void testPoolSharedAcrossQueues() throws ConfigInvalidException {
+    TaskQuotas taskQuotas =
+        taskQuotas(
+            5,
+            5,
+            """
+            [global]
+              countForPool = 2 uploads
+              maxStartForTaskForQueue = pool:uploads uploadpack %s
+              maxStartForTaskForQueue = pool:uploads uploadpack %s
+            """
+                .formatted(INTERACTIVE.getName(), BATCH.getName()));
+
+    Task<?> interactive1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(interactive1));
+    taskQuotas.onStart(interactive1);
+
+    Task<?> batch1 = task(BATCH.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(batch1));
+    taskQuotas.onStart(batch1);
+
+    Task<?> interactive2 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_B));
+    assertFalse(
+        "pool capacity is shared across both queues and is now exhausted",
+        taskQuotas.isReadyToStart(interactive2));
+
+    taskQuotas.onStop(batch1);
+    assertTrue(
+        "stopping the batch task frees capacity for the interactive queue",
+        taskQuotas.isReadyToStart(interactive2));
+    startAndCompleteTask(taskQuotas, interactive2);
+
+    taskQuotas.onStop(interactive1);
+  }
+
+  @Test
+  public void testPoolTokenSharedAcrossProjects() throws ConfigInvalidException {
+    String projectY = "project-y";
+    TaskQuotas taskQuotas =
+        taskQuotas(
+            2,
+            2,
+            """
+            [global]
+              countForPool = 1 uploads
+            [quota "%s"]
+              maxStartForTaskForQueue = pool:uploads uploadpack %s
+            [quota "%s"]
+              maxStartForTaskForQueue = pool:uploads uploadpack %s
+            """
+                .formatted(PROJECT_X, INTERACTIVE.getName(), projectY, INTERACTIVE.getName()));
+
+    Task<?> x1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(x1));
+    taskQuotas.onStart(x1);
+
+    Task<?> y1 = task(INTERACTIVE.getName(), uploadPackTask(projectY, USER_A));
+    assertFalse(
+        "pool capacity is shared across projects and is now exhausted",
+        taskQuotas.isReadyToStart(y1));
+
+    taskQuotas.onStop(x1);
+  }
+
+  @Test
+  public void testPoolSharedAcrossDifferentTaskGroups() throws ConfigInvalidException {
+    TaskQuotas taskQuotas =
+        taskQuotas(
+            5,
+            5,
+            """
+            [global]
+              countForPool = 1 gitops
+              maxStartForTaskForQueue = pool:gitops uploadpack %s
+              maxStartForTaskForQueue = pool:gitops receivepack %s
+            """
+                .formatted(INTERACTIVE.getName(), INTERACTIVE.getName()));
+
+    Task<?> upload = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(upload));
+    taskQuotas.onStart(upload);
+
+    Task<?> receive = task(INTERACTIVE.getName(), receivePackTask(PROJECT_X, USER_B));
+    assertFalse(
+        "uploadpack and receivepack lines referencing the same pool share one counter",
+        taskQuotas.isReadyToStart(receive));
+
+    taskQuotas.onStop(upload);
+    startAndCompleteTask(taskQuotas, receive);
+  }
+
+  @Test
+  public void testPoolSharedAcrossQueuesForPerUserForTaskForQueue() throws ConfigInvalidException {
+    TaskQuotas taskQuotas =
+        taskQuotas(
+            5,
+            5,
+            """
+            [global]
+              countForPool = 2 uploads
+              maxStartPerUserForTaskForQueue = pool:uploads uploadpack %s
+              maxStartPerUserForTaskForQueue = pool:uploads uploadpack %s
+            """
+                .formatted(INTERACTIVE.getName(), BATCH.getName()));
+
+    Task<?> interactive1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(interactive1));
+    taskQuotas.onStart(interactive1);
+
+    Task<?> batch1 = task(BATCH.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(batch1));
+    taskQuotas.onStart(batch1);
+
+    Task<?> interactive2 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertFalse(
+        "user_a's per-user cap is shared across both pooled queues and is now exhausted",
+        taskQuotas.isReadyToStart(interactive2));
+
+    Task<?> otherUserInteractive = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_B));
+    assertTrue(
+        "the per-user cap is tracked separately for each user",
+        taskQuotas.isReadyToStart(otherUserInteractive));
+    startAndCompleteTask(taskQuotas, otherUserInteractive);
+
+    taskQuotas.onStop(batch1);
+    assertTrue(
+        "stopping user_a's batch task frees pooled capacity for the interactive queue",
+        taskQuotas.isReadyToStart(interactive2));
+    startAndCompleteTask(taskQuotas, interactive2);
+
+    taskQuotas.onStop(interactive1);
+  }
+
   private Task<?> task(String queueName, String taskString) {
     Task<?> task = Mockito.mock(Task.class);
     when(task.getTaskId()).thenReturn(new Random().nextInt());
@@ -598,7 +732,7 @@ public class TaskQuotasTest {
         taskQuotas(
             2,
             2,
-            """
+"""
 [global]
   # Limiting gerrit query tasks specifically using a regex
   maxStartForTaskForQueue = 1 ^gerrit[ ]+query.*$ %s
@@ -631,7 +765,7 @@ public class TaskQuotasTest {
         taskQuotas(
             1,
             1,
-            """
+"""
 [global]
   maxStartForTaskForQueue = 1 uploadpack %s
   maxParked = 1

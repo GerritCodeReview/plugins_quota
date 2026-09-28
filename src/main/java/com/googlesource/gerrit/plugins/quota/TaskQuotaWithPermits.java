@@ -15,27 +15,23 @@
 package com.googlesource.gerrit.plugins.quota;
 
 import com.google.gerrit.server.git.WorkQueue;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public abstract class TaskQuotaWithPermits implements TaskQuota {
-  protected final AtomicInteger permits;
-  protected final int maxPermits;
+  protected final Permits permits;
 
   public TaskQuotaWithPermits(int maxPermits) {
-    this.permits = new AtomicInteger(maxPermits);
-    this.maxPermits = maxPermits;
+    this(new Permits(maxPermits));
+  }
+
+  protected TaskQuotaWithPermits(Permits permits) {
+    this.permits = permits;
   }
 
   public boolean isReadyToStart(WorkQueue.Task<?> task) {
-    if (permits.decrementAndGet() >= 0) {
-      return true;
-    }
-
-    permits.incrementAndGet();
-    return false;
+    return permits.tryAcquire();
   }
 
   public void onStop(WorkQueue.Task<?> task) {
-    permits.incrementAndGet();
+    permits.release();
   }
 }
