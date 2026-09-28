@@ -39,6 +39,8 @@ public class ProjectResolver {
    * <p>git-receive-pack /example.git (admin)
    *
    * <p>git-upload-pack /./example.git (admin)
+   *
+   * <p>git-upload-archive example.git (admin)
    */
   private static final Pattern PROJECT_PATTERN = Pattern.compile("\\s+/?(.*)\\s+(\\(\\S+\\))$");
 
@@ -92,6 +94,8 @@ public class ProjectResolver {
   }
 
   static boolean isGitCommand(String taskStr) {
-    return taskStr.startsWith("git-upload-pack") || taskStr.startsWith("git-receive-pack");
+    return taskStr.startsWith("git-upload-pack")
+        || taskStr.startsWith("git-receive-pack")
+        || taskStr.startsWith("git-upload-archive");
   }
 }

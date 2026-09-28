@@ -94,6 +94,32 @@ public class TaskQuotasTest {
   }
 
   @Test
+  public void testUploadArchiveCountsAgainstUploadPackQuota() throws ConfigInvalidException {
+    TaskQuotas taskQuotas =
+        taskQuotas(
+            2,
+            2,
+            """
+[quota "%s"]
+  maxStartForTaskForQueue = 1 uploadpack %s
+"""
+                .formatted(PROJECT_X, INTERACTIVE.getName()));
+
+    Task<?> u_x_1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(u_x_1));
+    taskQuotas.onStart(u_x_1);
+
+    Task<?> u_x_2 = task(INTERACTIVE.getName(), uploadArchiveTask(PROJECT_X, USER_A));
+    assertFalse(
+        "upload-archive should be limited by the uploadpack quota",
+        taskQuotas.isReadyToStart(u_x_2));
+
+    taskQuotas.onStop(u_x_1);
+    assertTrue(taskQuotas.isReadyToStart(u_x_2));
+    startAndCompleteTask(taskQuotas, u_x_2);
+  }
+
+  @Test
   public void testMaxStartForTaskForUserForQueue() throws ConfigInvalidException {
     TaskQuotas taskQuotas =
         taskQuotas(
@@ -585,6 +611,10 @@ public class TaskQuotasTest {
 
   private String receivePackTask(String project, String user) {
     return "git-receive-pack %s (%s)".formatted(project, user);
+  }
+
+  private String uploadArchiveTask(String project, String user) {
+    return "git-upload-archive %s (%s)".formatted(project, user);
   }
 
   private void startAndCompleteTask(TaskQuotas quotas, Task<?> task) {

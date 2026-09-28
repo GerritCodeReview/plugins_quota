@@ -427,8 +427,8 @@ across all queues combined.
 
 Currently supported tasks:
 
-* `uploadpack`: Maps directly to git-upload-pack operations (used during Git
-  fetches or clones).
+* `uploadpack`: Maps to git-upload-pack operations (used during Git fetches
+  or clones) and git-upload-archive operations.
 * `receivepack`: Maps directly to git-receive-pack operations (used during Git
   pushes).
 * `Regex`: Any string wrapped in `^...$` (e.g., `^gerrit.*$`) to match the task's

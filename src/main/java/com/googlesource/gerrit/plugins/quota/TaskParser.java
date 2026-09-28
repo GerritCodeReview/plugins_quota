@@ -23,7 +23,11 @@ import java.util.regex.Pattern;
 
 public class TaskParser {
   public static final Map<String, Set<String>> SUPPORTED_TASKS_BY_GROUP =
-      Map.of("uploadpack", Set.of("git-upload-pack"), "receivepack", Set.of("git-receive-pack"));
+      Map.of(
+          "uploadpack",
+          Set.of("git-upload-pack", "git-upload-archive"),
+          "receivepack",
+          Set.of("git-receive-pack"));
   public static final String TASK_GROUP_PATTERN =
       "(\\^[^$]*\\$|" + String.join("|", SUPPORTED_TASKS_BY_GROUP.keySet()) + ")";
 
