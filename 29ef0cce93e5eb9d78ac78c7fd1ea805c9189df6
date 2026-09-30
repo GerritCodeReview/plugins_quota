@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71c7b646_9eb8c44c",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotaUserIT.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-09-30T08:31:24Z",
+      "side": 1,
+      "message": "Done — both starts together, then the asserts, so all four tests read the same.",
+      "parentUuid": "cdd23910_22d3de89",
+      "revId": "29ef0cce93e5eb9d78ac78c7fd1ea805c9189df6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6dbee9ae_21a51631",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-09-27T23:25:21Z",
       "side": 1,
       "message": "why not just use Interactive queue since that is default instead of this complexity ?",
+      "revId": "29ef0cce93e5eb9d78ac78c7fd1ea805c9189df6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3abcadac_a0c0b945",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotaUserIT.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-09-30T08:31:24Z",
+      "side": 1,
+      "message": "Tried that first and it can\u0027t work: GerritServer pins sshd.threads to 1 for every acceptance test, and interactiveThreads \u003d max(1, poolSize - batchThreads), so the interactive queue always has exactly one thread. The second uploadpack then never gets a thread to park on — it just sits READY and the test times out. sshd.batchThreads is the only queue size a test can actually set.",
+      "parentUuid": "6dbee9ae_21a51631",
       "revId": "29ef0cce93e5eb9d78ac78c7fd1ea805c9189df6",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
