@@ -18,6 +18,7 @@ import com.google.gerrit.httpd.AllRequestFilter;
 import com.google.gerrit.server.CurrentUser;
 import com.google.gerrit.server.IdentifiedUser;
 import com.google.gerrit.server.project.ProjectCache;
+import com.google.gerrit.util.logging.NamedFluentLogger;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
@@ -40,6 +41,9 @@ import org.eclipse.jgit.lib.Config;
 
 @Singleton
 public class MaxConnectionsLimiter extends AllRequestFilter {
+  private static final NamedFluentLogger quotaLog =
+      NamedFluentLogger.forName(TaskQuotaLogFile.NAME);
+
   record Limit(String group, Integer restApiLimit) {}
 
   private static final String GLOBAL_KEY = "global";
@@ -98,8 +102,14 @@ public class MaxConnectionsLimiter extends AllRequestFilter {
 
         if (limit.isPresent()) {
           if (!canPermitCall(userId, limit.get())) {
-            ((HttpServletResponse) response)
-                .sendError(429, "Too Many Requests: rate limited by " + CONFIG_KEY);
+            String msg =
+                "Too Many Requests: rate limited by %s, user: %s, path: %s"
+                    .formatted(
+                        CONFIG_KEY,
+                        currentUser.getUserName().orElse(currentUser.getAccountId().toString()),
+                        ((HttpServletRequest) request).getServletPath());
+            quotaLog.atInfo().log("%s", msg);
+            ((HttpServletResponse) response).sendError(429, msg);
             return;
           }
           try {
