@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "019181e3_121f3959",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxConnectionsLimiter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-10-05T17:17:32Z",
+      "side": 1,
+      "message": "style: This line should come first in the class.",
+      "revId": "2e0bd6017eda9bea186d10dcc695e759c479a2c6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1478b476_12814ec7",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MaxEndpointConnectionsLimiter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-10-05T17:17:32Z",
+      "side": 1,
+      "message": "Style: Line should come first in class.",
+      "revId": "2e0bd6017eda9bea186d10dcc695e759c479a2c6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
