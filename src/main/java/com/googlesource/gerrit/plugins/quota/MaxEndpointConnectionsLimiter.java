@@ -19,6 +19,7 @@ import com.google.gerrit.httpd.AllRequestFilter;
 import com.google.gerrit.server.CurrentUser;
 import com.google.gerrit.server.account.GroupMembership;
 import com.google.gerrit.server.project.ProjectCache;
+import com.google.gerrit.util.logging.NamedFluentLogger;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
@@ -52,6 +53,8 @@ public class MaxEndpointConnectionsLimiter extends AllRequestFilter {
     }
   }
 
+  private static final NamedFluentLogger quotaLog =
+      NamedFluentLogger.forName(TaskQuotaLogFile.NAME);
   private static final Logger log = LoggerFactory.getLogger(MaxEndpointConnectionsLimiter.class);
   private static final String CONFIG_KEY = "maxConnectionsForEndpoint";
   private static final String GLOBAL_SECTION = "global";
@@ -137,8 +140,17 @@ public class MaxEndpointConnectionsLimiter extends AllRequestFilter {
         for (Acquisition toRelease : acquired) {
           markCallComplete(toRelease);
         }
-        ((HttpServletResponse) response)
-            .sendError(429, "Too Many Requests: rate limited by " + CONFIG_KEY);
+        String msg =
+            "Too Many Requests: rate limited by %s, user: %s, path: %s"
+                .formatted(
+                    acquisition.toString(),
+                    userProvider
+                        .get()
+                        .getUserName()
+                        .orElse(userProvider.get().getAccountId().toString()),
+                    ((HttpServletRequest) request).getServletPath());
+        quotaLog.atInfo().log(msg);
+        ((HttpServletResponse) response).sendError(429, msg);
         return;
       }
     }
