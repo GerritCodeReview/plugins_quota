@@ -16,6 +16,23 @@
       "message": "Good to go?",
       "revId": "ba8b73fa387cf6970f6815222d6ced14609898ad",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c45a2dd5_96de3d7d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/ProjectResolver.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-10-07T18:32:12Z",
+      "side": 1,
+      "message": "rebase should show a conflict here. to handle git-upload-archive",
+      "revId": "ba8b73fa387cf6970f6815222d6ced14609898ad",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
