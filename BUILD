@@ -16,9 +16,7 @@ gerrit_plugin(
         "Gerrit-HttpModule: com.googlesource.gerrit.plugins.quota.HttpModule",
     ],
     resources = glob(["src/main/resources/**/*"]),
-    deps = [
-        "@commons-lang3//jar"
-    ]
+    deps = [],
 )
 
 junit_tests(
