@@ -25,10 +25,10 @@ import java.util.stream.Collectors;
 
 public class TaskParser {
   /**
-   * Task names a group applies to. Gerrit registers each Git command under several names (see
-   * {@code DefaultCommandModule}): the hyphenated top level aliases, and the space separated forms
-   * produced by {@code DispatchCommand} for nested commands. All of them reach the work queue and
-   * must be counted against the same quota.
+   * Task names each group applies to, matched against the start of the task string. Gerrit
+   * registers a Git command under several names (see {@code DefaultCommandModule}) and all of them
+   * reach the work queue, so all have to count against the same quota. An index task name ends in
+   * the change number, so the entry stops before it.
    */
   public static final Map<String, Set<String>> SUPPORTED_TASKS_BY_GROUP =
       Map.of(
@@ -36,23 +36,30 @@ public class TaskParser {
           Set.of("git-upload-pack", "git upload-pack", "git-upload-archive", "git upload-archive"),
           "receivepack",
           Set.of(
-              "git-receive-pack",
-              "git receive-pack",
-              "gerrit-receive-pack",
-              "gerrit receive-pack"));
+              "git-receive-pack", "git receive-pack", "gerrit-receive-pack", "gerrit receive-pack"),
+          "index",
+          Set.of("index-change-", "reindex-if-stale-change-"));
 
-  /**
-   * Groups whose task string carries the repository name in the form {@code ProjectResolver}
-   * parses, that is, followed by the user in parentheses. Groups added to {@link
-   * #SUPPORTED_TASKS_BY_GROUP} in future must be listed here to be resolved to a project.
-   */
-  public static final Set<String> GROUPS_WITH_PROJECT_NAME = Set.of("uploadpack", "receivepack");
+  /** Where in a task string the project is named, which differs by the kind of task. */
+  public enum TaskKind {
+    GIT_COMMANDS,
+    INDEX_TASKS;
+  }
 
-  public static final Set<String> TASKS_WITH_PROJECT_NAME =
-      GROUPS_WITH_PROJECT_NAME.stream()
-          .map(SUPPORTED_TASKS_BY_GROUP::get)
-          .flatMap(Set::stream)
-          .collect(Collectors.toUnmodifiableSet());
+  /** A group missing from here resolves to no project, so groups added later must be listed. */
+  public static final Map<String, TaskKind> KIND_BY_GROUP =
+      Map.of(
+          "uploadpack", TaskKind.GIT_COMMANDS,
+          "receivepack", TaskKind.GIT_COMMANDS,
+          "index", TaskKind.INDEX_TASKS);
+
+  public static final Map<String, TaskKind> KIND_BY_TASK =
+      KIND_BY_GROUP.entrySet().stream()
+          .flatMap(
+              group ->
+                  SUPPORTED_TASKS_BY_GROUP.get(group.getKey()).stream()
+                      .map(task -> Map.entry(task, group.getValue())))
+          .collect(Collectors.toUnmodifiableMap(Map.Entry::getKey, Map.Entry::getValue));
 
   public static final String TASK_GROUP_PATTERN =
       "(\\^[^$]*\\$|" + String.join("|", SUPPORTED_TASKS_BY_GROUP.keySet()) + ")";

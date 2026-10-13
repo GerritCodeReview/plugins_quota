@@ -37,10 +37,14 @@ public class TestNamespaceMatching {
   private static final Set<String> RECEIVE_PACK_ALIASES =
       TaskParser.SUPPORTED_TASKS_BY_GROUP.get("receivepack");
 
-  private static final ImmutableSet<String> ALL_ALIASES =
-      TaskParser.SUPPORTED_TASKS_BY_GROUP.values().stream()
-          .flatMap(Set::stream)
-          .collect(ImmutableSet.toImmutableSet());
+  private static final Set<String> INDEX_TASK_PREFIXES =
+      TaskParser.SUPPORTED_TASKS_BY_GROUP.get("index");
+
+  private static final ImmutableSet<String> GIT_ALIASES =
+      ImmutableSet.<String>builder()
+          .addAll(UPLOAD_PACK_ALIASES)
+          .addAll(RECEIVE_PACK_ALIASES)
+          .build();
 
   @Test
   public void exactNamespace() {
@@ -69,6 +73,7 @@ public class TestNamespaceMatching {
     Pattern pattern = Pattern.compile(TaskParser.TASK_GROUP_PATTERN);
     assertTrue(pattern.matcher("uploadpack").matches());
     assertTrue(pattern.matcher("receivepack").matches());
+    assertTrue(pattern.matcher("index").matches());
 
     assertTrue(pattern.matcher("^gerrit.query.*$").matches());
     assertTrue(pattern.matcher("^gerrit[ ]+stream-events.*$").matches());
@@ -82,6 +87,7 @@ public class TestNamespaceMatching {
   public void configPatterns() {
     Pattern queuePattern = TaskQuotaForTaskForQueue.CONFIG_PATTERN;
     assertTrue(queuePattern.matcher("10 uploadpack queue-name").matches());
+    assertTrue(queuePattern.matcher("10 index Index-Batch").matches());
     assertTrue(queuePattern.matcher("5 ^gerrit.query.status:open.*$ operational-queue").matches());
     assertFalse(queuePattern.matcher("10 unknownpack queue-name").matches());
 
@@ -104,6 +110,13 @@ public class TestNamespaceMatching {
       assertTrue(alias, new TaskGroup("receivepack").isApplicable(task));
       assertFalse(alias, new TaskGroup("uploadpack").isApplicable(task));
     }
+
+    for (String prefix : INDEX_TASK_PREFIXES) {
+      Task<?> task = task(prefix + "1234 example");
+      assertTrue(prefix, new TaskGroup("index").isApplicable(task));
+      assertFalse(prefix, new TaskGroup("uploadpack").isApplicable(task));
+      assertFalse(prefix, new TaskGroup("receivepack").isApplicable(task));
+    }
   }
 
   @Test
@@ -111,13 +124,55 @@ public class TestNamespaceMatching {
     ProjectResolver resolver = new ProjectResolver(mock(ProjectCache.class));
     Optional<Project.NameKey> expected = Optional.of(Project.nameKey("example"));
 
-    for (String alias : ALL_ALIASES) {
+    for (String alias : GIT_ALIASES) {
       assertEquals(alias, expected, resolver.estimateProject(task(alias + " example.git (admin)")));
       assertEquals(
           alias, expected, resolver.estimateProject(task(alias + " /example.git (admin)")));
       assertEquals(
           alias, expected, resolver.estimateProject(task(alias + " /./example.git (admin)")));
     }
+  }
+
+  @Test
+  public void projectEstimatedFromEveryIndexTask() {
+    ProjectResolver resolver = new ProjectResolver(mock(ProjectCache.class));
+
+    for (String prefix : INDEX_TASK_PREFIXES) {
+      assertEquals(
+          prefix,
+          Optional.of(Project.nameKey("example")),
+          resolver.estimateProject(task(prefix + "1234 example")));
+      assertEquals(
+          prefix,
+          Optional.of(Project.nameKey("test/example")),
+          resolver.estimateProject(task(prefix + "1234 test/example")));
+    }
+  }
+
+  @Test
+  public void encodedProjectNameDecodedFromIndexTask() {
+    ProjectResolver resolver = new ProjectResolver(mock(ProjectCache.class));
+    Project.NameKey project = Project.nameKey("test/an example");
+
+    assertEquals(
+        Optional.of(project), resolver.estimateProject(task("index-change-1234 " + project)));
+  }
+
+  /** Indexing never runs over HTTP, so "a/" here starts a project name and is not a URL prefix. */
+  @Test
+  public void projectNameStartingWithHttpPrefixKeptFromIndexTask() {
+    ProjectResolver resolver = new ProjectResolver(mock(ProjectCache.class));
+
+    assertEquals(
+        Optional.of(Project.nameKey("a/example")),
+        resolver.estimateProject(task("index-change-1234 a/example")));
+  }
+
+  /** Gerrit releases before I3004b8c9 name no project, and the change number is not one. */
+  @Test
+  public void indexTaskWithoutProjectHasNoEstimatedProject() {
+    ProjectResolver resolver = new ProjectResolver(mock(ProjectCache.class));
+    assertEquals(Optional.empty(), resolver.estimateProject(task("index-change-1234")));
   }
 
   @Test
