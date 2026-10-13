@@ -18,6 +18,7 @@ import com.google.gerrit.entities.Project;
 import com.google.gerrit.exceptions.StorageException;
 import com.google.gerrit.server.git.WorkQueue;
 import com.google.gerrit.server.project.ProjectCache;
+import com.googlesource.gerrit.plugins.quota.TaskParser.TaskKind;
 import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.regex.Matcher;
@@ -45,7 +46,20 @@ public class ProjectResolver {
    * command name contains a space, such as "git upload-pack", the match starts at that space and
    * captures "upload-pack /example.git" as the project.
    */
-  private static final Pattern PROJECT_PATTERN = Pattern.compile("\\s+/?(.*)\\s+(\\(\\S+\\))$");
+  private static final Pattern REPOSITORY_THEN_USER_PATTERN =
+      Pattern.compile("\\s+/?(.*)\\s+(\\(\\S+\\))$");
+
+  /**
+   * Matched against the task string with the task name already removed, for example:
+   *
+   * <p>"1234 example"
+   *
+   * <p>Index tasks end with {@code Project.NameKey.toString()}, which percent encodes everything
+   * outside a small safe set and writes a space as "+", so the project is the last whitespace
+   * separated run and cannot itself contain whitespace. A task string without one is from a Gerrit
+   * too old to name the project, and resolves to no project rather than to the change number.
+   */
+  private static final Pattern TRAILING_PROJECT_PATTERN = Pattern.compile("\\s+(\\S+)$");
 
   private static final String HTTP_PREFIX = "a/";
 
@@ -59,11 +73,27 @@ public class ProjectResolver {
   public Optional<Project.NameKey> estimateProject(WorkQueue.Task<?> task) {
     String taskStr = task.toString();
     Optional<String> matchedTask = TaskParser.matchedTask(taskStr);
-    if (matchedTask.isEmpty() || !hasProjectName(matchedTask.get())) {
+    if (matchedTask.isEmpty()) {
+      return Optional.empty();
+    }
+    TaskKind kind = TaskParser.KIND_BY_TASK.get(matchedTask.get());
+    if (kind == null) {
       return Optional.empty();
     }
 
-    Matcher matcher = PROJECT_PATTERN.matcher(taskStr.substring(matchedTask.get().length()));
+    String arguments = taskStr.substring(matchedTask.get().length());
+    return switch (kind) {
+      case GIT_COMMANDS -> gitCommandProject(arguments);
+      case INDEX_TASKS -> indexTaskProject(arguments);
+    };
+  }
+
+  /**
+   * Resolves the repository the client asked for to a project. The name arrives as a URL path, so
+   * it can be slash prefixed and can carry the prefix Gerrit's authenticated HTTP endpoints use.
+   */
+  private Optional<Project.NameKey> gitCommandProject(String arguments) {
+    Matcher matcher = REPOSITORY_THEN_USER_PATTERN.matcher(arguments);
     if (!matcher.find()) {
       return Optional.empty();
     }
@@ -86,6 +116,16 @@ public class ProjectResolver {
   }
 
   /**
+   * Reads the project Gerrit itself wrote into the task string. Index tasks never run over HTTP and
+   * already name a project, so none of the repository to project guessing applies, only the
+   * decoding that undoes {@code Project.NameKey.toString()}.
+   */
+  private static Optional<Project.NameKey> indexTaskProject(String arguments) {
+    Matcher matcher = TRAILING_PROJECT_PATTERN.matcher(arguments);
+    return matcher.find() ? Optional.of(Project.NameKey.parse(matcher.group(1))) : Optional.empty();
+  }
+
+  /**
    * Drops leading slashes, duplicate slashes, and "." segments. For example: "/./foo//bar/"
    * normalizes to "foo/bar".
    */
@@ -95,13 +135,5 @@ public class ProjectResolver {
       normalized = normalized.substring(1);
     }
     return normalized;
-  }
-
-  /**
-   * Whether the task string carries the repository name in the form {@link #PROJECT_PATTERN}
-   * parses, that is, followed by the user in parentheses.
-   */
-  static boolean hasProjectName(String taskName) {
-    return TaskParser.TASKS_WITH_PROJECT_NAME.contains(taskName);
   }
 }

@@ -25,10 +25,11 @@ import java.util.stream.Collectors;
 
 public class TaskParser {
   /**
-   * Task names a group applies to. Gerrit registers each Git command under several names (see
-   * {@code DefaultCommandModule}): the hyphenated top level aliases, and the space separated forms
-   * produced by {@code DispatchCommand} for nested commands. All of them reach the work queue and
-   * must be counted against the same quota.
+   * Prefixes of the task strings a group applies to. Gerrit registers each Git command under
+   * several names (see {@code DefaultCommandModule}): the hyphenated top level aliases, and the
+   * space separated forms produced by {@code DispatchCommand} for nested commands. All of them
+   * reach the work queue and must be counted against the same quota. Index tasks are named after
+   * the change they reindex, so only the part before the change number is listed.
    */
   public static final Map<String, Set<String>> SUPPORTED_TASKS_BY_GROUP =
       Map.of(
@@ -36,23 +37,43 @@ public class TaskParser {
           Set.of("git-upload-pack", "git upload-pack", "git-upload-archive", "git upload-archive"),
           "receivepack",
           Set.of(
-              "git-receive-pack",
-              "git receive-pack",
-              "gerrit-receive-pack",
-              "gerrit receive-pack"));
+              "git-receive-pack", "git receive-pack", "gerrit-receive-pack", "gerrit receive-pack"),
+          "indexing",
+          Set.of("index-change-", "reindex-if-stale-change-"));
+
+  /** The kinds of task that name a project, which differ in where they name it. */
+  public enum TaskKind {
+    /**
+     * Started by a client, and so names the repository the client asked for followed by the user in
+     * parentheses, for example {@code git-upload-pack /example.git (admin)}.
+     */
+    GIT_COMMANDS,
+
+    /**
+     * Started by Gerrit, and so names the project alone at the end of the task string, for example
+     * {@code index-change-1234 example}.
+     */
+    INDEX_TASKS;
+  }
 
   /**
-   * Groups whose task string carries the repository name in the form {@code ProjectResolver}
-   * parses, that is, followed by the user in parentheses. Groups added to {@link
-   * #SUPPORTED_TASKS_BY_GROUP} in future must be listed here to be resolved to a project.
+   * The kind of each group's tasks, which decides how {@code ProjectResolver} reads the project
+   * name. Groups added to {@link #SUPPORTED_TASKS_BY_GROUP} in future must be listed here to be
+   * resolved to a project.
    */
-  public static final Set<String> GROUPS_WITH_PROJECT_NAME = Set.of("uploadpack", "receivepack");
+  public static final Map<String, TaskKind> KIND_BY_GROUP =
+      Map.of(
+          "uploadpack", TaskKind.GIT_COMMANDS,
+          "receivepack", TaskKind.GIT_COMMANDS,
+          "indexing", TaskKind.INDEX_TASKS);
 
-  public static final Set<String> TASKS_WITH_PROJECT_NAME =
-      GROUPS_WITH_PROJECT_NAME.stream()
-          .map(SUPPORTED_TASKS_BY_GROUP::get)
-          .flatMap(Set::stream)
-          .collect(Collectors.toUnmodifiableSet());
+  public static final Map<String, TaskKind> KIND_BY_TASK =
+      KIND_BY_GROUP.entrySet().stream()
+          .flatMap(
+              group ->
+                  SUPPORTED_TASKS_BY_GROUP.get(group.getKey()).stream()
+                      .map(task -> Map.entry(task, group.getValue())))
+          .collect(Collectors.toUnmodifiableMap(Map.Entry::getKey, Map.Entry::getValue));
 
   public static final String TASK_GROUP_PATTERN =
       "(\\^[^$]*\\$|" + String.join("|", SUPPORTED_TASKS_BY_GROUP.keySet()) + ")";
