@@ -361,6 +361,15 @@ specific task and queue combination. Example:
 
 Queue names can be found at `GET /config/server/tasks/ HTTP/1.0`
 
+Quotas apply per namespace, so a task group can be limited for one set of
+projects alone. For example, to stop one namespace from filling the batch index
+queue:
+
+```
+  [quota "android/*"]
+    maxStartForTaskForQueue = 10 indexing Index-Batch
+```
+
 Additionally, to scope the user use `maxStartForTaskForUserForQueue` or
 `softMaxStartForTaskForUserForQueue`
 
@@ -441,6 +450,13 @@ Currently supported tasks:
 * `receivepack`: Maps directly to git-receive-pack operations (used during Git
   pushes). Also covers the alternate command names Gerrit accepts for the same
   operation: `git receive-pack`, `gerrit-receive-pack` and `gerrit receive-pack`.
+* `indexing`: Maps to the change reindexing tasks Gerrit runs on the
+  `Index-Interactive` and `Index-Batch` queues, both the reindex itself and the
+  staleness check that may precede it. Useful to stop a project with many open
+  changes from filling an index queue, for example when mergeability
+  computation is enabled. These tasks are started by Gerrit rather than by a
+  client, so they have no user and the `ForUser` and `PerUser` variants never
+  apply to them.
 * `Regex`: Any string wrapped in `^...$` (e.g., `^gerrit.*$`) to match the task's
   string representation.
 
