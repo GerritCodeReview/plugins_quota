@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77b8843c_cc98926c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskParser.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-10-14T03:08:05Z",
+      "side": 1,
+      "message": "GIT_COMMANDS",
+      "revId": "0c1e0c18f5cc50fc922710fdb9e605ecf087acfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d77ef4b5_236269b8",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskParser.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-10-14T03:08:05Z",
+      "side": 1,
+      "message": "INDEX_TASKS",
+      "revId": "0c1e0c18f5cc50fc922710fdb9e605ecf087acfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8aa8d13e_5d515ea8",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TestNamespaceMatching.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-10-14T03:08:05Z",
+      "side": 1,
+      "message": "I dont think `/a` applies here since indexing is not run through HTTP API ?  Can you confirm ?",
+      "revId": "0c1e0c18f5cc50fc922710fdb9e605ecf087acfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
