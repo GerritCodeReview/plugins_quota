@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8248be9_8d48087e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskParser.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-10-15T05:48:52Z",
+      "side": 1,
+      "message": "Done, and renamed the enum to TaskKind to match, since the constants now\nname the task kind rather than the string shape.",
+      "parentUuid": "77b8843c_cc98926c",
+      "revId": "0c1e0c18f5cc50fc922710fdb9e605ecf087acfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d77ef4b5_236269b8",
@@ -35,6 +53,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7679af95_367878ed",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/TaskParser.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-10-15T05:48:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d77ef4b5_236269b8",
+      "revId": "0c1e0c18f5cc50fc922710fdb9e605ecf087acfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8aa8d13e_5d515ea8",
@@ -48,6 +84,24 @@
       "writtenOn": "2026-10-14T03:08:05Z",
       "side": 1,
       "message": "I dont think `/a` applies here since indexing is not run through HTTP API ?  Can you confirm ?",
+      "revId": "0c1e0c18f5cc50fc922710fdb9e605ecf087acfc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b1218c6_55b61d80",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TestNamespaceMatching.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-10-15T05:48:52Z",
+      "side": 1,
+      "message": "Confirmed, it never runs over HTTP, which is the point of the test: \"a/\" can only be the start of a real project name here, so it must not be stripped. Reworded the name and comment, which had it backwards.",
+      "parentUuid": "8aa8d13e_5d515ea8",
       "revId": "0c1e0c18f5cc50fc922710fdb9e605ecf087acfc",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
