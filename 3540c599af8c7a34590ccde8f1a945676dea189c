@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bc4fb98_0d1b540a",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-10-22T17:36:29Z",
+      "side": 1,
+      "message": "Can you pull out this refactor in to seperate change ?",
+      "revId": "3540c599af8c7a34590ccde8f1a945676dea189c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
