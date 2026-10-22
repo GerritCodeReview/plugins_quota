@@ -20,6 +20,10 @@ public abstract class TaskQuotaForTask extends TaskQuotaWithPermits {
   protected final TaskGroup taskGroup;
 
   public TaskQuotaForTask(String taskGroup, int permits) {
+    this(taskGroup, new Permits(permits));
+  }
+
+  protected TaskQuotaForTask(String taskGroup, Permits permits) {
     super(permits);
     this.taskGroup = new TaskGroup(taskGroup);
   }
