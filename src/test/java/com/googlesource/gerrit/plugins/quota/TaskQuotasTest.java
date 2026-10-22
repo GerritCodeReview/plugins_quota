@@ -586,6 +586,47 @@ public class TaskQuotasTest {
         taskQuotas.isReadyToStart(r_3));
   }
 
+  @Test
+  public void testMinStartForUserForQueue() throws ConfigInvalidException {
+    TaskQuotas taskQuotas =
+        taskQuotas(
+            4,
+            4,
+            """
+            [quota "%s"]
+              minStartForUserForQueue = 2 %s %s
+            """
+                .formatted(PROJECT_X, USER_A, INTERACTIVE.getName()));
+
+    Task<?> u_b_1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_B));
+    assertTrue(taskQuotas.isReadyToStart(u_b_1));
+    taskQuotas.onStart(u_b_1);
+
+    Task<?> u_b_2 = task(INTERACTIVE.getName(), receivePackTask(PROJECT_X, USER_B));
+    assertTrue(taskQuotas.isReadyToStart(u_b_2));
+    taskQuotas.onStart(u_b_2);
+
+    Task<?> u_b_3 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_B));
+    assertFalse(
+        "Other users should be blocked; remaining slots are reserved for the configured user",
+        taskQuotas.isReadyToStart(u_b_3));
+
+    Task<?> u_a_1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(
+        "Reserved user should be allowed to use reserved slots, whatever the task",
+        taskQuotas.isReadyToStart(u_a_1));
+    taskQuotas.onStart(u_a_1);
+
+    Task<?> u_a_2 = task(INTERACTIVE.getName(), receivePackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(u_a_2));
+    taskQuotas.onStart(u_a_2);
+
+    Task<?> u_a_3 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertFalse(
+        "Absolute ceiling (maxStart) should still block the reserved user",
+        taskQuotas.isReadyToStart(u_a_3));
+  }
+
   private Task<?> task(String queueName, String taskString) {
     Task<?> task = Mockito.mock(Task.class);
     when(task.getTaskId()).thenReturn(new Random().nextInt());
@@ -607,6 +648,7 @@ public class TaskQuotasTest {
         new TaskQuotaKeys(
             new MinStartForQueueQuota(projectResolver),
             new MinStartForTaskForQueueQuota(projectResolver),
+            new MinStartForUserForQueueQuota(projectResolver, userResolver),
             userResolver),
         interactiveThreads,
         batchThreads);

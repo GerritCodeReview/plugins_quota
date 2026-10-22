@@ -420,6 +420,18 @@ quota cannot be defined in fallback quota section.
     minStartForTaskForQueue = 2 receivepack SSH-Interactive-Worker
 ```
 
+To reserve capacity for a single user instead, use `minStartForUserForQueue`.
+This quota cannot be defined in fallback quota section.
+
+```
+  [quota "android/*"]
+    minStartForUserForQueue = 2 userA SSH-Interactive-Worker
+```
+
+The configuration reserves 2 interactive threads for `userA`'s tasks on android
+projects, regardless of the task group. The configured name is looked up the
+same way as for `maxStartForTaskForUserForQueue` above.
+
 We can also cap how many tasks are allowed to sit parked (waiting on any of
 the above limits) across the whole server at once, using `maxParked`. Once
 that many tasks are parked, any additional task that would otherwise be

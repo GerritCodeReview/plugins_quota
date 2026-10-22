@@ -23,19 +23,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Singleton
-public class MinStartForQueueQuota {
+public class MinStartForQueueQuota extends MinStartQuota {
   public static final Logger log = LoggerFactory.getLogger(MinStartForQueueQuota.class);
   public static final String KEY = "minStartForQueue";
   // 10 SSH-Interactive-Worker
   public static final Pattern CONFIG_PATTERN = Pattern.compile("(\\d+)\\s+(.+)");
 
-  private final ProjectResolver projectResolver;
-
   @Inject
   public MinStartForQueueQuota(ProjectResolver projectResolver) {
-    this.projectResolver = projectResolver;
+    super(projectResolver);
   }
 
+  @Override
   public Optional<TaskQuota> build(QuotaSection qs, String cfg) {
     Matcher matcher = CONFIG_PATTERN.matcher(cfg);
 
@@ -44,21 +43,11 @@ public class MinStartForQueueQuota {
       return Optional.empty();
     }
 
-    if (matcher.matches()) {
-      int reservation = Integer.parseInt(matcher.group(1));
-      String queue = matcher.group(2);
-      QueueManager.registerReservation(
-          queue,
-          new QueueManager.Reservation(
-              reservation,
-              task ->
-                  task.getQueueName().equalsIgnoreCase(queue)
-                      && projectResolver.estimateProject(task).map(qs::matches).orElse(false),
-              qs.getNamespace()));
-    } else {
+    if (!matcher.matches()) {
       log.error("Invalid configuration entry [{}]", cfg);
+      return Optional.empty();
     }
 
-    return Optional.empty();
+    return reserve(qs, Integer.parseInt(matcher.group(1)), matcher.group(2), task -> true);
   }
 }
