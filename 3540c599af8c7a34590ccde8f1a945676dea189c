@@ -16,6 +16,24 @@
       "message": "Can you pull out this refactor in to seperate change ?",
       "revId": "3540c599af8c7a34590ccde8f1a945676dea189c",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4503471_c66b7ed0",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-10-23T08:40:29Z",
+      "side": 1,
+      "message": "Done, the refactor is now 647903 and this change only adds the new keyword on top of it. Also rebased onto the shared permit pools change.",
+      "parentUuid": "6bc4fb98_0d1b540a",
+      "revId": "3540c599af8c7a34590ccde8f1a945676dea189c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
