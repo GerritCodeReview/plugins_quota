@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5bfaff1e_f5a56a32",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForTaskForQueueQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-10-26T05:46:25Z",
+      "side": 1,
+      "message": "Not missing, it was redundant, see the other comment. The queue is still what the reservation is registered on, it just isn\u0027t re-checked per task.",
+      "parentUuid": "cd528742_74a0f769",
+      "revId": "a9fcde76b6a42a515d7b7f54c069327d1676f3c2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c34a7a38_5570a14e",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-10-23T17:52:44Z",
       "side": 1,
       "message": "The class name is `MinStartQuota` but why is performing queue name matches ?",
+      "revId": "a9fcde76b6a42a515d7b7f54c069327d1676f3c2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b364da65_2c364b1d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-10-26T05:46:25Z",
+      "side": 1,
+      "message": "Good catch, it should not. The check was dead anyway: a reservation lives on one queue\u0027s QueueInfo, and both canAllocate() and the parked logger only consult the reservations of the task\u0027s own queue, so the matcher never sees a task from another queue. Dropped it in ps2.",
+      "parentUuid": "c34a7a38_5570a14e",
       "revId": "a9fcde76b6a42a515d7b7f54c069327d1676f3c2",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
