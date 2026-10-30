@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "780e7551_ff4fd416",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartQuota.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-10-30T11:36:12Z",
+      "side": 1,
+      "message": "The message of these two sentences are lost on me?",
+      "revId": "9d9673282e7d78d73732e731987fa93fa7a40f10",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28a5bcb6_c321130e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartQuota.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-10-30T11:36:12Z",
+      "side": 1,
+      "message": "This javadoc is also kinda lost on me. I have to guess as to what the message really is.",
+      "revId": "9d9673282e7d78d73732e731987fa93fa7a40f10",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40f75855_4d7e9555",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartQuota.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-10-30T11:36:12Z",
+      "side": 1,
+      "message": "It\u0027s really hard when reading calls to this constructor to know what the parameters are that are needed. Could you use a \u0027builder\u0027 pattern instead?",
+      "revId": "9d9673282e7d78d73732e731987fa93fa7a40f10",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
