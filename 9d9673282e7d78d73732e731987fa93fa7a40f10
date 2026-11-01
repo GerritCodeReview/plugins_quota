@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3cdfa675_7034b055",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartQuota.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-11-01T19:38:14Z",
+      "side": 1,
+      "message": "Rewritten, a minStart quota caps nothing, it holds back threads on a queue so its tasks can still start once the queue is saturated, and QueueManager is what enforces that, which is why build returns no TaskQuota.",
+      "parentUuid": "780e7551_ff4fd416",
+      "revId": "9d9673282e7d78d73732e731987fa93fa7a40f10",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "28a5bcb6_c321130e",
@@ -35,6 +53,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2aa2e5e2_aad7cbf3",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartQuota.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-11-01T19:38:14Z",
+      "side": 1,
+      "message": "Dropped. With the builder the names carry it, so all that is left is the note on forTasks about not needing a queue check.",
+      "parentUuid": "28a5bcb6_c321130e",
+      "revId": "9d9673282e7d78d73732e731987fa93fa7a40f10",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "40f75855_4d7e9555",
@@ -48,6 +84,24 @@
       "writtenOn": "2026-10-30T11:36:12Z",
       "side": 1,
       "message": "It\u0027s really hard when reading calls to this constructor to know what the parameters are that are needed. Could you use a \u0027builder\u0027 pattern instead?",
+      "revId": "9d9673282e7d78d73732e731987fa93fa7a40f10",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a51bfe09_0f853b1d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartQuota.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-11-01T19:38:14Z",
+      "side": 1,
+      "message": "Done, it now reads reservation(qs).capacity(n).onQueue(q).forTasks(matcher).register(), and forTasks defaults to every task so minStartForQueue can leave it out.",
+      "parentUuid": "40f75855_4d7e9555",
       "revId": "9d9673282e7d78d73732e731987fa93fa7a40f10",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
