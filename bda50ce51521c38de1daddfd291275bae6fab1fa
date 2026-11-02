@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "805f55cc_db73cc16",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-11-02T21:33:50Z",
+      "side": 1,
+      "message": "Hmm it looks like I have changed the logic a while ago. Thanks.",
+      "parentUuid": "65a10b9c_e70b10e0",
+      "revId": "bda50ce51521c38de1daddfd291275bae6fab1fa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "637b9594_553d054e",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-11-02T21:22:18Z",
       "side": 1,
       "message": "Isn\u0027t this check performed at the runtime while accepting new tasks ? how does it know which tasks belong to which queue ?",
+      "revId": "bda50ce51521c38de1daddfd291275bae6fab1fa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60ab377e_2ba5a481",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartForQueueQuota.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-11-02T21:33:50Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "637b9594_553d054e",
       "revId": "bda50ce51521c38de1daddfd291275bae6fab1fa",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
