@@ -42,6 +42,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.class)
 public class TaskQuotasTest {
   private static final String PROJECT_X = "project-x";
+  private static final String PROJECT_Y = "project-y";
   private static final String USER_A = "U.S.E.R-A";
   private static final String USER_B = "USER_B";
   @Mock ProjectCache projectCache;
@@ -543,6 +544,47 @@ public class TaskQuotasTest {
     }
 
     taskQuotas.onStop(bare);
+  }
+
+  @Test
+  public void testMinStartForQueue() throws ConfigInvalidException {
+    TaskQuotas taskQuotas =
+        taskQuotas(
+            4,
+            4,
+            """
+            [quota "%s"]
+              minStartForQueue = 2 %s
+            """
+                .formatted(PROJECT_X, INTERACTIVE.getName()));
+
+    Task<?> u_y_1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_Y, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(u_y_1));
+    taskQuotas.onStart(u_y_1);
+
+    Task<?> r_y_1 = task(INTERACTIVE.getName(), receivePackTask(PROJECT_Y, USER_B));
+    assertTrue(taskQuotas.isReadyToStart(r_y_1));
+    taskQuotas.onStart(r_y_1);
+
+    Task<?> u_y_2 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_Y, USER_A));
+    assertFalse(
+        "Other projects should be blocked; remaining slots are reserved for " + PROJECT_X,
+        taskQuotas.isReadyToStart(u_y_2));
+
+    Task<?> u_x_1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(
+        "Reserved project should be allowed to use reserved slots, whatever the task",
+        taskQuotas.isReadyToStart(u_x_1));
+    taskQuotas.onStart(u_x_1);
+
+    Task<?> r_x_1 = task(INTERACTIVE.getName(), receivePackTask(PROJECT_X, USER_B));
+    assertTrue(taskQuotas.isReadyToStart(r_x_1));
+    taskQuotas.onStart(r_x_1);
+
+    Task<?> u_x_2 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertFalse(
+        "Absolute ceiling (maxStart) should still block the reserved project",
+        taskQuotas.isReadyToStart(u_x_2));
   }
 
   @Test
