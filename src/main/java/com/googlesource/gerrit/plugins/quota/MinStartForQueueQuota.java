@@ -51,9 +51,7 @@ public class MinStartForQueueQuota {
           queue,
           new QueueManager.Reservation(
               reservation,
-              task ->
-                  task.getQueueName().equalsIgnoreCase(queue)
-                      && projectResolver.estimateProject(task).map(qs::matches).orElse(false),
+              task -> projectResolver.estimateProject(task).map(qs::matches).orElse(false),
               qs.getNamespace()));
     } else {
       log.error("Invalid configuration entry [{}]", cfg);

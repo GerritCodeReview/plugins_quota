@@ -49,7 +49,7 @@ public class MinStartForTaskForQueueQuota {
         new QueueManager.Reservation(
             Integer.parseInt(matcher.group(1)),
             task -> {
-              if (!task.getQueueName().equalsIgnoreCase(queue) || !taskGroup.isApplicable(task)) {
+              if (!taskGroup.isApplicable(task)) {
                 return false;
               }
 
