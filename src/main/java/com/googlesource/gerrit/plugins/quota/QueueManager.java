@@ -105,6 +105,48 @@ public class QueueManager {
     public boolean matches(WorkQueue.Task<?> task) {
       return taskMatcher.test(task);
     }
+
+    public static Builder builder() {
+      return new Builder();
+    }
+
+    public static class Builder {
+      private int capacity;
+      private String queue;
+      private String namespace;
+      private Predicate<WorkQueue.Task<?>> tasks = task -> true;
+
+      private Builder() {}
+
+      public Builder capacity(int threads) {
+        this.capacity = threads;
+        return this;
+      }
+
+      public Builder onQueue(String queueName) {
+        this.queue = queueName;
+        return this;
+      }
+
+      public Builder inNamespace(String quotaNamespace) {
+        this.namespace = quotaNamespace;
+        return this;
+      }
+
+      /**
+       * Narrows the reservation to the tasks the predicate accepts, on top of any predicate added
+       * before it. None of them needs a check on the queue, as a reservation is only ever tested
+       * against the tasks running on the queue it was registered on.
+       */
+      public Builder matching(Predicate<WorkQueue.Task<?>> matcher) {
+        this.tasks = tasks.and(matcher);
+        return this;
+      }
+
+      public void register() {
+        registerReservation(queue, new Reservation(capacity, tasks, namespace));
+      }
+    }
   }
 
   public enum Queue {

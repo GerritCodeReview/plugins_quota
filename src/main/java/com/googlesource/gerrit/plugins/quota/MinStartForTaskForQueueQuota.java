@@ -20,16 +20,16 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class MinStartForTaskForQueueQuota {
+public class MinStartForTaskForQueueQuota extends MinStartQuota {
   private static final Logger log = LoggerFactory.getLogger(MinStartForTaskForQueueQuota.class);
   public static final String KEY = "minStartForTaskForQueue";
-  protected final ProjectResolver projectResolver;
 
   @Inject
   public MinStartForTaskForQueueQuota(ProjectResolver projectResolver) {
-    this.projectResolver = projectResolver;
+    super(projectResolver);
   }
 
+  @Override
   public Optional<TaskQuota> build(QuotaSection qs, String cfg) {
     if (qs.isFallbackQuota()) {
       log.warn("minStartForTaskForQueue is not applicable in fallback quota section");
@@ -42,20 +42,12 @@ public class MinStartForTaskForQueueQuota {
       return Optional.empty();
     }
 
-    String queue = matcher.group(3);
     TaskGroup taskGroup = new TaskGroup(matcher.group(2));
-    QueueManager.registerReservation(
-        queue,
-        new QueueManager.Reservation(
-            Integer.parseInt(matcher.group(1)),
-            task -> {
-              if (!taskGroup.isApplicable(task)) {
-                return false;
-              }
-
-              return projectResolver.estimateProject(task).map(qs::matches).orElse(false);
-            },
-            qs.getNamespace()));
+    reservation(qs)
+        .capacity(Integer.parseInt(matcher.group(1)))
+        .onQueue(matcher.group(3))
+        .matching(taskGroup::isApplicable)
+        .register();
 
     return Optional.empty();
   }
