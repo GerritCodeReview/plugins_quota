@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcc6dab6_0158a1e2",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartQuota.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-11-02T16:03:10Z",
+      "side": 1,
+      "message": "We are removing queue name check here. If you think that is not needed please create a seperate change for that explaining the reasoning. (could be a parent change.)",
+      "revId": "7ec1781c80d2fcda6db9c90c517ee3ac47978a55",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
