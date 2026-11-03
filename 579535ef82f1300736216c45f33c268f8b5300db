@@ -34,6 +34,24 @@
       "parentUuid": "de8f91ff_8e85d5a1",
       "revId": "579535ef82f1300736216c45f33c268f8b5300db",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ef8ff4a_cb37bb46",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/quota/MinStartQuota.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-11-03T05:05:09Z",
+      "side": 1,
+      "message": "Moved it to QueueManager.Reservation.builder(), so it is not minStart specific any more. matching() ANDs onto what is already there, which lets MinStartQuota seed the project match and each variant add its own.",
+      "parentUuid": "0f6f65cc_d34fea79",
+      "revId": "579535ef82f1300736216c45f33c268f8b5300db",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
