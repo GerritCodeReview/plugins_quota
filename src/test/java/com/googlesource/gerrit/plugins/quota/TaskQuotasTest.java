@@ -217,6 +217,52 @@ public class TaskQuotasTest {
   }
 
   @Test
+  public void testMaxPerUserForQueue() throws ConfigInvalidException {
+    TaskQuotas taskQuotas =
+        taskQuotas(
+            5,
+            5,
+"""
+[quota "%s"]
+  maxStartPerUserForQueue = 2 %s
+"""
+                .formatted(PROJECT_X, INTERACTIVE.getName()));
+
+    // running: user_a: 1 user_b: 0
+    Task<?> u_x_a_1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(u_x_a_1));
+    taskQuotas.onStart(u_x_a_1);
+
+    // running: user_a: 2 user_b: 0 (user_a is at the max, every task group counting towards it)
+    Task<?> r_x_a_1 = task(INTERACTIVE.getName(), receivePackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(r_x_a_1));
+    taskQuotas.onStart(r_x_a_1);
+
+    Task<?> u_x_a_2 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertFalse(
+        "The max holds even though the queue has idle threads", taskQuotas.isReadyToStart(u_x_a_2));
+
+    Task<?> u_a_batch = task(BATCH.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(
+        "The max applies only to the configured queue", taskQuotas.isReadyToStart(u_a_batch));
+    startAndCompleteTask(taskQuotas, u_a_batch);
+
+    // running: user_a: 2 user_b: 1
+    Task<?> u_x_b_1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_B));
+    assertTrue("Every user is counted on their own", taskQuotas.isReadyToStart(u_x_b_1));
+    taskQuotas.onStart(u_x_b_1);
+
+    // running: user_a: 1 user_b: 1
+    taskQuotas.onStop(u_x_a_1);
+    assertTrue(taskQuotas.isReadyToStart(u_x_a_2));
+    taskQuotas.onStart(u_x_a_2);
+
+    taskQuotas.onStop(r_x_a_1);
+    taskQuotas.onStop(u_x_a_2);
+    taskQuotas.onStop(u_x_b_1);
+  }
+
+  @Test
   public void testSoftMaxStartForTaskForQueue() throws ConfigInvalidException {
     TaskQuotas taskQuotas =
         taskQuotas(

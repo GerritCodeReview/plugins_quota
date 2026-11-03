@@ -493,6 +493,19 @@ Example:
 Once a user has 3 tasks running, further tasks from that user start only
 while at least one idle thread would remain.
 
+The `maxStartPerUserForQueue` setting is the hard counterpart, and allows no
+such overrun.
+
+Example:
+
+```
+ [quota "*"]
+   maxStartPerUserForQueue = 5 SSH-Interactive-Worker
+```
+
+Once a user has 5 tasks running on the queue, further tasks from that user are
+parked until one of them finishes, however idle the queue is.
+
 Multiple `maxStart*` quotas can also share a single counter across queues
 or projects by referencing a named pool instead of a literal number. This
 is useful for capping total concurrency of a task type (e.g. uploadpack)
