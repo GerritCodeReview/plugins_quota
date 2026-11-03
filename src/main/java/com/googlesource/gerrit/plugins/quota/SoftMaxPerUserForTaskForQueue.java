@@ -55,6 +55,6 @@ public class SoftMaxPerUserForTaskForQueue extends SoftMaxPerUserForQueue {
   public String toString() {
     return KEY
         + ": softMax [%d], task [%s], queue [%s], namespace [%s]"
-            .formatted(softMax, taskGroup, queue.getName(), quotaSection.getNamespace());
+            .formatted(limit, taskGroup, queue.getName(), quotaSection.getNamespace());
   }
 }
