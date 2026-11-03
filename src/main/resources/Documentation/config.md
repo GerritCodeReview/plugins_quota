@@ -493,6 +493,32 @@ Example:
 Once a user has 3 tasks running, further tasks from that user start only
 while at least one idle thread would remain.
 
+The `maxStartPerUserForQueue` setting is the hard counterpart, and allows no
+such overrun.
+
+Example:
+
+```
+ [quota "*"]
+   maxStartPerUserForQueue = 5 SSH-Interactive-Worker
+```
+
+Once a user has 5 tasks running on the queue, further tasks from that user are
+parked until one of them finishes, however idle the queue is.
+
+The two can be combined, and each is then enforced on its own:
+
+```
+ [quota "*"]
+   softMaxStartPerUserForQueue = 3 SSH-Interactive-Worker
+   maxStartPerUserForQueue = 5 SSH-Interactive-Worker
+```
+
+Neither setting holds back a user's first 3 tasks. The 4th and the 5th start
+only while at least one thread would stay idle, and a 6th is parked until one
+of the five finishes. The soft maximum is therefore what a user is always
+granted, and the hard one what they can never exceed.
+
 Multiple `maxStart*` quotas can also share a single counter across queues
 or projects by referencing a named pool instead of a literal number. This
 is useful for capping total concurrency of a task type (e.g. uploadpack)

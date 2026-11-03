@@ -63,6 +63,7 @@ public class TaskQuotaKeys {
                 qs,
                 TaskQuotaPerUserForTaskForQueue.KEY,
                 (section, cfg) -> TaskQuotaPerUserForTaskForQueue.build(section, cfg, pools)),
+            process(qs, MaxPerUserForQueue.KEY, MaxPerUserForQueue::build),
             process(qs, SoftMaxPerUserForQueue.KEY, SoftMaxPerUserForQueue::build),
             process(qs, SoftMaxForTaskForQueue.KEY, SoftMaxForTaskForQueue::build),
             process(
