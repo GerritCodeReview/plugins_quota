@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efb00553_22f6c705",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 824,
+      "author": {
+        "id": 4069542
+      },
+      "writtenOn": "2026-11-04T16:14:07Z",
+      "side": 1,
+      "message": "u represent uploadpack but this is doing receive pack..",
+      "revId": "b7dacca782e8a94e25331435d25c5eedcdae56c3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
