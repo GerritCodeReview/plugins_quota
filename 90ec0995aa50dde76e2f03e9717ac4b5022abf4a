@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d34077d5_6ad463f2",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-11-04T03:40:15Z",
+      "side": 1,
+      "message": "It might be worth explaning here how the two examples above, max 5 and softmax 3, would work together.",
+      "revId": "90ec0995aa50dde76e2f03e9717ac4b5022abf4a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
