@@ -14,42 +14,19 @@
 
 package com.googlesource.gerrit.plugins.quota;
 
-import com.google.gerrit.server.git.WorkQueue;
 import java.util.Optional;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-public class SoftMaxPerUserForQueue implements TaskQuota {
+public class SoftMaxPerUserForQueue extends PerUserForQueue {
   public static final String KEY = "softMaxStartPerUserForQueue";
-  public static final Pattern CONFIG_PATTERN =
-      Pattern.compile("(\\d+)\\s+(" + String.join("|", QueueManager.Queue.keys()) + ")");
-  protected final QuotaSection quotaSection;
-  protected final int softMax;
-  protected final QueueManager.Queue queue;
-  private final PerUserTaskQuota perUserTaskQuota;
 
   public SoftMaxPerUserForQueue(QuotaSection quotaSection, int softMax, String queueName) {
-    this.quotaSection = quotaSection;
-    this.softMax = softMax;
-    this.queue = QueueManager.Queue.fromKey(queueName);
-    this.perUserTaskQuota =
-        new PerUserTaskQuota(
-            (ids, task) -> QueueManager.canStartWithinSoftMax(ids.size(), softMax, queue));
+    super(quotaSection, softMax, queueName);
   }
 
   @Override
-  public boolean isApplicable(WorkQueue.Task<?> task) {
-    return task.getQueueName().equals(queue.getName());
-  }
-
-  @Override
-  public boolean isReadyToStart(WorkQueue.Task<?> task) {
-    return perUserTaskQuota.tryAcquire(task);
-  }
-
-  @Override
-  public void onStop(WorkQueue.Task<?> task) {
-    perUserTaskQuota.release(task);
+  protected boolean canStart(int running) {
+    return QueueManager.canStartWithinSoftMax(running, limit, queue);
   }
 
   public static Optional<TaskQuota> build(QuotaSection qs, String cfg) {
@@ -64,6 +41,6 @@ public class SoftMaxPerUserForQueue implements TaskQuota {
   public String toString() {
     return KEY
         + ": softMax [%d], queue [%s], namespace [%s]"
-            .formatted(softMax, queue.getName(), quotaSection.getNamespace());
+            .formatted(limit, queue.getName(), quotaSection.getNamespace());
   }
 }
