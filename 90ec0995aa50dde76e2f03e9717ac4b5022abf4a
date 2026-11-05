@@ -16,6 +16,24 @@
       "message": "It might be worth explaning here how the two examples above, max 5 and softmax 3, would work together.",
       "revId": "90ec0995aa50dde76e2f03e9717ac4b5022abf4a",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "703a541d_b8e1d16f",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-11-05T04:50:36Z",
+      "side": 1,
+      "message": "Done. Added a combined example with both keys set, and spelled out that the soft max is what a user is always granted while the hard max is what they can never exceed, with the tasks in between starting only while a thread would stay idle. Covered by a new test walking that same 3/5 scenario.",
+      "parentUuid": "d34077d5_6ad463f2",
+      "revId": "90ec0995aa50dde76e2f03e9717ac4b5022abf4a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
