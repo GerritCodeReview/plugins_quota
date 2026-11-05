@@ -16,6 +16,24 @@
       "message": "u represent uploadpack but this is doing receive pack..",
       "revId": "b7dacca782e8a94e25331435d25c5eedcdae56c3",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72e3ce4a_01255ba9",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/quota/TaskQuotasTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 824,
+      "author": {
+        "id": 4651293
+      },
+      "writtenOn": "2026-11-05T05:04:49Z",
+      "side": 1,
+      "message": "Good catch, renamed the receive-pack ones to r_b_1 and r_a_1 and renumbered the upload-pack ones to match.",
+      "parentUuid": "efb00553_22f6c705",
+      "revId": "b7dacca782e8a94e25331435d25c5eedcdae56c3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
