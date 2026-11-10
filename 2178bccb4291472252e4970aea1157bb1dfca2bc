@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b19e816_7882f43b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1162586
+      },
+      "writtenOn": "2026-11-10T23:00:30Z",
+      "side": 1,
+      "message": "Would supporting quotas at `group` level (in addition to `user` level) have accomplished a similar thing as the \"shared permit pools\" implemented in this CR?",
+      "revId": "2178bccb4291472252e4970aea1157bb1dfca2bc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
