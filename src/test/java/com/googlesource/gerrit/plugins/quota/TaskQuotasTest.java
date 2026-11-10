@@ -16,6 +16,7 @@ package com.googlesource.gerrit.plugins.quota;
 
 import static com.googlesource.gerrit.plugins.quota.QueueManager.Queue.BATCH;
 import static com.googlesource.gerrit.plugins.quota.QueueManager.Queue.INTERACTIVE;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -657,6 +658,42 @@ public class TaskQuotasTest {
     }
 
     taskQuotas.onStop(bare);
+  }
+
+  @Test
+  public void testAnonymousGitTaskMatchesProjectQuota() throws ConfigInvalidException {
+    TaskQuotas taskQuotas =
+        taskQuotas(
+            2,
+            2,
+"""
+[quota "%s"]
+  maxStartForTaskForQueue = 1 uploadpack %s
+"""
+                .formatted(PROJECT_X, INTERACTIVE.getName()));
+
+    Task<?> u_x_1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(u_x_1));
+    taskQuotas.onStart(u_x_1);
+
+    // Gerrit leaves the user out of the task string for anonymous HTTP requests.
+    Task<?> anonymous = task(INTERACTIVE.getName(), "git-upload-pack " + PROJECT_X);
+    assertFalse(taskQuotas.isReadyToStart(anonymous));
+
+    taskQuotas.onStop(u_x_1);
+    assertTrue(taskQuotas.isReadyToStart(anonymous));
+    startAndCompleteTask(taskQuotas, anonymous);
+  }
+
+  @Test
+  public void testGitTaskWithoutProjectResolvesToNoProject() {
+    ProjectResolver resolver = new ProjectResolver(projectCache);
+    for (String taskString : new String[] {"git-upload-pack (admin)", "git-upload-pack /"}) {
+      assertEquals(
+          "task [" + taskString + "]",
+          Optional.empty(),
+          resolver.estimateProject(task(INTERACTIVE.getName(), taskString)));
+    }
   }
 
   @Test

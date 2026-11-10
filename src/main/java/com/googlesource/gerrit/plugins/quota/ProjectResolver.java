@@ -41,13 +41,19 @@ public class ProjectResolver {
    *
    * <p>" /./example.git (admin)"
    *
+   * <p>" example.git"
+   *
+   * <p>The user is optional because Gerrit leaves it out for anonymous HTTP requests. The project
+   * is matched lazily so that it stops before the user when there is one. The lookahead keeps a
+   * lone user, as in " (admin)", from being read as the project.
+   *
    * <p>The command name is removed first so that the pattern cannot match inside it. The pattern is
    * not anchored at its start and the earliest match wins, so given a full task string whose
    * command name contains a space, such as "git upload-pack", the match starts at that space and
    * captures "upload-pack /example.git" as the project.
    */
-  private static final Pattern REPOSITORY_THEN_USER_PATTERN =
-      Pattern.compile("\\s+/?(.*)\\s+(\\(\\S+\\))$");
+  private static final Pattern REPOSITORY_THEN_OPTIONAL_USER_PATTERN =
+      Pattern.compile("\\s+/?(?!\\(\\S+\\)$)(.*?)(?:\\s+\\(\\S+\\))?$");
 
   /**
    * Matched against "1234 example", the task string with the task name already removed. Index tasks
@@ -90,11 +96,14 @@ public class ProjectResolver {
    * prefix Gerrit's authenticated HTTP endpoints use, neither of which belongs to the project.
    */
   private Optional<Project.NameKey> gitCommandProject(String arguments) {
-    Matcher matcher = REPOSITORY_THEN_USER_PATTERN.matcher(arguments);
+    Matcher matcher = REPOSITORY_THEN_OPTIONAL_USER_PATTERN.matcher(arguments);
     if (!matcher.find()) {
       return Optional.empty();
     }
     String name = normalizeRepoName(matcher.group(1));
+    if (name.isEmpty()) {
+      return Optional.empty();
+    }
 
     Project.NameKey candidate = Project.NameKey.parse(name);
     if (!name.startsWith(HTTP_PREFIX)) {
