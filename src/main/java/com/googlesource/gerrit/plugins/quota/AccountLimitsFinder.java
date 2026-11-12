@@ -16,15 +16,16 @@ package com.googlesource.gerrit.plugins.quota;
 import static com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.GLOBAL_SECTION;
 import static com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.KEY;
 
+import com.google.gerrit.entities.AccountGroup;
 import com.google.gerrit.entities.GroupDescription;
-import com.google.gerrit.extensions.restapi.AuthException;
-import com.google.gerrit.extensions.restapi.IdString;
-import com.google.gerrit.extensions.restapi.ResourceNotFoundException;
-import com.google.gerrit.extensions.restapi.TopLevelResource;
+import com.google.gerrit.entities.GroupReference;
 import com.google.gerrit.server.IdentifiedUser;
+import com.google.gerrit.server.account.GroupBackends;
+import com.google.gerrit.server.account.GroupCache;
 import com.google.gerrit.server.account.GroupMembership;
+import com.google.gerrit.server.group.GroupResolver;
+import com.google.gerrit.server.group.SystemGroupBackend;
 import com.google.gerrit.server.project.ProjectCache;
-import com.google.gerrit.server.restapi.group.GroupsCollection;
 import com.google.inject.Inject;
 import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.RateLimit;
 import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type;
@@ -38,16 +39,22 @@ public class AccountLimitsFinder {
   private static final Logger log = LoggerFactory.getLogger(AccountLimitsFinder.class);
 
   private final ProjectCache projectCache;
-  private final GroupsCollection groupsCollection;
+  private final SystemGroupBackend systemGroupBackend;
+  private final GroupCache groupCache;
+  private final GroupResolver groupResolver;
   private final QuotaConfigFileProvider configPath;
 
   @Inject
   AccountLimitsFinder(
       ProjectCache projectCache,
-      GroupsCollection groupsCollection,
+      SystemGroupBackend systemGroupBackend,
+      GroupCache groupCache,
+      GroupResolver groupResolver,
       QuotaConfigFileProvider configPath) {
     this.projectCache = projectCache;
-    this.groupsCollection = groupsCollection;
+    this.systemGroupBackend = systemGroupBackend;
+    this.groupCache = groupCache;
+    this.groupResolver = groupResolver;
     this.configPath = configPath;
   }
 
@@ -71,23 +78,36 @@ public class AccountLimitsFinder {
   }
 
   public boolean isMatching(GroupMembership membership, String groupName) {
-    try {
-      Optional<GroupDescription.Internal> maybeInternalGroup =
-          groupsCollection
-              .parse(TopLevelResource.INSTANCE, IdString.fromDecoded(groupName))
-              .asInternalGroup();
-      if (!maybeInternalGroup.isPresent()) {
-        log.debug("Ignoring limits for non-internal group ''{}'' in quota.config", groupName);
-      } else if (membership.contains(maybeInternalGroup.get().getGroupUUID())) {
-        return true;
-      }
-    } catch (ResourceNotFoundException e) {
+    Optional<AccountGroup.UUID> uuid = resolveGroup(groupName);
+    if (uuid.isEmpty()) {
       log.debug("Ignoring limits for unknown group ''{}'' in quota.config", groupName);
-    } catch (AuthException e) {
-      log.debug("Ignoring limits for non-visible group ''{}'' in quota.config", groupName);
+      return false;
+    }
+    return membership.contains(uuid.get());
+  }
+
+  /**
+   * Resolves a group named in quota.config without checking whether the current user can see it.
+   * Visibility does not matter for a membership test, and the result must not depend on which
+   * request happens to trigger the lookup, since limits are cached per account.
+   *
+   * <p>System groups such as "Registered Users" and internal groups are looked up by name. Other
+   * values, such as group UUIDs, fall back to GroupResolver.
+   */
+  private Optional<AccountGroup.UUID> resolveGroup(String groupName) {
+    GroupReference systemGroup = GroupBackends.findExactSuggestion(systemGroupBackend, groupName);
+    if (systemGroup != null) {
+      return Optional.of(systemGroup.getUUID());
     }
 
-    return false;
+    Optional<AccountGroup.UUID> internalGroup =
+        groupCache.get(AccountGroup.nameKey(groupName)).map(g -> g.getGroupUUID());
+    if (internalGroup.isPresent()) {
+      return internalGroup;
+    }
+
+    return Optional.ofNullable(groupResolver.parseId(groupName))
+        .map(GroupDescription.Basic::getGroupUUID);
   }
 
   /**

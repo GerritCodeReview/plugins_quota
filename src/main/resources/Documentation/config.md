@@ -200,6 +200,11 @@ Use group "Anonymous Users" to define the rate limit for anonymous users.
 Use group "Registered Users" to define the default rate limit for all logged
 in users.
 
+Every logged-in user is a member of "Registered Users" and "Anonymous Users",
+so list those groups after any more specific group. A "Registered Users"
+section placed before, for example, `[group "buildserver"]` applies to the
+members of "buildserver" as well, and their own section is never used.
+
 Rate limits can also be specified in the global section; these limits are
 always applied, regardless of group matching. If a user matches a group, the
 limits from the first matching group are applied in addition to the global

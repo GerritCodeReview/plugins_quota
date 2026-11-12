@@ -20,10 +20,13 @@ import com.google.gerrit.acceptance.GitUtil;
 import com.google.gerrit.acceptance.LightweightPluginDaemonTest;
 import com.google.gerrit.acceptance.TestAccount;
 import com.google.gerrit.acceptance.TestPlugin;
+import com.google.gerrit.acceptance.testsuite.request.RequestScopeOperations;
 import com.google.gerrit.entities.RefNames;
 import com.google.gerrit.extensions.api.groups.GroupApi;
+import com.google.gerrit.extensions.common.GroupOptionsInfo;
 import com.google.gerrit.extensions.restapi.RestApiException;
 import com.google.gerrit.server.IdentifiedUser;
+import com.google.gerrit.server.account.GroupMembership;
 import com.google.gerrit.truth.OptionalSubject;
 import com.google.inject.Inject;
 import com.googlesource.gerrit.plugins.quota.AccountLimitsConfig.Type;
@@ -42,8 +45,12 @@ public class QuotaPluginIT extends LightweightPluginDaemonTest {
   private static final int UPLOADPACK_BURST = 1;
   private static final int RESTAPI_LIMIT = 200;
   private static final int RESTAPI_BURST = 2;
+  private static final String REGISTERED_USERS = "Registered Users";
+  private static final int REGISTERED_USERS_RESTAPI_LIMIT = 50;
+  private static final int REGISTERED_USERS_RESTAPI_BURST = 3;
 
   @Inject private IdentifiedUser.GenericFactory userFactory;
+  @Inject private RequestScopeOperations requestScopeOperations;
 
   @Before
   public void setup() throws Exception {
@@ -75,6 +82,14 @@ public class QuotaPluginIT extends LightweightPluginDaemonTest {
                   + RESTAPI_LIMIT
                   + "/s burst "
                   + RESTAPI_BURST * RESTAPI_LIMIT
+                  + "\n"
+                  + "[group \""
+                  + REGISTERED_USERS
+                  + "\"]\n"
+                  + "restapi = "
+                  + REGISTERED_USERS_RESTAPI_LIMIT
+                  + "/s burst "
+                  + REGISTERED_USERS_RESTAPI_BURST * REGISTERED_USERS_RESTAPI_LIMIT
                   + "\n")
           .to(RefNames.REFS_CONFIG)
           .assertOkStatus();
@@ -96,8 +111,41 @@ public class QuotaPluginIT extends LightweightPluginDaemonTest {
   }
 
   @Test
-  public void adminShouldNotBeLimitedOnRestApi() {
-    assertAdminUserHasNoLimitsOn(Type.RESTAPI);
+  public void adminShouldBeLimitedOnRestApiAsRegisteredUser() {
+    // "Registered Users" is a system group, not an internal one; its limit applies to every
+    // logged-in user who matches no group listed before it.
+    Optional<AccountLimitsConfig.RateLimit> rateLimit =
+        getAccountLimitsFinder().firstMatching(Type.RESTAPI, userFactory.create(admin.id()));
+    OptionalSubject.assertThat(rateLimit).isPresent();
+    assertRateLimits(
+        rateLimit.get(),
+        Type.RESTAPI,
+        REGISTERED_USERS_RESTAPI_LIMIT,
+        REGISTERED_USERS_RESTAPI_BURST);
+  }
+
+  @Test
+  public void groupMatchingDoesNotDependOnTheCallingUser() throws Exception {
+    // The group is private to its members; admin, who is not a member, and an anonymous caller
+    // must still see that user belongs to it, because the result is cached per account.
+    GroupOptionsInfo privateGroup = new GroupOptionsInfo();
+    privateGroup.visibleToAll = false;
+    gApi.groups().id(GROUP_LIMITED_ON_RESTAPI).options(privateGroup);
+    GroupMembership membership = userFactory.create(user.id()).getEffectiveGroups();
+    AccountLimitsFinder finder = getAccountLimitsFinder();
+
+    requestScopeOperations.setApiUser(admin.id());
+    assertThat(finder.isMatching(membership, GROUP_LIMITED_ON_RESTAPI)).isTrue();
+
+    requestScopeOperations.setApiUserAnonymous();
+    assertThat(finder.isMatching(membership, GROUP_LIMITED_ON_RESTAPI)).isTrue();
+    assertThat(finder.isMatching(membership, REGISTERED_USERS)).isTrue();
+  }
+
+  @Test
+  public void unknownGroupDoesNotMatch() {
+    GroupMembership membership = userFactory.create(user.id()).getEffectiveGroups();
+    assertThat(getAccountLimitsFinder().isMatching(membership, "no-such-group")).isFalse();
   }
 
   @Test
