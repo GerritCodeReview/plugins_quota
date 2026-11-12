@@ -127,7 +127,8 @@ public class MaxConnectionsLimiter extends AllRequestFilter {
 
   private boolean isRestApiRequest(ServletRequest req) {
     return req instanceof HttpServletRequest
-        && REST_API_PATH_PATTERN.matcher(((HttpServletRequest) req).getServletPath()).matches();
+        && RestApiPaths.isRestApi(
+            REST_API_PATH_PATTERN, ((HttpServletRequest) req).getServletPath());
   }
 
   private Optional<Integer> getEffectiveRestApiLimit(IdentifiedUser user) {
