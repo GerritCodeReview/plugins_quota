@@ -72,15 +72,14 @@ public class AccountLimitsFinder {
 
   public boolean isMatching(GroupMembership membership, String groupName) {
     try {
-      Optional<GroupDescription.Internal> maybeInternalGroup =
+      // Any group the server can resolve counts, not only internal groups, so that system groups
+      // such as "Registered Users" (which the documentation uses as the default for logged-in
+      // users) and external groups match their members.
+      GroupDescription.Basic group =
           groupsCollection
               .parse(TopLevelResource.INSTANCE, IdString.fromDecoded(groupName))
-              .asInternalGroup();
-      if (!maybeInternalGroup.isPresent()) {
-        log.debug("Ignoring limits for non-internal group ''{}'' in quota.config", groupName);
-      } else if (membership.contains(maybeInternalGroup.get().getGroupUUID())) {
-        return true;
-      }
+              .getGroup();
+      return membership.contains(group.getGroupUUID());
     } catch (ResourceNotFoundException e) {
       log.debug("Ignoring limits for unknown group ''{}'' in quota.config", groupName);
     } catch (AuthException e) {
