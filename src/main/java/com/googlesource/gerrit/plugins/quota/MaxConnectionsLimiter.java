@@ -51,21 +51,21 @@ public class MaxConnectionsLimiter extends AllRequestFilter {
   private static final String CONFIG_REST_API = "rest-api";
   private static final Pattern REST_API_REGEX = Pattern.compile("(\\d+)\\s+" + CONFIG_REST_API);
 
-  private static final Pattern REST_API_PATH_PATTERN =
-      Pattern.compile(
-          "^/(?:a/)?(access|accounts|changes|config|groups|plugins|projects|tools)/.*$");
-
   private final Map<String, Integer> connectionsByUser = new ConcurrentHashMap<>();
   private final Provider<CurrentUser> userProvider;
   private final AccountLimitsFinder accountLimitsFinder;
+  private final RestApiPaths restApiPaths;
   private final List<Limit> limits = new ArrayList<>(2);
   private Limit globalLimit;
 
   @Inject
   public MaxConnectionsLimiter(
-      AccountLimitsFinder accountLimitsFinder, Provider<CurrentUser> userProvider) {
+      AccountLimitsFinder accountLimitsFinder,
+      Provider<CurrentUser> userProvider,
+      RestApiPaths restApiPaths) {
     this.accountLimitsFinder = accountLimitsFinder;
     this.userProvider = userProvider;
+    this.restApiPaths = restApiPaths;
   }
 
   @Inject
@@ -127,7 +127,7 @@ public class MaxConnectionsLimiter extends AllRequestFilter {
 
   private boolean isRestApiRequest(ServletRequest req) {
     return req instanceof HttpServletRequest
-        && REST_API_PATH_PATTERN.matcher(((HttpServletRequest) req).getServletPath()).matches();
+        && restApiPaths.isConnectionLimited(((HttpServletRequest) req).getServletPath());
   }
 
   private Optional<Integer> getEffectiveRestApiLimit(IdentifiedUser user) {

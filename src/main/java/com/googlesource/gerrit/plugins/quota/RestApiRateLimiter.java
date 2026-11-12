@@ -26,7 +26,6 @@ import com.googlesource.gerrit.plugins.quota.Module.Holder;
 import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.concurrent.ExecutionException;
-import java.util.regex.Pattern;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -47,11 +46,7 @@ public class RestApiRateLimiter extends AllRequestFilter {
   private final LoadingCache<Account.Id, Holder> limitsPerAccount;
   private final LoadingCache<String, Holder> globalLimitsPerAccount;
   private final LoadingCache<String, Holder> limitsPerRemoteHost;
-
-  private final Pattern servletPath =
-      Pattern.compile(
-          "^/(?:a/)?"
-              + "(access|accounts|changes|config|groups|plugins|projects|Documentation|tools)/(.*)$");
+  private final RestApiPaths restApiPaths;
 
   private final String limitExceededMsg;
 
@@ -63,12 +58,14 @@ public class RestApiRateLimiter extends AllRequestFilter {
       @Named(HttpModule.CACHE_NAME_RESTAPI_REMOTEHOST)
           LoadingCache<String, Holder> limitsPerRemoteHost,
       @Named(HttpModule.CACHE_NAME_GLOBAL) LoadingCache<String, Holder> globalLimitsPerAccount,
-      @Named(RateMsgHelper.RESTAPI_CONFIGURABLE_MSG_ANNOTATION) String limitExceededMsg) {
+      @Named(RateMsgHelper.RESTAPI_CONFIGURABLE_MSG_ANNOTATION) String limitExceededMsg,
+      RestApiPaths restApiPaths) {
     this.user = user;
     this.limitsPerAccount = scopedLimitsPerAccount;
     this.limitsPerRemoteHost = limitsPerRemoteHost;
     this.globalLimitsPerAccount = globalLimitsPerAccount;
     this.limitExceededMsg = limitExceededMsg;
+    this.restApiPaths = restApiPaths;
   }
 
   @Override
@@ -125,6 +122,6 @@ public class RestApiRateLimiter extends AllRequestFilter {
 
   boolean isRest(ServletRequest req) {
     return req instanceof HttpServletRequest
-        && servletPath.matcher(((HttpServletRequest) req).getServletPath()).matches();
+        && restApiPaths.isRateLimited(((HttpServletRequest) req).getServletPath());
   }
 }

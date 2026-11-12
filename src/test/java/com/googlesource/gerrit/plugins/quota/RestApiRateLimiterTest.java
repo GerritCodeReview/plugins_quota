@@ -106,7 +106,8 @@ public class RestApiRateLimiterTest {
                 limitsPerAccount,
                 globalLimitsPerAccount,
                 limitsPerRemoteHost,
-                LIMIT_EXCEEDED_MSG));
+                LIMIT_EXCEEDED_MSG,
+                new RestApiPaths(true)));
     doReturn(true).when(restReqFilter).isRest(req);
     when(user.get()).thenReturn(currentUser);
     doNothing().when(chain).doFilter(req, res);
