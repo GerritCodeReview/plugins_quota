@@ -1039,6 +1039,52 @@ public class TaskQuotasTest {
         taskQuotas.isReadyToStart(u_a_2));
   }
 
+  @Test
+  public void testMinStartForTaskForUserForQueue() throws ConfigInvalidException {
+    TaskQuotas taskQuotas =
+        taskQuotas(
+            4,
+            4,
+            """
+            [quota "%s"]
+              minStartForTaskForUserForQueue = 2 receivepack %s %s
+            """
+                .formatted(PROJECT_X, USER_A, INTERACTIVE.getName()));
+
+    Task<?> u_b_1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_B));
+    assertTrue(taskQuotas.isReadyToStart(u_b_1));
+    taskQuotas.onStart(u_b_1);
+
+    Task<?> u_a_1 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(u_a_1));
+    taskQuotas.onStart(u_a_1);
+
+    Task<?> r_b_1 = task(INTERACTIVE.getName(), receivePackTask(PROJECT_X, USER_B));
+    assertFalse(
+        "The reserved task group should not be shared with other users",
+        taskQuotas.isReadyToStart(r_b_1));
+
+    Task<?> u_a_2 = task(INTERACTIVE.getName(), uploadPackTask(PROJECT_X, USER_A));
+    assertFalse(
+        "The reserved user's other task groups should not draw on the reservation",
+        taskQuotas.isReadyToStart(u_a_2));
+
+    Task<?> r_a_1 = task(INTERACTIVE.getName(), receivePackTask(PROJECT_X, USER_A));
+    assertTrue(
+        "Reserved user and task group should be allowed to use reserved slots",
+        taskQuotas.isReadyToStart(r_a_1));
+    taskQuotas.onStart(r_a_1);
+
+    Task<?> r_a_2 = task(INTERACTIVE.getName(), receivePackTask(PROJECT_X, USER_A));
+    assertTrue(taskQuotas.isReadyToStart(r_a_2));
+    taskQuotas.onStart(r_a_2);
+
+    Task<?> r_a_3 = task(INTERACTIVE.getName(), receivePackTask(PROJECT_X, USER_A));
+    assertFalse(
+        "Absolute ceiling (maxStart) should still block the reserved user",
+        taskQuotas.isReadyToStart(r_a_3));
+  }
+
   private Task<?> task(String queueName, String taskString) {
     Task<?> task = Mockito.mock(Task.class);
     when(task.getTaskId()).thenReturn(new Random().nextInt());
@@ -1061,6 +1107,7 @@ public class TaskQuotasTest {
             new MinStartForQueueQuota(projectResolver),
             new MinStartForTaskForQueueQuota(projectResolver),
             new MinStartForUserForQueueQuota(projectResolver, userResolver),
+            new MinStartForTaskForUserForQueueQuota(projectResolver, userResolver),
             userResolver),
         interactiveThreads,
         batchThreads);

@@ -37,6 +37,7 @@ public class TaskQuotaKeys {
   private final MinStartForQueueQuota minStartForQueueQuota;
   private final MinStartForTaskForQueueQuota minStartForTaskForQueueQuota;
   private final MinStartForUserForQueueQuota minStartForUserForQueueQuota;
+  private final MinStartForTaskForUserForQueueQuota minStartForTaskForUserForQueueQuota;
   private final UserResolver userResolver;
 
   @Inject
@@ -44,10 +45,12 @@ public class TaskQuotaKeys {
       MinStartForQueueQuota minStartForQueueQuota,
       MinStartForTaskForQueueQuota minStartForTaskForQueueQuota,
       MinStartForUserForQueueQuota minStartForUserForQueueQuota,
+      MinStartForTaskForUserForQueueQuota minStartForTaskForUserForQueueQuota,
       UserResolver userResolver) {
     this.minStartForQueueQuota = minStartForQueueQuota;
     this.minStartForTaskForQueueQuota = minStartForTaskForQueueQuota;
     this.minStartForUserForQueueQuota = minStartForUserForQueueQuota;
+    this.minStartForTaskForUserForQueueQuota = minStartForTaskForUserForQueueQuota;
     this.userResolver = userResolver;
   }
 
@@ -76,7 +79,11 @@ public class TaskQuotaKeys {
             process(qs, SoftMaxPerUserForTaskForQueue.KEY, SoftMaxPerUserForTaskForQueue::build),
             process(qs, MinStartForQueueQuota.KEY, minStartForQueueQuota::build),
             process(qs, MinStartForTaskForQueueQuota.KEY, minStartForTaskForQueueQuota::build),
-            process(qs, MinStartForUserForQueueQuota.KEY, minStartForUserForQueueQuota::build))
+            process(qs, MinStartForUserForQueueQuota.KEY, minStartForUserForQueueQuota::build),
+            process(
+                qs,
+                MinStartForTaskForUserForQueueQuota.KEY,
+                minStartForTaskForUserForQueueQuota::build))
         .flatMap(List::stream)
         .toList();
   }

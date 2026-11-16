@@ -441,6 +441,19 @@ The configuration reserves 2 interactive threads for `userA`'s tasks on android
 projects, regardless of the task group. The configured name is looked up the
 same way as for `maxStartForTaskForUserForQueue` above.
 
+To narrow such a reservation to one task group, use
+`minStartForTaskForUserForQueue`. This quota cannot be defined in fallback
+quota section.
+
+```
+  [quota "android/*"]
+    minStartForTaskForUserForQueue = 2 receivepack userA SSH-Interactive-Worker
+```
+
+The configuration reserves 2 interactive threads for `userA`'s receivepacks on
+android projects. `userA`'s other tasks do not draw on the reservation, and
+neither do anyone else's receivepacks.
+
 We can also cap how many tasks are allowed to sit parked (waiting on any of
 the above limits) across the whole server at once, using `maxParked`. Once
 that many tasks are parked, any additional task that would otherwise be
