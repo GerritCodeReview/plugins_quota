@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ea5dd8e_24aa1f0d",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 3604707
+      },
+      "writtenOn": "2026-11-16T16:44:56Z",
+      "side": 1,
+      "message": "I really don\u0027t like calling these \"task groups\" because it always make me think this a related to a \u0027group\u0027 which is a set of \u0027users\u0027. Could we call the \u0027task types\u0027, or \u0027task sets\u0027 everywhere instead?",
+      "range": {
+        "startLine": 444,
+        "startChar": 41,
+        "endLine": 444,
+        "endChar": 46
+      },
+      "revId": "a3d866e717d9cc91fbd59b995eba6e5bb0d62dc6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
